@@ -3411,6 +3411,160 @@
           "coordinateSource": "Géocodage de l'adresse 西早稲田2-15-4 par le GSI (msearch.gsi.go.jp), à 20 m du point d'un annuaire ; pas dans OpenStreetMap"
         }
       }
+    },
+    {
+      "type": "Feature",
+      "id": "kinsen-yu",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71236,
+          35.70994
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Kinsen-yu",
+        "hook": "bain de 1954, jardin aux carpes",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T13:45:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Kinsen-yu",
+          "nameJa": "金泉湯",
+          "zone": "zone-okubo-waseda",
+          "ward": "新宿区",
+          "why": "Le bain public de Nishi-Waseda, dans son bâtiment de style temple de 1954 : pignons sculptés, plafond à caissons, jardin japonais avec un bassin de carpes et une cascade. Bassin chaud, bain de roche à demi extérieur aux plantes, bain froid, pas de sauna. Le patron, troisième génération, dit que les clients s'en servent comme lieu de rencontre du voisinage. Tatouages : acceptés, d'après la FAQ de l'association des bains de Shinjuku, qui ne pose aucune condition. Rien d'écrit par le bain lui-même : le dire au comptoir en entrant.",
+          "practical": {
+            "horaires": "14 h 30 à 22 h",
+            "fermeture": "Lundi",
+            "prix": "600 yens, serviette prêtée, savon et shampoing fournis. Espèces seulement.",
+            "station": "Nishi-Waseda (ligne Fukutoshin) 6 min, Takadanobaba (JR) 10 min",
+            "adresse": "西早稲田2-16-20"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://1010yuge-g.jp/%E9%87%91%E6%B3%89%E6%B9%AF/?lang=ja",
+              "read": "2026-11-23",
+              "what": "Association des bains de Shinjuku : calendrier d'ouverture daté de novembre 2026, tarif, serviette prêtée, espèces, entretien avec le patron."
+            },
+            {
+              "url": "https://www.1010.or.jp/map/item/item-cnt-335",
+              "read": "2026-11-23",
+              "what": "Annuaire de l'association des bains de Tokyo : adresse, horaires, fermeture, équipements, jardin et carpes."
+            },
+            {
+              "url": "https://www.1010.or.jp/mag-tokyosento-shinjuku_kinsenyu/",
+              "read": "2026-11-23",
+              "what": "Reportage de l'association, 23 juin 2020 : bâtiment de 1954, refait en 1994, bains et températures, habitués."
+            },
+            {
+              "url": "https://1010yuge-g.jp/faq/",
+              "read": "2026-11-23",
+              "what": "FAQ de l'association de Shinjuku : « タトゥーがあっても入れますか？ ご利用いただけます。心配な方は各浴場のスタッフにお声がけください。 » Téléphone et photo interdits."
+            },
+            {
+              "url": "https://ja.tattoo-go.in/spot/%E9%87%91%E6%B3%89%E6%B9%AF",
+              "read": "2026-11-23",
+              "what": "Site tiers de témoignages : classé OK d'après la FAQ de l'association (vérifié le 9 nov. 2026), deux avis favorables de 2017, un avis mitigé du 3 oct. 2022."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/6462191185 (金泉湯) via Nominatim",
+          "verify": true,
+          "verifyNote": "Tatouages : l'acceptation est écrite par l'association de l'arrondissement, pas par le bain, et un témoignage de 2022 sur un site tiers est mitigé. Le temps de marche depuis la gare de Nishi-Waseda est estimé. La rue commerçante de Nishi-Waseda écrit 15 h à 22 h, le calendrier daté de l'association 14 h 30 à 22 h."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ota-marche-fleurs",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.755,
+          35.58074
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Marché aux fleurs d'Ōta",
+        "hook": "enchères de fleurs, 7 h du matin",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T13:45:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Marché d'Ōta, pavillon des fleurs",
+          "nameJa": "大田市場 花き部",
+          "ward": "大田区",
+          "why": "Le plus gros marché aux fleurs du Japon, dans un bâtiment à part du marché de gros d'Ōta. Les enchères se font à l'horloge : le prix descend sur un grand cadran lumineux, et les fleuristes l'arrêtent d'un bouton depuis leur pupitre. On regarde d'en haut, derrière une vitre, depuis le couloir des visiteurs à l'étage (2F). La visite est libre et sans guide : on dit au poste de garde qu'on vient visiter. Ce n'est pas un marché où acheter : la vente est réservée aux professionnels inscrits.",
+          "practical": {
+            "horaires": "Enchères à partir de 7 h (7 h 30 d'après une autre page de la Ville). Parcours des visiteurs ouvert de 5 h à 15 h.",
+            "fermeture": "Le dimanche en général. Fermé les 29 nov., 13, 27, 30 et 31 déc. 2026 ; ouvert les dimanches 6 et 20 déc. et les jours fériés (calendrier 2026 de la Ville).",
+            "prix": "Aucun tarif n'est annoncé par la Ville. « Entrée gratuite » d'après l'office de tourisme d'Ōta (2019).",
+            "booking": "Sans inscription pour une personne seule d'après la Ville. Le grossiste Ōta Kaki demande de prévenir la Ville avant : 03-3790-6539.",
+            "station": "Ryūtsū Center (Tokyo Monorail), puis 10 min à pied : traverser le pont Yamato-ōhashi, prendre à droite, entrer par le bâtiment au décor de fleurs et monter à l'étage. Depuis Hamamatsuchō, 10 min de monorail ; le premier arrive à 5 h 21 en semaine. Ou bus Keikyū depuis la gare JR d'Ōmori, sortie est, quai 7, arrêt Ryūtsū Center-mae.",
+            "adresse": "東海2-2-1, Ōta-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.shijou.metro.tokyo.lg.jp/kengaku",
+              "read": "2026-11-23",
+              "what": "Ville de Tokyo, visite des marchés de gros (page sans date) : à Ōta, visite libre pour les particuliers en s'annonçant au poste de garde, de 5 h à 15 h, parcours des visiteurs, enchères des fleurs à partir de 7 h."
+            },
+            {
+              "url": "https://www.shijou.metro.tokyo.lg.jp/ja/calendar/2026",
+              "read": "2026-11-23",
+              "what": "Ville de Tokyo, calendrier 2026 des marchés (mis à jour le 5 sept. 2025) et son fichier des jours fermés pour les fleurs."
+            },
+            {
+              "url": "https://www.shijou.metro.tokyo.lg.jp/general/kids/kengaku/oota/12",
+              "read": "2026-11-23",
+              "what": "Ville de Tokyo, parcours de visite d'Ōta : la salle des enchères de fleurs se voit à travers une vitre, enchères à partir de 7 h 30, cadran lumineux et pupitres."
+            },
+            {
+              "url": "https://www.shijou.metro.tokyo.lg.jp/info/03/",
+              "read": "2026-11-23",
+              "what": "Ville de Tokyo, présentation du marché d'Ōta : pavillon des fleurs ouvert le 8 sept. 1990, premier du Japon par les volumes, parcours des visiteurs."
+            },
+            {
+              "url": "https://otakaki.co.jp/qa/",
+              "read": "2026-11-23",
+              "what": "Grossiste Ōta Kaki, questions fréquentes : visite libre depuis le couloir des visiteurs, en prévenant la Ville ; l'achat demande une carte d'acheteur. Site actif en novembre 2026."
+            },
+            {
+              "url": "https://otakaki.co.jp/access/",
+              "read": "2026-11-23",
+              "what": "Grossiste Ōta Kaki : adresse du pavillon des fleurs, chemin à pied depuis Ryūtsū Center, bâtiment d'entrée au décor de fleurs, bus depuis Ōmori."
+            },
+            {
+              "url": "https://www.ekitan.com/timetable/railway/line-station/214-3/d1",
+              "read": "2026-11-23",
+              "what": "Horaire de la gare de Ryūtsū Center, au 14 mars 2026 : premier monorail venant de Hamamatsuchō à 5 h 21 en semaine."
+            },
+            {
+              "url": "https://unique-ota.city.ota.tokyo.jp/charm/tourism/ota-shizyo/",
+              "read": "2026-11-23",
+              "what": "Office de tourisme de l'arrondissement d'Ōta (25 mars 2019) : parcours des visiteurs ouvert à tous, environ 90 min pour tout le marché, entrée gratuite."
+            },
+            {
+              "url": "https://www.noble-florist.com/%e5%a4%a7%e7%94%b0%e8%8a%b1%e5%b8%82%e5%a0%b4/",
+              "read": "2026-11-23",
+              "what": "Un fleuriste client du marché (14 mai 2020) : fleurs coupées lundi, mercredi et vendredi à 7 h, plantes en pot mardi, jeudi et samedi à 7 h 30."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/149844298 : le grand bâtiment, sans nom, du terrain du pavillon des fleurs (東海2-2-1), repéré par la station de vélos « 大田市場花き棟 » voisine (node/13192290177). L'entrée des visiteurs n'est pas dans OpenStreetMap.",
+          "verify": true,
+          "verifyNote": "Y aller un lundi, un mercredi ou un vendredi : les jours d'enchères ne sont écrits que par un fleuriste, en 2020 (fleurs coupées ces trois jours-là). Heure de début : 7 h ou 7 h 30 selon la page. Inscription : la Ville dit visite libre, un grossiste demande de la prévenir. Le point est posé sur le grand bâtiment, pas sur l'entrée des visiteurs. Règle sur les photos non lue."
+        }
+      }
     }
   ]
 }
