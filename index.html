@@ -472,7 +472,14 @@ async function main() {
   document.addEventListener('pointerdown', event => { if (!cityList.hidden && !cityList.contains(event.target) && !cityButton.contains(event.target)) fold() })
   named()
   // the whole city on the screen, between the title and the key
-  const whole = () => { const box = new maplibregl.LngLatBounds(); for (const e of places) box.extend([e.lon, e.lat]); for (const z of zones) for (const c of z.round) box.extend(c); return box }
+  // the city seen whole: its zones and its places, but a day trip more than 20 km from the middle of the places stays out of the first view
+  const whole = () => {
+    const box = new maplibregl.LngLatBounds(), middle = key => places.map(e => e[key]).sort((a, b) => a - b)[places.length >> 1]
+    const lon = middle('lon'), lat = middle('lat')
+    for (const e of places) if (Math.hypot((e.lon - lon) * Math.cos(lat * Math.PI / 180), e.lat - lat) * 111.32 <= 20) box.extend([e.lon, e.lat])
+    for (const z of zones) for (const c of z.round) box.extend(c)
+    return box
+  }
   const around = () => (phone() ? { top: 178, bottom: 150, left: 24, right: 24 } : { top: 70, bottom: 110, left: 70, right: 70 })
   const drawn = () => ({
     zones: collection(zones.map(z => ({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...z.round, z.round[0]]] }, properties: point(z).properties }))),

@@ -621,7 +621,7 @@
           "name": "NTT InterCommunication Center [ICC]",
           "nameJa": "NTTインターコミュニケーション・センター",
           "ward": "新宿区",
-          "why": "Fermé pendant tout le séjour : le centre prépare sa prochaine exposition et ne rouvre que le 15 déc. 2026. C'est le centre d'art des médias de NTT, au 4e étage de la tour Tokyo Opera City, l'institution du domaine à Tokyo, avec des archives vidéo consultables (HIVE). À garder pour un autre voyage.",
+          "why": "Fermé pour la préparation de sa prochaine exposition, il rouvre le 15 déc. 2026. C'est le centre d'art des médias de NTT, au 4e étage de la tour Tokyo Opera City, l'institution du domaine à Tokyo, avec des archives vidéo consultables (HIVE).",
           "practical": {
             "horaires": "11 h à 18 h",
             "fermeture": "Lundi (mardi si le lundi est férié), fin d'année, montages d'exposition",
@@ -727,7 +727,7 @@
           "nameJa": "NEORT++（まるかビル3F）",
           "zone": "zone-sumida",
           "ward": "中央区",
-          "why": "Sans doute fermé pendant tout le séjour : la galerie n'ouvre que pendant ses expositions et n'en annonce aucune. Petite galerie d'art génératif et numérique tenue par la plateforme NEORT, à Bakurochō. En 2026 elle a montré exonemo, Kubota Akihiro, Kuwakubo Ryōta ou John Gerrard, et accueilli la journée Processing Community Day Tokyo.",
+          "why": "La galerie n'ouvre que pendant ses expositions et n'en annonçait aucune fin novembre 2026. Petite galerie d'art génératif et numérique tenue par la plateforme NEORT, à Bakurochō. En 2026 elle a montré exonemo, Kubota Akihiro, Kuwakubo Ryōta ou John Gerrard, et accueilli la journée Processing Community Day Tokyo.",
           "practical": {
             "horaires": "Mercredi à dimanche, 14 h à 19 h, seulement pendant les expositions",
             "fermeture": "Lundi, mardi, jours fériés",
@@ -826,7 +826,7 @@
           "nameJa": "Ftarri 水道橋店",
           "zone": "zone-jimbocho-kanda",
           "ward": "文京区",
-          "why": "Boutique de disques et petite salle en sous-sol consacrée à la musique improvisée et expérimentale, à Suidōbashi : l'art sonore tel qu'il se joue, sans rien à lire. Elle n'ouvre que les soirs de concert : il y en a pendant le premier passage, aucun n'est annoncé pendant le second. Déjà dans l'agenda.",
+          "why": "Boutique de disques et petite salle en sous-sol consacrée à la musique improvisée et expérimentale, à Suidōbashi : l'art sonore tel qu'il se joue, sans rien à lire. Elle n'ouvre que les soirs de concert, annoncés sur son site. Déjà dans l'agenda.",
           "practical": {
             "horaires": "Ouvert les jours de concert, portes à 19 h 30. Programme sur le site.",
             "station": "JR Suidōbashi 5 min, Suidōbashi (ligne Mita) 3 min",
@@ -1158,7 +1158,7 @@
           ],
           "coordinateSource": "OpenStreetMap relation/14925596 (青海南ふ頭公園, le parc ; le parking souterrain est dessous, son entrée n'est pas placée) via Nominatim",
           "verify": true,
-          "verifyNote": "Disponibilité des créneaux du parking souterrain non lue : la page de réservation ne s'affiche pas sans JavaScript. Réserver avant de partir. La technique de chaque œuvre n'a été lue que pour deux artistes."
+          "verifyNote": "Disponibilité des créneaux du parking souterrain non lue : la page de réservation ne s'affiche pas sans JavaScript. Réserver à l'avance. La technique de chaque œuvre n'a été lue que pour deux artistes."
         }
       }
     },
@@ -1457,7 +1457,7 @@
             {
               "url": "https://www.shirouto.org/nantokabar/",
               "read": "2026-11-21",
-              "what": "Bar à gérant du jour, ouverture vers 19 h, calendriers de novembre et décembre 2026 : des gérants inscrits pendant chacun des deux passages."
+              "what": "Bar à gérant du jour, ouverture vers 19 h, calendriers de novembre et décembre 2026, avec les soirs où un gérant est inscrit."
             },
             {
               "url": "https://trio4.nobody.jp/keita/shop/index.html",
@@ -1500,7 +1500,7 @@
           "nameJa": "エトセトラブックス BOOKSHOP",
           "zone": "zone-shimokitazawa",
           "ward": "世田谷区",
-          "why": "Surtout en japonais, et fermée pendant le premier passage : elle n'ouvre que du jeudi au samedi. C'est la librairie de la maison d'édition féministe Etcetera Books, qui publie en japonais, à une minute de la gare de Shindaita et à 60 m de la salle Fever de l'agenda.",
+          "why": "Surtout en japonais, et ouverte seulement du jeudi au samedi. C'est la librairie de la maison d'édition féministe Etcetera Books, qui publie en japonais, à une minute de la gare de Shindaita et à 60 m de la salle Fever de l'agenda.",
           "practical": {
             "horaires": "Jeudi, vendredi, samedi, 12 h à 20 h. Les autres ouvertures sont annoncées sur ses réseaux.",
             "station": "Shindaita (ligne Inokashira) 1 min, Shimokitazawa 10 min",
@@ -1903,7 +1903,7 @@
           "name": "Musée des arts populaires du Japon (Mingeikan)",
           "nameJa": "日本民藝館",
           "ward": "目黒区",
-          "why": "Le musée de l'artisanat populaire (mingei), à Komaba : des objets à regarder, et un site en anglais. Inaccessible pendant le premier passage (deux jours sur réservation, complets, puis un jour de fermeture), ouvert pendant le second avec son concours annuel d'artisans d'aujourd'hui.",
+          "why": "Le musée de l'artisanat populaire (mingei), à Komaba : des objets à regarder, et un site en anglais. Du 22 nov. au 17 déc. 2026, il montre son concours annuel d'artisans d'aujourd'hui. Les 22 et 23 nov. sont sur réservation et complets, on entre sans réserver du 25 nov. au 17 déc.",
           "practical": {
             "horaires": "10 h à 17 h, guichet jusqu'à 16 h 30",
             "fermeture": "Lundi (sauf lundi férié), entre les expositions, fin d'année",
@@ -1924,8 +1924,8 @@
             },
             {
               "url": "https://mingeikan.or.jp/?lang=en",
-              "read": "2026-11-21",
-              "what": "Concours annuel, avis sur les jours sur réservation et complets, adresse."
+              "read": "2026-11-23",
+              "what": "Concours annuel du 22 nov. au 17 déc. 2026 ; « November 22nd and 23rd are reservation only, and tickets are all sold out » ; « Reservation is unnecessary from November 25th to December 17th » ; adresse."
             }
           ],
           "coordinateSource": "OpenStreetMap way/133340564 (日本民藝館) via Nominatim"
@@ -2156,7 +2156,7 @@
           "nameJa": "歌舞伎座",
           "zone": "zone-tsukiji-ginza",
           "ward": "中央区",
-          "why": "Le théâtre de kabuki de Ginza, qui joue pendant les deux passages. Des places à l'acte, au 4e niveau, permettent une première fois sans y passer la journée, et un boîtier de sous-titres en anglais se loue. À 500 m du marché de Tsukiji.",
+          "why": "Le théâtre de kabuki de Ginza, qui joue presque chaque jour, un programme par mois. Des places à l'acte, au 4e niveau, permettent une première fois sans y passer la journée, et un boîtier de sous-titres en anglais se loue. À 500 m du marché de Tsukiji.",
           "practical": {
             "booking": "Places à l'acte : horaires et prix fixés chaque mois et publiés sur le site anglais KABUKI WEB. En novembre 2026, de 1 600 à 2 200 yens l'acte au 4e niveau."
           },
@@ -2334,7 +2334,7 @@
           ],
           "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都港区北青山二丁目1番 (bas de l'allée, côté Aoyama-dōri)",
           "verify": true,
-          "verifyNote": "Durée et horaires de l'illumination lus sur une page tierce, le corps du communiqué officiel n'a pas pu être lu. L'état des feuilles pendant le second passage n'est pas connu."
+          "verifyNote": "Durée et horaires de l'illumination lus sur une page tierce, le corps du communiqué officiel n'a pas pu être lu. L'état des feuilles après la fin novembre n'est pas connu."
         }
       }
     },

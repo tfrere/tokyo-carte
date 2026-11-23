@@ -1,6 +1,6 @@
 # Japon, des lieux choisis
 
-Des cartes de villes du Japon (Tokyo, Osaka) : des lieux où aller, par envie.
+Des cartes de villes du Japon (Tokyo, Kyoto, Osaka) : des lieux où aller, par envie.
 
 Fond de carte © les contributeurs d’OpenStreetMap (ODbL), OpenMapTiles, OpenFreeMap. Carte dessinée avec MapLibre GL JS (BSD-3-Clause). Pictogrammes Maki (CC0 1.0).
 

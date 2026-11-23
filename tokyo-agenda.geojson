@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "schema": "globe-annotations/1",
   "title": "Tokyo, les lieux de l'agenda du propriétaire, par intérêt",
-  "description": "Un repère par lieu nommé dans les deux parties de son agenda. Aucune date ni horaire : la ville annotée par intérêt. Le contenu vient de son agenda. Un agent a localisé les lieux et rédigé les repères.",
+  "description": "Un repère par lieu nommé dans son agenda. Aucune date ni horaire : la ville annotée par intérêt. Le contenu vient de son agenda. Un agent a localisé les lieux et rédigé les repères.",
   "categories": {
     "musique": {
       "label": "Musique",
@@ -42,7 +42,7 @@
           "category": "musique",
           "name": "Sogetsu Hall (草月ホール)",
           "area": "Akasaka",
-          "why": "La salle de l'école d'ikebana Sogetsu, lieu historique de l'avant-garde. « Le concert du séjour pour ce profil », et il est complet.",
+          "why": "La salle de l'école d'ikebana Sogetsu, lieu historique de l'avant-garde. Dans l'agenda pour un concert d'improvisation, complet.",
           "url": "https://www.sogetsu.or.jp/",
           "stars": 3,
           "status": "todo",
@@ -326,7 +326,7 @@
           "status": "todo",
           "source": "agenda du propriétaire",
           "coordinateSource": "GSI, recherche d'adresse (Institut géographique du Japon), sur l'adresse du site du lieu (渋谷1-25-6, 10F) ; deux nœuds OpenStreetMap « DJ Bar Bridge » à moins de 35 m (node/10290580051, node/13081881183)",
-          "seen": "DJ Nori & Lil Mofo, « la soirée du second séjour ».",
+          "seen": "DJ Nori & Lil Mofo.",
           "number": 9
         }
       }
