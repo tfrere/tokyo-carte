@@ -59,6 +59,14 @@
   #card dl { margin: 12px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13.5px; }
   #card dt { color: #7f8892; }
   #card dd { margin: 0; color: #c9cdd2; }
+  #density-button { position: fixed; left: 96px; top: calc(64px + env(safe-area-inset-top)); z-index: 3; min-height: 44px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
+  #density-button[aria-pressed='true'] { background: #f2784b; border-color: #f2784b; color: #14171b; font-weight: 600; }
+  #density-legend { position: fixed; left: 12px; top: calc(118px + env(safe-area-inset-top)); z-index: 3; width: 190px; padding: 10px 12px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); font-size: 12px; color: #aab2bb; }
+  #density-legend[hidden] { display: none; }
+  #density-legend .ramp { height: 8px; margin: 6px 0 4px; border-radius: 4px; background: linear-gradient(90deg, #2a1b4d, #4a2a7a 11%, #8a3a8c 22%, #c2417a 36%, #f2784b 54%, #ffc857 76%, #fff3b0); }
+  #density-legend .scale { display: flex; justify-content: space-between; font-size: 11px; }
+  #density-legend .read { margin: 6px 0 0; color: #e9e6de; min-height: 1.4em; }
+  #density-legend .note { margin: 6px 0 0; font-size: 11px; line-height: 1.35; }
   #card .gmaps { display: flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 14px; border-radius: 12px; background: #e9e6de; color: #14171b; font-weight: 600; text-decoration: none; }
   #card .sources { margin-top: 12px; font-size: 12.5px; color: #7f8892; }
   #card .sources a { color: #9db7d0; display: block; padding: 9px 0; overflow-wrap: anywhere; }
@@ -95,6 +103,8 @@
     #title h1 { font-size: 26px; }
     #title p { font-size: 13px; }
     #list-button { left: 18px; top: 76px; }
+    #density-button { left: 102px; top: 76px; }
+    #density-legend { left: 18px; top: 130px; }
     #key button .long, #key button small { display: inline; }
     #key .chips { gap: 8px; }
     #key button { padding: 0 14px; font-size: 14px; }
@@ -108,6 +118,14 @@
 <div id="map"></div>
 <header id="title"><h1>Tokyo</h1><p>des lieux choisis, par envie</p></header>
 <button id="list-button" type="button">Liste</button>
+<button id="density-button" type="button" aria-pressed="false" hidden>Densité</button>
+<div id="density-legend" hidden>
+  <strong>Habitants par km²</strong>
+  <div class="ramp"></div>
+  <div class="scale"><span>500</span><span>20 000</span><span>55 000</span></div>
+  <p class="read">Touchez la carte pour une valeur.</p>
+  <p class="note">Moyenne de population résidente (recensement 2020), mailles de 500 m. Ce n’est pas l’affluence de jour.</p>
+</div>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
 <aside id="card" aria-live="polite"></aside>
 <section id="list" aria-label="Liste des lieux">
@@ -116,7 +134,7 @@
 </section>
 <nav id="key" aria-label="Intérêts">
   <div class="chips"></div>
-  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a></p>
+  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> · Densité : <a href="https://www.e-stat.go.jp/gis" target="_blank" rel="noopener">e-Stat, recensement 2020</a></p>
 </nav>
 <script>
 const INTERESTS = [
@@ -133,6 +151,13 @@ const OTHER = '#b4bcc6'
 const BACK = '#7d8791'
 const colorOf = id => INTERESTS.find(i => i.id === id)?.color ?? OTHER
 const labelOf = id => INTERESTS.find(i => i.id === id)?.label ?? id
+// A search by name, centred on the place: Google lands on the place's own listing, which a bare coordinate never does.
+const mapsUrl = entry => {
+  const plain = s => String(s ?? '').replace(/\s*[（(][^）)]*[）)]/g, '').replace(/[\/\\#?%]+/g, ' ').replace(/\s+/g, ' ').trim()
+  const query = entry.kind === 'zone' ? `${plain(entry.name)} Tokyo` : entry.kind === 'landmark' ? `${plain(entry.short)} Tokyo` : plain(entry.nameJa) || plain(entry.name)
+  const zoom = entry.kind === 'zone' ? 14 : 17
+  return `https://www.google.com/maps/search/${encodeURIComponent(query)}/@${entry.lat},${entry.lon},${zoom}z`
+}
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
 const plain = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 const phone = () => innerWidth <= 640
@@ -256,6 +281,7 @@ function badgeImage(path) {
 async function main() {
   const json = url => fetch(url).then(r => r.json())
   const [tokyo, agenda, landmarkFile, glyphs] = await Promise.all([json('tokyo.geojson'), json('tokyo-agenda.geojson'), json('landmarks.json'), json('landmark-icons.json')])
+  const density = await json('density.json').catch(() => null)
   const { places, zones } = read([tokyo, agenda])
   const landmarks = landmarkFile.tokyo.map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind }))
   const byId = new Map([...places, ...zones, ...landmarks].map(e => [e.id, e]))
@@ -275,7 +301,7 @@ async function main() {
       ${entry.verify ? `<p class="warn">À vérifier : ${esc(entry.verify)}</p>` : ''}
       ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
       ${facts ? `<dl>${facts}</dl>` : ''}
-      <a class="gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${entry.lat},${entry.lon}">Ouvrir dans Google Maps</a>
+      <a class="gmaps" target="_blank" rel="noopener" href="${esc(mapsUrl(entry))}">Ouvrir dans Google Maps</a>
       ${entry.sources.length ? `<div class="sources">Sources${entry.sources.map(s => `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('')}</div>` : ''}`
     card.scrollTop = 0
     card.classList.add('open')
@@ -363,6 +389,26 @@ async function main() {
   map.addLayer({ id: 'zones-fill', type: 'fill', source: 'zones', paint: { 'fill-color': '#ffffff', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.075, NEAR, 0.06, 15, 0] } }, 'building-3d')
   map.addLayer({ id: 'zones-line', type: 'line', source: 'zones', layout: { 'line-join': 'round' }, paint: { 'line-color': '#f4efe3', 'line-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.55, NEAR, 0.5, 15.5, 0], 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 15, 1.4] } }, 'building-3d')
 
+  // average resident density, under the zones: 500 m cells of the 2020 census mesh
+  if (density) {
+    const DLON = 22.5 / 3600, DLAT = 15 / 3600, LON0 = 139, LAT0 = 53 / 1.5
+    map.addSource('density', { type: 'geojson', data: collection(density.cells.map(([lon, lat, pop]) => {
+      const x0 = LON0 + Math.round((lon - LON0) / DLON - 0.5) * DLON, y0 = LAT0 + Math.round((lat - LAT0) / DLAT - 0.5) * DLAT
+      return { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[x0, y0], [x0 + DLON, y0], [x0 + DLON, y0 + DLAT], [x0, y0 + DLAT], [x0, y0]]] }, properties: { d: Math.round(pop / 0.2616) } }
+    })) })
+    map.addLayer({ id: 'density', type: 'fill', source: 'density', layout: { visibility: 'none' },
+      paint: { 'fill-antialias': false, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 13, 0.6, 16, 0.35],
+        'fill-color': ['interpolate', ['linear'], ['get', 'd'], 0, 'rgba(42,27,77,0)', 500, '#2a1b4d', 6000, '#4a2a7a', 12000, '#8a3a8c', 20000, '#c2417a', 30000, '#f2784b', 42000, '#ffc857', 55000, '#fff3b0'] } }, 'zones-fill')
+    const button = document.getElementById('density-button'), legend = document.getElementById('density-legend')
+    button.hidden = false
+    button.onclick = () => {
+      const on = button.getAttribute('aria-pressed') !== 'true'
+      button.setAttribute('aria-pressed', on)
+      legend.hidden = !on
+      map.setLayoutProperty('density', 'visibility', on ? 'visible' : 'none')
+    }
+  }
+
   // What is placed first is added last. From the bottom: the landmarks (they yield to everything of his), the
   // places' words (they go around every dot), the dots, the zones' notes (a dot under a note is not drawn), and
   // the tapped place.
@@ -424,6 +470,10 @@ async function main() {
   // ---- taps: a place first, then a landmark, then a zone (its note, or its ground while the zones are what is shown)
   map.on('click', event => {
     const { x, y } = event.point
+    if (density && map.getLayoutProperty('density', 'visibility') === 'visible') {
+      const cell = map.queryRenderedFeatures(event.point, { layers: ['density'] })[0]
+      document.querySelector('#density-legend .read').textContent = cell ? `Ici : environ ${cell.properties.d.toLocaleString('fr-FR')} hab./km²` : 'Ici : pas de donnée.'
+    }
     const hits = map.queryRenderedFeatures([[x - 14, y - 14], [x + 14, y + 14]], { layers: ['picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes', 'zones-fill'] })
     const near = source => hits.filter(h => h.source === source).sort((a, b) => { const d = h => { const p = map.project(h.geometry.coordinates); return Math.hypot(p.x - x, p.y - y) }; return d(a) - d(b) })[0]
     const hit = near('places') ?? near('landmarks') ?? hits.find(h => h.source === 'zone-notes') ?? (map.getZoom() < NEAR + 0.5 ? hits.find(h => h.source === 'zones') : null)
