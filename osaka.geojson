@@ -1,0 +1,2572 @@
+{
+  "type": "FeatureCollection",
+  "schema": "globe-annotations/1",
+  "city": {
+    "id": "osaka",
+    "name": "Osaka",
+    "center": [
+      135.502,
+      34.68
+    ],
+    "zoom": 10.5
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "zone-sakai",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.47992,
+          34.58506
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Sakai, les forgerons",
+        "hook": "la ville des couteaux, en tramway",
+        "color": "#555555",
+        "width": 2,
+        "radius": 650,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Sakai, les forgerons",
+          "ward": "堺市堺区",
+          "why": "Le vieux Sakai le long du tramway Hankai : c’est ici que se forgent et s’affûtent les couteaux des cuisiniers du Japon. Une forge se visite sur réservation en semaine, une autre sur demande, et la maison des métiers montre l’affûtage le vendredi. De Namba, ligne Nankai jusqu’à Shichidō ou Sakai, puis le tramway Hankai ou la marche.",
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.sakai-tcb.or.jp/tourism/detail/191",
+              "read": "2026-11-23",
+              "what": "Office du tourisme de Sakai : déroulé (forge, martelage, meule), 10 h-15 h en semaine, minimum 5 (payable à 5 si moins), 3 jours avant, prix 2026 et 2027, congés de Nouvel An."
+            },
+            {
+              "url": "https://www.sakaidensan.jp/about",
+              "read": "2026-11-23",
+              "what": "Site du lieu : 10 h-17 h, entrée libre, 3e mardi (le lendemain si férié), fermé du 29 déc. au 3 janv., affûtage le vendredi 13 h 30-15 h, réaffûtage samedi et dimanche 11 h-12 h et 13 h-15 h, réaffûtage payant dès 1 600 ¥, 24 fabricants."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap, arrêt de tramway 神明町 (node/7045958825), © les contributeurs d’OpenStreetMap, ODbL",
+          "verify": true,
+          "verifyNote": "Lignes à prendre depuis Umeda ou Namba indiquées d’après le réseau ; durées de trajet non lues sur une source, à lire sur un calculateur d’itinéraire.",
+          "isZone": true,
+          "outlineSource": "OpenStreetMap n’a pas de limites de quartier ici : contour tracé à la main levée à 380 m environ autour des lieux de la zone, placés d’après OpenStreetMap et le GSI, réduit à 9 points : il entoure la forge, le musée des couteaux et la rue du tramway Hankai, entre les arrêts Takasu-jinja et Myōkokuji-mae."
+        },
+        "outline": [
+          [135.48196, 34.57947],
+          [135.48385, 34.5833],
+          [135.48921, 34.58949],
+          [135.48719, 34.59322],
+          [135.48019, 34.59368],
+          [135.47551, 34.59035],
+          [135.47194, 34.58448],
+          [135.47194, 34.58102],
+          [135.47543, 34.57815]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-minami",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49793,
+          34.6721
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Minami",
+        "hook": "disques, boîtiers d’occasion, cantines vegan",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1100,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "category": "musique",
+          "also": "photo",
+          "name": "Minami",
+          "ward": "大阪市中央区・西区",
+          "why": "De la rue des ustensiles de Namba au nord de Shinsaibashi, par Amerikamura et le bord de Horie : disquaires, petite salle de concert, appareils photo d’occasion, galeries en sous-sol et cantines vegan. Tout se fait à pied depuis Namba ; d’Umeda, ligne Midōsuji jusqu’à Shinsaibashi.",
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.doguyasuji.or.jp/",
+              "read": "2026-11-23",
+              "what": "Association de la rue : « 料理道具の専門商店街 », couteaux, casseroles, vaisselle, noren, lanternes, enseignes, modèles de plats ; avis du 20 nov. 2026 sur la vente de fermeture de たる幸 後藤商店 (fondée en 1930)."
+            },
+            {
+              "url": "https://timebomb.co.jp/pages/store-info",
+              "read": "2026-11-23",
+              "what": "Page du magasin : histoire, horaires, ouvert tous les jours, accès."
+            },
+            {
+              "url": "https://www.cameranonaniwa.co.jp/store/shinsaibashi/",
+              "read": "2026-11-23",
+              "what": "Fiche du magasin : plus de 70 ans, l'un des plus gros stocks d'occasion du Kansai, vente de film, dépôt de films à développer, horaires, sortie 4B."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap, 三角公園 (way/264998665), © les contributeurs d’OpenStreetMap, ODbL",
+          "verify": true,
+          "verifyNote": "Lignes à prendre depuis Umeda ou Namba indiquées d’après le réseau ; durées de trajet non lues sur une source, à lire sur un calculateur d’itinéraire.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 難波千日前, 難波 (tous ses 丁目), 千日前 (tous ses 丁目), 道頓堀 (tous ses 丁目), 心斎橋筋 (tous ses 丁目), 西心斎橋 (tous ses 丁目), 南堀江一丁目, 北堀江一丁目, 新町一丁目, 南船場三丁目, 南船場四丁目, 博労町四丁目, 南久宝寺町四丁目, 北久宝寺町四丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 16630921, 16625055, 16625056, 16630924, 16630925, 16630926, 16630922, 16630923, 16625057, 16630927, 16625059, 16625064, 16625058, 16625060, 16663369, 16663373, 16663377, 16625068, 16625067, 16625071, 16625074, 16625078 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 13 points : de la rue des ustensiles de Namba au nord de Shinsaibashi, avec Amerikamura et le bord de Horie."
+        },
+        "outline": [
+          [135.50457, 34.66083],
+          [135.50729, 34.66291],
+          [135.50775, 34.66792],
+          [135.50571, 34.67229],
+          [135.50697, 34.67611],
+          [135.50573, 34.67938],
+          [135.50132, 34.68257],
+          [135.49714, 34.68257],
+          [135.49127, 34.6786],
+          [135.49027, 34.6708],
+          [135.49119, 34.66832],
+          [135.49612, 34.66662],
+          [135.49889, 34.66279]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-shinsekai-nishinari",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50355,
+          34.64866
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Shinsekai et Nishinari",
+        "hook": "bains du matin, marché ; on y vient pour participer",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1000,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "militant",
+          "name": "Shinsekai et Nishinari",
+          "ward": "大阪市浪速区・西成区",
+          "why": "Autour de la station Dōbutsuen-mae : le marché de gros de Kizu au nord, les bains publics de Shinsekai et de Sannō qui disent eux-mêmes accepter les tatouages, et au sud le bord de Kamagasaki, où des gens vivent dans la difficulté. Ce n’est pas un quartier à visiter pour voir : on y entre par les lieux qui accueillent, le bain, le café et les ateliers de Cocoroom, et on ne photographie pas les gens. Ligne Midōsuji directe depuis Umeda et Namba.",
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://cocoroom.org/about/",
+              "read": "2026-11-23",
+              "what": "Historique (2003 Festival Gate, 2008 à Kamagasaki), texte de l'association sur le quartier et sur la façon de le regarder."
+            },
+            {
+              "url": "https://radium.co.jp/profile/",
+              "read": "2026-11-23",
+              "what": "Page du bain : fondé en 1952 (昭和27年), bain extérieur de 2008 face au Tsūtenkaku, bain ramune, bandai de l'ancien bâtiment, et la phrase « タトゥーフレンドリー ラジウム温泉ではタトゥーのある方をお断りするのではなく、むしろ歓迎しております。 »"
+            },
+            {
+              "url": "https://kizu-ichiba.com/calendar/",
+              "read": "2026-11-23",
+              "what": "Site du marché : 6 h-11 h, conseil 8 h 30-10 h 30, fermé dimanche, fériés et certains mercredis, grande fermeture au Nouvel An, asaichi 2e et dernier samedi 9 h-12 h, achat à l'unité, espèces seulement, accès."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap, station 動物園前 (node/7937883044), © les contributeurs d’OpenStreetMap, ODbL",
+          "verify": true,
+          "verifyNote": "Lignes à prendre depuis Umeda ou Namba indiquées d’après le réseau ; durées de trajet non lues sur une source, à lire sur un calculateur d’itinéraire.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 恵美須東 (tous ses 丁目), 恵美須西 (tous ses 丁目), 敷津東二丁目, 山王一丁目, 太子 (tous ses 丁目), 萩之茶屋一丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 16641979, 16641980, 16641981, 16641982, 16641983, 16641984, 16641992, 20347280, 20347276, 20347277, 20347294 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 12 points : du marché de Kizu au nord jusqu’à Sannō et Taishi au sud, Shinsekai au milieu."
+        },
+        "outline": [
+          [135.50502, 34.64283],
+          [135.50941, 34.64407],
+          [135.51114, 34.64766],
+          [135.50946, 34.65509],
+          [135.50502, 34.65736],
+          [135.50291, 34.65958],
+          [135.5001, 34.6605],
+          [135.49614, 34.6584],
+          [135.49629, 34.65556],
+          [135.49866, 34.65307],
+          [135.4974, 34.6475],
+          [135.50148, 34.64367]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-nakanoshima",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50129,
+          34.6925
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Nakanoshima et Kitahama",
+        "hook": "musées et vieille pierre, entre deux rivières",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1100,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "photo",
+          "name": "Nakanoshima et Kitahama",
+          "ward": "大阪市北区・中央区・西区",
+          "why": "L’île entre les rivières Dōjima et Tosabori et sa rive sud : la salle municipale de 1918, deux musées d’art côte à côte, une librairie d’art à Higobashi, un disquaire à Kitahama. D’Umeda, ligne Midōsuji jusqu’à Yodoyabashi ; le musée d’art de Nakanoshima compte 20 minutes à pied depuis la gare d’Ōsaka.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://nakka-art.jp/visit/access/",
+              "read": "2026-11-23",
+              "what": "Accès : Watanabebashi 5 min, Higobashi 10 min, gare d'Ōsaka 20 min à pied."
+            },
+            {
+              "url": "https://osaka-chuokokaido.com/ja/about",
+              "read": "2026-11-23",
+              "what": "Salle d'exposition et zone libre du sous-sol, hall ouvert quand la grande salle est libre, horaires, 4e mardi, fin d'année du 27 déc. au 4 janv., 22 déc. 2026 ouvert."
+            },
+            {
+              "url": "https://www.calobookshop.com/about/access/",
+              "read": "2026-11-23",
+              "what": "Horaires, dimanche et lundi, fermetures annoncées sur le site, Higobashi 1 min, Yodoyabashi 5 min."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap, station 淀屋橋 (node/4894826988), © les contributeurs d’OpenStreetMap, ODbL",
+          "verify": true,
+          "verifyNote": "Lignes à prendre depuis Umeda ou Namba indiquées d’après le réseau ; durées de trajet non lues sur une source, à lire sur un calculateur d’itinéraire.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 中之島一丁目, 中之島二丁目, 中之島三丁目, 中之島四丁目, 北浜一丁目, 北浜二丁目, 北浜三丁目, 北浜四丁目, 北浜東, 土佐堀一丁目, 江戸堀一丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 16623578, 16623577, 16623576, 16623575, 16624717, 16624716, 16624715, 16624714, 16629787, 16663400, 16663397 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 12 points : l’île entre les deux rivières, de la salle municipale aux musées, et la rive sud de Kitahama à Higobashi."
+        },
+        "outline": [
+          [135.49338, 34.68718],
+          [135.49841, 34.68772],
+          [135.50079, 34.69008],
+          [135.50375, 34.69052],
+          [135.51348, 34.68862],
+          [135.51501, 34.68988],
+          [135.51402, 34.69195],
+          [135.50921, 34.69321],
+          [135.50399, 34.69553],
+          [135.49095, 34.69439],
+          [135.48852, 34.69261],
+          [135.49095, 34.68808]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-expo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.53019,
+          34.81202
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Parc de l’Expo 70",
+        "hook": "la tour de 1970 et le musée des peuples",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1000,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "photo",
+          "name": "Parc de l’Expo 70",
+          "ward": "吹田市",
+          "why": "Le parc de l’Exposition universelle de 1970, à Suita : la Tour du Soleil d’Okamoto Tarō, qui se visite de l’intérieur sur réservation, et le musée national d’ethnologie. Une demi-journée au moins. D’Umeda, ligne Midōsuji jusqu’à Senri-Chūō puis monorail jusqu’à Bampaku-kinen-kōen.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.minpaku.ac.jp/information/access",
+              "read": "2026-11-23",
+              "what": "Accès : gare Bampaku-kinen-kōen, porte centrale, puis environ 15 min à pied jusqu'au musée."
+            },
+            {
+              "url": "https://taiyounotou-expo70.jp/reserve/",
+              "read": "2026-11-23",
+              "what": "Règles de réservation : réservation au plus tard la veille, jusqu'à 120 jours à l'avance, premier arrivé premier servi, paiement par carte."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap, 万博記念公園 (relation/10576976), © les contributeurs d’OpenStreetMap, ODbL",
+          "verify": true,
+          "verifyNote": "Lignes à prendre depuis Umeda ou Namba indiquées d’après le réseau ; durées de trajet non lues sur une source, à lire sur un calculateur d’itinéraire.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour du polygone « 万博記念公園 » d’OpenStreetMap (relation 10576976 ; © les contributeurs d’OpenStreetMap, ODbL), OpenStreetMap n’ayant pas de limites de quartier ici, réduit à 11 points : il suit le parc de l’Expo 70, de la tour au musée."
+        },
+        "outline": [
+          [135.53889, 34.79775],
+          [135.54346, 34.80495],
+          [135.5448, 34.81144],
+          [135.54151, 34.8136],
+          [135.52868, 34.81743],
+          [135.52036, 34.81727],
+          [135.51683, 34.81316],
+          [135.51769, 34.80912],
+          [135.52457, 34.80651],
+          [135.53395, 34.80577],
+          [135.53446, 34.79882]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-kitakagaya",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.47941,
+          34.62131
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Kitakagaya",
+        "hook": "cantine et club dans les anciens chantiers navals",
+        "color": "#555555",
+        "width": 2,
+        "radius": 700,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "musique",
+          "name": "Kitakagaya",
+          "ward": "大阪市住之江区",
+          "why": "L’ancien quartier des chantiers navals, où le propriétaire foncier Chishima Tochi et sa fondation rouvrent d’anciens bâtiments pour des artistes et des gens du quartier : une cantine dans un petit immeuble ouvrier refait par des architectes, un club. De Namba, ligne Yotsubashi directe jusqu’à Kitakagaya.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://chishima-foundation.com/cruising/5-2",
+              "read": "2026-11-23",
+              "what": "Fondation Chishima, fiche Chidori Bunka : immeuble d'environ 60 ans refait par dot architects, ouvert en 2017, salle et neuf locataires ajoutés en 2020, cantine 11 h 30-18 h et bar 18 h-23 h du jeudi au lundi."
+            },
+            {
+              "url": "https://www.city.osaka.lg.jp/suminoe/cmsfiles/contents/0000540/540426/kitakagaya-map2026_jp.pdf",
+              "read": "2026-11-23",
+              "what": "Carte de Kitakagaya 2026 (Chishima Tochi, données d'avril 2026) : cantine 11 h 30-18 h, fermée mardi et mercredi ; expositions à Chidori Bunka en mai et juin 2026."
+            },
+            {
+              "url": "https://club-daphnia.com/",
+              "read": "2026-11-23",
+              "what": "Accueil : prochaine soirée (27 nov.), adresse, sortie 4 de Kitakagaya à 10 min."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap, station 北加賀屋 (node/8005451528), © les contributeurs d’OpenStreetMap, ODbL",
+          "verify": true,
+          "verifyNote": "Lignes à prendre depuis Umeda ou Namba indiquées d’après le réseau ; durées de trajet non lues sur une source, à lire sur un calculateur d’itinéraire.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 北加賀屋 (tous ses 丁目) d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 20349978, 20349979, 20349980, 20349981, 20349982 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 10 points : l’ancien quartier des chantiers navals, de la station à la rivière Kizu."
+        },
+        "outline": [
+          [135.47473, 34.61654],
+          [135.48288, 34.61834],
+          [135.48645, 34.62295],
+          [135.48421, 34.6274],
+          [135.47577, 34.63213],
+          [135.47136, 34.63213],
+          [135.46735, 34.63021],
+          [135.46464, 34.62602],
+          [135.4659, 34.61969],
+          [135.46801, 34.61766]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-umeda",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49618,
+          34.70251
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Umeda",
+        "hook": "sous la gare, les sous-sols où l’on mange",
+        "color": "#555555",
+        "width": 2,
+        "radius": 600,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "category": "manger",
+          "also": "photo",
+          "name": "Umeda",
+          "ward": "大阪市北区",
+          "why": "Autour de la gare d’Ōsaka : au sud, les vieux immeubles Ekimae, dont les sous-sols abritent une cantine vegan et un magasin d’appareils photo d’occasion ; au nord, le nouveau parc d’Umekita et sa salle d’images. Tout est à pied depuis la gare.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.veganandglutenfree-osaka.com/access/",
+              "read": "2026-11-23",
+              "what": "Site du restaurant (lu via WebFetch) : enseigne « Second Room Cafe », B1-14 du Ekimae 4e immeuble, 11 h-22 h, fermé mercredi et 1er-3 janv., horaires modifiables sans préavis, pas de réservation, itinéraire depuis JR Ōsaka."
+            },
+            {
+              "url": "https://www.yaotomi.co.jp/pages/user_data_shop_osaka_dai3",
+              "read": "2026-11-23",
+              "what": "Fiche du magasin : adresse, horaires, ouvert tous les jours sauf fin d'année, Kitashinchi 3 min, JR Ōsaka 8 min."
+            },
+            {
+              "url": "https://kc-i.jp/activity/award/isca/2026/program/",
+              "read": "2026-11-23",
+              "what": "Programme ISCA 2026 : gratuit, inscription préalable, horaires des trois jours, talk d'evala le 5 déc. à 14 h et live « Resonance for VS. » le 5 déc. à 18 h."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap, gare 大阪駅 (relation/17915329), © les contributeurs d’OpenStreetMap, ODbL",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 梅田一丁目, 梅田三丁目, 大深町 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 16623588, 16623586, 16623422 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 10 points : la gare d’Ōsaka, les immeubles d’Ekimae au sud et Umekita au nord."
+        },
+        "outline": [
+          [135.50118, 34.6967],
+          [135.50217, 34.69915],
+          [135.49892, 34.70223],
+          [135.49521, 34.70816],
+          [135.49348, 34.70896],
+          [135.49168, 34.70738],
+          [135.48914, 34.69977],
+          [135.49042, 34.69758],
+          [135.49351, 34.69848],
+          [135.49853, 34.6967]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "enami-hamono",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.47951,
+          34.58671
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Enami Hamono",
+        "hook": "voir forger un couteau à sakai",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%A6%8E%E4%B8%A6%E5%88%83%E7%89%A9%E8%A3%BD%E4%BD%9C%E6%89%80&query_place_id=ChIJX90N7fLcAGARm1E7fCYucRY", "card": "榎並刃物製作所", "read": "2026-11-23" },
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Enami Hamono Seisakusho (forge de couteaux)",
+          "nameJa": "榎並刃物製作所",
+          "zone": "zone-sakai",
+          "ward": "堺市堺区",
+          "why": "Une forge de couteaux de Sakai, tenue par un artisan certifié (dentō kōgeishi). La visite de 45 minutes montre le vrai forgeage : l'acier chauffé au four, battu en lame, puis dégrossi à la meule. On peut chauffer l'acier soi-même et frapper avec le forgeron. C'est l'office du tourisme de Sakai qui vend la visite, pas une agence : c'est la façon la plus sûre de voir une forge en marche sans parler japonais.",
+          "practical": {
+            "horaires": "jours de semaine, début au choix entre 10 h et 15 h, environ 45 min",
+            "fermeture": "samedi, dimanche et jours fériés ; congés de printemps, d'été et du Nouvel An (dates non publiées)",
+            "booking": "par l'office du tourisme de Sakai, au moins 3 jours avant : formulaire japonais jusqu'à décembre 2026, réservation en ligne (Bókun, demande confirmée sous 7 jours) à partir de janvier 2027, ou e-mail pro@sakai-tcb.or.jp. Annulation : 50 % la veille, 100 % le jour même.",
+            "prix": "3 000 ¥ par personne jusqu'à fin 2026, 4 000 ¥ à partir de janvier 2027 ; avec explication en anglais par le personnel 6 000 ¥ puis 8 000 ¥. Minimum facturé : 5 personnes (une personne seule paie 5 places).",
+            "station": "Shinmeichō (tramway Hankai) 4 min à pied ; Shichido (Nankai) 11 min",
+            "adresse": "九間町西2丁2-25, Sakai"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.sakai-tcb.or.jp/tourism/detail/191",
+              "read": "2026-11-23",
+              "what": "Office du tourisme de Sakai : déroulé (forge, martelage, meule), 10 h-15 h en semaine, minimum 5 (payable à 5 si moins), 3 jours avant, prix 2026 et 2027, congés de Nouvel An."
+            },
+            {
+              "url": "https://widgets.bokun.io/online-sales/3ff1a1a4-cd93-4e49-82ee-786756718383/experience/1278344",
+              "read": "2026-11-23",
+              "what": "Page de réservation en ligne de l'office pour 2027 : réservation sur demande, réponse sous 7 jours, frais de remboursement de 6 %."
+            },
+            {
+              "url": "https://www.sakai-tcb.or.jp/en/feature/detail/86",
+              "read": "2026-11-23",
+              "what": "Page anglaise de l'office : « Sakai Knife Blacksmith Workshop [From Jan 2027] », 4 000 ¥, interprète en option +4 000 ¥."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府堺市堺区九間町西二丁２番２５号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "La page anglaise et la page japonaise ne donnent pas le même prix pour l'option anglais (+4 000 ¥ contre 8 000 ¥ au total en 2027). Dates exactes de la fermeture du Nouvel An non publiées : demander à la réservation."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mizuno-tanrenjo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.48333,
+          34.58948
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Mizuno Tanrenjo",
+        "hook": "forge à soufflet depuis 1872",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%B0%B4%E9%87%8E%E9%8D%9B%E9%8C%AC%E6%89%80&query_place_id=ChIJNRyZfPTcAGARM6xuYHRc5t8", "card": "水野鍛錬所", "read": "2026-11-23" },
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Mizuno Tanrenjo (forge de sabres et de couteaux)",
+          "nameJa": "水野鍛錬所",
+          "zone": "zone-sakai",
+          "ward": "堺市堺区",
+          "why": "Forge de sabres et de couteaux fondée en 1872, encore active avec son vieux soufflet (fuigo). Elle a forgé les faucilles anti-démons de la pagode du Hōryū-ji, qu'on peut tenir en main dans la boutique. Le site de la forge ne parle pas de visite : c'est la préfecture d'Ōsaka qui indique que l'on visite l'atelier et que le forgeage d'un couteau se montre gratuitement, sur réservation, « si le moment s'y prête ». Le site renvoie les clients étrangers vers sa page Facebook ou Instagram pour les questions.",
+          "practical": {
+            "horaires": "jours de semaine, 9 h à 17 h",
+            "fermeture": "samedi, dimanche, jours fériés ; Golden Week, Obon et Nouvel An. Les jours fermés sont publiés mois par mois sur le blog de la forge, en japonais et en anglais.",
+            "booking": "réservation nécessaire (préfecture) : téléphone 072-229-3253 en japonais ; pour une question en anglais, la forge renvoie vers sa page Facebook ou Instagram",
+            "prix": "entrée et démonstration gratuites (préfecture)",
+            "station": "Ayanochō (tramway Hankai) 5 min ; Shichido (Nankai) 7 min selon la préfecture, 15 min selon l'office du tourisme",
+            "adresse": "桜之町西1-1-27, Sakai"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.mizunotanrenjo.jp/",
+              "read": "2026-11-23",
+              "what": "Site de la forge : fondée en 1872, faucilles du Hōryū-ji à tenir en main, semaine 9 h-17 h, fermé week-end, fériés, Golden Week, Obon, Nouvel An ; clients étrangers invités à écrire via Facebook ou Instagram ; rien sur les visites."
+            },
+            {
+              "url": "https://ameblo.jp/mizunotanrenjo/",
+              "read": "2026-11-23",
+              "what": "Blog de la forge : jours fermés de novembre 2026 (tous les samedis, dimanches et fériés, plus le matin du 12), en japonais et en anglais ; décembre 2026 pas encore publié."
+            },
+            {
+              "url": "https://www.pref.osaka.lg.jp/o110070/mono/dento/kobo01.html",
+              "read": "2026-11-23",
+              "what": "Préfecture d'Ōsaka (page mise à jour le 17 nov. 2022) : forgeage d'un couteau montré « 予約でタイミングが合えば », entrée et démonstration gratuites, réservation nécessaire, Shichido 7 min, Ayanochō 5 min."
+            },
+            {
+              "url": "https://www.sakai-tcb.or.jp/spot/detail/150",
+              "read": "2026-11-23",
+              "what": "Office du tourisme de Sakai : atelier à soufflet en activité, réservation possible, gratuit, groupes de 20 à 30, Ayanochō 5 min, Shichido 15 min."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/6033182385 (水野鍛錬所) via Nominatim, à 8 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Visite et démonstration lues seulement sur la page de la préfecture (2022), non sur le site de la forge : rien ne garantit qu'on verra forger. Acceptation d'un visiteur seul non écrite. Jours fermés de décembre 2026 et du Nouvel An à lire sur le blog de la forge (pas encore publiés)."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sakai-denshokan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.47753,
+          34.58275
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Sakai Denshōkan",
+        "hook": "affûtage en direct, gratuit",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%A0%BA%E4%BC%9D%E5%8C%A0%E9%A4%A8(%E5%A0%BA%E4%BC%9D%E7%B5%B1%E7%94%A3%E6%A5%AD%E4%BC%9A%E9%A4%A8)&query_place_id=ChIJJ0mEmpLcAGARqDtnx525QRk", "card": "堺伝匠館(堺伝統産業会館)", "read": "2026-11-23" },
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Sakai Denshōkan (maison des artisanats de Sakai, musée du couteau CUT)",
+          "nameJa": "堺伝匠館",
+          "zone": "zone-sakai",
+          "ward": "堺市堺区",
+          "why": "La maison des métiers traditionnels de Sakai, entrée libre, avec au 2e étage le musée du couteau CUT et au rez-de-chaussée une boutique de 24 fabricants de la ville. Chaque vendredi après-midi, un artisan affûte des couteaux devant le public ; le samedi et le dimanche, il réaffûte ceux que les gens du coin apportent (à partir de 1 600 ¥, on peut apporter le sien). On y voit de l'affûtage, pas du forgeage. Aucun texte à lire pour regarder. Un cours d'affûtage par un artisan certifié a lieu le jeudi 24 décembre 2026, 14 h-15 h 30 (2 000 ¥, 16 places, apporter deux couteaux), réservable par e-mail.",
+          "practical": {
+            "horaires": "10 h à 17 h ; affûtage le vendredi 13 h 30-15 h, réaffûtage samedi et dimanche 11 h-12 h et 13 h-15 h",
+            "fermeture": "3e mardi du mois (le lendemain si férié) ; du 29 déc. au 3 janv.",
+            "booking": "sans réservation pour les démonstrations",
+            "prix": "entrée et démonstrations gratuites",
+            "station": "Myōkokuji-mae (tramway Hankai) 3 min ; Sakai (Nankai) 15 min",
+            "adresse": "材木町西1丁1-30, Sakai"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.sakaidensan.jp/about",
+              "read": "2026-11-23",
+              "what": "Site du lieu : 10 h-17 h, entrée libre, 3e mardi (le lendemain si férié), fermé du 29 déc. au 3 janv., affûtage le vendredi 13 h 30-15 h, réaffûtage samedi et dimanche 11 h-12 h et 13 h-15 h, réaffûtage payant dès 1 600 ¥, 24 fabricants."
+            },
+            {
+              "url": "https://www.sakaidensan.jp/contents/events/96",
+              "read": "2026-11-23",
+              "what": "Programme de novembre 2026 : affûtage les vendredis 6, 13, 20, 27, réaffûtage chaque week-end, dans la salle d'exposition du 2e étage."
+            },
+            {
+              "url": "https://www.sakaidensan.jp/contents/events/158",
+              "read": "2026-11-23",
+              "what": "Cours d'affûtage du jeudi 24 déc. 2026, 14 h-15 h 30, 2 000 ¥, 16 places, dès le lycée, deux couteaux à apporter, inscription par e-mail event@sakaidensan.jp, à la boutique ou par téléphone."
+            },
+            {
+              "url": "https://www.sakaidensan.jp/contents/events",
+              "read": "2026-11-23",
+              "what": "Liste des événements : ateliers de décembre 2026 en ligne (encens les 12 et 26, wagashi les 6 et 20, affûtage le 24), programme des démonstrations de décembre pas encore publié."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/11843096454 (堺伝匠館前, devant le bâtiment) via Nominatim, à 8 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Le programme des démonstrations de décembre 2026 n'est pas encore en ligne (seuls les ateliers le sont) ; les annulations sont publiées sur le site. Pendant les ateliers du 2e étage, la salle d'exposition peut être fermée à la visite. Le site ne dit rien sur l'anglais."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "doguyasuji",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50352,
+          34.66393
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Dōguyasuji",
+        "hook": "la rue des outils de cuisine",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%8D%83%E6%97%A5%E5%89%8D%E9%81%93%E5%85%B7%E5%B1%8B%E7%AD%8B%E5%95%86%E5%BA%97%E8%A1%97&query_place_id=ChIJfQfezmvnAGARy4Sd3VGFy_A", "card": "千日前道具屋筋商店街", "read": "2026-11-23" },
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Sennichimae Dōguyasuji (rue commerçante des ustensiles de cuisine)",
+          "nameJa": "千日前道具屋筋商店街",
+          "zone": "zone-minami",
+          "ward": "大阪市中央区",
+          "why": "La rue couverte où les restaurateurs d'Ōsaka achètent couteaux, casseroles, vaisselle, noren, lanternes, enseignes et même les modèles de plats en cire. C'est le pendant de Kappabashi à Tōkyō, à quelques minutes de Namba. Au milieu de la rue, Sakai Ichimonji Mitsuhide, maison de couteaux depuis 1953, donne des cours d’affûtage à la pierre en anglais ou en espagnol : le cours de base de 30 minutes (2 000 ¥) se prend sans réservation du lundi au mercredi, entre 10 h et 14 h, deux personnes au plus. À l’étage, son espace ICHITOI laisse marteler gratuitement une plaque de cuivre pour comprendre le forgeage ; ce n’est pas une forge de couteaux.",
+          "practical": {
+            "horaires": "selon les boutiques ; par exemple Ebisuya Kanamono 9 h 30-18 h",
+            "fermeture": "jour de fermeture propre à chaque boutique ; pas de fermeture commune lue. Fin d'année : l'association publie en décembre les jours d'ouverture de chaque boutique (avis 2025-2026 publié le 19 déc. 2025).",
+            "booking": "cours d’affûtage sans réservation lun.-mer. 10 h-14 h (hors jours fériés), paiement au comptoir avant ; réservations en ligne fermées pour 2026, réouverture mi-janvier 2027",
+            "prix": "cours d’affûtage de 30 min chez Ichimonji Mitsuhide 2 000 ¥ ; martelage du cuivre gratuit",
+            "station": "Namba (Nankai) 3 min ; Namba (Midōsuji) 3 min ; Namba (Yotsubashi) 10 min ; Nippombashi 5 min",
+            "adresse": "難波千日前14-8 (Ichimonji Mitsuhide, au milieu de la rue)"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.doguyasuji.or.jp/",
+              "read": "2026-11-23",
+              "what": "Association de la rue : « 料理道具の専門商店街 », couteaux, casseroles, vaisselle, noren, lanternes, enseignes, modèles de plats ; avis du 20 nov. 2026 sur la vente de fermeture de たる幸 後藤商店 (fondée en 1930)."
+            },
+            {
+              "url": "https://www.doguyasuji.or.jp/access/",
+              "read": "2026-11-23",
+              "what": "Accès : Namba Nankai 3 min, Namba Midōsuji 3 min, Namba Yotsubashi 10 min, Nippombashi 5 min."
+            },
+            {
+              "url": "https://www.doguyasuji.or.jp/4586/",
+              "read": "2026-11-23",
+              "what": "Association : avis des jours d'ouverture de fin d'année 2025-2026, publié le 19 déc. 2025."
+            },
+            {
+              "url": "https://ebisuya-maido.co.jp/corporate/",
+              "read": "2026-11-23",
+              "what": "Ebisuya Kanamono, boutique de la rue : 9 h 30-18 h, fermé fin d'année et Obon."
+            },
+            {
+              "url": "https://global.ichimonji.co.jp/pages/knife-sharpening-classes",
+              "read": "2026-11-23",
+              "what": "Site de la maison : cours en anglais et en espagnol, 30 min à 2 000 ¥ sans réservation lun.-mer. de 10 h à 14 h, 1 h à 5 000 ¥, tête-à-tête 7 000 ¥ ou 5 000 ¥, réservations fermées pour 2026, réouverture mi-janvier 2027."
+            },
+            {
+              "url": "https://global.ichimonji.co.jp/pages/store-guide",
+              "read": "2026-11-23",
+              "what": "Site : depuis 1953, horaires, 30-31 déc. et 3-5 janv. 11 h-17 h, fermé 1er-2 janv., personnel parlant anglais, adresse, gares."
+            },
+            {
+              "url": "https://global.ichimonji.co.jp/pages/ichitoi-metal-forging-workshop",
+              "read": "2026-11-23",
+              "what": "Site : à ICHITOI (2e étage), martelage d'une plaque de cuivre, environ 5 min, gratuit, sans réservation, tous les jours sans autre événement."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/424575109 (千日前道具屋筋商店街) via Nominatim, à 37 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Point placé à l’adresse de Sakai Ichimonji Mitsuhide, au milieu de la rue. Jours d’ouverture de fin d’année de chaque boutique publiés par l’association en décembre. Le site d’Ichimonji ne dit pas si le cours sans réservation a lieu pendant les horaires réduits de fin d’année."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kizu-ichiba",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50001,
+          34.65727
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Marché de Kizu",
+        "hook": "le marché des cuisiniers de minami",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9C%A8%E6%B4%A5%E5%8D%B8%E5%A3%B2%E5%B8%82%E5%A0%B4&query_place_id=ChIJMYrDtmXnAGARjXcXn-TA8Sw", "card": "木津卸売市場", "read": "2026-11-23" },
+          "category": "cuisine",
+          "name": "Ōsaka Kizu Oroshiuri Ichiba (marché de gros de Kizu)",
+          "nameJa": "大阪木津卸売市場",
+          "zone": "zone-shinsekai-nishinari",
+          "ward": "大阪市浪速区",
+          "why": "Le marché de gros où les cuisiniers de Minami viennent s'approvisionner, à 15 minutes à pied de Namba. Les particuliers peuvent y acheter à l'unité (un daikon, un poisson), en espèces seulement. Le marché conseille de venir entre 8 h 30 et 10 h 30 ; la plupart des boutiques ferment vers 11 h. En règle générale le 2e et le dernier samedi du mois, le « Kizu no asaichi » ouvre le marché au public avec stands et une tournée d'enchères (seri) que l'on peut essayer. Côté vegan : légumes, racines, kombu ; il y a aussi des marchands de bonite séchée.",
+          "practical": {
+            "horaires": "de 6 h à 11 h environ ; asaichi 9 h-12 h, en règle générale le 2e et le dernier samedi du mois (en décembre 2026, seulement le samedi 12)",
+            "fermeture": "dimanche, jours fériés, certains mercredis (en décembre 2026 : mercredis 2, 9, 16 et 23) ; dimanche 27 décembre 2026 exceptionnellement ouvert ; grande fermeture au Nouvel An (calendrier de janvier 2027 pas encore publié)",
+            "booking": "tournée d'enchères de l'asaichi : inscription préalable par le formulaire du site (plus de 18 ans, nom et âge de chacun), participation le jour même possible",
+            "prix": "entrée libre ; paiement en espèces seulement",
+            "station": "Daikokuchō (Midōsuji, Yotsubashi) sortie 1, 3 min ; Imamiya-Ebisu (Nankai Kōya) 5 min ; Namba (Nankai) 15 min à pied",
+            "adresse": "敷津東2丁目2-8"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://kizu-ichiba.com/calendar/",
+              "read": "2026-11-23",
+              "what": "Site du marché : 6 h-11 h, conseil 8 h 30-10 h 30, fermé dimanche, fériés et certains mercredis, grande fermeture au Nouvel An, asaichi 2e et dernier samedi 9 h-12 h, achat à l'unité, espèces seulement, accès."
+            },
+            {
+              "url": "https://kizu-ichiba.com/wp/wp-content/themes/theme-kizu/img/calendar/calendar_slide_202612.webp",
+              "read": "2026-11-23",
+              "what": "Calendrier de décembre 2026 (image) : asaichi le samedi 12 seulement, fermetures les dimanches et les mercredis 2, 9, 16, 23, ouverture exceptionnelle le dimanche 27, 28-31 non marqués fermés."
+            },
+            {
+              "url": "https://kiduichiba.jp/kidunoasaiti2026-11-28/",
+              "read": "2026-11-23",
+              "what": "Site de l'asaichi : programme du 28 nov. 2026, tournée d'enchères (inscription préalable plus de 18 ans, ou le jour même), prochain asaichi le 12 déc. 2026."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/178481605 (大阪木津卸売市場) via Nominatim, à 76 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Calendrier de janvier 2027 non publié (le calendrier 2026 du site s'arrête en décembre) : dates de la fermeture du Nouvel An et des asaichi de janvier non lues. 28-31 déc. 2026 non marqués fermés sur l'image, mais aucune heure de fin d'année lue. Le programme de chaque asaichi paraît environ une semaine avant."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "konbu-doi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.51552,
+          34.6735
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Konbu Doi",
+        "hook": "le kombu d'osaka depuis 1903",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%81%93%E3%82%93%E3%81%B6%E5%9C%9F%E5%B1%85&query_place_id=ChIJZRqgBDjnAGARMtZtQkNWfrE", "card": "こんぶ土居", "read": "2026-11-23" },
+          "category": "cuisine",
+          "also": "manger",
+          "name": "Konbu Doi (maison de kombu, Karahori)",
+          "nameJa": "こんぶ土居",
+          "ward": "大阪市中央区",
+          "why": "Maison de kombu fondée en 1903, près de Tanimachi Rokuchōme. Ōsaka est la ville du kombu : c'est la base du bouillon kansai, et le kombu seul fait un dashi entièrement végétal. La maison dit n'utiliser que des assaisonnements traditionnels, sans aucun additif. Tout près, elle tient un minuscule musée du kombu d'Ōsaka, ouvert à des dates irrégulières annoncées sur Instagram. Certains produits contiennent du poisson ou de la bonite : lire l'étiquette ou demander.",
+          "practical": {
+            "horaires": "9 h 30 à 18 h",
+            "fermeture": "dimanche et jours fériés ; Nouvel An et Obon (dates non lues)",
+            "station": "Tanimachi Rokuchōme (métro Tanimachi, Nagahori Tsurumi-ryokuchi) sortie 4, 3 min (lu sur un guide tiers)",
+            "adresse": "谷町7-6-38"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.konbudoi.jp/about",
+              "read": "2026-11-23",
+              "what": "Site de la maison : adresse, 9 h 30-18 h, fermé dimanche et fériés, Nouvel An et Obon."
+            },
+            {
+              "url": "https://www.konbudoi.jp/home-en",
+              "read": "2026-11-23",
+              "what": "Page anglaise de la maison : fondée en 1903, assaisonnements traditionnels seulement, aucun additif ni exhausteur."
+            },
+            {
+              "url": "https://www.konbudoi.jp/museum",
+              "read": "2026-11-23",
+              "what": "Site : petit musée du kombu d'Ōsaka au 谷町7-6-6, ouverture irrégulière annoncée sur Instagram @osakakonbumuseum, chaussures retirées au 4e étage."
+            },
+            {
+              "url": "https://shinise.tv/konbu-doi/",
+              "read": "2026-11-23",
+              "what": "Lu sur un guide tiers (janvier 2026) : Tanimachi Rokuchōme sortie 4 à 3 min, produits dont un dashi concentré pour udon et soba et des « いりこん » (petits poissons séchés)."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市中央区谷町七丁目６番３８号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Station lue sur un guide tiers. Composition de chaque produit non lue (l'étiquette fait foi). Dates de fermeture du Nouvel An non publiées sur le site."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "second-room-vegan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49897,
+          34.69974
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Vegan & GlutenFree Osaka",
+        "hook": "okonomiyaki et takoyaki vegan",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Vegan%20and%20Gluten%20Free%20Osaka&query_place_id=ChIJVVby8TTnAGARTqwNhImqN0w", "card": "Vegan and Gluten Free Osaka", "read": "2026-11-23" },
+          "category": "manger",
+          "name": "Vegan & GlutenFree Osaka (enseigne « Second Room Cafe »)",
+          "nameJa": "ヴィーガン＆グルテンフリー大阪（セカンドルームカフェ）",
+          "zone": "zone-umeda",
+          "ward": "大阪市北区",
+          "why": "Le plat de rue d'Ōsaka en version entièrement vegan, au sous-sol d'un des vieux immeubles Ekimae de Umeda. Tout le menu est vegan et sans gluten, sans oignon ni ail : okonomiyaki à la farine de maïs, takoyaki à la farine de riz où le poulpe est remplacé par des champignons, kushikatsu, mayonnaise au lait de soja. Menu en anglais. Pas de réservation pour l'instant.",
+          "practical": {
+            "horaires": "11 h à 22 h (dernière commande 21 h)",
+            "fermeture": "mercredi ; du 1er au 3 janvier",
+            "booking": "pas de réservation pour l'instant, par ordre d'arrivée",
+            "prix": "okonomiyaki 1 600 ¥, takoyaki 1 100 ¥ les 10",
+            "station": "Ōsaka (JR), sortie centrale : longer le grand magasin Hanshin sur environ 200 m (temps non indiqué)",
+            "adresse": "大阪駅前第4ビル B1-14"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.veganandglutenfree-osaka.com/access/",
+              "read": "2026-11-23",
+              "what": "Site du restaurant (lu via WebFetch) : enseigne « Second Room Cafe », B1-14 du Ekimae 4e immeuble, 11 h-22 h, fermé mercredi et 1er-3 janv., horaires modifiables sans préavis, pas de réservation, itinéraire depuis JR Ōsaka."
+            },
+            {
+              "url": "https://www.veganandglutenfree-osaka.com/menu/",
+              "read": "2026-11-23",
+              "what": "Menu (lu via WebFetch) : « All dishes are gluten-free and vegan », sans 五葷, okonomiyaki à la farine de maïs 1 600 ¥, takoyaki au riz et aux champignons 1 100 ¥, plats au blé aussi préparés en cuisine."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/12561406760 (The Second Room Cafe / Vegan & Glutenfree Osaka, dans l'immeuble 大阪駅前第4ビル) via Nominatim",
+          "verify": true,
+          "verifyNote": "Le site prévient que les horaires et jours de fermeture peuvent changer sans préavis (il renvoie à Google Maps). Miel non mentionné. Des plats au blé sont aussi préparés dans la cuisine : traces de gluten possibles."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "paprika-shokudo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49646,
+          34.67725
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Paprika Shokudō Vegan",
+        "hook": "cantine vegan de shinmachi",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%91%E3%83%97%E3%83%AA%E3%82%AB%E9%A3%9F%E5%A0%82%20Vegan&query_place_id=ChIJ72nbqATnAGAR8GMxZxz0qNw", "card": "パプリカ食堂 Vegan", "read": "2026-11-23" },
+          "category": "manger",
+          "name": "Paprika Shokudō Vegan",
+          "nameJa": "パプリカ食堂 Vegan",
+          "zone": "zone-minami",
+          "ward": "大阪市西区",
+          "why": "Cantine vegan du quartier de Shinmachi, côté ouest de Shinsaibashi, ouverte midi et soir. Le site dit le restaurant « 100 % végétal », avec des ingrédients bio autant que possible. Au déjeuner, des plateaux (teishoku) avec riz complet, soupe miso bio, salade et un plat : karaage de viande de soja, tempeh, steak de soja et tofu. Fromage maison au mochi et lait de soja ; desserts entièrement végétaux, sans sucre blanc ni produit laitier. Menu en anglais. Les fermetures exceptionnelles sont annoncées sur Instagram et Facebook.",
+          "practical": {
+            "horaires": "11 h 30-15 h (dernière commande 14 h) et 17 h 30-21 h 30 (dernière commande 21 h)",
+            "fermeture": "mercredi, plus fermetures annoncées sur Instagram",
+            "booking": "réservation par téléphone 06-6599-9788 (aussi pour le midi) ou en ligne sur le site",
+            "prix": "teishoku du midi 1 690 à 2 000 ¥, donburi 1 240 ¥",
+            "station": "Yotsubashi (métro Yotsubashi) sortie 2, 2 min ; Shinsaibashi sortie 3, 5 min",
+            "adresse": "新町1-9-9"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://paprikacafe.owst.jp/",
+              "read": "2026-11-23",
+              "what": "Site du restaurant : « 100%植物性 », adresse, horaires midi et soir, fermé le mercredi, fermetures annoncées sur Instagram, gares, réservation en ligne."
+            },
+            {
+              "url": "https://paprikacafe.owst.jp/lunches",
+              "read": "2026-11-23",
+              "what": "Carte du midi : teishoku 1 690-2 000 ¥, donburi 1 240 ¥, desserts « 100% 植物性 » sans sucre blanc ni laitages, menu anglais, réservation du midi par téléphone, calendrier des fermetures sur Facebook."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/5102657823 (パプリカ食堂 Vegan) via Nominatim, à 8 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Fin d'année non lue (le site renvoie à la page Facebook du restaurant). Miel non mentionné."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "green-earth",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49922,
+          34.67976
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Green Earth",
+        "hook": "cantine vegan, seulement le jour",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%B0%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%A2%E3%83%BC%E3%82%B9&query_place_id=ChIJhR_XYRznAGARsO_h47D5N-M", "card": "グリーンアース", "read": "2026-11-23" },
+          "category": "manger",
+          "name": "Green Earth (restaurant vegan)",
+          "nameJa": "グリーンアース",
+          "zone": "zone-minami",
+          "ward": "大阪市中央区",
+          "why": "Restaurant vegan de Kita-Kyūhōji-machi, dans le Chūō-ku. Le site dit que tous les plats sont sans viande, poisson, œuf, produit laitier ni exhausteur chimique. L'assiette du midi change chaque jour (plat, accompagnements, soupe), avec des recettes du monde entier ; sandwichs au tempeh ou à l'avocat, donburi au soja, gâteaux sans lait. Ouvert seulement en journée. Le site a une page d'accueil en anglais.",
+          "practical": {
+            "horaires": "lundi au samedi, 11 h 30 à 17 h (dernière commande 16 h 30)",
+            "fermeture": "dimanche, jours fériés, Obon et Nouvel An",
+            "prix": "assiette du midi 1 200 ¥ ; sandwichs 800 à 950 ¥",
+            "adresse": "北久宝寺町4-2-2 久宝ビル1F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.osaka-vegetarian-ge.com/",
+              "read": "2026-11-23",
+              "what": "Site du restaurant : « すべての料理は魚、肉類、卵、乳製品、化学調味料を一切使っていない菜食Vegan料理です », lun.-sam. 11 h 30-17 h, fermé dimanche, fériés, Obon, Nouvel An."
+            },
+            {
+              "url": "https://www.osaka-vegetarian-ge.com/en",
+              "read": "2026-11-23",
+              "what": "Page anglaise du site : restaurant vegan, mêmes horaires et fermetures."
+            },
+            {
+              "url": "https://www.osaka-vegetarian-ge.com/copy-of-%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC-2",
+              "read": "2026-11-23",
+              "what": "Menu : assiette du midi 1 200 ¥ qui change chaque jour, sandwichs 800-950 ¥, donburi au tempeh, gâteaux au lait de soja."
+            },
+            {
+              "url": "https://www.osaka-vegetarian-ge.com/%E3%82%B3%E3%83%B3%E3%82%BF%E3%82%AF%E3%83%88",
+              "read": "2026-11-23",
+              "what": "Contact : adresse complète, téléphone 06-6251-1245."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/3290125333 (グリーンアース) via Nominatim, à 9 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Miel non mentionné. Station la plus proche non lue sur le site. Dates exactes du Nouvel An non publiées."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mercy-vegan-ramen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50902,
+          34.67829
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "MERCY Vegan Ramen",
+        "hook": "ramen tout végétal, bouillon kombu",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=MERCY%20Vegan%20Ramen%20Bakuromachi&query_place_id=ChIJk8Ft-BvnAGARF51RCNFv7-U", "card": "MERCY Vegan Ramen Bakuromachi", "read": "2026-11-23" },
+          "category": "manger",
+          "name": "MERCY Vegan Ramen Bakuromachi",
+          "nameJa": "MERCY Vegan Ramen 博労町",
+          "ward": "大阪市中央区",
+          "why": "Un restaurant de ramen entièrement végétal ouvert en janvier 2026 à Bakurōmachi, quartier de grossistes entre Honmachi et Nagahoribashi. Le site dit : ni viande, ni poisson, ni produit laitier, ni blé ; sans gluten et sans ail ni oignon. Le ramen au sel est sur un bouillon de kombu, le tantanmen au lait de soja est la spécialité. Menu en anglais sur le site.",
+          "practical": {
+            "horaires": "12 h à 23 h (cuisine jusqu'à 22 h 15)",
+            "fermeture": "mercredi",
+            "booking": "réservation par téléphone 070-5638-4042 ou en ligne sur le site",
+            "prix": "ramen de 1 870 à 2 420 ¥",
+            "station": "Matsuyamachi ou Sakaisuji-Honmachi (métro) 7 min ; Nagahoribashi environ 9 min",
+            "adresse": "博労町1-4-10"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://vegan-ramen.blueyellow-osaka.com/",
+              "read": "2026-11-23",
+              "what": "Site du restaurant : « 全部、植物性。肉も、魚も、乳製品も小麦も使わない。動物性ゼロ », salt ramen au 昆布だし, prix, menu en anglais, 12 h-23 h (cuisine 22 h 15), fermé le mercredi, gares, réservation téléphone et web."
+            },
+            {
+              "url": "https://www.mercy-vegan.jp/news/2026/94863/",
+              "read": "2026-11-23",
+              "what": "Annonce de la marque, 26 janv. 2026 : ouverture le 29 janv. 2026, 100 % végétal, sans 五葷, aucun ingrédient d'origine animale."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市中央区博労町一丁目４番１０号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Fin d'année non lue. Miel non mentionné nommément (le site dit « 動物性ゼロ »)."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "shinsekai-radium-onsen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50661,
+          34.65259
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Shinsekai Radium Onsen",
+        "hook": "bain de 1952 sous le tsūtenkaku",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E4%B8%96%E7%95%8C%E3%83%A9%E3%82%B8%E3%82%A6%E3%83%A0%E6%B8%A9%E6%B3%89&query_place_id=ChIJX0yk21_nAGARjNufZQxVQY0", "card": "新世界ラジウム温泉", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Shinsekai Radium Onsen (bain public de Shinsekai)",
+          "nameJa": "新世界ラジウム温泉",
+          "zone": "zone-shinsekai-nishinari",
+          "ward": "大阪市浪速区",
+          "why": "Bain public de quartier fondé en 1952, au pied du Tsūtenkaku : ancien bandai rond de l'ancien bâtiment à l'entrée, salle de bains de style Shōwa en granit, grand bain extérieur ouvert en 2008 avec vue sur la tour et un jardin japonais, et un bain d'eau gazeuse que les habitués appellent « bain ramune ». Ouvert dès 6 h : le bain du matin est le moment des gens du quartier, avant que Shinsekai se remplisse. Tatouages : acceptés, écrit par le bain lui-même sur sa page de présentation : « タトゥーフレンドリー ラジウム温泉ではタトゥーのある方をお断りするのではなく、むしろ歓迎しております。 » Rien à lire sur place.",
+          "practical": {
+            "horaires": "6 h à 24 h (lu sur la fiche de l'association des bains d'Osaka ; le site du bain dit « ouvert dès 6 h »)",
+            "fermeture": "2e et 4e jeudis du mois (fiche de l'association des bains d'Osaka). Fin d'année non publiée.",
+            "prix": "600 yens adulte. Formule « mains vides » 700 yens avec une petite et une grande serviette.",
+            "station": "Ebisuchō (ligne Sakaisuji ou tram Hankai) 3 min, Shin-Imamiya (JR) 10 min, Dōbutsuen-mae (ligne Midōsuji) 10 min",
+            "adresse": "恵美須東1-4-13"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://radium.co.jp/profile/",
+              "read": "2026-11-23",
+              "what": "Page du bain : fondé en 1952 (昭和27年), bain extérieur de 2008 face au Tsūtenkaku, bain ramune, bandai de l'ancien bâtiment, et la phrase « タトゥーフレンドリー ラジウム温泉ではタトゥーのある方をお断りするのではなく、むしろ歓迎しております。 »"
+            },
+            {
+              "url": "https://radium.co.jp/",
+              "read": "2026-11-23",
+              "what": "Accueil du bain : « 毎朝６時から », salle de bains Shōwa, jardin japonais, sauna à vapeur, bain froid ; actualités d'octobre-novembre 2026."
+            },
+            {
+              "url": "https://radium.co.jp/price/",
+              "read": "2026-11-23",
+              "what": "Tarifs : adulte 600 yens, formule mains vides 700 yens (entrée, une serviette, une grande serviette)."
+            },
+            {
+              "url": "https://radium.co.jp/access/",
+              "read": "2026-11-23",
+              "what": "Accès : Ebisuchō (Sakaisuji et tram Hankai) 3 min, Shin-Imamiya 10 min, Dōbutsuen-mae 10 min."
+            },
+            {
+              "url": "https://osaka268.com/?s=ラジウム",
+              "read": "2026-11-23",
+              "what": "Association des bains d'Osaka, fiche de la Radium : 6 h à 24 h, fermé les 2e et 4e jeudis."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市浪速区恵美須東一丁目４番１３号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Horaires et jour de fermeture lus sur la fiche de l'association des bains, pas sur le site du bain. Fin d'année non publiée. Savon et shampoing : non lu."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ofuroya-wako",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50734,
+          34.6469
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Ofuroya Wakō",
+        "hook": "bain de quartier, jardin et bain dehors",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%81%8A%E3%81%B5%E3%82%8D%E3%82%84%E5%92%8C%E5%85%89%20(%E5%92%8C%E5%85%89%E6%B5%B4%E5%A0%B4)&query_place_id=ChIJU8fRXvPdAGAR7FYjluXSaB0", "card": "おふろや和光 (和光浴場)", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Ofuroya Wakō (Wakō yokujō, bain public de Sannō)",
+          "nameJa": "おふろや和光（和光浴場）",
+          "zone": "zone-shinsekai-nishinari",
+          "ward": "大阪市西成区",
+          "why": "Bain public de quartier dans les rues de Sannō, entre Tennōji et Shinsekai : comptoir surélevé (bandai), bain de roche et bain extérieur dans un jardin, sauna sans supplément. Le genre de bain où l'on vient en voisin, de 6 h à minuit. Tatouages : acceptés, écrit par le bain lui-même : « 当店はプールや温泉施設とは異なりますので、外国人のお客様など、お体にタトゥー等があるお客様でもご利用頂けます。お気軽にご入浴ください。 » Photo interdite dans le vestiaire et le bain.",
+          "practical": {
+            "horaires": "6 h à 24 h",
+            "fermeture": "Mercredi. Fin d'année non publiée.",
+            "prix": "600 yens adulte (tarif fixé par la préfecture, en vigueur depuis le 1er avril 2025). Sauna sans supplément, mais grande serviette obligatoire au sauna : location 100 yens. Petite serviette 20 yens, savon 20 yens, shampoing 30 yens.",
+            "station": "Dōbutsuen-mae (ligne Midōsuji) 4 min, Tennōji 6 min, Shin-Imamiya (JR) 8 min",
+            "adresse": "山王1-7-6"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.ofuroya-wako.com/",
+              "read": "2026-11-23",
+              "what": "Site du bain : 6 h à minuit, fermé le mercredi, sauna sans supplément avec grande serviette, photo interdite, accès, et la phrase « 当店はプールや温泉施設とは異なりますので、外国人のお客様など、お体にタトゥー等があるお客様でもご利用頂けます。お気軽にご入浴ください。 »"
+            },
+            {
+              "url": "https://www.ofuroya-wako.com/fee/index.html",
+              "read": "2026-11-23",
+              "what": "Tarifs du bain : 600 yens adulte, location serviette 20 yens, grande serviette 100 yens, savon 20 yens, shampoing 30 yens."
+            },
+            {
+              "url": "https://osaka268.com/sento/和光浴場/",
+              "read": "2026-11-23",
+              "what": "Fiche de l'association des bains d'Osaka : bandai, bain de roche, bain extérieur, jardin, sauna sèche et humide, fermé le mercredi."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/11559097170 (おふろや和光(和光浴場)) via Nominatim, à 11 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Horaires de fin d'année non publiés."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "irifune-onsen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50225,
+          34.64878
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Irifune Onsen",
+        "hook": "bain de 1954, sauna et bain froid",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%85%A5%E8%88%B9%E6%B8%A9%E6%B3%89&query_place_id=ChIJ2WdRD4rdAGARNxk6Rb2xVO4", "card": "入船温泉", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Irifune Onsen (bain public de Haginochaya)",
+          "nameJa": "入船温泉",
+          "zone": "zone-shinsekai-nishinari",
+          "ward": "大阪市西成区",
+          "why": "Bain public installé ici depuis 1954, refait par étapes (bain extérieur en 1991, sauna finlandaise et eau adoucie en 2022, bassins refaits en 2024-2025) : un bain de quartier qui vit encore, avec un coin repos où l'on mange et boit après le bain. Il est à Haginochaya, le quartier des travailleurs journaliers : on y vient pour le bain, pas pour regarder le quartier. Tatouages : acceptés, écrit par le bain : « タトゥー（入れ墨）がありますが、銭湯利用できますか？ はいタトゥー（入れ墨）があってもご利用頂けます。入船温泉はタトゥーフレンドリー（tattoo friendly）です。 »",
+          "practical": {
+            "horaires": "En semaine 6 h à 23 h, samedi et dimanche 6 h à 24 h (dernière entrée 30 min avant)",
+            "fermeture": "Lundi, y compris férié. Fin d'année : horaires spéciaux annoncés plus tard sur le site.",
+            "prix": "600 yens adulte (tarif de l'association des bains d'Osaka) ; sauna en supplément. Shampoing et savon fournis, grande serviette en location payante.",
+            "station": "Dōbutsuen-mae (ligne Midōsuji) ou Shin-Imamiya (JR, Nankai) 3 min",
+            "adresse": "萩之茶屋1-6-3"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://irihune.co.jp/",
+              "read": "2026-11-23",
+              "what": "Site du bain : histoire depuis 1954, horaires, fermeture le lundi, fin d'année en horaires spéciaux à annoncer, et « タトゥー（入れ墨）がありますが、銭湯利用できますか？ はいタトゥー（入れ墨）があってもご利用頂けます。入船温泉はタトゥーフレンドリー（tattoo friendly）です。 »"
+            },
+            {
+              "url": "https://irihune.co.jp/faq/",
+              "read": "2026-11-23",
+              "what": "FAQ du bain : tatouages acceptés, shampoing et savon fournis, sauna payant à part (bracelet)."
+            },
+            {
+              "url": "https://osaka268.com/sento/%E5%85%A5%E8%88%B9%E6%B8%A9%E6%B3%89/",
+              "read": "2026-11-23",
+              "what": "Fiche de l'association des bains d'Osaka : Shin-Imamiya et Dōbutsuen-mae 3 min, horaires, fermeture le lundi."
+            },
+            {
+              "url": "https://osaka268.com/",
+              "read": "2026-11-23",
+              "what": "Association des bains d'Osaka : tarif adulte 600 yens."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/389456538 (入船温泉) via Nominatim, à 7 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Montant du supplément sauna et de la serviette non lu (tableau des prix chargé par script sur le site du bain). Horaires de fin d'année à paraître sur le site du bain."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "shitennoji-ennichi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.5168,
+          34.65472
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Marché de Shitennō-ji",
+        "hook": "brocante du temple, le 21",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%9B%9B%E5%A4%A9%E7%8E%8B%E5%AF%BA&query_place_id=ChIJIVA6O_jdAGARLWCtv8iBqrY", "card": "四天王寺", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Daishi-e (le 21) et Taishi-ki (le 22), jours de fête mensuels du temple Shitennō-ji",
+          "nameJa": "四天王寺 大師会・太子忌",
+          "ward": "大阪市天王寺区",
+          "why": "Chaque 21 du mois (« o-Daishi-san »), l'enceinte du temple se remplit d'étals : nourriture, objets du quotidien, antiquités. C'est la sortie des gens du quartier, pas un marché monté pour les visiteurs. Ce jour-là, le cœur du temple est ouvert gratuitement et l'on monte au dernier étage de la pagode. Le 22 (« Taishi-ki », jour du prince Shōtoku) est aussi un jour de fête du temple : cœur du temple et pagode ouverts gratuitement, et seul ce jour-là, la salle Edō et ses peintures murales de la vie du prince ; le temple n'y annonce pas d'étals. Rien à lire : on regarde, on demande le prix.",
+          "practical": {
+            "horaires": "Le 21 et le 22 « toute la journée » (終日) selon le temple ; heures des étals non lues sur le site du temple (environ 8 h 30 à 16 h d'après un guide tiers)",
+            "fermeture": "Dates fixes : étals le 21 de chaque mois, dont le 21 déc. 2026 et le 21 janv. 2027 ; salle Edō le 22",
+            "prix": "Entrée libre ; cœur du temple et pagode gratuits le 21 et le 22",
+            "station": "Shitennōji-mae Yūhigaoka (ligne Tanimachi) 5 min au sud ; Tennōji (JR, Midōsuji) 12 min au nord",
+            "adresse": "四天王寺1-11-18"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.shitennoji.or.jp/event/12/",
+              "read": "2026-11-23",
+              "what": "Calendrier du temple, décembre : 21 déc. Daishi-e « 終日 », étals de nourriture, objets du quotidien et antiquités, cœur du temple et dernier étage de la pagode gratuits ; 22 déc. Taishi-ki « 終日 », salle Edō, cœur du temple et pagode ouverts gratuitement."
+            },
+            {
+              "url": "https://www.shitennoji.or.jp/event/1/",
+              "read": "2026-11-23",
+              "what": "Calendrier du temple, janvier : 21 et 22 janv. 2027 aux mêmes conditions."
+            },
+            {
+              "url": "https://www.shitennoji.or.jp/access.html",
+              "read": "2026-11-23",
+              "what": "Accès : adresse 〒543-0051 四天王寺1-11-18, Shitennōji-mae Yūhigaoka 5 min, Tennōji 12 min, Abenobashi 14 min."
+            },
+            {
+              "url": "https://kansai-marche.com/shitennoji-kottoichi-20261221/",
+              "read": "2026-11-23",
+              "what": "Guide tiers (lu sur un guide tiers) : environ 300 étals le 21 déc. 2026, 8 h 30 à 16 h environ."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/579077537 (四天王寺, l'enceinte du temple où se tiennent les étals) via Nominatim",
+          "verify": true,
+          "verifyNote": "Heures des étals lues sur un guide tiers. Pluie : moins d'étals."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "minpaku",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.52894,
+          34.81282
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Minpaku",
+        "hook": "les objets du monde entier",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%9B%BD%E7%AB%8B%E6%B0%91%E6%97%8F%E5%AD%A6%E5%8D%9A%E7%89%A9%E9%A4%A8&query_place_id=ChIJMSKsqqj8AGAR3e4HXsziTUQ", "card": "国立民族学博物館", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "National Museum of Ethnology (Minpaku, musée national d'ethnologie)",
+          "nameJa": "国立民族学博物館",
+          "zone": "zone-expo",
+          "ward": "吹田市",
+          "why": "Dans le parc de l'Expo 70, le grand musée d'ethnologie : pour qui s'intéresse aux métiers et aux objets faits main. Le billet du musée, acheté à la porte du parc, permet aussi de traverser le parc. Jusqu'au 15 déc. 2026, une exposition sur l'artisanat aïnou du fleuve Saru, montré avec le nom de ceux qui l'ont fait et utilisé. À combiner avec la tour du Soleil, dans le même parc.",
+          "practical": {
+            "horaires": "10 h à 17 h (entrée jusqu'à 16 h 30)",
+            "fermeture": "Mercredi (ou le jour ouvré suivant si férié) ; fin d'année du 28 déc. au 4 janv.",
+            "booking": "Billet du musée acheté aux portes du parc de l'Expo, qui permet de traverser le parc sans payer l'entrée du parc ; billet électronique aussi en vente sur des sites partenaires",
+            "prix": "780 yens (exposition permanente) ; l'exposition spéciale a son propre tarif, non lu",
+            "station": "Bampaku-kinen-kōen (monorail d'Osaka), puis porte centrale et environ 15 min à pied",
+            "adresse": "千里万博公園10-1, Suita"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.minpaku.ac.jp/information/basis",
+              "read": "2026-11-23",
+              "what": "Horaires 10 h à 17 h, fermé le mercredi (jour ouvré suivant si férié), fin d'année du 28 déc. au 4 janv., 780 yens, billet acheté aux portes du parc qui donne le passage gratuit dans le parc."
+            },
+            {
+              "url": "https://www.minpaku.ac.jp/exhibition",
+              "read": "2026-11-23",
+              "what": "Expositions : aïnou « 沙流川に生きる » du 25 sept. au 15 déc. 2026, détroit de Torres en cours, exposition spéciale suivante du 18 mars au 15 juin 2027."
+            },
+            {
+              "url": "https://www.minpaku.ac.jp/information/access",
+              "read": "2026-11-23",
+              "what": "Accès : gare Bampaku-kinen-kōen, porte centrale, puis environ 15 min à pied jusqu'au musée."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap relation/10274975 (国立民族学博物館) via Nominatim",
+          "verify": true,
+          "verifyNote": "L'exposition aïnou finit le 15 déc. 2026 ; son tarif non lu. Temps de trajet depuis Umeda non lu."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "taiyo-no-to",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.5324,
+          34.80951
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Tour du Soleil",
+        "hook": "l'arbre de vie dans la tour",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E9%99%BD%E3%81%AE%E5%A1%94&query_place_id=ChIJcUvtzK38AGARHWY4e3avhGU", "card": "太陽の塔", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Tower of the Sun, intérieur (Okamoto Tarō, 1970)",
+          "nameJa": "太陽の塔 内部",
+          "zone": "zone-expo",
+          "ward": "吹田市",
+          "why": "La tour d'Okamoto Tarō pour l'Expo 70 se visite de l'intérieur : un « arbre de vie » en acier d'environ 41 m porte 292 modèles d'êtres vivants, de l'amibe à l'homme. Il ne se voit que sur réservation. On entre par l'arrière de la tour, par un escalier qui descend sous terre.",
+          "practical": {
+            "horaires": "10 h à 17 h ; jusqu'à 19 h (dernière entrée 18 h 30) les 22-23 et 27-29 nov., 4-6, 11-13, 18-20 et 25-30 déc. 2026, pendant les illuminations du parc",
+            "fermeture": "Décembre 2026 : fermé les 2, 9, 16, 23 et 31 déc. Janvier 2027 non publié.",
+            "booking": "Réservation obligatoire sur le site officiel, jusqu'à la veille, au plus tôt 120 jours avant, premier arrivé premier servi, paiement par carte au moment de réserver. Le site de réservation prévient que presque tous les créneaux sont pris. Site officiel en anglais ; la page d'accueil du site de réservation est en japonais.",
+            "prix": "720 yens la tour seule, entrée du parc à payer en plus ; ou 1 080 yens le billet couplé tour et parc (jardin naturel et jardin japonais)",
+            "station": "Bampaku-kinen-kōen (monorail d'Osaka), puis porte centrale du parc ; entrée à l'arrière de la tour, par un escalier qui descend sous terre"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://taiyounotou-expo70.jp/reserve/",
+              "read": "2026-11-23",
+              "what": "Règles de réservation : réservation au plus tard la veille, jusqu'à 120 jours à l'avance, premier arrivé premier servi, paiement par carte."
+            },
+            {
+              "url": "https://taiyounotou-expo70.jp/guide/hours/",
+              "read": "2026-11-23",
+              "what": "Horaires 10 h à 17 h, ouvert tous les jours en novembre, fermé les 2, 9, 16, 23 et 31 déc. 2026 ; accès par l'arrière de la tour et un escalier vers le sous-sol."
+            },
+            {
+              "url": "https://taiyounotou-expo70.jp/guide/fee/",
+              "read": "2026-11-23",
+              "what": "Tarifs : 1 080 yens avec l'entrée du parc, 720 yens la tour seule (entrée du parc en plus), paiement par carte à la réservation."
+            },
+            {
+              "url": "https://taiyounotou-expo70.jp/news/1470/",
+              "read": "2026-11-23",
+              "what": "Fermeture repoussée à 19 h pendant « Illuminight Banpaku 2026 Winter », 20 jours listés de nov. et déc. 2026."
+            },
+            {
+              "url": "https://reserve.taiyounotou-expo70.jp/",
+              "read": "2026-11-23",
+              "what": "Site de réservation : « 予約可能枠がほぼ埋まっています », réservation ouverte quatre mois avant."
+            },
+            {
+              "url": "https://taiyounotou-expo70.jp/en/",
+              "read": "2026-11-23",
+              "what": "Version anglaise du site officiel, avec les pages horaires, tarifs et mode d'emploi de la réservation."
+            },
+            {
+              "url": "https://osaka-info.jp/special/dc/event/detail264/",
+              "read": "2026-11-23",
+              "what": "Office du tourisme d'Osaka : arbre de vie d'environ 41 m, 292 modèles d'êtres vivants."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/1368703227 (太陽の塔) via Nominatim",
+          "verify": true,
+          "verifyNote": "Jours fermés de janvier 2027 non publiés. Créneaux presque tous pris : réserver tôt. Version anglaise du formulaire de réservation lui-même non vérifiée. Adresse précise non lue. Taille de l'arbre et nombre de modèles lus sur le site de l'office du tourisme, pas sur celui de la tour."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nakka-art",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49137,
+          34.69238
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Nakanoshima Museum of Art",
+        "hook": "cent ans de femmes qui créent",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%98%AA%E4%B8%AD%E4%B9%8B%E5%B3%B6%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJa7dX-nLnAGARYuCX2mxyVWA", "card": "大阪中之島美術館", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Nakanoshima Museum of Art, Osaka (musée d'art de Nakanoshima)",
+          "nameJa": "大阪中之島美術館",
+          "zone": "zone-nakanoshima",
+          "ward": "大阪市北区",
+          "why": "Le musée municipal voisin du NMAO. L'angle n'est pas la grande exposition du British Museum (jusqu'au 31 janv. 2027) mais deux choses : du 9 janv. au 22 mars 2027, « Tsukuru josei no 100 nen », un siècle de créatrices japonaises, avec un chapitre entier sur le travail textile et le loisir manuel (shugei) et un autre sur le groupe Gutai d'Osaka ; et la petite salle gratuite « Osaka Directory » du 2e étage, qui montre un artiste d'Osaka à la fois (du 19 déc. 2026 au 17 janv. 2027, les vidéos et photos de Sako Teppei sur la ville). Juste à côté, le musée national d’art (NMAO), aux salles souterraines, montre du 1er déc. 2026 au 14 mars 2027 « Kotoba no kasanaru basho », films et textes d’artistes d’Asie sur les frontières et les langues ; il ouvre jusqu’à 20 h le vendredi et ferme du 28 déc. au 4 janv.",
+          "practical": {
+            "horaires": "10 h à 17 h (entrée jusqu'à 16 h 30)",
+            "fermeture": "Lundi (ouvert le 11 janv. 2027, fermé le 12) ; 31 déc. et 1er janv.",
+            "prix": "« Tsukuru josei » 1 900 yens (1 700 yens en prévente jusqu'au 8 janv. 2027) ; Osaka Directory gratuit",
+            "station": "Watanabebashi (ligne Keihan Nakanoshima) sortie 2, 5 min ; Higobashi (ligne Yotsubashi) sortie 4, 10 min ; gare d'Ōsaka 20 min à pied",
+            "adresse": "中之島4-3-1"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://nakka-art.jp/exhibition-post/paving-the-way100/",
+              "read": "2026-11-23",
+              "what": "« つくる女性の100年 », 9 janv. au 22 mars 2027, 5e étage, 1 900 yens, chapitre 4 sur Gutai, chapitre 5 « 手芸をめぐって », fermé le lundi et le 12 janv."
+            },
+            {
+              "url": "https://nakka-art.jp/exhibition-post/osaka-directory-dir14/",
+              "read": "2026-11-23",
+              "what": "Osaka Directory 14, Sako Teppei, 19 déc. 2026 au 17 janv. 2027, gratuit, 2e étage, fermé le lundi, le 31 déc., le 1er et le 12 janv."
+            },
+            {
+              "url": "https://nakka-art.jp/",
+              "read": "2026-11-23",
+              "what": "Accueil : expositions de nov. 2026 à févr. 2027 (dont British Museum jusqu'au 31 janv. 2027)."
+            },
+            {
+              "url": "https://nakka-art.jp/visit/access/",
+              "read": "2026-11-23",
+              "what": "Accès : Watanabebashi 5 min, Higobashi 10 min, gare d'Ōsaka 20 min à pied."
+            },
+            {
+              "url": "https://nakka-art.jp/news/yamana_20261106/",
+              "read": "2026-11-23",
+              "what": "Exposition du graphiste Yamana Ayao annoncée du 15 juil. au 26 sept. 2027, hors de la fenêtre d'hiver."
+            },
+            {
+              "url": "https://www.nmao.go.jp/visit/admission/",
+              "read": "2026-11-23",
+              "what": "Horaires, nocturne du vendredi, fermeture le lundi, fin d'année du 28 déc. 2026 au 4 janv. 2027, tarifs de l'exposition et de la collection, jours gratuits, accès avec temps de marche, « 展示替えのため休館中 »."
+            },
+            {
+              "url": "https://www.nmao.go.jp/events/event/20261201_stratified-languages/",
+              "read": "2026-11-23",
+              "what": "Exposition « コトバの重なる場所 », 1er déc. 2026 au 14 mars 2027, salles du 3e sous-sol, 1 800 yens, collection comprise."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/343837388 (大阪中之島美術館) via Nominatim, à 66 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Expositions datées. Aucun fonds de design exposé de déc. 2026 à janv. 2027 d'après le programme lu."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "chuo-kokaido",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50401,
+          34.69354
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Salle publique centrale",
+        "hook": "salle publique de 1918",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%85%AC%E4%BC%9A%E5%A0%82&query_place_id=ChIJgRaozOfmAGARmWOBQQdKkDU", "card": "大阪市中央公会堂", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Osaka City Central Public Hall (salle publique centrale)",
+          "nameJa": "大阪市中央公会堂",
+          "zone": "zone-nakanoshima",
+          "ward": "大阪市北区",
+          "why": "Le bâtiment de 1918 au bout de l'île de Nakanoshima, bien culturel important, toujours loué aux habitants pour des concerts et des réunions. Le sous-sol se visite librement : une salle sur son histoire et sur la restauration de 1999-2002, avec des documents sur les bâtiments modernes du quartier, et des couloirs où restent les anciens équipements ; le hall du rez-de-chaussée s'ouvre les jours où la grande salle n'est pas louée. Bon point de départ d'une marche vers Kitahama.",
+          "practical": {
+            "horaires": "Bâtiment 9 h 30 à 21 h 30 ; salle d'exposition du sous-sol 9 h 30 à 20 h",
+            "fermeture": "4e mardi du mois (jour ouvré suivant si férié) ; fin d'année du 27 déc. 2026 au 4 janv. 2027 (le 22 déc. 2026 ouvert)",
+            "prix": "Sous-sol et hall gratuits ; visites guidées certains soirs, par tirage au sort, 2 000 yens",
+            "station": "Naniwabashi (ligne Keihan Nakanoshima) sortie 1, 1 min ; Yodoyabashi (ligne Midōsuji ou Keihan) sortie 1, 5 min ; Kitahama (ligne Sakaisuji) sortie 26, 10 min",
+            "adresse": "中之島1-1-27"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://osaka-chuokokaido.com/ja/about",
+              "read": "2026-11-23",
+              "what": "Salle d'exposition et zone libre du sous-sol, hall ouvert quand la grande salle est libre, horaires, 4e mardi, fin d'année du 27 déc. au 4 janv., 22 déc. 2026 ouvert."
+            },
+            {
+              "url": "https://osaka-chuokokaido.com/ja/news/z58jm2qbquye",
+              "read": "2026-11-23",
+              "what": "Visite guidée du 9 déc. 2026 (17 h 45 et 19 h 45), tirage au sort clos le 15 nov., 2 000 yens."
+            },
+            {
+              "url": "https://osaka-chuokokaido.com/ja/access",
+              "read": "2026-11-23",
+              "what": "Accès : Naniwabashi sortie 1 à 1 min, Yodoyabashi sortie 1 à 5 min, Kitahama sortie 26 à 10 min."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/162382613 (大阪市中央公会堂) via Nominatim, à 48 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Visites guidées tirées au sort plusieurs semaines avant ; rythme non publié. Éclairage du soir non lu. Site en japonais avec une version anglaise."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "chidori-bunka",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.47504,
+          34.62162
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Chidori Bunka",
+        "hook": "maison ouvrière des années 60",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%8D%83%E9%B3%A5%E6%96%87%E5%8C%96%E9%A3%9F%E5%A0%82&query_place_id=ChIJXTiigSDdAGAROLM15G6oh_w", "card": "千鳥文化食堂", "read": "2026-11-23" },
+          "category": "culture",
+          "name": "Chidori Bunka (ancien immeuble ouvrier devenu lieu de quartier)",
+          "nameJa": "千鳥文化",
+          "zone": "zone-kitakagaya",
+          "ward": "大阪市住之江区",
+          "why": "À Kitakagaya, ancien quartier des chantiers navals, un « bunka jūtaku » d'environ 60 ans (petit immeuble de boutiques et de logements ouvriers), refait par le collectif d'architectes dot architects et ouvert en 2017 : cantine le jour, bar le soir, et depuis 2020 une salle et neuf locataires. On y mange, on regarde comment le bâtiment a été gardé avec ses traces d'agrandissements successifs, puis on marche dans le quartier.",
+          "practical": {
+            "horaires": "Cantine 11 h 30 à 18 h, bar 18 h à 23 h, du jeudi au lundi",
+            "fermeture": "Mardi et mercredi ; fermetures exceptionnelles annoncées sur Instagram @chidoribunka. Fin d'année non publiée.",
+            "station": "Kitakagaya (ligne Yotsubashi) sortie 4, 3 min (lu sur la page note du lieu)",
+            "adresse": "北加賀屋5-2-28"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://chishima-foundation.com/cruising/5-2",
+              "read": "2026-11-23",
+              "what": "Fondation Chishima, fiche Chidori Bunka : immeuble d'environ 60 ans refait par dot architects, ouvert en 2017, salle et neuf locataires ajoutés en 2020, cantine 11 h 30-18 h et bar 18 h-23 h du jeudi au lundi."
+            },
+            {
+              "url": "https://chishima-foundation.com/cruising/31-2",
+              "read": "2026-11-23",
+              "what": "Fondation Chishima, fiche de la cantine : 11 h 30 à 18 h du jeudi au lundi, fermé mardi et mercredi."
+            },
+            {
+              "url": "https://www.city.osaka.lg.jp/suminoe/cmsfiles/contents/0000540/540426/kitakagaya-map2026_jp.pdf",
+              "read": "2026-11-23",
+              "what": "Carte de Kitakagaya 2026 (Chishima Tochi, données d'avril 2026) : cantine 11 h 30-18 h, fermée mardi et mercredi ; expositions à Chidori Bunka en mai et juin 2026."
+            },
+            {
+              "url": "https://note.com/chidoribunka",
+              "read": "2026-11-23",
+              "what": "Page note du lieu : sortie 4 de Kitakagaya à 3 min ; dit « pas de jour fixe de fermeture » mais ses derniers articles datent de 2025."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/1255901115 (千鳥文化) via Nominatim, à 2 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Site du lieu inaccessible (403) : aucune activité datée de l'automne 2026 lue. Horaires de la carte arrêtés en avril 2026. Vérifier sur Instagram @chidoribunka avant d'y aller. Fin d'année non publiée. Cuisine non vérifiée pour le régime vegan."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "i-gallery-lieberman",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50148,
+          34.67779
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "i GALLERY OSAKA",
+        "hook": "dessins de code de zach lieberman",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=i%20GALLERY%20OSAKA&query_place_id=ChIJaYslQ8HnAGARRAS4JWvifoY", "card": "i GALLERY OSAKA", "read": "2026-11-23" },
+          "category": "art-numerique",
+          "name": "i GALLERY OSAKA, « 10 LIGHTS » de Zach Lieberman",
+          "nameJa": "i GALLERY OSAKA",
+          "zone": "zone-minami",
+          "ward": "大阪市中央区",
+          "why": "Galerie de Minami-Semba qui montre jusqu'au 6 déc. 2026 « 10 LIGHTS » de Zach Lieberman, cofondateur d'openFrameworks et de la School for Poetic Computation : tirages et vidéos tirés de dix ans de croquis quotidiens écrits en code, sur le thème de la lumière. Exposition faite avec la galerie clinic de Sangenjaya (Tokyo). Entrée libre, rien à lire pour regarder.",
+          "practical": {
+            "horaires": "12 h à 19 h",
+            "fermeture": "Mardi ; exposition jusqu'au 6 déc. 2026 ; entre deux expositions, la galerie peut fermer sans prévenir",
+            "prix": "Entrée libre",
+            "station": "Shinsaibashi (lignes Midōsuji et Nagahori Tsurumi-ryokuchi) 5 min",
+            "adresse": "南船場3-8-14 ACN心斎橋Garden 1F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.igallery-osaka.com/zachlieberman-i-gallery-osaka",
+              "read": "2026-11-23",
+              "what": "Page de la galerie : « 10 LIGHTS », 7 nov. au 6 déc. 2026, fermé le mardi, avec la galerie clinic de Sangenjaya, adresse."
+            },
+            {
+              "url": "https://www.igallery-osaka.com/about",
+              "read": "2026-11-23",
+              "what": "Galerie : 12 h à 19 h, fermé le mardi, Shinsaibashi à 5 min, fermeture possible sans préavis hors expositions."
+            },
+            {
+              "url": "https://www.igallery-osaka.com/news",
+              "read": "2026-11-23",
+              "what": "Page des annonces : rien de publié après 2023, aucune exposition annoncée après le 6 déc. 2026."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市中央区南船場三丁目８番１４号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "L'exposition finit le 6 déc. 2026 ; programme suivant non publié. Entrée libre non lue sur le site de la galerie (lue sur Tokyo Art Beat)."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "teamlab-botanical",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.52064,
+          34.61103
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "teamLab Botanical Garden",
+        "hook": "le jardin de nagai, la nuit",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%81%E3%83%BC%E3%83%A0%E3%83%A9%E3%83%9C%20%E3%83%9C%E3%82%BF%E3%83%8B%E3%82%AB%E3%83%AB%E3%82%AC%E3%83%BC%E3%83%87%E3%83%B3%20%E5%A4%A7%E9%98%AA&query_place_id=ChIJv2BBVszdAGAR-6Cjxyh-sEQ", "card": "チームラボ ボタニカルガーデン 大阪", "read": "2026-11-23" },
+          "category": "art-numerique",
+          "name": "teamLab Botanical Garden Osaka (jardin botanique de Nagai)",
+          "nameJa": "チームラボ ボタニカルガーデン 大阪",
+          "ward": "大阪市東住吉区",
+          "why": "L'œuvre de teamLab dans un vrai jardin botanique municipal, en plein air et seulement la nuit : arbres, plantes et bassins s'allument et sonnent quand on passe. Elle mérite sa place parce que c'est un jardin de quartier et non une salle d'écrans. Le site prévient d'une attente de 10 à 30 min à l'ouverture, et le billet permet d'entrer à n'importe quelle heure jusqu'à la dernière entrée. Habits chauds, chaussures de marche : il fait noir et le sol est inégal.",
+          "practical": {
+            "horaires": "Du 9 nov. 2026 au 31 janv. 2027 : 18 h à 21 h 30, dernière entrée 20 h 30",
+            "fermeture": "14 déc. 2026, 18 janv. 2027, 1er au 8 févr. 2027 ; ouvert en fin d'année ; œuvres parfois arrêtées par pluie ou vent fort",
+            "booking": "Billet daté en ligne sur le site officiel (version anglaise, carte bancaire), date modifiable trois fois jusqu'à 21 h le jour même",
+            "prix": "Adulte 1 800 yens (prix variable selon le jour), 200 yens de plus au guichet, où seuls les billets du jour sont vendus",
+            "station": "Nagai (ligne Midōsuji) sortie 3, 10 min ; Nagai (JR Hanwa) sortie est, 12 min"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.teamlab.art/e/botanicalgarden/",
+              "read": "2026-11-23",
+              "what": "Site officiel en anglais : horaires d'hiver, jours fermés, billets en ligne et au guichet, changement de date, accès depuis Nagai."
+            },
+            {
+              "url": "https://www.teamlab.art/jp/e/botanicalgarden/",
+              "read": "2026-11-23",
+              "what": "Site officiel en japonais : adulte 1 800 yens, prix variable, +200 yens sur place, attente de 10 à 30 min à l'ouverture, entrée libre à toute heure jusqu'à 20 h 30."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/462894638 (植物園入口, l'entrée du jardin botanique de Nagai) via Nominatim",
+          "verify": true,
+          "verifyNote": "Horaires d'hiver valables jusqu'au 31 janv. 2027 ; dès le 9 févr., ouverture à 18 h 30."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "vs-umekita",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.4934,
+          34.70517
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "VS. (Grand Green Osaka)",
+        "hook": "salle d'art sous le parc d'umekita",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=VS.%20(%E3%83%B4%E3%82%A4%E3%82%A8%E3%82%B9)&query_place_id=ChIJaSGMjvrnAGARRjFwI_jrG90", "card": "VS. (ヴイエス)", "read": "2026-11-23" },
+          "category": "art-numerique",
+          "name": "VS., salle d'exposition de Grand Green Osaka (Umekita)",
+          "nameJa": "VS.（ヴイエス）",
+          "zone": "zone-umeda",
+          "ward": "大阪市北区",
+          "why": "La salle d'exposition souterraine du nouveau parc d'Umekita, à côté de la gare d'Osaka. Elle ne vaut le détour que certains jours : du 4 au 6 déc. 2026, projection et exposition des œuvres nommées à l'ISCA, prix international de création étudiante organisé par Knowledge Capital (1 517 candidatures), avec le 5 déc. à 18 h une performance live de l'artiste sonore evala, « Resonance for VS. ». Du 12 déc. au 11 janv., l'exposition est un travail de portraits d'acteurs, hors sujet ici.",
+          "practical": {
+            "horaires": "ISCA : 4 déc. 2026 13 h à 18 h (remise des prix et projection, sur inscription) ; 5 déc. 11 h à 20 h (evala à 18 h) ; 6 déc. 11 h à 18 h",
+            "booking": "Inscription en ligne sur kc-i.jp (page ISCA 2026), en japonais et en anglais",
+            "prix": "Gratuit, sur inscription préalable sur le site de Knowledge Capital (une inscription pour le 4 déc., une pour les 5 et 6 déc.) ; l'exposition des dix œuvres numériques se regarde librement",
+            "station": "Ōsaka (JR) 7 min à pied",
+            "adresse": "大深町6-86, Umekita"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://vsvs.jp/",
+              "read": "2026-11-23",
+              "what": "Site de VS. : ISCA 2026 du 4 au 6 déc., 1 517 candidatures, performance d'evala ; exposition « Face to face » du 12 déc. au 11 janv."
+            },
+            {
+              "url": "https://kc-i.jp/activity/award/isca/2026/program/",
+              "read": "2026-11-23",
+              "what": "Programme ISCA 2026 : gratuit, inscription préalable, horaires des trois jours, talk d'evala le 5 déc. à 14 h et live « Resonance for VS. » le 5 déc. à 18 h."
+            },
+            {
+              "url": "https://vsvs.jp/access/",
+              "read": "2026-11-23",
+              "what": "Accès : adresse à Grand Green Osaka, gare JR d'Ōsaka à environ 7 min à pied."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/12465328260 (VS.) via Nominatim, à 100 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Trois jours seulement (4-6 déc. 2026). Inscription préalable demandée ; places et date de clôture des inscriptions non lues."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "music-bar-hokage",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.4991,
+          34.67107
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Music Bar HOKAGE",
+        "hook": "punk, noise et tournées étrangères",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=HOKAGE&query_place_id=ChIJEwsloBHnAGARy1gC7uJvxBI", "card": "HOKAGE", "read": "2026-11-23" },
+          "category": "musique",
+          "name": "Music Bar HOKAGE (Hokage, « lueur du feu »)",
+          "nameJa": "Music Bar 火影",
+          "zone": "zone-minami",
+          "ward": "大阪市中央区",
+          "why": "Petite salle en sous-sol à Amerikamura, côté scène locale : punk mélodique, hardcore, noise, et beaucoup de groupes étrangers en tournée japonaise. Le programme de décembre 2026 est en ligne, avec par exemple le 1er déc. une soirée noise et psyché avec Kawabata Makoto (Acid Mothers Temple) et Pika (Afrirampo). Le site donne pour chaque date l'ouverture, le début et le prix ; les noms des groupes sont souvent en lettres latines, ce qui suffit pour choisir.",
+          "practical": {
+            "horaires": "Concerts le soir, souvent ouverture 18 h 30 ou 19 h ; quelques après-midi le samedi",
+            "prix": "Exemples lus : 25 déc. 3 400 yens en prévente, 3 900 sur place ; 15 déc. 1 000 et 1 500 yens ; toujours une boisson obligatoire en plus",
+            "station": "Shinsaibashi ou Yotsubashi ; non lu sur le site du lieu",
+            "adresse": "西心斎橋2-9-36 カサドマートビル B1F/B2F"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://musicbarhokage.net/schedule/?month=2026-12",
+              "read": "2026-11-23",
+              "what": "Programme de décembre 2026 en ligne, dont le 1er déc. (EVICSHEN, Kawabata Makoto, Pika)."
+            },
+            {
+              "url": "https://musicbarhokage.net/schedule/%e3%82%bf%e3%83%86%e3%82%bf%e3%82%ab%e3%82%b3%e3%81%ae%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9/",
+              "read": "2026-11-23",
+              "what": "25 déc. 2026 : ouverture 19 h, début 19 h 30, 3 400 / 3 900 yens + 1 boisson."
+            },
+            {
+              "url": "https://musicbarhokage.net/schedule/%e3%80%8e%e6%8a%bc%e5%bf%8d%e3%80%8f/",
+              "read": "2026-11-23",
+              "what": "15 déc. 2026 : ouverture 18 h 30, début 19 h, 1 000 / 1 500 yens + 1 boisson."
+            },
+            {
+              "url": "https://musicbarhokage.net/access/",
+              "read": "2026-11-23",
+              "what": "Adresse seule (pas de station ni de temps à pied)."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市中央区西心斎橋二丁目９番３６号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Dépend de la date : programme publié mois par mois. Station et temps à pied non lus sur le site du lieu. Fermetures de fin d'année non lues."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "club-daphnia",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.4731,
+          34.62467
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Club Daphnia",
+        "hook": "club dans les docks de Kitakagaya",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=club%20daphnia&query_place_id=ChIJh-zLZSrdAGARK6i5vuuJjr8", "card": "club daphnia", "read": "2026-11-23" },
+          "category": "musique",
+          "name": "Club Daphnia",
+          "nameJa": "club daphnia",
+          "zone": "zone-kitakagaya",
+          "ward": "大阪市住之江区",
+          "why": "Club dans un immeuble de Kitakagaya, entre usines et entrepôts, loin de Minami : house, techno, dub, live et soirées de la scène locale, parfois l'après-midi. Le programme de décembre 2026 est en ligne, par exemple le 12 déc. un marché l'après-midi puis une fête d'anniversaire avec live et DJ. Les pages d'événements donnent date, heure d'ouverture et prix ; on lit sans japonais l'essentiel (Open, Charge).",
+          "practical": {
+            "horaires": "Selon la soirée : exemples lus, ouverture 12 h, 18 h, 21 h ou 22 h",
+            "prix": "Exemples lus : 500 yens (marché du 12 déc.), 2 000 yens + une boisson, 3 500 yens (12 déc. au soir)",
+            "station": "Kitakagaya (ligne Yotsubashi), sortie 4, 10 min à pied",
+            "adresse": "住之江区北加賀屋5-5-1 音ビル"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://club-daphnia.com/",
+              "read": "2026-11-23",
+              "what": "Accueil : prochaine soirée (27 nov.), adresse, sortie 4 de Kitakagaya à 10 min."
+            },
+            {
+              "url": "https://club-daphnia.com/event.php?ID=1159",
+              "read": "2026-11-23",
+              "what": "12 déc. 2026, LUCA MARKET : ouverture 12 h, 500 yens, au 2e étage du même immeuble (音ビル)."
+            },
+            {
+              "url": "https://club-daphnia.com/event.php?ID=1160",
+              "read": "2026-11-23",
+              "what": "12 déc. 2026, LUCA 3rd anniversary : ouverture 18 h, 3 500 yens, live et DJ."
+            },
+            {
+              "url": "https://club-daphnia.com/event.php?ID=1155",
+              "read": "2026-11-23",
+              "what": "21 nov. 2026 : ouverture 22 h, 2 000 yens + 1 boisson, house et techno."
+            },
+            {
+              "url": "https://www.timeout.jp/osaka/ja/%E9%9F%B3%E6%A5%BD/club-daphnia",
+              "read": "2026-11-23",
+              "what": "Lu sur un guide tiers (Time Out, 2022) : le chemin entre usines et entrepôts."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市住之江区北加賀屋五丁目５番１号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Dépend de la date : programme publié soirée par soirée ; décembre lu jusqu'au 12. Étage du club dans l'immeuble et temps de métro depuis Namba non lus."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "jazz-sub",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.51695,
+          34.66673
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Jazz SUB",
+        "hook": "jazz kissa dans le métro de Tanimachi 9-chōme",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=SUB%20JAZZ%20CAFE&query_place_id=ChIJy75gn0_nAGARgr0yn_VR4zw", "card": "SUB JAZZ CAFE", "read": "2026-11-23" },
+          "category": "musique",
+          "name": "Jazz SUB (jazz kissa, café d'écoute de jazz)",
+          "nameJa": "ジャズ喫茶 サブ",
+          "ward": "大阪市中央区",
+          "why": "Jazz kissa (café d'écoute) dont l'entrée est sur la mezzanine de la sortie 6 du métro Tanimachi 9-chōme. Le site dit en anglais qu'on y écoute les vinyles de la maison, qu'il y a des concerts trois ou quatre soirs par semaine, et « walk-ins welcome » ; on peut aussi réserver une table en ligne. Pendant les concerts, pas de vidéo, de flash ni d'enregistrement. Selon un guide tiers, ouvert en 1970 par le contrebassiste Nishiyama Mitsuru, aujourd'hui disparu.",
+          "practical": {
+            "horaires": "Non publiés sur le site du lieu ; programme des concerts mois par mois",
+            "station": "Tanimachi 9-chōme (lignes Tanimachi et Sennichimae), sortie 6, mezzanine",
+            "adresse": "上汐2-4-6 上六センタービル B1F"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.subjazzcafe.com/",
+              "read": "2026-11-23",
+              "what": "Site officiel : programme de novembre 2026, concerts 3-4 soirs par semaine, « Walk ins welcome », sortie 6, réservation ; aucun horaire."
+            },
+            {
+              "url": "https://www.subjazzcafe.com/music-calendar",
+              "read": "2026-11-23",
+              "what": "Page programme : règles de photo et d'enregistrement pendant les concerts."
+            },
+            {
+              "url": "https://jazz-log.com/2026/10/24/jazz-kissa-osaka-guide/",
+              "read": "2026-11-23",
+              "what": "Lu sur un guide tiers (oct. 2026) : ouvert en 1970 par le contrebassiste Nishiyama Mitsuru, 15 h à 23 h, fermé le mardi."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市中央区上汐二丁目４番６号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Horaires et jours d'ouverture non lus sur le site du lieu : un guide tiers dit 15 h-23 h, fermé le mardi ; une autre fiche tierce dit soir seulement, fermé mardi et mercredi. Date d'ouverture (1970) lue seulement sur un guide tiers."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "compufunk-records",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.51211,
+          34.6903
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Compufunk Records",
+        "hook": "disquaire et bar, Kitahama",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Compufunk%20Records&query_place_id=ChIJBf4JwNjmAGARDvA4XfGoGhY", "card": "Compufunk Records", "read": "2026-11-23" },
+          "category": "musique",
+          "name": "Compufunk Records",
+          "nameJa": "コンピューファンクレコーズ",
+          "zone": "zone-nakanoshima",
+          "ward": "大阪市中央区",
+          "why": "Disquaire de musiques électroniques et de danse à Kitahama (techno, house, ambient, Detroit, Chicago, disques japonais), qui organise aussi des soirées. Un endroit d'habitués du quartier de bureaux, à l'écart de Minami. Les heures et le jour de fermeture sont donnés en anglais sur le site.",
+          "practical": {
+            "horaires": "15 h à 23 h, le dimanche jusqu'à 21 h",
+            "fermeture": "Lundi",
+            "station": "Tenmabashi (Keihan, ligne Tanimachi) 5 min ; Kitahama (Keihan, ligne Sakaisuji) 6 min",
+            "adresse": "北浜東1-29 GROW北浜ビル 2F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.compufunk.com/?mode=f2",
+              "read": "2026-11-23",
+              "what": "Page contact : 15 h-23 h (dim. 21 h), fermé le lundi, adresse, Tenmabashi 5 min, Kitahama 6 min."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市中央区北浜東１番２９号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Fermetures de fin d'année non publiées. Le bar et les DJ en boutique non lus sur le site (rubrique PARTY/EVENT seulement)."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "time-bomb-records",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49644,
+          34.67233
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Time Bomb Records",
+        "hook": "disquaire de 1990, ouvert 7 j/7",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=TIME%20BOMB%20RECORDS&query_place_id=ChIJ5-MVvBHnAGAR3l2MWdYwHkY", "card": "TIME BOMB RECORDS", "read": "2026-11-23" },
+          "category": "musique",
+          "name": "Time Bomb Records",
+          "nameJa": "タイムボムレコード",
+          "zone": "zone-minami",
+          "ward": "大阪市西区",
+          "why": "Grand disquaire d'occasion et d'import né à Amerikamura en 1990, installé depuis décembre 2019 en sous-sol à Yotsubashi : rock'n'roll, soul, punk, garage, des années 50 à aujourd'hui. Ouvert tous les jours, l'escalier est côté nord de l'immeuble.",
+          "practical": {
+            "horaires": "12 h à 20 h",
+            "fermeture": "Ouvert tous les jours sauf le 1er janvier ; fermetures exceptionnelles annoncées sur les réseaux",
+            "station": "Yotsubashi (ligne Yotsubashi), sortie 6",
+            "adresse": "南堀江1-11-1 三共四ツ橋ビル B1F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://timebomb.co.jp/pages/store-info",
+              "read": "2026-11-23",
+              "what": "Page du magasin : histoire, horaires, ouvert tous les jours, accès."
+            },
+            {
+              "url": "https://timebomb.co.jp/pages/contact-us",
+              "read": "2026-11-23",
+              "what": "Contact : ouvert tous les jours sauf le jour de l'an."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市西区南堀江一丁目１１番１号 ; pas trouvé sous ce nom dans OpenStreetMap"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yaotomi-honten",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49988,
+          34.6984
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Yaotomi (Ekimae 3)",
+        "hook": "occasion de collection et labo film",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%85%AB%E7%99%BE%E5%AF%8C%E5%86%99%E7%9C%9F%E6%A9%9F%E5%BA%97%20%E6%9C%AC%E5%BA%97%EF%BC%8F%EF%BC%83%E5%85%AB%E7%99%BE%E5%AF%8C%E3%83%95%E3%82%A3%E3%83%AB%E3%83%A0%E7%8F%BE%E5%83%8F%E6%89%80&query_place_id=ChIJ1WWpqu3mAGAR5wFV2I3TLS0", "card": "八百富写真機店 本店／＃八百富フィルム現像所", "read": "2026-11-23" },
+          "category": "photo",
+          "name": "Yaotomi, magasin principal (Ōsaka Ekimae Dai-3 Building)",
+          "nameJa": "八百富写真機店 本店（大阪駅前第3ビル店）",
+          "zone": "zone-umeda",
+          "ward": "大阪市北区",
+          "why": "Le magasin principal de Yaotomi, au deuxième sous-sol d'un des vieux immeubles de bureaux d'Ekimae. La maison dit qu'on y trouve l'occasion « de collection » : Leica et autres boîtiers étrangers, objectifs, appareils anciens. Le labo film de la maison est dans la même boutique : négatif couleur 35 mm et 120, rendu en une à trois heures au comptoir. L'autre magasin, dans la gare d'Ōsaka, a plutôt l'occasion récente.",
+          "practical": {
+            "horaires": "10 h à 20 h ; samedi, dimanche et fériés 10 h à 19 h",
+            "fermeture": "Ouvert tous les jours sauf fin d'année ; dates 2026-2027 non publiées",
+            "prix": "Développement 35 mm couleur 800 yens, 120 couleur 850 yens ; fichiers sur DVD avec le développement 750 yens (35 mm)",
+            "station": "Kitashinchi (JR Tōzai) 3 min, gare JR Ōsaka 8 min",
+            "adresse": "梅田1-1-3 大阪駅前第3ビル B2F"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.yaotomi.co.jp/pages/user_data_shop_osaka_dai3",
+              "read": "2026-11-23",
+              "what": "Fiche du magasin : adresse, horaires, ouvert tous les jours sauf fin d'année, Kitashinchi 3 min, JR Ōsaka 8 min."
+            },
+            {
+              "url": "https://www.yaotomi.co.jp/pages/genzousho",
+              "read": "2026-11-23",
+              "what": "Labo film : négatif couleur 35 mm 800 yens, 120 850 yens, DVD 750 yens, rendu en 1 à 3 h au comptoir."
+            },
+            {
+              "url": "https://www.yaotomi.co.jp/policies/contact-information",
+              "read": "2026-11-23",
+              "what": "Ce que chaque magasin a : collection, Leica, appareils anciens au magasin principal."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市北区梅田一丁目１番３号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Dates de fin d'année 2026-2027 non publiées. Développement noir et blanc non lu sur la page du labo."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "camera-no-naniwa-shinsaibashi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50191,
+          34.67357
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Camera no Naniwa",
+        "hook": "l'occasion la plus large du Kansai",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%AB%E3%83%A1%E3%83%A9%E3%81%AE%E3%83%8A%E3%83%8B%E3%83%AF%20%E5%BF%83%E6%96%8E%E6%A9%8B%E6%9C%AC%E5%BA%97&query_place_id=ChIJd1s5LBfnAGARs1iEtwwSq34", "card": "カメラのナニワ 心斎橋本店", "read": "2026-11-23" },
+          "category": "photo",
+          "name": "Camera no Naniwa, magasin principal de Shinsaibashi",
+          "nameJa": "カメラのナニワ 心斎橋本店",
+          "zone": "zone-minami",
+          "ward": "大阪市中央区",
+          "why": "Maison d'Ōsaka fondée il y a plus de 70 ans, qui se dit l'un des plus gros stocks d'occasion du Kansai : boîtiers argentiques anciens, numérique, objectifs, pare-soleil et filtres d'occasion. On y vend aussi du film et on y dépose des films à développer. Entre le grand magasin Daimaru et Parco, à deux minutes du métro.",
+          "practical": {
+            "horaires": "10 h 30 à 19 h 30",
+            "fermeture": "Ouvert tous les jours sauf fin d'année ; dates 2026-2027 non publiées",
+            "station": "Shinsaibashi (ligne Midōsuji), sortie 4B, 2 min",
+            "adresse": "心斎橋筋1-3-12 2F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.cameranonaniwa.co.jp/store/shinsaibashi/",
+              "read": "2026-11-23",
+              "what": "Fiche du magasin : plus de 70 ans, l'un des plus gros stocks d'occasion du Kansai, vente de film, dépôt de films à développer, horaires, sortie 4B."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市中央区心斎橋筋一丁目３番１２号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Dates de fin d'année 2026-2027 non publiées. Délai et prix du développement non lus sur la fiche du magasin."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "solaris-gallery",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50313,
+          34.67693
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Solaris",
+        "hook": "galerie photo et chambre noire",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%86%99%E7%9C%9F%E3%82%AE%E3%83%A3%E3%83%A9%E3%83%AA%E3%83%BC%20Solaris%EF%BC%88%E3%82%BD%E3%83%A9%E3%83%AA%E3%82%B9%EF%BC%89&query_place_id=ChIJF456xBnnAGARsO86dItvTcw", "card": "写真ギャラリー Solaris（ソラリス）", "read": "2026-11-23" },
+          "category": "photo",
+          "name": "Solaris, galerie de photographie (ex-Nadar Osaka)",
+          "nameJa": "ソラリス",
+          "zone": "zone-minami",
+          "ward": "大阪市中央区",
+          "why": "Galerie de photographie au sous-sol de l'Ōsaka Nōrin Kaikan, un immeuble de bureaux de 1930 à Minami-Senba ; c'est l'ancienne Nadar Osaka sous un autre nom. Expositions d'une ou deux semaines d'amateurs et de groupes, cours de tirage en chambre noire noir et blanc et couleur. Au programme : Tatsumi Naoya, « Furusato » (jusqu'au 29 nov. 2026), un groupe de surimpressions sur film (1er-6 déc.), puis un photographe d'astronomie, Ōnishi Tōru (8-20 déc.).",
+          "practical": {
+            "horaires": "12 h à 19 h, dernier jour d'exposition jusqu'à 18 h",
+            "fermeture": "Lundi",
+            "prix": "Entrée libre non lue sur le site",
+            "station": "Shinsaibashi (ligne Midōsuji), temps à pied non lu",
+            "adresse": "南船場3-2-6 大阪農林会館 B1F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://solaris-g.com/",
+              "read": "2026-11-23",
+              "what": "Site officiel : horaires 12 h-19 h, fermé le lundi, programme du 17 nov. au 20 déc. 2026, cours de chambre noire noir et blanc et couleur."
+            },
+            {
+              "url": "https://solaris-g.com/portfolio_page/260512/",
+              "read": "2026-11-23",
+              "what": "Page d'exposition : le club photo s'appelait « Nadar ojisan no kai », même adresse."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/238944316 (大阪農林會館, la galerie est au sous-sol) via Nominatim",
+          "verify": true,
+          "verifyNote": "Dépend de la date : rien de publié après le 20 déc. 2026. Fermeture de fin d'année non lue. Entrée libre et temps à pied depuis Shinsaibashi non lus. L'année 1930 de l'immeuble non relue sur le site."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "calo-bookshop",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.49727,
+          34.68948
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Calo Bookshop and Cafe",
+        "hook": "livres d'art, photo, zines",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Calo%20Bookshop%20%26%20Cafe%20%2F%20Calo%20Gallery&query_place_id=ChIJ__9iLuXmAGARTjEH2Tkntn0", "card": "Calo Bookshop & Cafe / Calo Gallery", "read": "2026-11-23" },
+          "category": "photo",
+          "also": "culture",
+          "name": "Calo Bookshop and Cafe (librairie d'art, café et galerie)",
+          "nameJa": "カロ ブックショップ アンド カフェ",
+          "zone": "zone-nakanoshima",
+          "ward": "大阪市西区",
+          "why": "Petite librairie d'art ouverte en 2004 au 5e étage d'un vieil immeuble de Higobashi, avec un café et une galerie : catalogues, livres de photo, zines, petites éditions, livres étrangers. Exposition en cours : « DOING COLORS », trois artistes, du 23 nov. au 5 déc. 2026. Dans le même immeuble Wakasa, la Third Gallery Aya représente des photographes comme Ishiuchi Miyako ; son programme de décembre n'était pas publié. Une halte au retour des musées de Nakanoshima.",
+          "practical": {
+            "horaires": "12 h à 19 h, samedi jusqu'à 18 h",
+            "fermeture": "Dimanche et lundi ; fermetures d'été et de fin d'année annoncées sur le site et les réseaux",
+            "station": "Higobashi (ligne Yotsubashi), sorties 6-7, 1 min ; Yodoyabashi (Midōsuji) sortie 12, 5 min",
+            "adresse": "江戸堀1-8-24 若狭ビル 5F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.calobookshop.com/about/access/",
+              "read": "2026-11-23",
+              "what": "Horaires, dimanche et lundi, fermetures annoncées sur le site, Higobashi 1 min, Yodoyabashi 5 min."
+            },
+            {
+              "url": "https://www.calobookshop.com/",
+              "read": "2026-11-23",
+              "what": "Exposition « DOING COLORS » du 23 nov. au 5 déc. 2026 ; ouverture exceptionnelle le 23 nov."
+            },
+            {
+              "url": "https://thethirdgalleryaya.com/exhibitions/",
+              "read": "2026-11-23",
+              "what": "Third Gallery Aya : même immeuble ; rien pour décembre (lecture de la première passe, non refaite)."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府大阪市西区江戸堀一丁目８番２４号 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Dates de fermeture de fin d'année 2026-2027 non publiées ; exposition suivante après le 5 déc. non publiée. Third Gallery Aya : programme de déc. 2026 / janv. 2027 non publié."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cocoroom",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.50426,
+          34.64607
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Cocoroom",
+        "hook": "café-jardin et université des arts",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%B3%E3%82%B3%E3%83%AB%E3%83%BC%E3%83%A0&query_place_id=ChIJUVjieYvdAGARZ8fFL7iERLE", "card": "ココルーム", "read": "2026-11-23" },
+          "category": "militant",
+          "also": "culture",
+          "name": "Cocoroom, café, jardin et Kamagasaki University of the Arts",
+          "nameJa": "ココルーム（釜ヶ崎芸術大学）",
+          "zone": "zone-shinsekai-nishinari",
+          "ward": "大阪市西成区",
+          "why": "Association fondée en 2003 par la poète Ueda Kanayo, installée depuis 2008 « au bord de Kamagasaki », le quartier qui fut à partir des années 1960 celui des journaliers ; l'association écrit qu'il vieillit très vite depuis le milieu des années 2010 et qu'y vivent depuis les années 2000 de plus en plus de personnes à l'aide sociale. Elle y tient un café et un jardin où chacun peut entrer ; on y partage le repas du midi (12 h) et du soir (18 h), à réserver avant de venir. L'association y tient la « Kamagasaki University of the Arts » : chorale, poésie, écriture, calligraphie, cuisine, gratuits pour les personnes en difficulté. C'est la porte d'entrée : on vient s'asseoir, manger, participer. En fin d'année, le programme publié comprend le pilage du mochi au jardin le 27 déc. (de 10 h à la fin de l'après-midi, entrée et sortie libres, 1 500 yens avec dix mochi), la chorale le 30 déc. (répétition au jardin à 16 h, chant vers 18 h 30 au parc Sankaku), calligraphie du Nouvel An et karuta du 1er au 3 janv. (14 h-17 h, à Cocoroom). L'association le dit : la façon de regarder et de raconter Kamagasaki montre où l'on se tient. Le quartier, ses parcs et les gens qui y vivent ne sont pas un spectacle : on ne s'y promène pas pour regarder, on ne photographie pas les gens.",
+          "practical": {
+            "horaires": "Café 10 h à 20 h ; repas partagés à 12 h et 18 h, à réserver avant de venir",
+            "prix": "Ateliers gratuits pour les personnes en difficulté ; participation demandée aux autres à partir de 1 500 yens par atelier",
+            "station": "Dōbutsuen-mae (ligne Midōsuji), sortie 2, 5 min à pied vers le sud",
+            "adresse": "西成区太子2-3-3"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://cocoroom.org/meet/",
+              "read": "2026-11-23",
+              "what": "Page du café et du jardin : ouverts à tous, « presque tous les jours 10 h-20 h », repas partagés à 12 h et 18 h (1 300 yens)."
+            },
+            {
+              "url": "https://cocoroom.org/access/",
+              "read": "2026-11-23",
+              "what": "Adresse ; métro Dōbutsuen-mae (Midōsuji), sortie 2, 5 min vers le sud."
+            },
+            {
+              "url": "https://cocoroom.org/about/",
+              "read": "2026-11-23",
+              "what": "Historique (2003 Festival Gate, 2008 à Kamagasaki), texte de l'association sur le quartier et sur la façon de le regarder."
+            },
+            {
+              "url": "https://cocoroom.org/2026/09/24/%e9%87%9c%e3%83%b6%e5%b4%8e%e8%8a%b8%e8%a1%93%e5%a4%a7%e5%ad%a62026%e5%b9%b4%e5%ba%a6-%e5%be%8c%e6%9c%9f%e3%82%b9%e3%82%b1%e3%82%b8%e3%83%a5%e3%83%bc%e3%83%ab%e3%80%902026%e5%b9%b410%e6%9c%88%e3%80%9c/",
+              "read": "2026-11-23",
+              "what": "Programme oct. 2026-mars 2027 (japonais et anglais) : mochi 27 déc. 1 500 yens, chorale 30 déc. au parc Sankaku, calligraphie et karuta 1er-3 janv. 14 h-17 h."
+            },
+            {
+              "url": "https://cocoroom.org/2026/09/11/2027-1-8-%e3%82%ab%e3%83%9e%e3%83%8f%e3%83%b34-%e3%83%8a%e3%83%a9%e3%83%86%e3%82%a3%e3%83%96%ef%bc%88%e8%aa%9e%e3%82%8a%ef%bc%89%e3%81%ae%e6%89%89/",
+              "read": "2026-11-23",
+              "what": "Atelier du 8 janv. 2027 et barème : gratuit pour les personnes en difficulté, 1 500 yens et plus par atelier sinon."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/5311885140 (ココルーム) via Nominatim, à 7 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Dépend de la date : ateliers datés (déc. 2026-janv. 2027). Horaires du café pendant les fêtes non lus. La consigne de ne pas photographier les gens est celle de la carte, non lue sur le site (le site dit seulement que la façon de regarder le quartier montre où l'on se tient)."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "osaka-koreatown-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.5377,
+          34.66113
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Musée de Koreatown",
+        "hook": "un siècle d'Ikaino, à Ikuno",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E9%98%AA%E3%82%B3%E3%83%AA%E3%82%A2%E3%82%BF%E3%82%A6%E3%83%B3%E6%AD%B4%E5%8F%B2%E8%B3%87%E6%96%99%E9%A4%A8&query_place_id=ChIJ0XSUUp7fAGAR3TatpSu1jZU", "card": "大阪コリアタウン歴史資料館", "read": "2026-11-23" },
+          "category": "militant",
+          "name": "Musée d'histoire de l'Osaka Korea Town",
+          "nameJa": "大阪コリアタウン歴史資料館",
+          "ward": "大阪市生野区",
+          "why": "Petit musée ouvert en 2023 au cœur de l'ancien Ikaino, où arrivaient dans les années 1920 les gens de Jeju et de la péninsule sous la colonisation (selon un article du Mainichi, ouvert par un Coréen du Japon de troisième génération). Il raconte l'ancien « marché coréen » devenu Koreatown, derrière la rue devenue très touristique. Exposition temporaire « L'histoire des Coréens du Japon vue d'en bas » (草の根から見る在日史) jusqu'au 26 déc. 2026 ; le musée annonce déjà sa première exposition de 2027. Le site a une page en anglais ; la langue des panneaux, non lue.",
+          "practical": {
+            "horaires": "10 h à 16 h 30, dernière entrée 16 h",
+            "fermeture": "Dimanche ; du 28 déc. au 3 janv. ; fermetures exceptionnelles",
+            "prix": "300 yens ; étudiants, collégiens, lycéens 100 yens ; gratuit avant l'école",
+            "station": "Tsuruhashi (JR), environ 1 km au sud-est (lu dans un article du Mainichi) ; le site situe le musée à 50 m au nord de la rue principale de Koreatown, sur Ichijō-dōri",
+            "adresse": "生野区桃谷4-4-11"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://oktmuseum.or.jp/",
+              "read": "2026-11-23",
+              "what": "Horaires, dimanche, 28 déc.-3 janv., prix, exposition « 草の根から見る在日史 » du 9 nov. au 26 déc. 2026, emplacement."
+            },
+            {
+              "url": "https://oktmuseum.or.jp/news-infomation/438/",
+              "read": "2026-11-23",
+              "what": "Fermeture le dimanche depuis le 1er avril 2026."
+            },
+            {
+              "url": "https://oktmuseum.or.jp/english/",
+              "read": "2026-11-23",
+              "what": "Page en anglais du musée."
+            },
+            {
+              "url": "https://socialaction.mainichi.jp/2023/04/29/5034.html",
+              "read": "2026-11-23",
+              "what": "Lu sur un article de presse (Mainichi, avril 2023) : ouverture par un Coréen du Japon de 3e génération, à 1 km au sud-est de JR Tsuruhashi."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/11434459166 (大阪コリアタウン歴史資料館) via Nominatim, à 13 m du géocodage de l'adresse par le GSI",
+          "verify": true,
+          "verifyNote": "Dépend de la date : exposition jusqu'au 26 déc. 2026, la suivante annoncée pour 2027 sans date lue. Langue des panneaux non lue. Distance depuis Tsuruhashi lue dans un article, pas sur le site."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "peace-osaka",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.53001,
+          34.6819
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Peace Osaka",
+        "hook": "les raids de 1945 sur Ōsaka",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%94%E3%83%BC%E3%82%B9%E3%81%8A%E3%81%8A%E3%81%95%E3%81%8B%EF%BC%88%E5%A4%A7%E9%98%AA%E5%9B%BD%E9%9A%9B%E5%B9%B3%E5%92%8C%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%EF%BC%89&query_place_id=ChIJ0X861cvgAGARSrukky_tpoI", "card": "ピースおおさか（大阪国際平和センター）", "read": "2026-11-23" },
+          "category": "militant",
+          "name": "Peace Osaka, Centre international pour la paix d'Ōsaka",
+          "nameJa": "ピースおおさか（大阪国際平和センター）",
+          "ward": "大阪市中央区",
+          "why": "Le musée public des bombardements d'Ōsaka : plus de 50 raids en 1945 et plus de 10 000 morts, la ville d'avant, la vie sous la guerre, la reconstruction. Il est au sud du parc du château. Un guide audio en japonais, anglais, chinois et coréen se lit sur son téléphone par QR code en 41 points ; venir avec des écouteurs.",
+          "practical": {
+            "horaires": "9 h 30 à 17 h, dernière entrée 16 h 30",
+            "fermeture": "Lundi ; lendemain de jour férié (sauf de septembre à novembre) ; un jour de rangement en fin de certains mois ; du 28 déc. au 4 janv. Calendrier mensuel sur le site",
+            "prix": "250 yens, lycéens 150 yens ; gratuit jusqu'au collège et à partir de 65 ans",
+            "station": "Morinomiya (métro, sortie 1) 200 m ; Morinomiya (JR Loop, sortie nord) 400 m",
+            "adresse": "大阪城2-1"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.peace-osaka.or.jp/userguide/time/",
+              "read": "2026-11-23",
+              "what": "Horaires 9 h 30-17 h, lundi, lendemain de férié sauf sept.-nov., fin de mois, 28 déc.-4 janv., 250 / 150 yens, gratuit dès 65 ans."
+            },
+            {
+              "url": "https://www.peace-osaka.or.jp/userguide/access/",
+              "read": "2026-11-23",
+              "what": "Métro Morinomiya sortie 1 à 200 m, JR Morinomiya sortie nord à 400 m."
+            },
+            {
+              "url": "https://www.peace-osaka.or.jp/museum/guidance/",
+              "read": "2026-11-23",
+              "what": "Guide audio par QR code en 41 points, japonais, anglais, chinois, coréen."
+            },
+            {
+              "url": "https://www.peace-osaka.or.jp/sys/wp-content/themes/peaceosaka/assets/images/education/worksheet/guide_english.pdf",
+              "read": "2026-11-23",
+              "what": "Texte anglais du guide : plus de 50 raids en 1945, plus de 10 000 morts."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/512713298 (ピースおおさか 大阪国際平和センター) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "henomatsu-jinken",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.46912,
+          34.56444
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Musée Henomatsu",
+        "hook": "histoire buraku à Sakai, gratuit",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-23T16:00:00Z",
+        "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%A0%BA%E5%B8%82%E7%AB%8B%20%E4%BA%BA%E6%A8%A9%E3%81%B5%E3%82%8C%E3%81%82%E3%81%84%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%20%E8%88%B3%E6%9D%BE%E4%BA%BA%E6%A8%A9%E6%AD%B4%E5%8F%B2%E9%A4%A8&query_place_id=ChIJmyRVnJ_cAGARwjqKUvuH0Ys", "card": "堺市立 人権ふれあいセンター 舳松人権歴史館", "read": "2026-11-23" },
+          "category": "militant",
+          "name": "Musée d'histoire des droits humains de Henomatsu",
+          "nameJa": "舳松人権歴史館",
+          "ward": "堺市堺区",
+          "why": "Petit musée municipal de Sakai sur l'histoire et la réalité de la discrimination des buraku, dans le quartier de Henomatsu : panneaux, objets, maquettes, en sections vie quotidienne, travail, histoire, éducation, avec une salle consacrée au joueur de shōgi Sakata Sankichi et une bibliothèque sur les droits humains. Depuis la fermeture de Liberty Osaka en 2020, c'est l'un des rares lieux visitables sur cette histoire côté Ōsaka. Gratuit.",
+          "practical": {
+            "horaires": "9 h 30 à 18 h 30",
+            "fermeture": "Lundi (ouvert si férié) ; fin d'année, dates non publiées",
+            "prix": "Gratuit",
+            "station": "Goryōmae (tram Hankai) ; temps à pied non lu",
+            "adresse": "堺区協和町2丁61-1 あいてらす堺 1F"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.city.sakai.lg.jp/yoyakuanai/bunrui/bunka/jinken/henomatsujinken.html",
+              "read": "2026-11-23",
+              "what": "Page de la ville de Sakai (mise à jour 16 mars 2026) : contenu, sections, gratuit, 9 h 30-18 h 30, lundi, fin d'année, arrêt Goryōmae."
+            },
+            {
+              "url": "https://www.sakai-tcb.or.jp/spot/detail/140",
+              "read": "2026-11-23",
+              "what": "Office du tourisme de Sakai : accès par le tram Hankai (Goryōmae)."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 大阪府堺市堺区協和町二丁６１番地 ; pas trouvé sous ce nom dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Langue des panneaux non lue. Dates exactes de fin d'année non publiées. Temps à pied depuis Goryōmae et trajet depuis Namba non lus."
+        }
+      }
+    }
+  ]
+}

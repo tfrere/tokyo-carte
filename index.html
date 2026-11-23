@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tokyo, des lieux choisis</title>
-<meta name="description" content="Une carte de Tokyo : des lieux où aller, par envie. Musique, culture, art numérique, lieux militants, cuisine, où manger, photo.">
-<meta property="og:title" content="Tokyo, des lieux choisis">
-<meta property="og:description" content="Une carte de Tokyo : des lieux où aller, par envie.">
+<title>Japon, des lieux choisis</title>
+<meta name="description" content="Des cartes de villes du Japon : des lieux où aller, par envie. Musique, culture, art numérique, lieux militants, cuisine, où manger, photo.">
+<meta property="og:title" content="Japon, des lieux choisis">
+<meta property="og:description" content="Des cartes de villes du Japon : des lieux où aller, par envie.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#14171b">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="no-referrer">
 <!-- on a phone's home screen: its own icon and name, and the whole screen for the map (no browser bars) -->
-<meta name="apple-mobile-web-app-title" content="Tokyo">
-<meta name="application-name" content="Tokyo">
+<meta name="apple-mobile-web-app-title" content="Japon">
+<meta name="application-name" content="Japon">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,7 +21,7 @@
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<!-- The map of Tokyo, standalone: one page, its data beside it, no build.
+<!-- The map, one city at a time (cities.json), standalone: one page, its data beside it, no build.
      MapLibre GL JS (BSD-3-Clause) from a CDN, OpenFreeMap vector tiles (OpenMapTiles schema, OpenStreetMap data), no key.
      The page contacts two hosts only: unpkg.com (the map library) and tiles.openfreemap.org (style, tiles, fonts). -->
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
@@ -36,6 +36,13 @@
   #title { position: fixed; left: 12px; top: calc(10px + env(safe-area-inset-top)); z-index: 3; pointer-events: none; text-shadow: 0 1px 6px #0b0d10, 0 0 2px #0b0d10; }
   #title h1 { margin: 0; font-size: 22px; line-height: 1.1; font-weight: 700; letter-spacing: 0.01em; color: #f4efe3; }
   #title p { margin: 2px 0 0; font-size: 12px; color: #aab2bb; }
+  /* the city's name is the title and the way to another city */
+  #city { display: inline-flex; align-items: center; gap: 6px; margin: -10px; padding: 10px; border: 0; background: none; font: inherit; letter-spacing: inherit; text-shadow: inherit; cursor: pointer; pointer-events: auto; }
+  #city svg { width: 13px; height: 13px; margin-top: 3px; opacity: 0.75; }
+  #cities { position: fixed; z-index: 7; left: 12px; top: calc(44px + env(safe-area-inset-top)); min-width: 210px; padding: 4px; border: 1px solid rgb(255 255 255 / 0.14); border-radius: 16px; background: #12151a; box-shadow: 0 10px 40px rgb(0 0 0 / 0.55); }
+  #cities button { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 48px; padding: 0 14px; border: 0; border-radius: 12px; background: none; font-size: 17px; text-align: left; cursor: pointer; }
+  #cities button[aria-selected='true'] { background: rgb(255 255 255 / 0.06); font-weight: 600; }
+  #cities button[aria-selected='true']::after { content: '✓'; color: #aab2bb; font-weight: 400; }
   /* the search, always on the map: under the title, left of the map's own buttons; the list beside it */
   #search { position: fixed; z-index: 4; left: 12px; right: 66px; top: calc(62px + env(safe-area-inset-top)); display: flex; gap: 8px; }
   #search .field { position: relative; flex: 1; min-width: 0; }
@@ -123,6 +130,7 @@
     #title { left: 18px; top: 14px; }
     #title h1 { font-size: 26px; }
     #title p { font-size: 13px; }
+    #cities { left: 18px; top: 52px; }
     #search { left: 18px; right: auto; top: 76px; width: 400px; }
     #results { left: 18px; right: auto; top: 126px; width: 400px; }
     #key button .long, #key button small { display: inline; }
@@ -136,7 +144,8 @@
 </head>
 <body>
 <div id="map"></div>
-<header id="title"><h1>Tokyo</h1><p>des lieux choisis, par envie</p></header>
+<header id="title"><h1><button id="city" type="button" aria-haspopup="listbox" aria-expanded="false"><span></span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></h1><p>des lieux choisis, par envie</p></header>
+<div id="cities" role="listbox" aria-label="Villes" hidden></div>
 <!-- what is typed here stays in the page: no form, no name, nothing of it in the address or anywhere else -->
 <div id="search" role="search">
   <div class="field"><input type="search" placeholder="Chercher un lieu, un quartier" aria-label="Chercher un lieu, un quartier, une envie" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="clear" type="button" aria-label="Effacer la recherche" hidden>×</button></div>
@@ -297,7 +306,7 @@ function read(files) {
 const point = e => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [e.lon, e.lat] }, properties: { id: e.id, hook: e.hook, name: e.short, interest: e.interests[0], interests: `|${e.interests.join('|')}|`, strength: e.strength, kind: e.icon ?? '' } })
 const collection = features => ({ type: 'FeatureCollection', features })
 
-// the address keeps the view (`v`, the map library's) and the open place (`lieu`), so a link can be shared
+// the address keeps the city (`ville`), the view (`v`, the map library's) and the open place (`lieu`), so a link can be shared
 const hashGet = name => location.hash.slice(1).split('&').find(part => part.startsWith(`${name}=`))?.slice(name.length + 1)
 const hashSet = (name, value) => {
   const parts = location.hash.slice(1).split('&').filter(part => part && !part.startsWith(`${name}=`))
@@ -322,13 +331,27 @@ function badgeImage(path) {
 
 async function main() {
   const json = url => fetch(url).then(r => r.json())
-  const [tokyo, agenda, landmarkFile, glyphs] = await Promise.all([json('tokyo.geojson'), json('tokyo-agenda.geojson'), json('landmarks.json'), json('landmark-icons.json')])
-  const { places, zones } = read([tokyo, agenda])
-  const landmarks = landmarkFile.tokyo.map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', nameJa: l.ja, lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind, gmaps: l.gmaps?.url ?? null, ask: l.ja ?? l.name }))
-  // everything that is loaded can be opened and searched, whatever the city
-  const all = [...places, ...zones, ...landmarks]
-  for (const e of all) e.words = wordsOf(e)
-  const byId = new Map(all.map(e => [e.id, e]))
+  // the cities (cities.json, a line each) and the drawings of every landmark kind
+  const [cities, glyphs] = await Promise.all([json('cities.json'), json('landmark-icons.json')])
+  const loaded = new Map()
+  /** A city's places, zones and landmarks, read once: <id>.geojson, <id>-landmarks.json, and <id>-agenda.geojson where it has one. */
+  const load = city => {
+    if (!loaded.has(city.id)) loaded.set(city.id, Promise.all([json(`${city.id}.geojson`), json(`${city.id}-landmarks.json`), city.agenda ? json(`${city.id}-agenda.geojson`) : null]).then(([file, marks, agenda]) => {
+      const { places, zones } = read(agenda ? [file, agenda] : [file])
+      const landmarks = marks[city.id].map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', nameJa: l.ja, lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind, gmaps: l.gmaps?.url ?? null, ask: l.ja ?? l.name }))
+      // everything that is loaded can be opened and searched, whatever the city
+      const all = [...places, ...zones, ...landmarks]
+      for (const e of all) e.words = wordsOf(e)
+      return { ...city, start: file.city, places, zones, landmarks, all, byId: new Map(all.map(e => [e.id, e])) }
+    }))
+    return loaded.get(city.id)
+  }
+  // which city: the address's; else the first for a link older than the cities (a place or a view, no city); else the
+  // last one chosen, kept in the page's storage as its id and nothing more
+  const kept = (() => { try { return localStorage.getItem('ville') } catch { return null } })()
+  const first = cities.find(c => c.id === hashGet('ville')) ?? (hashGet('lieu') || hashGet('v') ? cities[0] : cities.find(c => c.id === kept) ?? cities[0])
+  let city = await load(first)
+  let { places, zones, landmarks, all, byId } = city
   let map = null
 
   // ---- the card
@@ -353,10 +376,10 @@ async function main() {
     card.querySelector('.close').onclick = close
     // opened from the home screen there is no address bar: the place's link is shared from here (the place alone, not the view)
     card.querySelector('.share').onclick = async event => {
-      const url = `${location.origin}${location.pathname}#lieu=${encodeURIComponent(entry.id)}`
+      const url = `${location.origin}${location.pathname}#ville=${city.id}&lieu=${encodeURIComponent(entry.id)}`
       const said = text => { event.target.textContent = text; setTimeout(() => (event.target.textContent = 'Partager ce lieu'), 2500) }
       try {
-        if (navigator.share) await navigator.share({ title: `${entry.short}, Tokyo`, url })
+        if (navigator.share) await navigator.share({ title: `${entry.short}, ${city.name}`, url })
         else { await navigator.clipboard.writeText(url); said('Lien copié') }
       } catch (error) {
         if (error.name !== 'AbortError') prompt('Le lien de ce lieu', url)
@@ -432,20 +455,54 @@ async function main() {
   fit()
   const key = document.getElementById('key'), chips = key.querySelector('.chips')
   const count = id => places.filter(p => p.interests.includes(id)).length
-  chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join('')
+  const fillKey = () => { chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join('') }
+  fillKey()
   new ResizeObserver(() => document.documentElement.style.setProperty('--key-h', `${key.offsetHeight}px`)).observe(key)
+
+  // ---- the city: its name is the title, and the way to another one
+  const cityButton = document.getElementById('city'), cityList = document.getElementById('cities')
+  const named = () => {
+    cityButton.firstElementChild.textContent = city.name
+    cityList.innerHTML = cities.map(c => `<button type="button" role="option" data-id="${esc(c.id)}" aria-selected="${c.id === city.id}">${esc(c.name)}</button>`).join('')
+    hashSet('ville', city.id)
+  }
+  const fold = () => { cityList.hidden = true; cityButton.setAttribute('aria-expanded', 'false') }
+  cityButton.onclick = () => { rest(); cityList.hidden = !cityList.hidden; cityButton.setAttribute('aria-expanded', String(!cityList.hidden)) }
+  cityList.onclick = event => { const button = event.target.closest('button'); if (!button) return; fold(); if (button.dataset.id !== city.id) go(button.dataset.id) }
+  document.addEventListener('pointerdown', event => { if (!cityList.hidden && !cityList.contains(event.target) && !cityButton.contains(event.target)) fold() })
+  named()
+  // the whole city on the screen, between the title and the key
+  const whole = () => { const box = new maplibregl.LngLatBounds(); for (const e of places) box.extend([e.lon, e.lat]); for (const z of zones) for (const c of z.round) box.extend(c); return box }
+  const around = () => (phone() ? { top: 178, bottom: 150, left: 24, right: 24 } : { top: 70, bottom: 110, left: 70, right: 70 })
+  const drawn = () => ({
+    zones: collection(zones.map(z => ({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...z.round, z.round[0]]] }, properties: point(z).properties }))),
+    'zone-notes': collection(zones.map(point)), places: collection(places.map(point)), landmarks: collection(landmarks.map(point)),
+  })
+  /** Another city: its places on the same map, seen whole; the card, the key, the list and the search start again. */
+  async function go(id) {
+    const next = await load(cities.find(c => c.id === id))
+    close(); rest(); list.classList.remove('open')
+    field.value = ''; search.value = ''
+    city = next; ({ places, zones, landmarks, all, byId } = next)
+    answer(); picked.clear(); fillKey(); showPicked(); named()
+    // the city chosen is what a launch from the home screen comes back to: its id, never a position or a view
+    try { localStorage.setItem('ville', city.id) } catch {}
+    if (!map) return
+    for (const [source, data] of Object.entries(drawn())) map.getSource(source).setData(data)
+    // the map holds the new places before it moves: a tile first made without them, then filled, answers no tap (MapLibre 5.24)
+    await new Promise(done => { map.once('idle', done); setTimeout(done, 2000) })
+    if (places.length || zones.length) map.fitBounds(whole(), { padding: around(), duration: 0 })
+    else if (city.start) map.jumpTo({ center: city.start.center, zoom: city.start.zoom })
+  }
 
   // ---- the map
   const hadView = Boolean(hashGet('v'))
   const fail = () => { document.getElementById('fail').hidden = false; document.documentElement.dataset.state = 'no-map' }
   if (!window.maplibregl) return fail()
-  const bounds = new maplibregl.LngLatBounds()
-  for (const e of places) bounds.extend([e.lon, e.lat])
-  for (const z of zones) for (const c of z.round) bounds.extend(c)
   try {
     const style = await json('https://tiles.openfreemap.org/styles/dark')
     map = window.map = new maplibregl.Map({
-      container: 'map', style: quiet(style), bounds, fitBoundsOptions: { padding: phone() ? { top: 120, bottom: 150, left: 24, right: 24 } : { top: 70, bottom: 110, left: 70, right: 70 } },
+      container: 'map', style: quiet(style), bounds: whole(), fitBoundsOptions: { padding: around() },
       hash: 'v', maxPitch: 70, attributionControl: false, canvasContextAttributes: { preserveDrawingBuffer: true },
       locale: { 'NavigationControl.ZoomIn': 'Zoomer', 'NavigationControl.ZoomOut': 'Dézoomer', 'NavigationControl.ResetBearing': 'Remettre le nord en haut', 'GeolocateControl.FindMyLocation': 'Ma position', 'GeolocateControl.LocationNotAvailable': 'Position indisponible' },
     })
@@ -471,12 +528,9 @@ async function main() {
   map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'bottom-right')
 
   map.addImage('disc', discImage(), { sdf: true })
-  for (const kind of new Set(landmarks.map(l => l.icon))) if (glyphs[kind]) map.addImage(`badge-${kind}`, badgeImage(glyphs[kind]), { pixelRatio: 2 })
+  for (const [kind, glyph] of Object.entries(glyphs)) if (!kind.startsWith('_')) map.addImage(`badge-${kind}`, badgeImage(glyph), { pixelRatio: 2 })
 
-  map.addSource('zones', { type: 'geojson', data: collection(zones.map(z => ({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...z.round, z.round[0]]] }, properties: point(z).properties }))) })
-  map.addSource('zone-notes', { type: 'geojson', data: collection(zones.map(point)) })
-  map.addSource('places', { type: 'geojson', data: collection(places.map(point)) })
-  map.addSource('landmarks', { type: 'geojson', data: collection(landmarks.map(point)) })
+  for (const [source, data] of Object.entries(drawn())) map.addSource(source, { type: 'geojson', data })
 
   // zones: under the buildings and every name, fading out as the places take over
   map.addLayer({ id: 'zones-fill', type: 'fill', source: 'zones', paint: { 'fill-color': '#ffffff', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.075, NEAR, 0.06, 15, 0] } }, 'building-3d')
@@ -560,7 +614,7 @@ async function main() {
   // a shared link opens its place; without a view of its own, the map goes there
   const asked = byId.get(decodeURIComponent(hashGet('lieu') ?? ''))
   if (asked) open(asked, { fly: !hadView })
-  window.__carte = { open: (id, options) => open(byId.get(id), options), places, zones, landmarks, level: () => (map.getZoom() < MIDDLE ? 'loin' : map.getZoom() < NEAR ? 'milieu' : 'près') }
+  window.__carte = { open: (id, options) => open(byId.get(id), options), go, get city() { return city.id }, get places() { return places }, get zones() { return zones }, get landmarks() { return landmarks }, level: () => (map.getZoom() < MIDDLE ? 'loin' : map.getZoom() < NEAR ? 'milieu' : 'près') }
   document.documentElement.dataset.state = 'ready'
 }
 main().catch(error => { console.error(error); document.getElementById('fail').hidden = false })

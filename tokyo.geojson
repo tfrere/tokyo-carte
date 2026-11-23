@@ -1,6 +1,7 @@
 {
   "type": "FeatureCollection",
   "schema": "globe-annotations/1",
+  "city": { "id": "tokyo", "name": "Tokyo", "center": [139.739, 35.657], "zoom": 10.2 },
   "features": [
     {
       "type": "Feature",

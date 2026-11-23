@@ -1,0 +1,4 @@
+[
+  { "id": "tokyo", "name": "Tokyo", "agenda": true },
+  { "id": "osaka", "name": "Osaka" }
+]

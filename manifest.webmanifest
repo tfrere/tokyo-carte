@@ -1,7 +1,7 @@
 {
-  "name": "Tokyo, des lieux choisis",
-  "short_name": "Tokyo",
-  "description": "Une carte de Tokyo : des lieux où aller, par envie.",
+  "name": "Japon, des lieux choisis",
+  "short_name": "Japon",
+  "description": "Des cartes de villes du Japon : des lieux où aller, par envie.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
