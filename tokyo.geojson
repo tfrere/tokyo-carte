@@ -615,6 +615,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=NTT%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%BB%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%20%5BICC%5D&query_place_id=ChIJowtcwi3zGGARbigi4O2YxA0", "card": "NTTインターコミュニケーション・センター [ICC]", "read": "2026-11-23" },
           "category": "art-numerique",
           "name": "NTT InterCommunication Center [ICC]",
           "nameJa": "NTTインターコミュニケーション・センター",
@@ -663,6 +664,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%B7%E3%83%93%E3%83%83%E3%82%AF%E3%83%BB%E3%82%AF%E3%83%AA%E3%82%A8%E3%82%A4%E3%83%86%E3%82%A3%E3%83%96%E3%83%BB%E3%83%99%E3%83%BC%E3%82%B9%E6%9D%B1%E4%BA%AC%20%5BCCBT%5D&query_place_id=ChIJqfojDj6NGGAR_-rDoSuszxw", "card": "シビック・クリエイティブ・ベース東京 [CCBT]", "read": "2026-11-23" },
           "category": "art-numerique",
           "name": "Civic Creative Base Tokyo [CCBT]",
           "nameJa": "シビック・クリエイティブ・ベース東京",
@@ -718,6 +720,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=NEORT%2B%2B&query_place_id=ChIJUW-IyjWPGGARcfq7UQY7IO4", "card": "NEORT++", "read": "2026-11-23" },
           "category": "art-numerique",
           "name": "NEORT++",
           "nameJa": "NEORT++（まるかビル3F）",
@@ -769,6 +772,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=SUPER%20DOMMUNE%EF%BC%88%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%83%89%E3%83%9F%E3%83%A5%E3%83%BC%E3%83%B3%EF%BC%89&query_place_id=ChIJiYtbucqNGGARv3JM9PzBk_g", "card": "SUPER DOMMUNE（スーパードミューン）", "read": "2026-11-23" },
           "category": "art-numerique",
           "also": "culture",
           "name": "SUPER DOMMUNE",
@@ -814,6 +818,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Ftarri%20%E6%B0%B4%E9%81%93%E6%A9%8B%E5%BA%97&query_place_id=ChIJVVVR3T6MGGARWIa4abU-N4E", "card": "Ftarri 水道橋店", "read": "2026-11-23" },
           "category": "art-numerique",
           "also": "culture",
           "name": "Ftarri 水道橋店",
@@ -858,6 +863,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%A3%AE%E3%83%93%E3%83%AB%20%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%82%A2%E3%83%BC%E3%83%88%20%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%A0%EF%BC%9A%E3%82%A8%E3%83%97%E3%82%BD%E3%83%B3%20%E3%83%81%E3%83%BC%E3%83%A0%E3%83%A9%E3%83%9C%E3%83%9C%E3%83%BC%E3%83%80%E3%83%AC%E3%82%B9&query_place_id=ChIJQ5Sa1PqJGGARUSaNKKOrMVg", "card": "森ビル デジタルアート ミュージアム：エプソン チームラボボーダレス", "read": "2026-11-23" },
           "category": "art-numerique",
           "name": "teamLab Borderless",
           "nameJa": "チームラボボーダレス（麻布台ヒルズ）",
@@ -902,6 +908,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%81%E3%83%BC%E3%83%A0%E3%83%A9%E3%83%9C%E3%83%97%E3%83%A9%E3%83%8D%E3%83%83%E3%83%84%20TOKYO%20DMM&query_place_id=ChIJSeco5wiJGGARItbTS8lQ5G0", "card": "チームラボプラネッツ TOKYO DMM", "read": "2026-11-23" },
           "category": "art-numerique",
           "name": "teamLab Planets TOKYO",
           "nameJa": "チームラボプラネッツ（豊洲）",
@@ -946,6 +953,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=TOKYO%20Night%20%26%20Light&query_place_id=ChIJX53MMgCNGGART78Pfc57ZuQ", "card": "TOKYO Night & Light", "read": "2026-11-23" },
           "category": "art-numerique",
           "name": "TOKYO Night & Light",
           "nameJa": "東京都庁第一本庁舎 プロジェクションマッピング",
@@ -986,6 +994,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%86%99%E7%9C%9F%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJq6radhaLGGAR2-mAGeshrHk", "card": "東京都写真美術館", "read": "2026-11-23" },
           "category": "art-numerique",
           "also": "culture",
           "name": "Tokyo Photographic Art Museum (TOP)",
@@ -1033,6 +1042,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=MoN%20Takanawa%3AThe%20Museum%20of%20Narratives&query_place_id=ChIJh0l19UeLGGARpTcL3Xl0sfQ", "card": "MoN Takanawa:The Museum of Narratives", "read": "2026-11-23" },
           "category": "art-numerique",
           "also": "culture",
           "name": "MoN Takanawa: The Museum of Narratives (モン タカナワ)",
@@ -1170,6 +1180,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%A8%A1%E7%B4%A2%E8%88%8E&query_place_id=ChIJr-SsRsOMGGARPuj7OCfbSkY", "card": "模索舎", "read": "2026-11-23" },
           "category": "militant",
           "also": "culture",
           "name": "Mosakusha",
@@ -1219,6 +1230,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%83%BB%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%A2%E3%83%A0%E3%80%8C%E5%A5%B3%E3%81%9F%E3%81%A1%E3%81%AE%E6%88%A6%E4%BA%89%E3%81%A8%E5%B9%B3%E5%92%8C%E8%B3%87%E6%96%99%E9%A4%A8%E3%80%8D&query_place_id=ChIJn7EnWhmNGGAR41qlMlKouN0", "card": "アクティブ・ミュージアム「女たちの戦争と平和資料館」", "read": "2026-11-23" },
           "category": "militant",
           "name": "Women's Active Museum on War and Peace (wam)",
           "nameJa": "アクティブ・ミュージアム 女たちの戦争と平和資料館",
@@ -1273,6 +1285,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E7%AC%AC%E4%BA%94%E7%A6%8F%E7%AB%9C%E4%B8%B8%E5%B1%95%E7%A4%BA%E9%A4%A8&query_place_id=ChIJu9-xnDmIGGARdtSFJ6pCCyY", "card": "第五福竜丸展示館", "read": "2026-11-23" },
           "category": "militant",
           "name": "Daigo Fukuryū Maru Exhibition Hall",
           "nameJa": "都立第五福竜丸展示館",
@@ -1323,6 +1336,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E5%A4%A7%E7%A9%BA%E8%A5%B2%20%E6%88%A6%E7%81%BD%E8%B3%87%E6%96%99%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC&query_place_id=ChIJ4XBWOuWIGGARHKC7r8EE4FY", "card": "東京大空襲 戦災資料センター", "read": "2026-11-23" },
           "category": "militant",
           "name": "Center of the Tokyo Raids and War Damage",
           "nameJa": "東京大空襲・戦災資料センター",
@@ -1376,6 +1390,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E9%BA%97%E5%8D%9A%E7%89%A9%E9%A4%A8&query_place_id=ChIJtUzqzIeNGGARV46vWpPuk0s", "card": "高麗博物館", "read": "2026-11-23" },
           "category": "militant",
           "also": "culture",
           "name": "Musée Kōrai",
@@ -1422,6 +1437,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%81%AA%E3%82%93%E3%81%A8%E3%81%8BBAR&query_place_id=ChIJfwedOnzyGGARUHJl5w4p1Z0", "card": "なんとかBAR", "read": "2026-11-23" },
           "category": "militant",
           "also": "cuisine",
           "name": "Shirōto no Ran : Nantoka Bar",
@@ -1476,6 +1492,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%A8%E3%83%88%E3%82%BB%E3%83%88%E3%83%A9%E3%83%96%E3%83%83%E3%82%AF%E3%82%B9BOOKSHOP&query_place_id=ChIJVXNNVc-MGGARWJcEU9u5oDc", "card": "エトセトラブックスBOOKSHOP", "read": "2026-11-23" },
           "category": "militant",
           "also": "culture",
           "name": "Etcetera Books Bookshop",
@@ -1525,6 +1542,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=platform3%20%E3%80%88loneliness%20books%20%C3%97%20(TT)%20press%E3%80%89&query_place_id=ChIJaRvUdELzGGAR4QVHRDtUgWQ", "card": "platform3 〈loneliness books × (TT) press〉", "read": "2026-11-23" },
           "category": "militant",
           "also": "culture",
           "name": "platform3 (loneliness books × (TT) press)",
@@ -1585,6 +1603,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%97%E3%83%A9%E3%82%A4%E3%83%89%E3%83%8F%E3%82%A6%E3%82%B9%E6%9D%B1%E4%BA%AC%E3%83%AC%E3%82%AC%E3%82%B7%E3%83%BC&query_place_id=ChIJu2poTPSNGGARvsKcjkncAEU", "card": "プライドハウス東京レガシー", "read": "2026-11-23" },
           "category": "militant",
           "name": "Pride House Tokyo Legacy",
           "nameJa": "プライドハウス東京レガシー",
@@ -1629,6 +1648,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E9%81%8A%E5%B0%B1%E9%A4%A8&query_place_id=ChIJMaBzyd6NGGARdrjc4u0e6w4", "card": "遊就館", "read": "2026-11-23" },
           "category": "militant",
           "name": "Sanctuaire Yasukuni et musée Yūshūkan",
           "nameJa": "靖國神社・遊就館",
@@ -1685,6 +1705,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%A8%AA%E7%B6%B2%E7%94%BA%E5%85%AC%E5%9C%92&query_place_id=ChIJd66bHsuOGGARuX2XCLoaKZ0", "card": "横網町公園", "read": "2026-11-23" },
           "category": "militant",
           "also": "culture",
           "name": "Parc Yokoamichō : hall mémorial et musée de la reconstruction",
@@ -1749,6 +1770,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=35.69084%2C139.70737", "card":null,"read": "2026-11-23" },
           "category": "militant",
           "also": "cuisine",
           "name": "Café Lavandería",
@@ -1805,6 +1827,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%B1%9F%E6%88%B8%E6%9D%B1%E4%BA%AC%E5%8D%9A%E7%89%A9%E9%A4%A8&query_place_id=ChIJOWXu4TSJGGAR07vEEi8fZAw", "card": "江戸東京博物館", "read": "2026-11-23" },
           "category": "culture",
           "name": "Musée d'Edo-Tokyo",
           "nameJa": "江戸東京博物館",
@@ -1874,6 +1897,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E6%9C%AC%E6%B0%91%E8%97%9D%E9%A4%A8&query_place_id=ChIJq6qaMEXzGGARn_9fV8xMf3M", "card": "日本民藝館", "read": "2026-11-23" },
           "category": "culture",
           "name": "Musée des arts populaires du Japon (Mingeikan)",
           "nameJa": "日本民藝館",
@@ -1926,6 +1950,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%B9%E3%82%AB%E3%82%A4%E3%82%B6%E3%83%90%E3%82%B9%E3%83%8F%E3%82%A6%E3%82%B9&query_place_id=ChIJq1ynUyqMGGARJw9kwdVUyXE", "card": "スカイザバスハウス", "read": "2026-11-23" },
           "category": "culture",
           "name": "SCAI The Bathhouse",
           "nameJa": "スカイ ザ バスハウス",
@@ -1974,6 +1999,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E6%9D%89%E6%B9%AF&query_place_id=ChIJKdCwcX7yGGAR4h6hSGfAwco", "card": "小杉湯", "read": "2026-11-23" },
           "category": "culture",
           "name": "Kosugi-yu",
           "nameJa": "小杉湯",
@@ -2017,6 +2043,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%90%8D%E6%9B%B2%E5%96%AB%E8%8C%B6%E3%83%A9%E3%82%A4%E3%82%AA%E3%83%B3&query_place_id=ChIJFQdviqmMGGAR1muN_DAZFwQ", "card": "名曲喫茶ライオン", "read": "2026-11-23" },
           "category": "culture",
           "also": "cuisine",
           "name": "Meikyoku Kissa Lion",
@@ -2073,6 +2100,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=BONUS%20TRACK&query_place_id=ChIJITpO1pnzGGARxTkPmJP2JWA", "card": "BONUS TRACK", "read": "2026-11-23" },
           "category": "culture",
           "also": "cuisine",
           "name": "BONUS TRACK (librairie B&B, Hakkō Department)",
@@ -2121,6 +2149,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%AD%8C%E8%88%9E%E4%BC%8E%E5%BA%A7&query_place_id=ChIJbUAZSOeLGGARGMEf4WW16AE", "card": "歌舞伎座", "read": "2026-11-23" },
           "category": "culture",
           "name": "Kabuki-za",
           "nameJa": "歌舞伎座",
@@ -2179,6 +2208,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%8F%BE%E4%BB%A3%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJq6rq_BuJGGARh1qAooLX-as", "card": "東京都現代美術館", "read": "2026-11-23" },
           "category": "culture",
           "name": "MOT, Museum of Contemporary Art Tokyo (東京都現代美術館)",
           "nameJa": "東京都現代美術館",
@@ -2227,6 +2257,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%97%A9%E7%A8%B2%E7%94%B0%E5%A4%A7%E5%AD%A6%E5%9B%BD%E9%9A%9B%E6%96%87%E5%AD%A6%E9%A4%A8%20%E6%9D%91%E4%B8%8A%E6%98%A5%E6%A8%B9%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%BC&query_place_id=ChIJf9VsXiONGGARVyRmmgFdga0", "card": "早稲田大学国際文学館 村上春樹ライブラリー", "read": "2026-11-23" },
           "category": "culture",
           "name": "Waseda International House of Literature (bibliothèque Haruki Murakami)",
           "nameJa": "早稲田大学国際文学館（村上春樹ライブラリー）",
@@ -2270,6 +2301,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%A4%96%E8%8B%91%E3%81%84%E3%81%A1%E3%82%87%E3%81%86%E4%B8%A6%E6%9C%A8&query_place_id=ChIJ_XxY_JqMGGARACDk4sraoN8", "card": "外苑いちょう並木", "read": "2026-11-23" },
           "category": "culture",
           "also": "militant",
           "name": "Allée des ginkgos de Jingū Gaien",
@@ -2324,6 +2356,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E7%AF%89%E5%9C%B0%E5%A0%B4%E5%A4%96%E5%B8%82%E5%A0%B4&query_place_id=ChIJW2cLzSGLGGARXAKXv6EkbqI", "card": "築地場外市場", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Marché extérieur de Tsukiji",
           "nameJa": "築地場外市場",
@@ -2377,6 +2410,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%81%8B%E3%81%A3%E3%81%B1%E6%A9%8B%E9%81%93%E5%85%B7%E8%A1%97&query_place_id=ChIJXYV-6JWOGGAR85vIZbM1RCE", "card": "かっぱ橋道具街", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Kappabashi Dōgugai",
           "nameJa": "かっぱ橋道具街",
@@ -2425,6 +2459,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E4%BC%8A%E5%8B%A2%E4%B8%B9%20%E6%96%B0%E5%AE%BF%E5%BA%97&query_place_id=ChIJ9ztrpduMGGARte1BM8ccdIs", "card": "伊勢丹 新宿店", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Isetan Shinjuku, étage alimentation",
           "nameJa": "伊勢丹新宿店 食品フロア",
@@ -2466,6 +2501,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%80%9D%E3%81%84%E5%87%BA%E6%A8%AA%E4%B8%81&query_place_id=ChIJYfGuBwCNGGARHf0hCoINWws", "card": "思い出横丁", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Omoide Yokochō",
           "nameJa": "思い出横丁",
@@ -2504,6 +2540,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E7%A0%82%E7%94%BA%E9%8A%80%E5%BA%A7%E5%95%86%E5%BA%97%E8%A1%97&query_place_id=ChIJZd3CcvSIGGARYb6h8zLquSw", "card": "砂町銀座商店街", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Sunamachi Ginza",
           "nameJa": "砂町銀座商店街",
@@ -2545,6 +2582,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E7%A5%9E%E7%94%B0%20%E3%82%84%E3%81%B6%E3%81%9D%E3%81%B0&query_place_id=ChIJX-yVohyMGGARUTdpnpXyQNQ", "card": "神田 やぶそば", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Kanda Yabu Soba",
           "nameJa": "かんだやぶそば",
@@ -2595,6 +2633,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%AB%E3%83%95%E3%82%A7%20%E3%83%89%20%E3%83%A9%E3%83%B3%E3%83%96%E3%83%AB&query_place_id=ChIJZxiNeeiLGGARH3hUjIwOpSs", "card": "カフェ ド ランブル", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Café de l'Ambre",
           "nameJa": "カフェ・ド・ランブル",
@@ -2637,6 +2676,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%AB%E3%83%A4%E3%83%90%E7%8F%88%E7%90%B2&query_place_id=ChIJrdgn_9KNGGAR51pQCSVxBbI", "card": "カヤバ珈琲", "read": "2026-11-23" },
           "category": "cuisine",
           "also": "culture",
           "name": "Kayaba Coffee",
@@ -2694,6 +2734,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9C%88%E5%B3%B6%E3%82%82%E3%82%93%E3%81%98%E3%82%83%E3%82%B9%E3%83%88%E3%83%AA%E3%83%BC%E3%83%88&query_place_id=ChIJZ8PuP3CJGGARAXwWdc4PGQw", "card": "月島もんじゃストリート", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Tsukishima Monja Street",
           "nameJa": "月島もんじゃストリート",
@@ -2731,6 +2772,7 @@
         "author": "agent",
         "created": "2026-11-21T18:50:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E9%9D%92%E5%B1%B1%E3%83%95%E3%82%A1%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%BA%E3%83%9E%E3%83%BC%E3%82%B1%E3%83%83%E3%83%88%EF%BC%88Farmers%20Market%20%40UNU%20)&query_place_id=ChIJrS7fZF-LGGARVKU57aWmRKM", "card": "青山ファーマーズマーケット（Farmers Market @UNU )", "read": "2026-11-23" },
           "category": "cuisine",
           "name": "Farmer's Market @UNU",
           "nameJa": "青山ファーマーズマーケット",
@@ -2775,6 +2817,7 @@
         "author": "agent",
         "created": "2026-11-22T22:30:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%9E%E3%83%83%E3%83%97%E3%82%AB%E3%83%A1%E3%83%A9&query_place_id=ChIJ50R7W9GMGGAR4GZfxnwj2Qg", "card": "マップカメラ", "read": "2026-11-23" },
           "category": "photo",
           "name": "Map Camera",
           "nameJa": "マップカメラ本館",
@@ -2822,6 +2865,7 @@
         "author": "agent",
         "created": "2026-11-22T22:30:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%95%E3%82%B8%E3%83%A4%E3%82%AB%E3%83%A1%E3%83%A9%20%E6%9C%AC%E5%BA%97&query_place_id=ChIJO-41x5byGGARIqZ7D48Emds", "card": "フジヤカメラ 本店", "read": "2026-11-23" },
           "category": "photo",
           "name": "Fujiya Camera",
           "nameJa": "フジヤカメラ 本店",
@@ -2863,6 +2907,7 @@
         "author": "agent",
         "created": "2026-11-22T22:30:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%BD%E3%83%95%E3%83%9E%E3%83%83%E3%83%97%20AKIBA%20%E9%A7%85%E5%89%8D%E9%A4%A8&query_place_id=ChIJp8wouDSNGGARV-1E0pJ77kY", "card": "ソフマップ AKIBA 駅前館", "read": "2026-11-23" },
           "category": "photo",
           "name": "Sofmap Akiba Ekimae",
           "nameJa": "ソフマップAKIBA 駅前館",
@@ -2918,6 +2963,7 @@
         "author": "agent",
         "created": "2026-11-22T22:30:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%93%E3%83%83%E3%82%AF%E3%82%AB%E3%83%A1%E3%83%A9%20%E6%B1%A0%E8%A2%8B%E3%82%AB%E3%83%A1%E3%83%A9%E3%83%BB%E3%83%91%E3%82%BD%E3%82%B3%E3%83%B3%E9%A4%A8&query_place_id=ChIJ90_DB2eNGGARMZXM4M-YfTk", "card": "ビックカメラ 池袋カメラ・パソコン館", "read": "2026-11-23" },
           "category": "photo",
           "name": "Bic Camera Ikebukuro Camera-PC",
           "nameJa": "ビックカメラ 池袋カメラ・パソコン館",
@@ -2960,6 +3006,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=T's%E3%81%9F%E3%82%93%E3%81%9F%E3%82%93%20%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B9%E3%82%BF%E6%9D%B1%E4%BA%AC%E5%BA%97&query_place_id=ChIJtTLL9fuLGGARm6IP54k3xn4", "card": "T'sたんたん グランスタ東京店", "read": "2026-11-23" },
           "category": "manger",
           "name": "T's Tantan",
           "nameJa": "T's たんたん グランスタ東京",
@@ -3014,6 +3061,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=VEGAN%20GYOZA&query_place_id=ChIJ3xyKtKePGGARglfZPr8JVjE", "card": "VEGAN GYOZA", "read": "2026-11-23" },
           "category": "manger",
           "name": "VEGAN GYOZA",
           "nameJa": "ヴィーガン餃子",
@@ -3063,6 +3111,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%81%93%E3%81%BE%E3%81%8D%E3%81%97%E3%82%87%E3%81%8F%E3%81%A9%E3%81%86%20%E9%8E%8C%E5%80%89%20%E4%B8%8D%E8%AD%98%E5%BA%B5&query_place_id=ChIJpaUnEg6PGGARM9VRluWdGSE", "card": "こまきしょくどう 鎌倉 不識庵", "read": "2026-11-23" },
           "category": "manger",
           "name": "Komaki Shokudo Kamakura Fushikian",
           "nameJa": "こまきしょくどう 鎌倉不識庵",
@@ -3106,6 +3155,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Vegan%20Ramen%20UZU%20Tokyo%20(inside%20teamLab%20Planets)&query_place_id=ChIJJYSt6a-JGGARqQuIi30SzyE", "card": "Vegan Ramen UZU Tokyo (inside teamLab Planets)", "read": "2026-11-23" },
           "category": "manger",
           "name": "Vegan Ramen UZU Tokyo",
           "nameJa": "ヴィーガンラーメン ウズ トウキョウ",
@@ -3149,6 +3199,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%B4%E3%82%A3%E3%83%BC%E3%82%AC%E3%83%B3%E3%83%93%E3%82%B9%E3%83%88%E3%83%AD%E3%81%98%E3%82%83%E3%82%93%E3%81%8C%E3%82%89&query_place_id=ChIJaWQvzaiNGGARhBHfiQXyKWs", "card": "ヴィーガンビストロじゃんがら", "read": "2026-11-23" },
           "category": "manger",
           "name": "Vegan Bistro Jangara",
           "nameJa": "ヴィーガンビストロじゃんがら",
@@ -3192,6 +3243,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=SHOJIN%20RAMEN%20%E8%8F%9C&query_place_id=ChIJCXIb9-CNGGARzl8krOVJTuo", "card": "SHOJIN RAMEN 菜", "read": "2026-11-23" },
           "category": "manger",
           "name": "SHOJIN RAMEN 菜",
           "nameJa": "精進ラーメン菜",
@@ -3240,6 +3292,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Vegan%20Soba%20Tokyo%20Ayler&query_place_id=ChIJ2Yf0hTfzGGAR_PeJowtH_FA", "card": "Vegan Soba Tokyo Ayler", "read": "2026-11-23" },
           "category": "manger",
           "name": "Vegan Soba Tokyo Ayler",
           "nameJa": "ヴィーガン ソバ トウキョウ アイラー",
@@ -3289,6 +3342,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=AIN%20SOPH.%20Journey%20SHINJUKU&query_place_id=ChIJyUynodyMGGARfdwk4A8pub8", "card": "AIN SOPH. Journey SHINJUKU", "read": "2026-11-23" },
           "category": "manger",
           "name": "Ain Soph. Journey Shinjuku",
           "nameJa": "アインソフ ジャーニー 新宿",
@@ -3333,6 +3387,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Vege%20%2B%2B%20Coffee%20%E3%83%99%E3%82%B8%E3%83%88%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC&query_place_id=ChIJsyLxAEiNGGARkWDeQtbPec4", "card": "Vege ++ Coffee ベジトコーヒー", "read": "2026-11-23" },
           "category": "manger",
           "name": "Vege++ Coffee",
           "nameJa": "ベジトコーヒー",
@@ -3384,6 +3439,7 @@
         "author": "agent",
         "created": "2026-11-22T23:55:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Kaffetanten%20%E3%82%AB%E3%83%95%E3%82%A7%E3%82%BF%E3%83%B3%E3%83%86%E3%83%B3&query_place_id=ChIJ__8TGRiNGGAR3OLLYJxshTs", "card": "Kaffetanten カフェタンテン", "read": "2026-11-23" },
           "category": "manger",
           "name": "Kaffetanten",
           "nameJa": "カッフェタンテン",
@@ -3431,6 +3487,7 @@
         "author": "agent",
         "created": "2026-11-23T13:45:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E9%87%91%E6%B3%89%E6%B9%AF&query_place_id=ChIJQ3h0GxiNGGAR2PKYpyteQ84", "card": "金泉湯", "read": "2026-11-23" },
           "category": "culture",
           "name": "Kinsen-yu",
           "nameJa": "金泉湯",
@@ -3498,6 +3555,7 @@
         "author": "agent",
         "created": "2026-11-23T13:45:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E4%B8%AD%E5%A4%AE%E5%8D%B8%E5%A3%B2%E5%B8%82%E5%A0%B4%20%E5%A4%A7%E7%94%B0%E5%B8%82%E5%A0%B4%20%E8%8A%B1%E3%81%8D%E9%83%A8&query_place_id=ChIJ____fpdhGGARwPU2IbxfC-M", "card": "東京都中央卸売市場 大田市場 花き部", "read": "2026-11-23" },
           "category": "culture",
           "name": "Marché d'Ōta, pavillon des fleurs",
           "nameJa": "大田市場 花き部",

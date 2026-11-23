@@ -214,6 +214,17 @@ function rounded(outline, members) {
   return grown(k)
 }
 
+/** A name without what follows it in brackets (a floor, a building, a second name). */
+const bare = name => name.replace(/\s*[（(［\[].*$/u, '').trim()
+/**
+ * Where "Ouvrir dans Google Maps" leads: the place's own card (looked up once by gmaps.mjs and kept in the data),
+ * else a search by its name and neighbourhood (the card when one place answers, a short list otherwise), never a
+ * bare pin at its coordinates. A zone has no card: the map opens on it.
+ */
+const mapsLink = entry => entry.kind === 'zone'
+  ? `https://www.google.com/maps/@?api=1&map_action=map&center=${entry.lat}%2C${entry.lon}&zoom=15`
+  : entry.gmaps ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(entry.ask)}`
+
 /** Both files as one list: a place named in both is one place, the stronger entry leading. */
 function read(files) {
   const places = new Map(), zones = [], members = new Map()
@@ -225,13 +236,14 @@ function read(files) {
       interests: [idea.category, ...(idea.also ? [idea.also] : [])], strength: strengthOf(idea), why: idea.why ?? '', verify: idea.verify ? (idea.verifyNote ?? 'à vérifier') : null,
       facts: [...(idea.station ? [['Station', idea.station]] : []), ...Object.entries(idea.practical ?? {}).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]), ...(idea.seen ? [['Agenda', idea.seen]] : [])],
       area: zoneNames.get(idea.zone) ?? idea.area ?? null, sources: sourcesOf(idea), outline: p.outline ?? null, kind: idea.isZone ? 'zone' : 'place',
+      gmaps: idea.gmaps?.url ?? null, ask: `${bare(idea.nameJa ?? idea.name)} ${idea.ward ?? idea.area ?? ''}`.trim(),
     }
     if (idea.zone) members.set(idea.zone, [...(members.get(idea.zone) ?? []), [entry.lon, entry.lat]])
     if (idea.isZone) { zones.push({ ...entry, fid: f.id }); continue }
     const before = places.get(entry.id)
     if (!before) { places.set(entry.id, entry); continue }
     const [lead, other] = entry.strength > before.strength ? [entry, before] : [before, entry]
-    places.set(entry.id, { ...lead, interests: [...new Set([...lead.interests, ...other.interests])], verify: lead.verify ?? other.verify, facts: [...lead.facts, ...other.facts.filter(([k]) => !lead.facts.some(([l]) => l === k))], sources: [...lead.sources, ...other.sources.filter(s => !lead.sources.some(l => l.url === s.url))] })
+    places.set(entry.id, { ...lead, gmaps: lead.gmaps ?? other.gmaps, interests: [...new Set([...lead.interests, ...other.interests])], verify: lead.verify ?? other.verify, facts: [...lead.facts, ...other.facts.filter(([k]) => !lead.facts.some(([l]) => l === k))], sources: [...lead.sources, ...other.sources.filter(s => !lead.sources.some(l => l.url === s.url))] })
   }
   for (const z of zones) z.round = rounded(z.outline, members.get(z.fid) ?? [])
   return { places: [...places.values()], zones }
@@ -267,7 +279,7 @@ async function main() {
   const json = url => fetch(url).then(r => r.json())
   const [tokyo, agenda, landmarkFile, glyphs] = await Promise.all([json('tokyo.geojson'), json('tokyo-agenda.geojson'), json('landmarks.json'), json('landmark-icons.json')])
   const { places, zones } = read([tokyo, agenda])
-  const landmarks = landmarkFile.tokyo.map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind }))
+  const landmarks = landmarkFile.tokyo.map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind, gmaps: l.gmaps?.url ?? null, ask: l.ja ?? l.name }))
   const byId = new Map([...places, ...zones, ...landmarks].map(e => [e.id, e]))
   let map = null
 
@@ -285,7 +297,7 @@ async function main() {
       ${entry.verify ? `<p class="warn">À vérifier : ${esc(entry.verify)}</p>` : ''}
       ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
       ${facts ? `<dl>${facts}</dl>` : ''}
-      <a class="gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${entry.lat},${entry.lon}">Ouvrir dans Google Maps</a>
+      <a class="gmaps" target="_blank" rel="noopener" href="${esc(mapsLink(entry))}">${entry.kind === 'zone' ? 'Voir le quartier dans Google Maps' : 'Ouvrir dans Google Maps'}</a>
       <button class="share" type="button">Partager ce lieu</button>
       ${entry.sources.length ? `<div class="sources">Sources${entry.sources.map(s => `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('')}</div>` : ''}`
     card.scrollTop = 0

@@ -38,6 +38,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E8%8D%89%E6%9C%88%E3%83%9B%E3%83%BC%E3%83%AB&query_place_id=ChIJJX8jHYGMGGARu_X_2Fveldc", "card": "草月ホール", "read": "2026-11-23" },
           "category": "musique",
           "name": "Sogetsu Hall (草月ホール)",
           "area": "Akasaka",
@@ -71,6 +72,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%96%E3%83%AB%E3%83%BC%E3%83%8E%E3%83%BC%E3%83%88%E6%9D%B1%E4%BA%AC&query_place_id=ChIJmYBOrGaLGGARUHAVps9SV9k", "card": "ブルーノート東京", "read": "2026-11-23" },
           "category": "musique",
           "name": "Blue Note Tokyo (ブルーノート東京)",
           "area": "Aoyama",
@@ -104,6 +106,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=LIQUIDROOM&query_place_id=ChIJxTAYVt3gGGARc6fo_RMKO5I", "card": "LIQUIDROOM", "read": "2026-11-23" },
           "category": "musique",
           "name": "LIQUIDROOM",
           "area": "Ebisu",
@@ -138,6 +141,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=SALOON&query_place_id=ChIJbebHh9aLGGARUKryNJseCk0", "card": "SALOON", "read": "2026-11-23" },
           "category": "musique",
           "name": "SALOON (sous le Unit, Za House B3F)",
           "area": "Ebisu / Daikanyama",
@@ -172,6 +176,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=FORESTLIMIT&query_place_id=ChIJhYEHtyTzGGAR0pjD0F7HK78", "card": "FORESTLIMIT", "read": "2026-11-23" },
           "category": "musique",
           "name": "Forestlimit (幡ヶ谷)",
           "area": "Hatagaya",
@@ -206,6 +211,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E7%A5%9E%E6%A5%BD%E9%9F%B3%2FKagurane&query_place_id=ChIJXai2I1eMGGARmdu9GNMbiXw", "card": "神楽音/Kagurane", "read": "2026-11-23" },
           "category": "musique",
           "name": "KGR(n) / 神楽音 Kagurane (TOMOS 神楽坂ビル B1F)",
           "area": "Kagurazaka",
@@ -240,6 +246,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E6%9C%AC%E6%A9%8B%E4%B8%89%E4%BA%95%E3%83%9B%E3%83%BC%E3%83%AB&query_place_id=ChIJ4ZHgoVWJGGAR0r4fwY6wbVA", "card": "日本橋三井ホール", "read": "2026-11-23" },
           "category": "musique",
           "name": "Nihonbashi Mitsui Hall (日本橋三井ホール), COREDO Muromachi 1",
           "area": "Nihonbashi",
@@ -273,6 +280,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=VENT%20Tokyo&query_place_id=ChIJcfUl2p-MGGARa78QN0al3nM", "card": "VENT Tokyo", "read": "2026-11-23" },
           "category": "musique",
           "name": "VENT",
           "area": "Omotesandō",
@@ -307,6 +315,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=DJ%20BAR%20Bridge%20Shibuya&query_place_id=ChIJ__9LAliLGGARI2Y-ezA7rpw", "card": "DJ BAR Bridge Shibuya", "read": "2026-11-23" },
           "category": "musique",
           "name": "DJ BAR Bridge Shibuya (渋谷パークサイド共同ビル 10F)",
           "area": "Shibuya",
@@ -341,6 +350,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=WWW%20X&query_place_id=ChIJgXDuIoqNGGAR_19U6A1jvL8", "card": "WWW X", "read": "2026-11-23" },
           "category": "musique",
           "name": "WWW X (ライズビル 2F, au-dessus du WWW)",
           "area": "Shibuya",
@@ -375,6 +385,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=LIVE%20HOUSE%20FEVER&query_place_id=ChIJv4BJXA3zGGAR3KFjusQGy6M", "card": "LIVE HOUSE FEVER", "read": "2026-11-23" },
           "category": "musique",
           "name": "LIVE HOUSE FEVER (新代田)",
           "area": "Shindaita",
@@ -409,6 +420,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%AE%BF%E3%83%94%E3%83%83%E3%83%88%E3%82%A4%E3%83%B3&query_place_id=ChIJr_MWutyMGGAROxXxT4V4fY4", "card": "新宿ピットイン", "read": "2026-11-23" },
           "category": "musique",
           "name": "Shinjuku Pit Inn (新宿ピットイン)",
           "area": "Shinjuku",
@@ -442,6 +454,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=DJ%20BAR%20Bridge%20SHINJUKU&query_place_id=ChIJCehnb2iNGGAR_y3ylUg-Fqg", "card": "DJ BAR Bridge SHINJUKU", "read": "2026-11-23" },
           "category": "musique",
           "name": "DJ BAR Bridge Shinjuku (角ビル B1)",
           "area": "Shinjuku 2-chōme",
@@ -475,6 +488,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=Ftarri%20%E6%B0%B4%E9%81%93%E6%A9%8B%E5%BA%97&query_place_id=ChIJVVVR3T6MGGARWIa4abU-N4E", "card": "Ftarri 水道橋店", "read": "2026-11-23" },
           "category": "musique",
           "name": "Ftarri 水道橋店",
           "area": "Suidōbashi",
@@ -509,6 +523,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=MoN%20Takanawa%3AThe%20Museum%20of%20Narratives&query_place_id=ChIJh0l19UeLGGARpTcL3Xl0sfQ", "card": "MoN Takanawa:The Museum of Narratives", "read": "2026-11-23" },
           "category": "musique",
           "also": "art-numerique",
           "name": "MoN Takanawa: The Museum of Narratives (モン タカナワ)",
@@ -544,6 +559,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%81%E3%81%90%E3%82%8D%E3%83%91%E3%83%BC%E3%82%B7%E3%83%A2%E3%83%B3%E3%83%9B%E3%83%BC%E3%83%AB&query_place_id=ChIJq6pq2ML0GGARMC6RNGGzPi4", "card": "めぐろパーシモンホール", "read": "2026-11-23" },
           "category": "musique",
           "name": "Meguro Persimmon Hall (めぐろパーシモンホール)",
           "area": "Toritsu-daigaku",
@@ -578,6 +594,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%A0%B9%E6%B4%A5%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJxU48-2OLGGARHMtB5RAhytA", "card": "根津美術館", "read": "2026-11-23" },
           "category": "culture",
           "name": "Nezu Museum (根津美術館)",
           "area": "Aoyama",
@@ -610,6 +627,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%AF%E3%82%BF%E3%83%AA%E3%82%A6%E3%83%A0%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJXf9Z6JiMGGARRZ0zg4fFgLU", "card": "ワタリウム美術館", "read": "2026-11-23" },
           "category": "culture",
           "name": "Watari-um, The Watari Museum of Contemporary Art (ワタリウム美術館)",
           "area": "Gaienmae",
@@ -644,6 +662,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E7%9F%B3%E5%B7%9D%E5%BE%8C%E6%A5%BD%E5%9C%92&query_place_id=ChIJBVDeRkaMGGARXsIjrhYCIhs", "card": "小石川後楽園", "read": "2026-11-23" },
           "category": "culture",
           "name": "Koishikawa Kōrakuen (小石川後楽園)",
           "area": "Iidabashi",
@@ -678,6 +697,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E7%8F%BE%E4%BB%A3%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJq6rq_BuJGGARh1qAooLX-as", "card": "東京都現代美術館", "read": "2026-11-23" },
           "category": "culture",
           "name": "MOT, Museum of Contemporary Art Tokyo (東京都現代美術館)",
           "area": "Kiyosumi",
@@ -711,6 +731,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E5%85%AD%E7%BE%A9%E5%9C%92&query_place_id=ChIJYUQ-972NGGAR5W_2E0N3SHY", "card": "六義園", "read": "2026-11-23" },
           "category": "culture",
           "name": "Rikugien (六義園)",
           "area": "Komagome",
@@ -745,6 +766,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E3%82%A2%E3%83%BC%E3%83%86%E3%82%A3%E3%82%BE%E3%83%B3%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJOzAxseKLGGARWxBlxNWWRPs", "card": "アーティゾン美術館", "read": "2026-11-23" },
           "category": "culture",
           "name": "Artizon Museum (アーティゾン美術館)",
           "area": "Kyōbashi",
@@ -778,6 +800,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=21_21%20DESIGN%20SIGHT&query_place_id=ChIJV4H0Nn-LGGAR2g7_9Kourf4", "card": "21_21 DESIGN SIGHT", "read": "2026-11-23" },
           "category": "culture",
           "name": "21_21 DESIGN SIGHT, Tokyo Midtown",
           "area": "Roppongi",
@@ -811,6 +834,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%A3%AE%E7%BE%8E%E8%A1%93%E9%A4%A8&query_place_id=ChIJg5RCD3eLGGAR6dbIHRM98w8", "card": "森美術館", "read": "2026-11-23" },
           "category": "culture",
           "name": "Mori Art Museum (森美術館), Roppongi Hills Mori Tower",
           "area": "Roppongi",
@@ -845,6 +869,7 @@
         "author": "agent",
         "created": "2026-11-21T18:40:00Z",
         "idea": {
+          "gmaps": { "url": "https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E5%9B%BD%E7%AB%8B%E5%8D%9A%E7%89%A9%E9%A4%A8&query_place_id=ChIJEX3XFIOOGGAR3XdJvRjWLyM", "card": "東京国立博物館", "read": "2026-11-23" },
           "category": "culture",
           "name": "Musée national de Tokyo (東京国立博物館)",
           "area": "Ueno",
