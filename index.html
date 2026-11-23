@@ -36,7 +36,26 @@
   #title { position: fixed; left: 12px; top: calc(10px + env(safe-area-inset-top)); z-index: 3; pointer-events: none; text-shadow: 0 1px 6px #0b0d10, 0 0 2px #0b0d10; }
   #title h1 { margin: 0; font-size: 22px; line-height: 1.1; font-weight: 700; letter-spacing: 0.01em; color: #f4efe3; }
   #title p { margin: 2px 0 0; font-size: 12px; color: #aab2bb; }
-  #list-button { position: fixed; left: 12px; top: calc(64px + env(safe-area-inset-top)); z-index: 3; min-height: 44px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
+  /* the search, always on the map: under the title, left of the map's own buttons; the list beside it */
+  #search { position: fixed; z-index: 4; left: 12px; right: 66px; top: calc(62px + env(safe-area-inset-top)); display: flex; gap: 8px; }
+  #search .field { position: relative; flex: 1; min-width: 0; }
+  /* 16 px: under it Safari zooms the page when the field takes the focus */
+  #search input { box-sizing: border-box; width: 100%; height: 44px; margin: 0; padding: 0 40px 0 38px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238c949d' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='4.6'/%3E%3Cpath d='M10.5 10.5 14 14'/%3E%3C/svg%3E") 14px 50% / 16px no-repeat; font-size: 16px; outline: none; -webkit-appearance: none; appearance: none; }
+  #search input:focus { border-color: rgb(255 255 255 / 0.34); }
+  #search input::placeholder { color: #8c949d; }
+  #search input::-webkit-search-cancel-button { display: none; }
+  #search .clear { position: absolute; right: 0; top: 0; width: 44px; height: 44px; border: 0; background: none; color: #aab2bb; font-size: 20px; line-height: 1; cursor: pointer; }
+  #list-button { flex: none; min-height: 44px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
+  /* what the search finds: under the field, about eight at a time, never under the on-screen keyboard (--view-h) */
+  #results { position: fixed; z-index: 4; left: 12px; right: 12px; top: calc(112px + env(safe-area-inset-top)); max-height: min(428px, calc(var(--view-h, 100vh) - 122px - env(safe-area-inset-top))); overflow-y: auto; overscroll-behavior: contain; padding: 4px; box-sizing: border-box; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 16px; background: #12151a; box-shadow: 0 10px 40px rgb(0 0 0 / 0.5); }
+  #results .hit { display: grid; grid-template-columns: 22px 1fr; align-items: center; width: 100%; min-height: 52px; padding: 6px 10px; border: 0; border-radius: 12px; background: none; text-align: left; cursor: pointer; }
+  #results .hit:active, #results .hit:first-child:not(:only-child) { background: rgb(255 255 255 / 0.05); }
+  #results .hit i { grid-row: 1 / 3; width: 11px; height: 11px; border-radius: 50%; background: var(--c); }
+  #results .hit i.zone { box-sizing: border-box; width: 14px; height: 14px; margin-left: -1.5px; background: none; border: 1.5px solid #f4efe3; opacity: 0.75; }
+  #results .hit b { font-weight: 500; color: #efece4; }
+  #results .hit span { font-size: 13px; color: #8c949d; }
+  #results .hit b, #results .hit span { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  #results .none { margin: 12px; color: #8c949d; font-size: 14px; }
   /* without the map the key has nothing to act on */
   [data-state='no-map'] #key .chips { display: none; }
   #fail { position: fixed; z-index: 2; left: 16px; right: 16px; top: 38%; margin: 0; padding: 14px 16px; border-radius: 12px; background: #1b1f25; color: #d0d3d7; text-align: center; }
@@ -104,7 +123,8 @@
     #title { left: 18px; top: 14px; }
     #title h1 { font-size: 26px; }
     #title p { font-size: 13px; }
-    #list-button { left: 18px; top: 76px; }
+    #search { left: 18px; right: auto; top: 76px; width: 400px; }
+    #results { left: 18px; right: auto; top: 126px; width: 400px; }
     #key button .long, #key button small { display: inline; }
     #key .chips { gap: 8px; }
     #key button { padding: 0 14px; font-size: 14px; }
@@ -117,7 +137,12 @@
 <body>
 <div id="map"></div>
 <header id="title"><h1>Tokyo</h1><p>des lieux choisis, par envie</p></header>
-<button id="list-button" type="button">Liste</button>
+<!-- what is typed here stays in the page: no form, no name, nothing of it in the address or anywhere else -->
+<div id="search" role="search">
+  <div class="field"><input type="search" placeholder="Chercher un lieu, un quartier" aria-label="Chercher un lieu, un quartier, une envie" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="clear" type="button" aria-label="Effacer la recherche" hidden>×</button></div>
+  <button id="list-button" type="button">Liste</button>
+</div>
+<div id="results" hidden></div>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
 <aside id="card" aria-live="polite"></aside>
 <section id="list" aria-label="Liste des lieux">
@@ -144,7 +169,27 @@ const BACK = '#7d8791'
 const colorOf = id => INTERESTS.find(i => i.id === id)?.color ?? OTHER
 const labelOf = id => INTERESTS.find(i => i.id === id)?.label ?? id
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
-const plain = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+const plain = s => String(s ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+/** What a search reads of an entry, the field that counts most first: its names, where it is, its interests, its hook. */
+const wordsOf = e => [`${e.short} ${e.name} ${e.nameJa ?? ''}`, `${e.area ?? ''} ${e.ward ?? ''}`, e.interests.map(i => `${i} ${labelOf(i)}`).join(' '), e.hook].map(plain)
+/**
+ * The entries a query finds, best first: every word of it must be somewhere in the entry (accents and case aside),
+ * a name counts before a neighbourhood, an interest, a hook, and a word's beginning before its middle.
+ */
+function find(query, pool) {
+  const asked = plain(query).split(/\s+/).filter(Boolean)
+  if (!asked.length) return pool
+  const rank = e => {
+    let total = 0
+    for (const word of asked) {
+      const field = e.words.findIndex(text => text.includes(word))
+      if (field < 0) return -1
+      total += 2 * field + (` ${e.words[field]}`.includes(` ${word}`) ? 0 : 1)
+    }
+    return total
+  }
+  return pool.map(e => [e, rank(e)]).filter(([, r]) => r >= 0).sort(([a, ra], [b, rb]) => ra - rb || b.strength - a.strength || a.short.localeCompare(b.short, 'fr')).map(([e]) => e)
+}
 const phone = () => innerWidth <= 640
 
 // Three levels. Far: zones and dots, no word of his. Middle: the zones' notes (a dot under a note is not drawn).
@@ -236,7 +281,7 @@ function read(files) {
       interests: [idea.category, ...(idea.also ? [idea.also] : [])], strength: strengthOf(idea), why: idea.why ?? '', verify: idea.verify ? (idea.verifyNote ?? 'à vérifier') : null,
       facts: [...(idea.station ? [['Station', idea.station]] : []), ...Object.entries(idea.practical ?? {}).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]), ...(idea.seen ? [['Agenda', idea.seen]] : [])],
       area: zoneNames.get(idea.zone) ?? idea.area ?? null, sources: sourcesOf(idea), outline: p.outline ?? null, kind: idea.isZone ? 'zone' : 'place',
-      gmaps: idea.gmaps?.url ?? null, ask: `${bare(idea.nameJa ?? idea.name)} ${idea.ward ?? idea.area ?? ''}`.trim(),
+      ward: idea.ward ?? null, gmaps: idea.gmaps?.url ?? null, ask: `${bare(idea.nameJa ?? idea.name)} ${idea.ward ?? idea.area ?? ''}`.trim(),
     }
     if (idea.zone) members.set(idea.zone, [...(members.get(idea.zone) ?? []), [entry.lon, entry.lat]])
     if (idea.isZone) { zones.push({ ...entry, fid: f.id }); continue }
@@ -279,8 +324,11 @@ async function main() {
   const json = url => fetch(url).then(r => r.json())
   const [tokyo, agenda, landmarkFile, glyphs] = await Promise.all([json('tokyo.geojson'), json('tokyo-agenda.geojson'), json('landmarks.json'), json('landmark-icons.json')])
   const { places, zones } = read([tokyo, agenda])
-  const landmarks = landmarkFile.tokyo.map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind, gmaps: l.gmaps?.url ?? null, ask: l.ja ?? l.name }))
-  const byId = new Map([...places, ...zones, ...landmarks].map(e => [e.id, e]))
+  const landmarks = landmarkFile.tokyo.map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', nameJa: l.ja, lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind, gmaps: l.gmaps?.url ?? null, ask: l.ja ?? l.name }))
+  // everything that is loaded can be opened and searched, whatever the city
+  const all = [...places, ...zones, ...landmarks]
+  for (const e of all) e.words = wordsOf(e)
+  const byId = new Map(all.map(e => [e.id, e]))
   let map = null
 
   // ---- the card
@@ -320,22 +368,23 @@ async function main() {
     map.setFilter('picked', ['==', ['get', 'id'], entry.kind === 'place' ? entry.id : ''])
     // the sheet covers the lower part of a phone: the place goes to the middle of what is left of the map
     const offset = phone() ? [0, -card.offsetHeight / 2] : [0, 0]
-    if (fly) map.flyTo({ center: [entry.lon, entry.lat], zoom: Math.max(map.getZoom(), entry.kind === 'zone' ? 12.6 : 15), offset, duration: 900 })
+    // a zone is framed whole, in what the title, the search and the card leave of the map
+    if (fly && entry.kind === 'zone') map.fitBounds(entry.round.reduce((box, c) => box.extend(c), new maplibregl.LngLatBounds()), { padding: phone() ? { top: 130, bottom: card.offsetHeight + 24, left: 24, right: 24 } : { top: 140, bottom: 130, left: 430, right: 60 }, maxZoom: 14, duration: 900 })
+    else if (fly) map.flyTo({ center: [entry.lon, entry.lat], zoom: Math.max(map.getZoom(), 15), offset, duration: 900 })
     else if (phone()) map.easeTo({ center: [entry.lon, entry.lat], offset, duration: 400 })
   }
 
-  // ---- the list: the places by interest, searched by name, each one flies to its place
+  // ---- the list: the places by interest, to browse (the search's own matching narrows it), each one flies to its place
   const list = document.getElementById('list'), items = list.querySelector('.items'), search = list.querySelector('input')
   function fill() {
-    const asked = plain(search.value.trim())
-    const found = places.filter(p => !asked || plain(`${p.short} ${p.name} ${p.hook} ${p.area ?? ''}`).includes(asked))
+    const found = find(search.value, places)
     items.innerHTML = INTERESTS.map(interest => {
       const group = found.filter(p => p.interests[0] === interest.id).sort((a, b) => b.strength - a.strength || a.short.localeCompare(b.short, 'fr'))
       return group.length ? `<h3 style="--c:${interest.color}"><i></i>${esc(interest.label)}</h3>${group.map(p => `<button class="place" type="button" data-id="${esc(p.id)}"><b>${esc(p.short)}</b><span>${esc(p.hook)}${p.area ? ` · ${esc(p.area)}` : ''}</span></button>`).join('')}` : ''
     }).join('') || '<p class="none">Aucun lieu à ce nom.</p>'
   }
   search.oninput = fill
-  document.getElementById('list-button').onclick = () => { fill(); list.classList.add('open') }
+  document.getElementById('list-button').onclick = () => { rest(); fill(); list.classList.add('open') }
   list.querySelector('.close').onclick = () => list.classList.remove('open')
   items.onclick = event => {
     const button = event.target.closest('.place'); if (!button) return
@@ -345,6 +394,42 @@ async function main() {
 
   // ---- the key (its entries are filled before the map starts, its effect on the map comes with the map)
   const picked = new Set()
+  let showPicked = () => {}
+
+  // ---- the search on the map: places, zones and landmarks alike, whatever the key shows; a result opens as a tap on the map does
+  const bar = document.getElementById('search'), field = bar.querySelector('input'), clear = bar.querySelector('.clear'), results = document.getElementById('results')
+  const dotOf = e => e.kind === 'zone' ? '<i class="zone"></i>' : `<i style="--c:${e.kind === 'landmark' ? BACK : colorOf(e.interests[0])}"></i>`
+  const whereOf = e => [e.kind === 'zone' ? 'Quartier' : e.kind === 'landmark' ? 'Repère' : e.area, e.kind === 'landmark' ? null : e.hook].filter(Boolean).join(' · ')
+  let found = []
+  function answer() {
+    clear.hidden = !field.value
+    found = field.value.trim() ? find(field.value, all).slice(0, 30) : []
+    results.hidden = !field.value.trim()
+    results.innerHTML = found.map(e => `<button class="hit" type="button" data-id="${esc(e.id)}">${dotOf(e)}<b>${esc(e.short)}</b><span>${esc(whereOf(e))}</span></button>`).join('') || '<p class="none">Rien à ce nom sur la carte.</p>'
+    results.scrollTop = 0
+  }
+  const rest = () => { results.hidden = true; field.blur() }
+  function choose(entry) {
+    rest()
+    // a place the key had set back comes forward: the key lets go
+    if (picked.size && entry.kind !== 'landmark' && !entry.interests.some(i => picked.has(i))) { picked.clear(); showPicked() }
+    open(entry, { fly: true })
+  }
+  field.oninput = answer
+  // the card and the results never share the screen: asking again puts the card away
+  field.onfocus = () => { if (shown) close(); answer() }
+  field.onkeydown = event => {
+    if (event.key === 'Escape') rest()
+    if (event.key === 'Enter' && found[0]) choose(found[0])
+  }
+  clear.onclick = () => { field.value = ''; answer(); field.focus() }
+  results.onclick = event => { const hit = event.target.closest('.hit'); if (hit) choose(byId.get(hit.dataset.id)) }
+  // a touch anywhere else (the map, the key) closes the results and the keyboard
+  document.addEventListener('pointerdown', event => { if (!results.hidden && !bar.contains(event.target) && !results.contains(event.target)) rest() })
+  // the results end above the on-screen keyboard: the visible height, not the window's
+  const fit = () => document.documentElement.style.setProperty('--view-h', `${window.visualViewport?.height ?? innerHeight}px`)
+  window.visualViewport?.addEventListener('resize', fit)
+  fit()
   const key = document.getElementById('key'), chips = key.querySelector('.chips')
   const count = id => places.filter(p => p.interests.includes(id)).length
   chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join('')
@@ -439,10 +524,7 @@ async function main() {
     paint: { 'icon-color': ink, 'icon-halo-color': '#ffffff', 'icon-halo-width': 2.5 } })
 
   // ---- the key on the map: the places of the picked interests in front, in colour and named; the others step back
-  chips.onclick = event => {
-    const button = event.target.closest('button'); if (!button) return
-    const id = button.dataset.id
-    picked.has(id) ? picked.delete(id) : picked.add(id)
+  showPicked = () => {
     for (const b of chips.children) { b.classList.toggle('on', picked.has(b.dataset.id)); b.setAttribute('aria-pressed', picked.has(b.dataset.id)) }
     key.classList.toggle('picked', picked.size > 0)
     const front = picked.size ? ['any', ...[...picked].map(p => ['in', `|${p}|`, ['get', 'interests']])] : null
@@ -453,6 +535,12 @@ async function main() {
     const shownInk = picked.size ? ['case', ...[...picked].flatMap(p => [['in', `|${p}|`, ['get', 'interests']], colorOf(p)]), OTHER] : ink
     map.setPaintProperty('dots', 'icon-color', shownInk)
     map.setPaintProperty('picked', 'icon-color', shownInk)
+  }
+  chips.onclick = event => {
+    const button = event.target.closest('button'); if (!button) return
+    const id = button.dataset.id
+    picked.has(id) ? picked.delete(id) : picked.add(id)
+    showPicked()
   }
 
   // ---- taps: a place first, then a landmark, then a zone (its note, or its ground while the zones are what is shown)
