@@ -1,0 +1,864 @@
+{
+  "type": "FeatureCollection",
+  "schema": "globe-annotations/1",
+  "title": "Tokyo, les lieux de l'agenda du propriétaire, par intérêt",
+  "description": "Un repère par lieu nommé dans les deux parties de son agenda. Aucune date ni horaire : la ville annotée par intérêt. Le contenu vient de son agenda. Un agent a localisé les lieux et rédigé les repères.",
+  "categories": {
+    "musique": {
+      "label": "Musique",
+      "color": "#0072B2"
+    },
+    "culture": {
+      "label": "Culture (musées, jardins)",
+      "color": "#D55E00"
+    }
+  },
+  "resolutionNote": "Mètres par pixel au repère : zoom Web Mercator 13 pour les lieux à trois étoiles, 14 pour les autres.",
+  "leftOut": [
+    "Tōfuku-ji et Kōmyō-in : temples de Kyoto, hors de Tokyo.",
+    "Bar Inc (Mendel) et Ambient Pillow (au 5.6) : Osaka selon les listes d'événements d'Osaka (Techno Airlines, Palaner, Nightlife Tokyo), hors de Tokyo."
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "id": "sogetsu-hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7293413,
+          35.6741717
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Sogetsu Hall",
+        "hook": "ikebana et avant-garde",
+        "color": "#0072B2",
+        "resolution": 15.5,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "Sogetsu Hall (草月ホール)",
+          "area": "Akasaka",
+          "why": "La salle de l'école d'ikebana Sogetsu, lieu historique de l'avant-garde. « Le concert du séjour pour ce profil », et il est complet.",
+          "url": "https://www.sogetsu.or.jp/",
+          "stars": 3,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/2162621797 ; adresse du site du lieu (赤坂7-2-21) recoupée par GSI, recherche d'adresse (Institut géographique du Japon) au niveau du bloc, écart 68 m",
+          "seen": "Tyondai Braxton + Jim O'Rourke + Eiko Ishibashi.",
+          "number": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "blue-note-tokyo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7161915,
+          35.6612178
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Blue Note",
+        "hook": "le grand club de jazz",
+        "color": "#0072B2",
+        "resolution": 15.5,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "Blue Note Tokyo (ブルーノート東京)",
+          "area": "Aoyama",
+          "why": "Le grand club de jazz d'Aoyama, deux sets par soir. Dans l'agenda pour le spiritual jazz en chair et en os.",
+          "url": "https://www.bluenote.co.jp/jp/",
+          "stars": 3,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/3556759294 ; bloc 南青山6-3 recoupé par GSI, recherche d'adresse (Institut géographique du Japon), écart 39 m",
+          "seen": "Gary Bartz & NTU.",
+          "number": 2
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "liquidroom",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71077,
+          35.649357
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Liquidroom",
+        "hook": "grande salle debout",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "LIQUIDROOM",
+          "area": "Ebisu",
+          "why": "La grande salle debout d'Ebisu. Dans l'agenda pour « le groupe tokyoïte le plus raffiné ».",
+          "station": "Ebisu (JR sortie ouest, Hibiya sortie 2, 3 min selon le site du lieu)",
+          "url": "https://www.liquidroom.net/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "GSI, recherche d'adresse (Institut géographique du Japon), sur l'adresse du site du lieu (東3-16-6). Pas d'objet OpenStreetMap trouvé par Nominatim.",
+          "seen": "cero, « Contemporary Tokyo Cruise » : jazz, exotica, polyrythmies.",
+          "number": 3
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "saloon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.702382,
+          35.6470517
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Saloon",
+        "hook": "dubstep au 3e sous-sol",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "SALOON (sous le Unit, Za House B3F)",
+          "area": "Ebisu / Daikanyama",
+          "why": "Le bar-club au troisième sous-sol de l'immeuble du Unit. Dans l'agenda pour la bass et le dubstep profonds, format bar.",
+          "station": "Daikan-yama (1 min), Ebisu (8 min), selon le site du lieu",
+          "url": "https://saloon-tokyo.com/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/2376633851 (le club Unit, même immeuble) ; adresse du site du lieu (恵比寿西1-34-17 Za HOUSE B3F) recoupée par GSI, recherche d'adresse (Institut géographique du Japon), écart 3 m",
+          "seen": "WEB-001 : Pholo, illequal, FMKD.",
+          "number": 4
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "forestlimit",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.6770622,
+          35.6781193
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Forestlimit",
+        "hook": "cave expérimentale, glitch",
+        "color": "#0072B2",
+        "resolution": 15.5,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "Forestlimit (幡ヶ谷)",
+          "area": "Hatagaya",
+          "why": "La cave expérimentale de l'ouest. Dans l'agenda pour les labels et les bandes les plus aventureuses : glitch, footwork, collages, post-punk.",
+          "station": "Hatagaya (gare nommée par l'agenda, non relue sur le site du lieu)",
+          "url": "https://www.forestlimit.com/",
+          "stars": 3,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/11367870069 ; adresse du site du lieu (幡ヶ谷2-8-15 KODAビル B1) recoupée par GSI, recherche d'adresse (Institut géographique du Japon), écart 12 m",
+          "seen": "曇 — DON —, soirée du label Chinabot (KASAI, seaketa, IN THE SUN, at her open door) ; 挿入都市 (Foodman, CVN, E.O.U, woopheadclrms, NEXTMAN, yusuke uchida) ; « YOUR HOUSE » (Large House Satisfaction).",
+          "number": 5
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kgrn",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.735703,
+          35.703335
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "KGR(n)",
+        "hook": "cave-galerie, techno deep",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "KGR(n) / 神楽音 Kagurane (TOMOS 神楽坂ビル B1F)",
+          "area": "Kagurazaka",
+          "why": "Une cave-galerie de Kagurazaka. Dans l'agenda pour la techno expérimentale et deep.",
+          "station": "Kagurazaka (Tōzai, sortie 1, 1 min selon tokyo-club.net et LiveWalker)",
+          "url": "https://kagurane.com/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "GSI, recherche d'adresse (Institut géographique du Japon), sur l'adresse 神楽坂6-48 donnée par Time Out, tokyo-club.net, LiveWalker et Spacemarket. Le site du lieu ne s'affiche pas sans JavaScript, adresse non lue à la source.",
+          "seen": "KGR(invites) : Manis Devours, karanaki, Moli.",
+          "number": 6
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nihonbashi-mitsui-hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7742077,
+          35.6866811
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Mitsui Hall",
+        "hook": "concerts assis, numérotés",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "Nihonbashi Mitsui Hall (日本橋三井ホール), COREDO Muromachi 1",
+          "area": "Nihonbashi",
+          "why": "Salle de concert assise et numérotée, dans un immeuble de Nihonbashi. Dans l'agenda pour un ensemble chambriste et jazz.",
+          "url": "https://www.nihonbashi-hall.jp/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), way/181930209 (immeuble COREDO室町1, 室町東三井ビルディング) ; adresse 日本橋室町2-2-1 recoupée par GSI, recherche d'adresse (Institut géographique du Japon), écart 30 m. Page d'accès du lieu non lue (403).",
+          "seen": "Zōminsha « Hikari to, sekai », l'ensemble de Marty Holoubek avec la voix de Moeka Shiotsuka (Hitsujibungaku).",
+          "number": 7
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "vent",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7128558,
+          35.6651742
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "VENT",
+        "hook": "techno, le meilleur son",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "VENT",
+          "area": "Omotesandō",
+          "why": "Club techno en sous-sol, « le meilleur son de la ville » selon l'agenda.",
+          "station": "Omotesandō (gare nommée par l'agenda, non relue sur le site du lieu)",
+          "url": "http://vent-tokyo.net/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/5323594668 ; adresse du site du lieu (南青山3-18-19 フェスタ表参道ビル B1) recoupée par GSI, recherche d'adresse (Institut géographique du Japon) au niveau du bloc, écart 43 m",
+          "seen": "Special Request (Paul Woolford) : jungle, breaks et techno leftfield.",
+          "number": 8
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "dj-bar-bridge-shibuya",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.701431,
+          35.659576
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Bridge Shibuya",
+        "hook": "disco japonaise au 10e étage",
+        "color": "#0072B2",
+        "resolution": 15.5,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "DJ BAR Bridge Shibuya (渋谷パークサイド共同ビル 10F)",
+          "area": "Shibuya",
+          "why": "Le bar à DJ du dixième étage, vue sur Shibuya. Dans l'agenda pour la house et la disco japonaises et une sélection leftfield et dub.",
+          "station": "Shibuya (à une minute, au-dessus de Hachikō, selon le site du lieu)",
+          "url": "https://djbar-bridge.com/shibuya/",
+          "stars": 3,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "GSI, recherche d'adresse (Institut géographique du Japon), sur l'adresse du site du lieu (渋谷1-25-6, 10F) ; deux nœuds OpenStreetMap « DJ Bar Bridge » à moins de 35 m (node/10290580051, node/13081881183)",
+          "seen": "DJ Nori & Lil Mofo, « la soirée du second séjour ».",
+          "number": 9
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "www-x",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.6987,
+          35.661629
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "WWW X",
+        "hook": "post-rock et shoegaze",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "WWW X (ライズビル 2F, au-dessus du WWW)",
+          "area": "Shibuya",
+          "why": "Salle de concert debout en haut de la Spain-zaka. Dans l'agenda pour le post-rock et le shoegaze japonais.",
+          "station": "Shibuya (sortie Hachikō, 7 min selon le site du lieu)",
+          "url": "https://www-shibuya.jp/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "GSI, recherche d'adresse (Institut géographique du Japon), sur l'adresse du site du lieu (宇田川町13-17 ライズビル 2F) ; nœud OpenStreetMap « WWW » (node/10724926590) à 10 m",
+          "seen": "downy / The Novembers.",
+          "number": 10
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "fever",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.660187,
+          35.662861
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Fever",
+        "hook": "drone-doom face à la gare",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "LIVE HOUSE FEVER (新代田)",
+          "area": "Shindaita",
+          "why": "Live house de l'ouest, en face de la gare. Dans l'agenda pour le drone-doom, entre silence et saturation.",
+          "station": "Shindaita (Keiō Inokashira, 30 secondes selon le site du lieu)",
+          "url": "https://www.fever-popo.com/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "GSI, recherche d'adresse (Institut géographique du Japon), sur l'adresse du site du lieu (羽根木1-1-14 新代田ビル 1F). Pas d'objet OpenStreetMap trouvé par Nominatim.",
+          "seen": "BIG|BRAVE + DMBQ.",
+          "number": 11
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "shinjuku-pit-inn",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7073257,
+          35.6906526
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Pit Inn",
+        "hook": "jazz impro, club historique",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "Shinjuku Pit Inn (新宿ピットイン)",
+          "area": "Shinjuku",
+          "why": "Le club historique du jazz improvisé de Tokyo. Dans l'agenda pour la scène free et improvisée japonaise.",
+          "url": "https://pit-inn.com/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/10290041048 ; adresse du site du lieu (新宿2-12-4 アコード新宿 B1) recoupée par GSI, recherche d'adresse (Institut géographique du Japon), écart 25 m",
+          "seen": "Arcana Mundi (Santiago Vázquez × Yasuhiro Yoshigaki, percussions et vibraphone) ; Akira Sakata SOS, la légende du free jazz japonais, en trio.",
+          "number": 12
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "dj-bar-bridge-shinjuku",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.707275,
+          35.691788
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Bridge Shinjuku",
+        "hook": "dix places, deep house, dub",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "DJ BAR Bridge Shinjuku (角ビル B1)",
+          "area": "Shinjuku 2-chōme",
+          "why": "Un bar de dix places, en sous-sol. Dans l'agenda pour la deep house et le dub d'un pilier de la house tokyoïte.",
+          "url": "https://djbar-bridge.com/shinjuku/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "GSI, recherche d'adresse (Institut géographique du Japon), sur l'adresse du site du lieu (新宿2-19-9 角ビル B1). Pas d'objet OpenStreetMap trouvé.",
+          "seen": "Toshiyuki Goto & Dubyama Jazzo.",
+          "number": 13
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ftarri",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7556257,
+          35.7036085
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Ftarri",
+        "hook": "impro et disques en sous-sol",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "Ftarri 水道橋店",
+          "area": "Suidōbashi",
+          "why": "La toute petite salle de l'onkyō, la scène tokyoïte des sons ténus et des silences. Vingt places, réservation obligatoire.",
+          "station": "Suidōbashi (JR à 5 min, Toei Mita à 3 min, selon le site du lieu)",
+          "url": "https://www.ftarri.com/suidobashi/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/13087133018 ; adresse du site du lieu (本郷1-4-11 岡野ビル B1) recoupée par GSI, recherche d'adresse (Institut géographique du Japon), écart 7 m",
+          "seen": "Sachiko M + Tetuzi Akiyama (ondes sinusoïdales et guitare) ; Shih-Yang Lee + Ayako Kanisasare (piano et shō).",
+          "number": 14
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mon-takanawa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.741663,
+          35.6394426
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "MoN Takanawa",
+        "hook": "expo sonore de Richie Hawtin",
+        "color": "#0072B2",
+        "resolution": 15.5,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "also": "art-numerique",
+          "name": "MoN Takanawa: The Museum of Narratives (モン タカナワ)",
+          "area": "Takanawa Gateway",
+          "why": "Le nouveau lieu culturel de Takanawa Gateway City, qui se présente comme un musée des récits. Dans l'agenda pour l'électronique audiovisuelle de MUTEK.JP et l'installation de Plastikman.",
+          "station": "Takanawa Gateway (JR, relié, 6 min depuis la sortie nord) ; Sengakuji (Asakusa, sortie A4, 3 min), selon le site du lieu",
+          "url": "https://montakanawa.jp/",
+          "stars": 3,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/14119219739 (tourism=gallery, nom officiel) ; cohérent avec la page d'accès du lieu, qui le dit relié à la gare et à 3 min de Sengakuji A4",
+          "seen": "MUTEK.JP (Max Cooper, Hania Rani, Ryoichi Kurokawa, Daito Manabe × ELEVENPLAY ; clôture PLASTIKMAN « Polyphonic Fermentation ») ; installation PLASTIKMAN au « Tatami », gratuite.",
+          "number": 15
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "meguro-persimmon-hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.6733492,
+          35.6217115
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Persimmon Hall",
+        "hook": "une vraie salle d'écoute",
+        "color": "#0072B2",
+        "resolution": 15.5,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "musique",
+          "name": "Meguro Persimmon Hall (めぐろパーシモンホール)",
+          "area": "Toritsu-daigaku",
+          "why": "« Une vraie salle d'écoute ». Dans l'agenda pour le piano contemporain et le jazz brésilien.",
+          "station": "Toritsu-daigaku (Tōkyū Tōyoko, 7 min selon le site du lieu)",
+          "url": "https://www.persimmon.or.jp/",
+          "stars": 3,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/1752815097 ; adresse du site du lieu (八雲1-1-1) recoupée par GSI, recherche d'adresse (Institut géographique du Japon), écart 70 m (grande parcelle)",
+          "seen": "THE PIANO ERA 2026 : Antonio Loureiro New Trio (avec Shun Ishiwaka et Marty Holoubek), Andrés Beeuwsaert, Kaho Nakamura.",
+          "number": 16
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nezu-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7172555,
+          35.6622429
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Nezu Museum",
+        "hook": "art ancien, jardin d'érables",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Nezu Museum (根津美術館)",
+          "area": "Aoyama",
+          "why": "Musée d'arts anciens d'Asie avec un jardin d'érables. L'agenda le donne comme repli, sans étoile, pour les costumes de bugaku.",
+          "url": "https://www.nezu-muse.or.jp/",
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), way/139972313",
+          "seen": "Costumes de bugaku, jardin d'érables.",
+          "number": 17
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "watari-um",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7133402,
+          35.6707378
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Watari-um",
+        "hook": "petit musée privé, art vidéo",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Watari-um, The Watari Museum of Contemporary Art (ワタリウム美術館)",
+          "area": "Gaienmae",
+          "why": "Petit musée privé d'art contemporain. Dans l'agenda pour Nam June Paik, le père de l'art vidéo, côté Fluxus et Cage.",
+          "station": "Gaienmae (gare nommée par l'agenda, non relue sur le site du lieu)",
+          "url": "http://www.watarium.co.jp/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), way/139712014 ; adresse du site du lieu (神宮前3-7-6) recoupée par GSI, recherche d'adresse (Institut géographique du Japon), écart 25 m",
+          "seen": "Nam June Paik, vingt ans après : TV Garden, robots, collages.",
+          "number": 18
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "koishikawa-korakuen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7491508,
+          35.7053631
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Koishikawa Kōrakuen",
+        "hook": "jardin d'Edo aux érables",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Koishikawa Kōrakuen (小石川後楽園)",
+          "area": "Iidabashi",
+          "why": "Jardin de l'époque d'Edo. Dans l'agenda pour les érables illuminés, les projections sur le mur d'enceinte et le pont de la pleine lune éclairé.",
+          "station": "Iidabashi (gare nommée par l'agenda, non relue sur le site du lieu)",
+          "url": "https://www.tokyo-park.or.jp/park/koishikawakorakuen/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), way/20028327, centre du jardin. L'agenda fait entrer par la porte ouest, non placée ici.",
+          "seen": "Érables illuminés « Shinzan Kōyō », entrée par la porte ouest.",
+          "number": 19
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mot",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.8087878,
+          35.6797754
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "MOT",
+        "hook": "musée d'art contemporain",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "MOT, Museum of Contemporary Art Tokyo (東京都現代美術館)",
+          "area": "Kiyosumi",
+          "why": "Le musée d'art contemporain de la ville, à Kiyosumi. Cité dans la ligne des expositions de l'agenda.",
+          "url": "https://www.mot-art-museum.jp/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), relation/12077221",
+          "seen": "« Past Light, Present Sight ».",
+          "number": 20
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rikugien",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7463046,
+          35.7333998
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Rikugien",
+        "hook": "reflets sur l'étang, de nuit",
+        "color": "#D55E00",
+        "resolution": 15.5,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Rikugien (六義園)",
+          "area": "Komagome",
+          "why": "« Le plus beau jardin japonais de Tokyo », de nuit, reflets sur l'étang.",
+          "station": "Komagome, ligne Namboku (gare nommée par l'agenda, non relue sur le site du lieu)",
+          "url": "https://www.tokyo-park.or.jp/park/rikugien/",
+          "stars": 3,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), way/249498496, centre du jardin",
+          "seen": "Érables illuminés, « Niwa-momiji no Rikugien ».",
+          "number": 21
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "artizon-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7721285,
+          35.678749
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Artizon",
+        "hook": "musée d'art à Kyōbashi",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Artizon Museum (アーティゾン美術館)",
+          "area": "Kyōbashi",
+          "why": "Musée d'art à Kyōbashi. Cité dans la ligne des expositions de l'agenda.",
+          "url": "https://www.artizon.museum/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/250668618",
+          "seen": "Hikaru Fujii, « Whose light? ».",
+          "number": 22
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "21-21-design-sight",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7301349,
+          35.6674127
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "21_21 Design Sight",
+        "hook": "expositions de design",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "21_21 DESIGN SIGHT, Tokyo Midtown",
+          "area": "Roppongi",
+          "why": "Le lieu du design de Tokyo Midtown. Cité dans la ligne des expositions de l'agenda.",
+          "url": "https://www.2121designsight.jp/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), way/109503139",
+          "seen": "« Hōjōki », petites architectures pour vivre de peu.",
+          "number": 23
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mori-art-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.729261,
+          35.660432
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Mori Art Museum",
+        "hook": "art contemporain au sommet",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Mori Art Museum (森美術館), Roppongi Hills Mori Tower",
+          "area": "Roppongi",
+          "why": "Le musée d'art contemporain en haut de la tour Mori. Dans l'agenda pour Mariko Mori : bouddhisme, cosmos, lumière, la « Wave UFO » qui projette vos ondes cérébrales. Très ambient.",
+          "station": "Roppongi (gare nommée par l'agenda, non relue sur le site du lieu)",
+          "url": "https://www.mori.art.museum/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), node/1420786660",
+          "seen": "Mariko Mori, « All That Shines », première rétrospective au Japon depuis 24 ans.",
+          "number": 24
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tokyo-national-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7759676,
+          35.7190448
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Musée national",
+        "hook": "trésors zen à Ueno",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:40:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Musée national de Tokyo (東京国立博物館)",
+          "area": "Ueno",
+          "why": "Le grand musée d'Ueno. Dans l'agenda pour les trésors zen du Daitoku-ji, « l'esthétique dont descend le minimalisme sacré ».",
+          "station": "Ueno (gare nommée par l'agenda, non relue sur le site du lieu)",
+          "url": "https://www.tnm.jp/",
+          "stars": 2,
+          "status": "todo",
+          "source": "agenda du propriétaire",
+          "coordinateSource": "OpenStreetMap (Nominatim), way/33439660, centre du bâtiment principal",
+          "seen": "Daitoku-ji, 700 ans : trésors zen jamais montrés.",
+          "number": 25
+        }
+      }
+    }
+  ]
+}

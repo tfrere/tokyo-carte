@@ -1,0 +1,3416 @@
+{
+  "type": "FeatureCollection",
+  "schema": "globe-annotations/1",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "zone-yanaka-ueno",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77077,
+          35.72115
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Yanaka, Nezu, Ueno",
+        "hook": "vieux Tokyo à pied",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1300,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "cuisine",
+          "name": "Yanaka, Nezu, Ueno",
+          "ward": "台東区",
+          "why": "Deux quartiers de la ville basse qui ont échappé aux grandes destructions du siècle dernier : ruelles, temples, la rue commerçante Yanaka Ginza, puis les musées du parc d'Ueno au sud. Une marche qui ne demande rien à lire, avec un café de 1938 et une galerie installée dans d'anciens bains. Le Musée national de Tokyo, déjà dans l'agenda, est à 500 m.",
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.gotokyo.org/en/destinations/northern-tokyo/yanaka-and-nezu/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo, en anglais : Yanaka et Nezu ont évité les grands dégâts des guerres et des catastrophes ; gares de Nippori, Nezu et Sendagi."
+            }
+          ],
+          "coordinateSource": "Centre posé sur le carrefour du Kayaba Coffee (OpenStreetMap node/4218484297, via Nominatim). Rayon choisi pour couvrir Yanaka Ginza et le nord du parc d'Ueno.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 谷中, 上野桜木, 根津, 上野公園, 池之端二丁目, 池之端三丁目, 池之端四丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 18711641, 18711628, 18130797, 18158889, 18711630, 18711631, 18711632 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 12 points : de Nippori au nord à l’étang de Shinobazu au sud : Yanaka, Ueno-Sakuragi, Nezu, le parc d’Ueno."
+        },
+        "outline": [
+          [139.77392, 35.70784],
+          [139.78198, 35.71693],
+          [139.78166, 35.72134],
+          [139.77325, 35.72906],
+          [139.76961, 35.7302],
+          [139.76401, 35.72972],
+          [139.76056, 35.72354],
+          [139.75734, 35.72076],
+          [139.75774, 35.71844],
+          [139.76202, 35.71581],
+          [139.76334, 35.71276],
+          [139.76821, 35.70737]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-sumida",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.79097,
+          35.70373
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Asakusa, Kappabashi, Kuramae, Ryōgoku",
+        "hook": "cuisine et histoire d'Edo",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1300,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Asakusa, Kappabashi, Kuramae, Ryōgoku",
+          "ward": "台東区",
+          "why": "Les deux rives de la Sumida : la rue des ustensiles de cuisine de Kappabashi et le temple Sensō-ji au nord, Ryōgoku au sud avec le musée d'Edo-Tokyo et le parc mémorial de Yokoamichō. Cuisine et histoire de la ville, avec un lieu de mémoire disputé.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.gotokyo.org/en/destinations/eastern-tokyo/asakusa/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo : Asakusa autour du Sensō-ji."
+            },
+            {
+              "url": "https://www.gotokyo.org/en/destinations/eastern-tokyo/ryogoku/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo : Ryōgoku, histoire d'Edo et sumo."
+            }
+          ],
+          "coordinateSource": "Centre posé sur la station Kuramae, ligne Asakusa (OpenStreetMap node/5753758848, via Nominatim).",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 浅草一丁目, 浅草二丁目, 雷門, 西浅草, 松が谷一丁目, 松が谷二丁目, 寿, 駒形, 蔵前, 柳橋, 浅草橋一丁目, 横網 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 16400365, 16400429, 18158548, 18158597, 16002609, 16012867, 18158505, 18158527, 18158230, 18158033, 15904146, 17000653 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 14 points : la rive droite de la Sumida du Sensō-ji à Asakusabashi, Kappabashi à l’ouest, puis le pont vers Yokoami (Ryōgoku)."
+        },
+        "outline": [
+          [139.79268, 35.69336],
+          [139.79789, 35.69292],
+          [139.80113, 35.69926],
+          [139.7985, 35.70453],
+          [139.80104, 35.70851],
+          [139.80067, 35.71691],
+          [139.79177, 35.71993],
+          [139.78334, 35.71605],
+          [139.78218, 35.71196],
+          [139.78513, 35.70739],
+          [139.78452, 35.70198],
+          [139.78021, 35.69918],
+          [139.77886, 35.69543],
+          [139.78152, 35.69202]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-jimbocho-kanda",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76148,
+          35.69633
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Jimbōchō, Kanda",
+        "hook": "livres d'occasion et soba",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1000,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "cuisine",
+          "name": "Jimbōchō, Kanda",
+          "ward": "千代田区",
+          "why": "Surtout en japonais. Le quartier des librairies d'occasion compte 125 boutiques selon le site de leur fédération, qui publie une carte en anglais, mais on y vient pour des livres japonais. Restent, sans rien avoir à lire, une vieille maison de soba à Kanda et la salle Ftarri à Suidōbashi.",
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://jimbou.info/",
+              "read": "2026-11-21",
+              "what": "Site BOOKTOWN Jimbō, avec la fédération des libraires d'occasion de Kanda : carte officielle, recherche dans environ 50 librairies."
+            },
+            {
+              "url": "http://en.jimbou.info/",
+              "read": "2026-11-21",
+              "what": "Version anglaise : 125 librairies d'occasion, carte à télécharger, plans de promenade. Aucun genre « livres étrangers » ou « estampes » lu."
+            }
+          ],
+          "coordinateSource": "Centre posé sur l'arrêt Surugadai-shita (OpenStreetMap node/4101156449, via Nominatim).",
+          "verify": true,
+          "verifyNote": "La part de livres en langues étrangères, d'estampes ou de livres d'images dans ces librairies n'a pas été lue.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 神田神保町, 神田小川町, 神田駿河台, 神田猿楽町, 神田淡路町, 神田錦町 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 3545325, 3546176, 3406698, 3545396, 3546461, 3546241 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 11 points : les quartiers de Kanda de Jimbōchō à Awajichō, au sud de la Kanda-gawa, avec la pointe de Suidōbashi."
+        },
+        "outline": [
+          [139.76574, 35.68686],
+          [139.77454, 35.69517],
+          [139.77454, 35.6989],
+          [139.77201, 35.70134],
+          [139.76168, 35.70553],
+          [139.75795, 35.70842],
+          [139.75335, 35.70842],
+          [139.74937, 35.70375],
+          [139.74829, 35.69609],
+          [139.74924, 35.69309],
+          [139.75699, 35.68824]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-shinjuku-est",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7046,
+          35.69164
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Shinjuku est",
+        "hook": "ruelles de comptoirs",
+        "color": "#555555",
+        "width": 2,
+        "radius": 900,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "also": "militant",
+          "name": "Shinjuku est",
+          "ward": "新宿区",
+          "why": "Autour de Shinjuku-sanchōme : les ruelles de comptoirs d'Omoide Yokochō et de Golden Gai, l'étage alimentation d'Isetan, puis le centre LGBTQ+ Pride House et la librairie militante Mosakusha, tous deux surtout en japonais. Le Pit Inn et le DJ Bar Bridge de l'agenda sont dans le périmètre. À Golden Gai les ruelles sont privées et la photo demande une autorisation.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.gotokyo.org/en/destinations/western-tokyo/shinjuku/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo : page Shinjuku."
+            },
+            {
+              "url": "https://goldengai.jp/",
+              "read": "2026-11-21",
+              "what": "Association des commerçants de Golden Gai, mise à jour le 2026/04/04 : voies privées, prises de vue soumises à autorisation."
+            }
+          ],
+          "coordinateSource": "Centre posé sur le grand magasin Isetan Shinjuku (OpenStreetMap relation/16543147, via Nominatim).",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 新宿一丁目, 新宿二丁目, 新宿三丁目, 新宿五丁目, 歌舞伎町一丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 17081647, 17081648, 17081649, 17081651, 17081655 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 11 points : l’est de la gare entre les voies et le parc Shinjuku Gyoen : Shinjuku 1 à 3 et 5, Kabukichō 1, et un pas au-delà des voies pour Omoide Yokochō."
+        },
+        "outline": [
+          [139.71236, 35.68642],
+          [139.7146, 35.6874],
+          [139.71492, 35.69048],
+          [139.71167, 35.69323],
+          [139.70695, 35.69497],
+          [139.69933, 35.69621],
+          [139.69771, 35.69303],
+          [139.70022, 35.68914],
+          [139.70469, 35.689],
+          [139.70742, 35.68748],
+          [139.70956, 35.6877]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-okubo-waseda",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70904,
+          35.70793
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Ōkubo, Waseda",
+        "hook": "quartier coréen et mémoire",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1250,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "culture",
+          "name": "Ōkubo, Waseda",
+          "ward": "新宿区",
+          "why": "Surtout en japonais. Du quartier coréen d'Ōkubo à l'université Waseda : un musée fait par des citoyens sur l'histoire entre le Japon et la Corée, puis le musée des femmes sur la guerre et la paix. C'est le secteur le plus dense pour la mémoire critique, mais ses deux musées s'adressent d'abord à qui lit le japonais.",
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://kouraihakubutsukan.org/",
+              "read": "2026-11-21",
+              "what": "Musée Kōrai, Ōkubo 1-12-1, immeuble Dai-ni Kankoku Hiroba. Site sans version anglaise."
+            },
+            {
+              "url": "https://wam-peace.org/en/faq",
+              "read": "2026-11-21",
+              "what": "Musée wam : visites guidées en japonais, panneaux des expositions passées tous en japonais."
+            }
+          ],
+          "coordinateSource": "Centre posé sur la station Nishi-Waseda (OpenStreetMap node/7775803878, via Nominatim).",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 大久保, 百人町一丁目, 百人町二丁目, 戸山二丁目, 戸山三丁目, 西早稲田, 戸塚町 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 17081787, 17081779, 17081780, 17090444, 17090445, 17144190, 17144186 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 12 points : la diagonale de Shin-Ōkubo à l’université Waseda : Hyakuninchō, Ōkubo, Toyama, Nishi-Waseda."
+        },
+        "outline": [
+          [139.70439, 35.6969],
+          [139.7097, 35.70068],
+          [139.71511, 35.70168],
+          [139.71634, 35.70481],
+          [139.72307, 35.70922],
+          [139.72187, 35.71226],
+          [139.71115, 35.71423],
+          [139.70938, 35.71028],
+          [139.7022, 35.7091],
+          [139.7007, 35.70565],
+          [139.69468, 35.70375],
+          [139.69731, 35.69824]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-koenji",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.65,
+          35.70534
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Kōenji",
+        "hook": "fripes et punk, le soir",
+        "color": "#555555",
+        "width": 2,
+        "radius": 700,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "culture",
+          "name": "Kōenji",
+          "ward": "杉並区",
+          "why": "Quartier de la ligne Chūō fait de rues commerçantes, de fripes, de cafés, de théâtre et de musique, décrit ainsi par les bains Kosugi-yu eux-mêmes. C'est aussi le quartier du réseau Shirōto no Ran, avec ses boutiques de récupération et son bar à gérants tournants. Tout s'y fait le soir et sans rien avoir à lire : bains, fripes, bar.",
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://kosugiyu.co.jp/",
+              "read": "2026-11-21",
+              "what": "Texte des bains Kosugi-yu sur Kōenji et la « culture de la ligne Chūō »."
+            },
+            {
+              "url": "https://www.shirouto.org/",
+              "read": "2026-11-21",
+              "what": "Shirōto no Ran : radio, boutiques de récupération, fripes, bars, pension, à Kōenji et autour."
+            },
+            {
+              "url": "http://trio4.nobody.jp/keita/index_com.html",
+              "read": "2026-11-21",
+              "what": "Page en anglais de Shirōto no Ran : liste des boutiques."
+            },
+            {
+              "url": "https://www.gotokyo.org/en/destinations/western-tokyo/koenji/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo, en anglais : « Koenji, cool capital of punk » ; gare de Kōenji, environ 15 min de Shinjuku par la ligne Chūō."
+            }
+          ],
+          "coordinateSource": "Centre posé sur la gare de Kōenji (OpenStreetMap way/386740716, via Nominatim).",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 高円寺北二丁目, 高円寺北三丁目, 高円寺南三丁目, 高円寺南四丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 17326886, 17326887, 17326881, 17326882 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 9 points : les quatre chōme autour de la gare, de part et d’autre de la ligne Chūō."
+        },
+        "outline": [
+          [139.6494, 35.69494],
+          [139.65884, 35.70111],
+          [139.65803, 35.71073],
+          [139.65552, 35.71247],
+          [139.64709, 35.71389],
+          [139.64176, 35.71121],
+          [139.63969, 35.70409],
+          [139.63977, 35.69698],
+          [139.64264, 35.69464]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-shimokitazawa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.66692,
+          35.66127
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Shimokitazawa",
+        "hook": "bohème et petites boutiques",
+        "color": "#555555",
+        "width": 2,
+        "radius": 800,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "militant",
+          "name": "Shimokitazawa",
+          "ward": "世田谷区",
+          "why": "Quartier bohème de fripes et de petites boutiques, prolongé par BONUS TRACK sur l'emprise de l'ancienne voie ferrée. À dix minutes à pied, à Shindaita, la librairie féministe Etcetera Books, surtout en japonais, voisine de la salle Fever de l'agenda.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.gotokyo.org/en/destinations/western-tokyo/shimokitazawa/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo : « Shimokitazawa, Tokyo's bohemian district »."
+            },
+            {
+              "url": "https://etcbooks.co.jp/bookshop/",
+              "read": "2026-11-21",
+              "what": "Etcetera Books : Shimokitazawa à 10 min à pied."
+            }
+          ],
+          "coordinateSource": "Centre posé sur la gare de Shimokitazawa (OpenStreetMap way/161041763, via Nominatim).",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 北沢二丁目, 代沢五丁目, 代田二丁目, 代田五丁目, 代田六丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 17412463, 17413545, 18240429, 18240432, 18240433 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 10 points : le long de la ligne Odakyū, de la gare de Shimokitazawa à Shindaita."
+        },
+        "outline": [
+          [139.66209, 35.65088],
+          [139.66941, 35.6514],
+          [139.67229, 35.65374],
+          [139.6742, 35.66206],
+          [139.67221, 35.66576],
+          [139.66499, 35.67013],
+          [139.6603, 35.67013],
+          [139.65393, 35.66434],
+          [139.65354, 35.66226],
+          [139.65592, 35.65414]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-shibuya-harajuku",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.69875,
+          35.66193
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Shibuya, Harajuku",
+        "hook": "où l'art numérique se fait",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1200,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "also": "culture",
+          "name": "Shibuya, Harajuku",
+          "ward": "渋谷区",
+          "why": "Du centre CCBT à Harajuku au studio DOMMUNE dans le grand magasin PARCO : le secteur où l'art numérique se fabrique et se diffuse. Avec un café de musique classique centenaire et un marché de producteurs le week-end. Le WWW X et le DJ Bar Bridge de l'agenda sont dans le périmètre.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://ccbt.rekibun.or.jp/en/about",
+              "read": "2026-11-21",
+              "what": "CCBT, 1-14-4 Jingūmae."
+            },
+            {
+              "url": "https://www.dommune.com/",
+              "read": "2026-11-21",
+              "what": "SUPER DOMMUNE, Shibuya PARCO 9F."
+            }
+          ],
+          "coordinateSource": "Centre posé sur Shibuya PARCO (OpenStreetMap way/451564412, via Nominatim).",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 宇田川町, 神南, 道玄坂二丁目, 渋谷一丁目, 神宮前一丁目, 神宮前四丁目, 神宮前五丁目, 神宮前六丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 17022739, 17022738, 17022581, 17022655, 17054290, 17054293, 17054294, 17054295 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 13 points : de Dōgenzaka à Harajuku le long de la ligne Yamanote et de l’avenue Meiji : Udagawachō, Jinnan, Jingūmae."
+        },
+        "outline": [
+          [139.69897, 35.65457],
+          [139.71148, 35.65807],
+          [139.71401, 35.6605],
+          [139.71649, 35.66639],
+          [139.71649, 35.66984],
+          [139.70875, 35.67757],
+          [139.7045, 35.67757],
+          [139.69669, 35.67224],
+          [139.69123, 35.67146],
+          [139.68801, 35.66761],
+          [139.69074, 35.66198],
+          [139.69057, 35.65723],
+          [139.69394, 35.65457]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-kiyosumi-kitasuna",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.80879,
+          35.67978
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Kiyosumi-Shirakawa, Kitasuna",
+        "hook": "cafés et art contemporain",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1800,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "militant",
+          "name": "Kiyosumi-Shirakawa, Kitasuna",
+          "ward": "江東区",
+          "why": "Cafés et art contemporain autour du musée MOT, dans un cadre de jardins et d'architecture d'Edo. Vers l'est, le centre sur les bombardements de Tokyo et la rue commerçante Sunamachi Ginza : culture, mémoire et cuisine de quartier dans le même secteur.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.gotokyo.org/en/destinations/eastern-tokyo/kiyosumi-shirakawa/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo : « Kiyosumi Shirakawa, coffee and art in a traditional setting »."
+            }
+          ],
+          "coordinateSource": "Centre posé sur le musée MOT (OpenStreetMap relation/12077221, via Nominatim). Rayon large pour inclure Kitasuna.",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 清澄, 白河, 三好, 平野, 石島, 千田, 海辺, 千石, 北砂一丁目, 北砂二丁目, 北砂三丁目, 北砂四丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 16951961, 16953109, 17004280, 17004285, 16953114, 16953115, 16953116, 17004199, 17007870, 17007871, 17007872, 17007873 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 14 points : la bande est-ouest au sud du canal Onagi, du jardin de Kiyosumi à Sunamachi Ginza."
+        },
+        "outline": [
+          [139.81797, 35.67278],
+          [139.82421, 35.67408],
+          [139.83503, 35.67312],
+          [139.83825, 35.6759],
+          [139.83857, 35.68089],
+          [139.83171, 35.68879],
+          [139.82837, 35.68913],
+          [139.81876, 35.68814],
+          [139.81409, 35.68602],
+          [139.8078, 35.68788],
+          [139.79204, 35.68684],
+          [139.7872, 35.68322],
+          [139.78882, 35.67803],
+          [139.80092, 35.67258]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "zone-tsukiji-ginza",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76753,
+          35.66935
+        ]
+      },
+      "properties": {
+        "kind": "circle",
+        "text": "Tsukiji, Ginza",
+        "hook": "marché, kabuki, vieux café",
+        "color": "#555555",
+        "width": 2,
+        "radius": 1000,
+        "resolution": 62.1,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Tsukiji, Ginza",
+          "ward": "中央区",
+          "why": "Le marché extérieur de Tsukiji est resté en place quand le marché de gros est parti à Toyosu fin 2018. À dix minutes, le théâtre Kabuki-za et un café de 1948 qui ne sert que du café.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.gotokyo.org/en/destinations/central-tokyo/tsukiji/index.html",
+              "read": "2026-11-21",
+              "what": "Guide officiel de Tokyo : le marché intérieur a déménagé à Toyosu fin 2018, le marché extérieur reste."
+            }
+          ],
+          "coordinateSource": "Centre posé sur la station Higashi-Ginza (OpenStreetMap node/2901061933, via Nominatim).",
+          "isZone": true,
+          "outlineSource": "Contour tracé à la main levée autour des quartiers 銀座, 築地一丁目, 築地二丁目, 築地三丁目, 築地四丁目 d’OpenStreetMap (limites administratives de niveau 9 et 10, relations 4859036, 16170468, 16170469, 16170470, 16170471 ; © les contributeurs d’OpenStreetMap, ODbL), réduit à 11 points : la longue bande de Ginza du nord-est au sud-ouest, et Tsukiji jusqu’au marché extérieur."
+        },
+        "outline": [
+          [139.77041, 35.66032],
+          [139.7752, 35.66214],
+          [139.77823, 35.66543],
+          [139.77945, 35.6691],
+          [139.77638, 35.67523],
+          [139.77356, 35.67761],
+          [139.76916, 35.67888],
+          [139.76417, 35.67882],
+          [139.75658, 35.67385],
+          [139.75488, 35.66711],
+          [139.76218, 35.66118]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "icc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.68689,
+          35.68289
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "NTT ICC",
+        "hook": "centre d'art des médias",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "name": "NTT InterCommunication Center [ICC]",
+          "nameJa": "NTTインターコミュニケーション・センター",
+          "ward": "新宿区",
+          "why": "Fermé pendant tout le séjour : le centre prépare sa prochaine exposition et ne rouvre que le 15 déc. 2026. C'est le centre d'art des médias de NTT, au 4e étage de la tour Tokyo Opera City, l'institution du domaine à Tokyo, avec des archives vidéo consultables (HIVE). À garder pour un autre voyage.",
+          "practical": {
+            "horaires": "11 h à 18 h",
+            "fermeture": "Lundi (mardi si le lundi est férié), fin d'année, montages d'exposition",
+            "prix": "Selon l'exposition. Les coins « Art & Science Chronology » et HIVE du hall sont gratuits.",
+            "station": "Hatsudai (ligne Keiō New), sortie est, 2 min"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.ntticc.or.jp/en/about/visit/",
+              "read": "2026-11-21",
+              "what": "Adresse, horaires, jours de fermeture, accès."
+            },
+            {
+              "url": "https://www.ntticc.or.jp/en/",
+              "read": "2026-11-21",
+              "what": "« ICC is currently closed for preparing the next exhibition » ; prochaine période 15 déc. 2026 au 28 mars 2027."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/312628595 (Tokyo Opera City, l'ICC est dans la tour) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ccbt",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70364,
+          35.67125
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "CCBT",
+        "hook": "labo public d'art et tech",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "name": "Civic Creative Base Tokyo [CCBT]",
+          "nameJa": "シビック・クリエイティブ・ベース東京",
+          "zone": "zone-shibuya-harajuku",
+          "ward": "渋谷区",
+          "why": "Le lieu public d'art et de technologie de Tokyo, rattaché à la fondation métropolitaine pour l'histoire et la culture : résidences, ateliers, travaux montrés au public. On y voit une installation interactive du studio montréalais Daily tous les jours, « Dance on It », en entrée libre. Le site et les pages des programmes sont en anglais.",
+          "practical": {
+            "horaires": "13 h à 19 h",
+            "fermeture": "Lundi et fin d'année. Ouvert si le lundi est férié, et fermé alors le lendemain.",
+            "prix": "Entrée libre pour l'installation en cours",
+            "station": "Harajuku (JR Yamanote) 2 min, Meiji-jingūmae (lignes Chiyoda et Fukutoshin) 4 min",
+            "adresse": "1-14-4 Jingūmae, sous-sol et 3e étage, Shibuya-ku"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://ccbt.rekibun.or.jp/en/visit",
+              "read": "2026-11-21",
+              "what": "Horaires, jours de fermeture, accès, adresse."
+            },
+            {
+              "url": "https://ccbt.rekibun.or.jp/en/events/dailytouslesjours",
+              "read": "2026-11-21",
+              "what": "Programme en cours, en anglais : installation au studio du sous-sol et sur une place voisine, entrée libre, 13 h à 19 h."
+            },
+            {
+              "url": "https://ccbt.rekibun.or.jp/en/events/filter/s=3",
+              "read": "2026-11-21",
+              "what": "Liste des programmes en cours : un seul, ouvert."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都渋谷区神宮前一丁目14番4号. OpenStreetMap place encore le CCBT à son ancienne adresse de Jinnan."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "neort",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.78346,
+          35.69555
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "NEORT++",
+        "hook": "galerie d'art génératif",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "name": "NEORT++",
+          "nameJa": "NEORT++（まるかビル3F）",
+          "zone": "zone-sumida",
+          "ward": "中央区",
+          "why": "Sans doute fermé pendant tout le séjour : la galerie n'ouvre que pendant ses expositions et n'en annonce aucune. Petite galerie d'art génératif et numérique tenue par la plateforme NEORT, à Bakurochō. En 2026 elle a montré exonemo, Kubota Akihiro, Kuwakubo Ryōta ou John Gerrard, et accueilli la journée Processing Community Day Tokyo.",
+          "practical": {
+            "horaires": "Mercredi à dimanche, 14 h à 19 h, seulement pendant les expositions",
+            "fermeture": "Lundi, mardi, jours fériés",
+            "station": "JR Bakurochō, sortie C4",
+            "adresse": "maruka 3F, 2-2-14 Nihonbashi-Bakurochō, Chūō-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://two.neort.io/en/exhibitions",
+              "read": "2026-11-21",
+              "what": "Liste des expositions 2026, en anglais ; la dernière, « Quietus Machine », est marquée « closed » et aucune n'est annoncée."
+            },
+            {
+              "url": "https://two.neort.io/en/exhibitions/auto_destructive_art",
+              "read": "2026-11-21",
+              "what": "Adresse, accès, jours et horaires d'ouverture."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都中央区日本橋馬喰町二丁目2番14号",
+          "verify": true,
+          "verifyNote": "Aucune exposition annoncée à la date de lecture. Regarder le programme avant d'y aller."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "dommune",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.69875,
+          35.66193
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "SUPER DOMMUNE",
+        "hook": "sets et talks en direct",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "also": "culture",
+          "name": "SUPER DOMMUNE",
+          "nameJa": "スーパードミューン（渋谷PARCO 9F）",
+          "zone": "zone-shibuya-harajuku",
+          "ward": "渋谷区",
+          "why": "Le studio de diffusion en direct d'Ukawa Naohiro, au 9e étage de Shibuya PARCO : conversations et sets sur la musique électronique, l'art sonore et les images. Le programme n'est publié qu'en japonais : les sets de DJ se passent de lecture, les soirées de discussion non. Le WWW X de l'agenda est à 35 m.",
+          "practical": {
+            "booking": "Entrée selon le programme du jour. Les conditions d'accès au studio n'ont pas été lues : voir la page de chaque soirée.",
+            "adresse": "Shibuya PARCO 9F, Udagawachō, Shibuya-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.dommune.com/",
+              "read": "2026-11-21",
+              "what": "Programmes de novembre 2026, en japonais, dont « MUTEK.JP 2026 DOMMUNE SPECIAL » ; mention « 渋谷PARCO9FのSUPER DOMMUNE »."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/451564412 (Shibuya PARCO, le studio est au 9e étage) via Nominatim",
+          "verify": true,
+          "verifyNote": "Langue des soirées et conditions d'accès au studio non lues."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ftarri",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7556,
+          35.70367
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Ftarri",
+        "hook": "impro et disques en sous-sol",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "also": "culture",
+          "name": "Ftarri 水道橋店",
+          "nameJa": "Ftarri 水道橋店",
+          "zone": "zone-jimbocho-kanda",
+          "ward": "文京区",
+          "why": "Boutique de disques et petite salle en sous-sol consacrée à la musique improvisée et expérimentale, à Suidōbashi : l'art sonore tel qu'il se joue, sans rien à lire. Elle n'ouvre que les soirs de concert : il y en a pendant le premier passage, aucun n'est annoncé pendant le second. Déjà dans l'agenda.",
+          "practical": {
+            "horaires": "Ouvert les jours de concert, portes à 19 h 30. Programme sur le site.",
+            "station": "JR Suidōbashi 5 min, Suidōbashi (ligne Mita) 3 min",
+            "adresse": "1-4-11 Hongō, immeuble Okano, sous-sol, Bunkyō-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.ftarri.com/suidobashi/",
+              "read": "2026-11-21",
+              "what": "Adresse, accès, téléphone les jours d'ouverture de 17 h à 19 h 30 ; concerts annoncés les 22 et 23 nov. 2026, puis à partir du 20 déc."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都文京区本郷一丁目4番11号"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "teamlab-borderless",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.74342,
+          35.662
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "teamLab Borderless",
+        "hook": "l'immersif à voir une fois",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "name": "teamLab Borderless",
+          "nameJa": "チームラボボーダレス（麻布台ヒルズ）",
+          "ward": "港区",
+          "why": "Le grand lieu immersif de teamLab à Azabudai Hills. À voir une fois pour situer le reste de la scène, sans rien avoir à lire.",
+          "practical": {
+            "horaires": "8 h 30 à 21 h",
+            "fermeture": "Quelques jours isolés, annoncés sur le site",
+            "booking": "Billets datés en ligne",
+            "prix": "Adulte à partir de 3 400 yens",
+            "station": "Kamiyachō (ligne Hibiya), sortie 5, 2 min"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.teamlab.art/e/borderless-azabudai/",
+              "read": "2026-11-21",
+              "what": "Horaires, jours de fermeture (dont le 24 nov. et le 8 déc. 2026), tarifs, accès."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/11512273700 (teamLab Borderless Museum) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "teamlab-planets",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.78973,
+          35.64938
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "teamLab Planets",
+        "hook": "l'autre immersif, à Toyosu",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "name": "teamLab Planets TOKYO",
+          "nameJa": "チームラボプラネッツ（豊洲）",
+          "ward": "江東区",
+          "why": "L'autre grand lieu de teamLab, à Toyosu, ouvert en 2018 et annoncé jusqu'à fin 2027. À cinq minutes à pied du marché de Toyosu, si l'on veut lier les deux.",
+          "practical": {
+            "horaires": "8 h à 22 h, dernière entrée une heure avant",
+            "fermeture": "Quelques jours par an, annoncés sur le site",
+            "booking": "Billets datés en ligne",
+            "prix": "Adulte à partir de 3 800 yens",
+            "station": "Shin-Toyosu, sortie 1A, 3 min"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.teamlab.art/e/planets/",
+              "read": "2026-11-21",
+              "what": "Durée « July 7, 2018 – End of 2027 », horaires, fermetures (dont le 3 déc. 2026), tarifs, accès."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/6291685287 (チームラボ プラネッツ) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tokyo-night-light",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.69155,
+          35.6903
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "TOKYO Night & Light",
+        "hook": "projections sur la mairie",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "name": "TOKYO Night & Light",
+          "nameJa": "東京都庁第一本庁舎 プロジェクションマッピング",
+          "ward": "新宿区",
+          "why": "Projection monumentale sur la façade du siège du gouvernement métropolitain, programme de la Ville de Tokyo. Un exemple d'art numérique de commande publique, à voir en passant un soir à Shinjuku.",
+          "practical": {
+            "horaires": "Séances le soir, à partir de 17 h 30 à la date de lecture. Horaires du jour et annulations sur le site."
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://tokyoprojectionmappingproject.jp/",
+              "read": "2026-11-21",
+              "what": "« TOKYO Night & Light 上映中 », horaires du jour à partir de 17:30, lien vers une version anglaise."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/1701045773 (arrêt 都庁第一本庁舎, au pied du bâtiment) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "top-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7134,
+          35.64154
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "TOP Museum",
+        "hook": "photo et image en mouvement",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "also": "culture",
+          "name": "Tokyo Photographic Art Museum (TOP)",
+          "nameJa": "東京都写真美術館",
+          "ward": "目黒区",
+          "why": "Le musée de la photographie et de l'image en mouvement, à Ebisu, qui organise le festival Yebisu des images. Des images avant tout, et un site en anglais. À 900 m du Liquidroom de l'agenda.",
+          "practical": {
+            "horaires": "10 h à 18 h, jeudi et vendredi jusqu'à 20 h, entrée jusqu'à 30 min avant",
+            "fermeture": "Lundi (le jour ouvré suivant si le lundi est férié), fin d'année"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://topmuseum.jp/guide/",
+              "read": "2026-11-21",
+              "what": "Horaires, jours de fermeture."
+            },
+            {
+              "url": "https://topmuseum.jp/e/contents/index.html",
+              "read": "2026-11-21",
+              "what": "Version anglaise : expositions, avis du 18 nov. 2026 sur le festival Yebisu."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/250668627 (東京都写真美術館) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mon-takanawa",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.74166,
+          35.63944
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "MoN Takanawa",
+        "hook": "expo sonore de Richie Hawtin",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "also": "culture",
+          "name": "MoN Takanawa: The Museum of Narratives (モン タカナワ)",
+          "nameJa": "モン タカナワ:ザ ミュージアム オブ ナラティブス",
+          "ward": "港区",
+          "why": "Lieu culturel relié à la gare de Takanawa Gateway. On y voit jusqu'à fin décembre 2026 « Polyphonic Fermentation », installation de son et d'image de Richie Hawtin et Ali Demirel sur la fermentation du saké, en entrée libre dans la salle de tatamis. Déjà dans l'agenda.",
+          "practical": {
+            "horaires": "10 h à 21 h, variable selon les programmes",
+            "fermeture": "Le deuxième mardi du mois, fin d'année",
+            "prix": "Entrée libre pour l'installation",
+            "station": "Takanawa Gateway (JR), 6 min depuis la sortie nord. Sengakuji (ligne Asakusa), sortie A4, 3 min."
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://montakanawa.jp/en/visit/",
+              "read": "2026-11-21",
+              "what": "Horaires et accès, en anglais."
+            },
+            {
+              "url": "https://montakanawa.jp/en/visit/schedule/",
+              "read": "2026-11-21",
+              "what": "Jours de fermeture."
+            },
+            {
+              "url": "https://tokyo.mutek.org/en/news/plastikman-polyphonic-fermentation",
+              "read": "2026-11-21",
+              "what": "L'installation : auteurs, sujet, lieu, entrée libre, du 23 nov. au 27 déc. 2026."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/14119219739 (モン タカナワ:ザ ミュージアム オブ ナラティブス) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tokyo-atlas",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77979,
+          35.61534
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "TOKYO ATLAS",
+        "hook": "biennale art numérique cool",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T07:00:00Z",
+        "idea": {
+          "category": "art-numerique",
+          "also": "culture",
+          "name": "TOKYO ATLAS International Art Exhibition",
+          "nameJa": "国際美術展 TOKYO ATLAS",
+          "ward": "江東区",
+          "why": "L'exposition internationale d'art de la Ville de Tokyo, gratuite, répartie sur le front de mer entre Daiba, Aomi et Tennoz jusqu'au 20 déc. 2026. Le repère est à Aomi : sous le parc, un parking souterrain de 197 m d'ordinaire fermé au public accueille huit artistes, dont une installation vidéo à cinq écrans de Kawita Vatanajyankur, avec Haroon Mirza (électricité, son, lumière) dans le parc et les ballons de Kusama à 200 m. C'est de l'art contemporain plus que de l'art numérique au sens strict, mais rien n'est à lire et le site comme le plan sont en anglais. Vaut le détour avec une demi-journée devant soi, trajet compris, pas pour une heure creuse.",
+          "practical": {
+            "horaires": "10 h à 17 h, dernière entrée 16 h 30 (16 h 20 au parking souterrain)",
+            "fermeture": "Lundi. Ouvert le lundi férié 23 nov. 2026 et fermé le mardi 24. L'exposition finit le 20 déc. 2026.",
+            "booking": "Créneau horaire à réserver pour le parking souterrain, sur ArtSticker. Le reste est en accès libre. Sans réservation, à Tennoz : Isle Shinagawa (installation vidéo de Sasaoka Yuriko) et WHAT MUSEUM.",
+            "prix": "Gratuit, sauf certains programmes",
+            "station": "Telecom Center (ligne Yurikamome), 4 min à pied. Pour Tennoz : Tennozu Isle (ligne Rinkai, sortie B), 3 min.",
+            "adresse": "Parc Aomi Minami-futō, Aomi 2-chōme, Kōtō-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://tokyoatlas.jp/en/exhibition",
+              "read": "2026-11-22",
+              "what": "Site officiel, en anglais : du 10 oct. au 20 déc. 2026, horaires, jours de fermeture, lieux, artistes par lieu, parking souterrain de 197,5 m « currently closed to public use », réservation d'un créneau."
+            },
+            {
+              "url": "https://tokyoatlas.jp/en/access",
+              "read": "2026-11-22",
+              "what": "Accès de chaque lieu, dernière entrée du parking souterrain."
+            },
+            {
+              "url": "https://tokyoatlas.jp/en/about",
+              "read": "2026-11-22",
+              "what": "« Free Admission. Fees apply to some programs and exhibitions. »"
+            },
+            {
+              "url": "https://tokyoatlas.jp/en/artists/kawita-vatanajyankur",
+              "read": "2026-11-22",
+              "what": "Nouvelle œuvre vidéo créée dans le parking souterrain d'Aomi."
+            },
+            {
+              "url": "https://www.kawitav.com/items/this-is-a-title-01",
+              "read": "2026-11-22",
+              "what": "Site de l'artiste, lu dans un extrait de recherche : « Traffic » (2026), installation vidéo à cinq écrans, commande de TOKYO ATLAS."
+            },
+            {
+              "url": "https://tokyoatlas.jp/en/artists/haroon-mirza",
+              "read": "2026-11-22",
+              "what": "Haroon Mirza : interférences entre électricité, son et lumière ; lieu Aomi Minami Port Park."
+            },
+            {
+              "url": "https://tokyoatlas.jp/en/news/20261118",
+              "read": "2026-11-22",
+              "what": "Avis du 17 nov. 2026 : 101 032 visiteurs au 10 nov., l'exposition continue jusqu'au 20 déc."
+            },
+            {
+              "url": "https://tokyoatlas.jp/TA2026_guidemap.pdf",
+              "read": "2026-11-22",
+              "what": "Plan bilingue, lu dans un extrait de recherche."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap relation/14925596 (青海南ふ頭公園, le parc ; le parking souterrain est dessous, son entrée n'est pas placée) via Nominatim",
+          "verify": true,
+          "verifyNote": "Disponibilité des créneaux du parking souterrain non lue : la page de réservation ne s'affiche pas sans JavaScript. Réserver avant de partir. La technique de chaque œuvre n'a été lue que pour deux artistes."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mosakusha",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70742,
+          35.68913
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Mosakusha",
+        "hook": "zines militants, en japonais",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "culture",
+          "name": "Mosakusha",
+          "nameJa": "模索舎",
+          "zone": "zone-shinjuku-est",
+          "ward": "新宿区",
+          "why": "Surtout en japonais. Librairie des « mini-komi » et des publications à petite diffusion : journaux étudiants, fanzines, brochures politiques, revues de cinéma marginal. On y trouve ce que les mouvements sociaux japonais publient eux-mêmes, donc en japonais, et le site n'a pas de version anglaise. À 170 m du Pit Inn de l'agenda, pour y jeter un œil en passant.",
+          "practical": {
+            "horaires": "En semaine 13 h à 21 h. Horaires du week-end non lus.",
+            "fermeture": "Pas de jour de fermeture fixe",
+            "adresse": "2-4-9 Shinjuku, Shinjuku-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.mosakusha.com/",
+              "read": "2026-11-21",
+              "what": "Adresse, horaires, « 定休日なし », catalogue en japonais, aucun lien vers une version anglaise."
+            },
+            {
+              "url": "https://x.com/mosakusha",
+              "read": "2026-11-21",
+              "what": "Compte officiel : nouveaux arrivages liés à des événements d'octobre et novembre 2026."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/4066249662 (模索舎) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "wam",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71625,
+          35.70792
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "wam",
+        "hook": "femmes et crimes de guerre",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "name": "Women's Active Museum on War and Peace (wam)",
+          "nameJa": "アクティブ・ミュージアム 女たちの戦争と平和資料館",
+          "zone": "zone-okubo-waseda",
+          "ward": "新宿区",
+          "why": "Surtout en japonais : les panneaux de ses expositions sont en japonais et les visites guidées aussi, seul un dépliant existe en anglais. C'est le premier musée du Japon sur les violences sexuelles en temps de guerre et la question des « femmes de réconfort », tenu par une association sans aide publique. Il ferme les jours fériés, sauf quatre fêtes liées à l'empereur qu'il refuse de célébrer.",
+          "practical": {
+            "horaires": "Vendredi, samedi, dimanche, lundi, 13 h à 18 h",
+            "fermeture": "Mardi, mercredi, jeudi, jours fériés, fin d'année, changements d'exposition",
+            "prix": "500 yens, espèces seulement",
+            "adresse": "2-3-18 Nishi-Waseda, immeuble AVACO 2F, Shinjuku-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://wam-peace.org/",
+              "read": "2026-11-21",
+              "what": "Présentation, adresse, horaires, fermetures, tarif ; site mis à jour le 16 nov. 2026."
+            },
+            {
+              "url": "https://wam-peace.org/en/faq",
+              "read": "2026-11-21",
+              "what": "Version anglaise : géré par l'association Women's Fund for Peace and Human Rights, sans aide publique ; visites guidées en japonais (« bring a translator ») ; panneaux des expositions passées « all panels are Japanese »."
+            },
+            {
+              "url": "https://wam-peace.org/en/",
+              "read": "2026-11-21",
+              "what": "Version anglaise : dépliant en anglais (PDF de 2019), horaires."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/13569363447 (wam, AVACOビル2F) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "daigo-fukuryu-maru",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.82635,
+          35.65096
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Daigo Fukuryū Maru",
+        "hook": "thonier irradié à Bikini",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "name": "Daigo Fukuryū Maru Exhibition Hall",
+          "nameJa": "都立第五福竜丸展示館",
+          "ward": "江東区",
+          "why": "Le thonier en bois touché par l'essai thermonucléaire américain de Bikini le 1er mars 1954, conservé entier : le bateau se regarde sans rien lire. Construit par la Ville de Tokyo, le hall raconte aussi par des panneaux le mouvement contre les bombes A et H. Le site anglais décrit l'exposition et prévient qu'il n'y a pas de guide en anglais.",
+          "practical": {
+            "horaires": "9 h 30 à 16 h",
+            "fermeture": "Lundi (le jour ouvré suivant si le lundi est férié)",
+            "prix": "Gratuit",
+            "adresse": "Parc de Yumenoshima, Kōtō-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://d5f.org/",
+              "read": "2026-11-21",
+              "what": "Histoire du navire, gestionnaire, horaires, gratuité (mise à jour 2026-11-10)."
+            },
+            {
+              "url": "https://d5f.org/en/",
+              "read": "2026-11-21",
+              "what": "Version anglaise : description de l'exposition et des panneaux, « No English guide available. Please arrange an interpreter by yourself. »"
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/1420795772 (都立第五福竜丸展示館) via Nominatim",
+          "verify": true,
+          "verifyNote": "Langue des panneaux non lue. Le site anglais ne dit pas s'ils sont traduits."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tokyo-raids-centre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.82226,
+          35.68174
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Centre des bombardements",
+        "hook": "la ville sous les bombes",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "name": "Center of the Tokyo Raids and War Damage",
+          "nameJa": "東京大空襲・戦災資料センター",
+          "zone": "zone-kiyosumi-kitasuna",
+          "ward": "江東区",
+          "why": "Petit musée et centre de recherche sur les bombardements de Tokyo, à Kitasuna, bâti grâce aux dons de plus de 4 000 personnes et rattaché à une fondation d'études politiques et économiques. Il a une page et un dépliant en anglais. À 1,2 km du MOT de l'agenda.",
+          "practical": {
+            "horaires": "10 h 30 à 16 h",
+            "fermeture": "Lundi (mardi si le lundi est férié), fin d'année",
+            "prix": "300 yens"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://tokyo-sensai.net/visiting/",
+              "read": "2026-11-21",
+              "what": "Horaires, fermetures, tarifs."
+            },
+            {
+              "url": "https://tokyo-sensai.net/english",
+              "read": "2026-11-21",
+              "what": "Page en anglais : histoire des raids, origine du centre, dons, horaires, lien vers un dépliant en anglais."
+            },
+            {
+              "url": "https://tokyo-sensai.net/",
+              "read": "2026-11-21",
+              "what": "Adresse, rattachement à la fondation 政治経済研究所."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/1420783697 (東京大空襲・戦災資料センター) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "koryo-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70364,
+          35.69845
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Musée Kōrai",
+        "hook": "Japon-Corée, musée citoyen",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "culture",
+          "name": "Musée Kōrai",
+          "nameJa": "高麗博物館",
+          "zone": "zone-okubo-waseda",
+          "ward": "新宿区",
+          "why": "Sans doute surtout en japonais : le site du musée n'a pas de version anglaise. Musée « fait par des citoyens » sur l'histoire des échanges entre le Japon et la Corée, au 7e étage d'un immeuble d'Ōkubo.",
+          "practical": {
+            "horaires": "12 h à 17 h",
+            "fermeture": "Lundi, mardi, fin d'année",
+            "adresse": "1-12-1 Ōkubo, immeuble Dai-ni Kankoku Hiroba 7F, Shinjuku-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://kouraihakubutsukan.org/",
+              "read": "2026-11-21",
+              "what": "Présentation, adresse, horaires, fermetures, exposition 2026. Site en japonais, aucun lien vers une version anglaise."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/1420800487 (高麗博物館) via Nominatim",
+          "verify": true,
+          "verifyNote": "Langue des panneaux non lue."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nantoka-bar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.64711,
+          35.70632
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Shirōto no Ran, Nantoka Bar",
+        "hook": "un patron différent par soir",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "cuisine",
+          "name": "Shirōto no Ran : Nantoka Bar",
+          "nameJa": "素人の乱 16号店 なんとかBAR",
+          "zone": "zone-koenji",
+          "ward": "杉並区",
+          "why": "Le bar du réseau Shirōto no Ran (« la révolte des amateurs »), tenu chaque soir par un gérant différent. C'est l'entrée la plus simple dans ce réseau de boutiques de récupération, de fripes et de lieux partagés de Kōenji : un bar, rien à lire. La boutique n° 5 et la pension Manuke sont à deux rues.",
+          "practical": {
+            "horaires": "Ouvre vers 19 h les soirs où un gérant est inscrit. Le calendrier du mois est sur le site, certains soirs restent vides.",
+            "station": "Kōenji, 3 min",
+            "adresse": "3-4-12 Kōenji-kita, Suginami-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.shirouto.org/nantokabar/",
+              "read": "2026-11-21",
+              "what": "Bar à gérant du jour, ouverture vers 19 h, calendriers de novembre et décembre 2026 : des gérants inscrits pendant chacun des deux passages."
+            },
+            {
+              "url": "https://trio4.nobody.jp/keita/shop/index.html",
+              "read": "2026-11-21",
+              "what": "Liste des boutiques Shirōto no Ran avec adresses et horaires."
+            },
+            {
+              "url": "https://manuke.tokyo/guide.html",
+              "read": "2026-11-21",
+              "what": "Pension Manuke, 3-8-12 Kōenji-kita."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都杉並区高円寺北三丁目4番12号"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "etc-books",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.65977,
+          35.66248
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Etcetera Books",
+        "hook": "librairie féministe",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "culture",
+          "name": "Etcetera Books Bookshop",
+          "nameJa": "エトセトラブックス BOOKSHOP",
+          "zone": "zone-shimokitazawa",
+          "ward": "世田谷区",
+          "why": "Surtout en japonais, et fermée pendant le premier passage : elle n'ouvre que du jeudi au samedi. C'est la librairie de la maison d'édition féministe Etcetera Books, qui publie en japonais, à une minute de la gare de Shindaita et à 60 m de la salle Fever de l'agenda.",
+          "practical": {
+            "horaires": "Jeudi, vendredi, samedi, 12 h à 20 h. Les autres ouvertures sont annoncées sur ses réseaux.",
+            "station": "Shindaita (ligne Inokashira) 1 min, Shimokitazawa 10 min",
+            "adresse": "4-10-18 Daita, immeuble Daita 1F, Setagaya-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://etcbooks.co.jp/bookshop/",
+              "read": "2026-11-21",
+              "what": "Adresse, jours et horaires, accès."
+            },
+            {
+              "url": "https://etcbooks.co.jp/news_magazine/english/",
+              "read": "2026-11-21",
+              "what": "Présentation en anglais : maison d'édition du magazine féministe de langue japonaise « etc. », traductions vers le japonais, librairie ouverte en 2021."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都世田谷区代田四丁目10番18号"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "platform3",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.68396,
+          35.70601
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "platform3",
+        "hook": "zines queer d'Asie",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "culture",
+          "name": "platform3 (loneliness books × (TT) press)",
+          "nameJa": "platform3（東中野）",
+          "ward": "中野区",
+          "why": "Librairie et lieu d'édition queer tenu par loneliness books et (TT) press : livres et zines d'Asie sur le genre, le féminisme, la solitude et la solidarité, avec projections et rencontres. Rien ne dit quelle part se lit sans japonais. Le cinéma Pole Pole Higashi-Nakano est à 80 m.",
+          "practical": {
+            "horaires": "Lundi à vendredi 14 h à 22 h, samedi et dimanche 12 h à 22 h, fermetures irrégulières (lu sur un guide tiers)",
+            "station": "Higashi-Nakano (JR Sōbu, sortie ouest ; ligne Ōedo)",
+            "adresse": "1-56-5 Higashi-Nakano, immeuble Hoshino 401, Nakano-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://qpptokyo.com/about",
+              "read": "2026-11-21",
+              "what": "loneliness books : présentation, lieu platform3 à Higashi-Nakano, accès."
+            },
+            {
+              "url": "https://www.threads.com/@lonelinessbooks",
+              "read": "2026-11-21",
+              "what": "Compte officiel actif en novembre 2026 : adresse, rencontres."
+            },
+            {
+              "url": "https://afterora.com/ja/tokyo/jp-day-20260915-006",
+              "read": "2026-11-21",
+              "what": "Guide tiers, sept. 2026 : horaires."
+            },
+            {
+              "url": "https://pole2.co.jp/",
+              "read": "2026-11-21",
+              "what": "Site officiel du cinéma Pole Pole Higashi-Nakano."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都中野区東中野一丁目56番5号",
+          "verify": true,
+          "verifyNote": "Horaires lus sur un guide tiers (AFTERORA, sept. 2026), pas sur le site de la librairie. Langue des livres et des zines non lue."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "pride-house",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71278,
+          35.68799
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Pride House Tokyo",
+        "hook": "centre LGBTQ+ et archives",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "name": "Pride House Tokyo Legacy",
+          "nameJa": "プライドハウス東京レガシー",
+          "zone": "zone-shinjuku-est",
+          "ward": "新宿区",
+          "why": "Le centre LGBTQ+ permanent de Tokyo, près du parc Shinjuku Gyoen : accueil, archives et bibliothèque, événements. Sa page n'existe qu'en japonais et ses horaires changent selon les jours.",
+          "practical": {
+            "horaires": "Variables selon les jours, fermetures irrégulières. Le calendrier du mois est publié sur le site.",
+            "prix": "Gratuit",
+            "station": "Shinjuku-gyoemmae (ligne Marunouchi), sortie 2, 3 min",
+            "adresse": "1-2-9 Shinjuku, immeuble JF Shinjuku Gyoen 2F, Shinjuku-ku"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://pridehouse.jp/legacy/",
+              "read": "2026-11-21",
+              "what": "« 常設の総合LGBTQ+センター », adresse, horaires variables, gratuité, accès ; page en japonais sans lien vers une version anglaise."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/9780816437 (プライドハウス東京レガシー) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yasukuni-yushukan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.74333,
+          35.69532
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Yasukuni, Yūshūkan",
+        "hook": "mémoire de guerre contestée",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "name": "Sanctuaire Yasukuni et musée Yūshūkan",
+          "nameJa": "靖國神社・遊就館",
+          "ward": "千代田区",
+          "why": "Site contesté, à comprendre plus qu'à visiter en touriste. Le sanctuaire honore les morts de guerre du Japon, et les visites de Premiers ministres sont critiquées comme un hommage à des criminels de guerre, ce qui en a fait un sujet politique et diplomatique avec la Chine et la Corée. Son musée, le Yūshūkan, raconte les guerres du point de vue du sanctuaire, avec un guide en anglais par code QR. À 700 m, le cimetière des morts de guerre de Chidorigafuchi offre un autre cadre de recueillement.",
+          "practical": {
+            "horaires": "Yūshūkan : 9 h à 16 h 30, dernière entrée 30 min avant",
+            "fermeture": "Ouvert tous les jours, sauf quelques jours fin juin et fin décembre"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.yasukuni.or.jp/english/yushukan/",
+              "read": "2026-11-21",
+              "what": "Version anglaise : rôle du musée selon le sanctuaire, horaires, jours de fermeture, dépliant en anglais."
+            },
+            {
+              "url": "https://www.yasukuni.or.jp/english/yushukan/news_detail.html?id=617",
+              "read": "2026-11-21",
+              "what": "« MUSEUM Guide » par code QR, en japonais et en anglais."
+            },
+            {
+              "url": "https://www.mofa.go.jp/a_o/rp/page24e_000021.html",
+              "read": "2026-11-21",
+              "what": "Déclaration du Premier ministre, 26 déc. 2013 : la visite « has become a political and diplomatic issue », critiquée comme « paying homage to war criminals »."
+            },
+            {
+              "url": "https://nominatim.openstreetmap.org/",
+              "read": "2026-11-21",
+              "what": "Cimetière de Chidorigafuchi, OpenStreetMap way/870979561, 35.69012 N, 139.74691 E."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/144379628 (遊就館) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "yokoamicho",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.79642,
+          35.69951
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Parc Yokoamichō",
+        "hook": "séisme 1923, stèle coréenne",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "culture",
+          "name": "Parc Yokoamichō : hall mémorial et musée de la reconstruction",
+          "nameJa": "都立横網町公園（東京都慰霊堂・復興記念館）",
+          "zone": "zone-sumida",
+          "ward": "墨田区",
+          "why": "Le parc mémorial du séisme de 1923 et des bombardements de 1945, avec un musée de la reconstruction gratuit. À côté du hall, une stèle de 1973 rappelle les Coréens massacrés après le séisme. La gouverneure Koike n'envoie plus de message à la cérémonie citoyenne du 1er septembre depuis 2017 : c'est ce qui en fait un lieu disputé. Le parc a un guide et un dépliant en anglais.",
+          "practical": {
+            "horaires": "Musée de la reconstruction 9 h à 17 h (entrée jusqu'à 16 h 30). Hall mémorial 9 h à 16 h 30.",
+            "fermeture": "Musée : lundi (mardi si le lundi est férié), fin d'année",
+            "prix": "Gratuit"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.tokyoireikyoukai.or.jp/museum/riyou.html",
+              "read": "2026-11-21",
+              "what": "Musée de la reconstruction : horaires, gratuité, fermetures."
+            },
+            {
+              "url": "https://tokyoireikyoukai.or.jp/multilingual/en.html",
+              "read": "2026-11-21",
+              "what": "Guide du parc en anglais, avec plan, vidéo et dépliant."
+            },
+            {
+              "url": "https://tokyoireikyoukai.or.jp/contact/faq.html",
+              "read": "2026-11-21",
+              "what": "Hall mémorial : horaires ; cérémonies du 1er sept. et du 10 mars."
+            },
+            {
+              "url": "https://www.tokyo-np.co.jp/article/512684",
+              "read": "2026-11-21",
+              "what": "Tokyo Shimbun, 1er sept. 2026 : cérémonie devant la stèle, pas de message de la gouverneure pour la dixième année."
+            },
+            {
+              "url": "https://www.tokyo-np.co.jp/article/512598",
+              "read": "2026-11-21",
+              "what": "Kyōdō via Tokyo Shimbun, 1er sept. 2026 : stèle érigée en 1973, messages des gouverneurs jusqu'en 2016."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/157050777 (都立横網町公園) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cafe-lavanderia",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70737,
+          35.69084
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Café Lavandería",
+        "hook": "ex-blanchisserie militante",
+        "color": "#D55E00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "militant",
+          "also": "cuisine",
+          "name": "Café Lavandería",
+          "nameJa": "カフェ・ラバンデリア",
+          "zone": "zone-shinjuku-est",
+          "ward": "新宿区",
+          "why": "Café de Shinjuku ni-chōme installé dans une ancienne blanchisserie, tenu par un groupe de membres, connu pour ses soirées de débats, de projections et de musique militantes. À ne tenter qu'après un coup de fil : son blog n'est plus mis à jour. Il est à 20 m du Pit Inn de l'agenda.",
+          "practical": {
+            "horaires": "14 h à 22 h, fermé lundi et mardi, selon un guide tiers daté de juillet 2026",
+            "adresse": "2-12-9 Shinjuku, immeuble Kōyōsha 1F, Shinjuku-ku",
+            "booking": "Téléphone lu sur le blog : 03-3341-4845"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://cafelavanderia.blogspot.com/",
+              "read": "2026-11-21",
+              "what": "Blog officiel : adresse, téléphone ; derniers billets lus datés de 2019 et 2020."
+            },
+            {
+              "url": "https://recosche.com/events/1462",
+              "read": "2026-11-21",
+              "what": "Guide tiers, information vérifiée en juillet 2026 : horaires, description."
+            },
+            {
+              "url": "https://tabelog.com/tokyo/A1304/A130401/13181699/dtlmap/",
+              "read": "2026-11-21",
+              "what": "Tabelog : fiche suspendue, état d'activité non confirmé."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都新宿区新宿二丁目12番9号",
+          "verify": true,
+          "verifyNote": "Ouverture en 2026 non confirmée par une source du lieu. Un guide tiers le dit ouvert en juillet 2026, Tabelog a suspendu sa fiche. Téléphoner avant."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "edo-tokyo-museum",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.79608,
+          35.69645
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Musée d'Edo-Tokyo",
+        "hook": "l'histoire en maquettes",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Musée d'Edo-Tokyo",
+          "nameJa": "江戸東京博物館",
+          "zone": "zone-sumida",
+          "ward": "墨田区",
+          "why": "Le grand musée de l'histoire de la ville, d'Edo à aujourd'hui, à Ryōgoku : maquettes et reconstitutions à l'échelle, du char de la fête de Kanda au marché noir de Shinjuku. Son site décrit l'exposition permanente pièce par pièce en anglais et donne un guide de visite en anglais. Le meilleur point de départ pour lire tout le reste.",
+          "practical": {
+            "horaires": "9 h 30 à 17 h 30, samedi jusqu'à 19 h 30, dernière entrée 30 min avant",
+            "fermeture": "Lundi (le jour ouvré suivant si le lundi est férié), fin d'année",
+            "prix": "Adulte entre 1 900 et 2 740 yens selon le billet",
+            "station": "Ryōgoku : ligne Ōedo, sorties A3 et A4, 1 min ; JR Sōbu, sortie ouest, 3 min"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.edo-tokyo-museum.or.jp/en/information/hours/",
+              "read": "2026-11-21",
+              "what": "Horaires et jours de fermeture."
+            },
+            {
+              "url": "https://www.edo-tokyo-museum.or.jp/en/p-exhibition/",
+              "read": "2026-11-21",
+              "what": "Exposition permanente décrite en anglais, pièce par pièce."
+            },
+            {
+              "url": "https://www.edo-tokyo-museum.or.jp/en/information/floor-guide/",
+              "read": "2026-11-21",
+              "what": "Guide de visite en anglais (PDF)."
+            },
+            {
+              "url": "https://www.edo-tokyo-museum.or.jp/en/information/access/",
+              "read": "2026-11-21",
+              "what": "Accès."
+            },
+            {
+              "url": "https://www.edo-tokyo-museum.or.jp/en/information/guide/",
+              "read": "2026-11-21",
+              "what": "Tarifs."
+            },
+            {
+              "url": "https://www.edo-tokyo-museum.or.jp/en/",
+              "read": "2026-11-21",
+              "what": "Annonce du 2026.10.19 sur le million de visiteurs : le musée est ouvert."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/76187056 (江戸東京博物館) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mingeikan",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.67931,
+          35.66082
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Mingeikan",
+        "hook": "artisanat du quotidien",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Musée des arts populaires du Japon (Mingeikan)",
+          "nameJa": "日本民藝館",
+          "ward": "目黒区",
+          "why": "Le musée de l'artisanat populaire (mingei), à Komaba : des objets à regarder, et un site en anglais. Inaccessible pendant le premier passage (deux jours sur réservation, complets, puis un jour de fermeture), ouvert pendant le second avec son concours annuel d'artisans d'aujourd'hui.",
+          "practical": {
+            "horaires": "10 h à 17 h, guichet jusqu'à 16 h 30",
+            "fermeture": "Lundi (sauf lundi férié), entre les expositions, fin d'année",
+            "adresse": "4-3-33 Komaba, Meguro-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://mingeikan.or.jp/information/admission/?lang=en",
+              "read": "2026-11-21",
+              "what": "Horaires et jours de fermeture, en anglais."
+            },
+            {
+              "url": "https://mingeikan.or.jp/information/calendar/?lang=en",
+              "read": "2026-11-21",
+              "what": "Calendrier : jours ouverts et fermés de novembre et décembre 2026."
+            },
+            {
+              "url": "https://mingeikan.or.jp/?lang=en",
+              "read": "2026-11-21",
+              "what": "Concours annuel, avis sur les jours sur réservation et complets, adresse."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/133340564 (日本民藝館) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "scai-the-bathhouse",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7705,
+          35.72175
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "SCAI The Bathhouse",
+        "hook": "galerie dans d'anciens bains",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "SCAI The Bathhouse",
+          "nameJa": "スカイ ザ バスハウス",
+          "zone": "zone-yanaka-ueno",
+          "ward": "台東区",
+          "why": "Galerie d'art contemporain installée dans les anciens bains publics Kashiwayu, à Yanaka. Des œuvres à regarder, et un site en anglais.",
+          "practical": {
+            "horaires": "12 h à 18 h",
+            "fermeture": "Dimanche, lundi, jours fériés, et entre les expositions",
+            "adresse": "6-1-23 Yanaka, Taitō-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.scaithebathhouse.com/en/access/",
+              "read": "2026-11-21",
+              "what": "Adresse, horaires, fermetures."
+            },
+            {
+              "url": "https://www.scaithebathhouse.com/en/",
+              "read": "2026-11-21",
+              "what": "Exposition en cours jusqu'au 19 déc. 2026."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/821539905 (スカイ ザ バスハウス) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kosugi-yu",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.64881,
+          35.70811
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Kosugi-yu",
+        "hook": "bains publics depuis 1933",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Kosugi-yu",
+          "nameJa": "小杉湯",
+          "zone": "zone-koenji",
+          "ward": "杉並区",
+          "why": "Bains publics de quartier fondés en 1933 à Kōenji, dans leur bâtiment d'origine, où tous les âges du quartier se croisent. La façon la plus simple d'entrer dans la culture du sentō : rien à lire, même si le site n'a pas de version anglaise.",
+          "practical": {
+            "horaires": "En semaine 14 h à 1 h 30, week-end et fériés 8 h à 1 h 30",
+            "fermeture": "Jeudi",
+            "prix": "600 yens"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://kosugiyu.co.jp/",
+              "read": "2026-11-21",
+              "what": "Histoire, horaires, jour de fermeture, tarif. Site en japonais."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/6344060790 (小杉湯) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lion",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.69636,
+          35.65928
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Meikyoku Kissa Lion",
+        "hook": "classique écouté en silence",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "cuisine",
+          "name": "Meikyoku Kissa Lion",
+          "nameJa": "名曲喫茶ライオン",
+          "zone": "zone-shibuya-harajuku",
+          "ward": "渋谷区",
+          "why": "Café de musique classique fondé en 1926, centenaire en 2026. Les sièges font face à une enceinte géante, on se tait et on écoute : rien à lire. Concerts de disques à 15 h et à 19 h. À 340 m du WWW X de l'agenda.",
+          "practical": {
+            "horaires": "13 h à 20 h, dernière commande 19 h 30 (lu dans un guide tiers)",
+            "prix": "Espèces seulement, photos interdites (lu dans un guide tiers)",
+            "adresse": "2-19-13 Dōgenzaka, Shibuya-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.sankei.com/article/20260906-JHLNGGMCUBLDVDYXQHL7HIVXXQ/",
+              "read": "2026-11-21",
+              "what": "Sankei, 6 sept. 2026 : le café est ouvert, cent ans, concerts à 15 h et 19 h."
+            },
+            {
+              "url": "https://rawjpn.com/ja/spots/meikyoku-kissa-lion",
+              "read": "2026-11-21",
+              "what": "Guide tiers vérifié le 13 sept. 2026 : adresse, horaires, règles."
+            },
+            {
+              "url": "https://lion.main.jp/",
+              "read": "2026-11-21",
+              "what": "Site officiel, en cadres, illisible par script."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/136608990 (名曲喫茶ライオン) via Nominatim",
+          "verify": true,
+          "verifyNote": "Horaires lus dans la presse et un guide tiers. Le site officiel n'a pas pu être lu."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bonus-track",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.66406,
+          35.65927
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "BONUS TRACK",
+        "hook": "échoppes et plats fermentés",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "cuisine",
+          "name": "BONUS TRACK (librairie B&B, Hakkō Department)",
+          "nameJa": "ボーナストラック（本屋B&B、発酵デパートメント）",
+          "zone": "zone-shimokitazawa",
+          "ward": "世田谷区",
+          "why": "Petit ensemble de boutiques indépendantes sur l'emprise de l'ancienne voie ferrée. On y va pour Hakkō Department, épicerie et cantine des aliments fermentés, avec un déjeuner de sept plats fermentés et des ateliers de miso. La librairie B&B voisine n'a de site qu'en japonais. À 530 m de la salle Fever de l'agenda.",
+          "practical": {
+            "horaires": "B&B : 11 h à 18 h à la date de lecture. Hakkō Department : boutique 11 h à 18 h 30, sans jour de fermeture.",
+            "station": "Shimokitazawa, 6 min"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://bookandbeer.com/",
+              "read": "2026-11-21",
+              "what": "B&B : horaires du jour, 21 nov. 2026. Site en japonais."
+            },
+            {
+              "url": "https://hakko-department.com/",
+              "read": "2026-11-21",
+              "what": "Hakkō Department : dans BONUS TRACK, horaires, déjeuner, ateliers ; annonce mise à jour le 2026/9/16."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/13706968479 (本屋B&B, dans Bonus Track) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kabuki-za",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76811,
+          35.66966
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Kabuki-za",
+        "hook": "théâtre à l'acte, sous-titré",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Kabuki-za",
+          "nameJa": "歌舞伎座",
+          "zone": "zone-tsukiji-ginza",
+          "ward": "中央区",
+          "why": "Le théâtre de kabuki de Ginza, qui joue pendant les deux passages. Des places à l'acte, au 4e niveau, permettent une première fois sans y passer la journée, et un boîtier de sous-titres en anglais se loue. À 500 m du marché de Tsukiji.",
+          "practical": {
+            "booking": "Places à l'acte : horaires et prix fixés chaque mois et publiés sur le site anglais KABUKI WEB. En novembre 2026, de 1 600 à 2 200 yens l'acte au 4e niveau."
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.kabuki-bito.jp/theaters/kabukiza/",
+              "read": "2026-11-21",
+              "what": "Programmes : du 1er au 25 nov. et du 2 au 25 déc. 2026."
+            },
+            {
+              "url": "https://www.kabukiweb.net/",
+              "read": "2026-11-21",
+              "what": "Site anglais : relâches de novembre (les 9 et 17), « Captioning service (either English or simplified Chinese subtitles) available to rent », programme vendu avec synopsis en anglais."
+            },
+            {
+              "url": "https://www.kabukiweb.net/about/ticket/single-act-tickets/",
+              "read": "2026-11-21",
+              "what": "Places à l'acte : au 4e niveau, pour la plupart des représentations, détails publiés chaque mois."
+            },
+            {
+              "url": "https://www.kabukiweb.net/news/kabukiza/singleact_november_2026/",
+              "read": "2026-11-21",
+              "what": "Prix des places à l'acte de novembre 2026."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap relation/4859313 (歌舞伎座) via Nominatim",
+          "verify": true,
+          "verifyNote": "Mode d'achat des places à l'acte et grille de décembre non lus : le site les publie au premier jour de chaque programme."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mot",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.80879,
+          35.67978
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "MOT",
+        "hook": "musée d'art contemporain",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "MOT, Museum of Contemporary Art Tokyo (東京都現代美術館)",
+          "nameJa": "東京都現代美術館",
+          "zone": "zone-kiyosumi-kitasuna",
+          "ward": "江東区",
+          "why": "Le musée d'art contemporain de la Ville de Tokyo, à Kiyosumi-Shirakawa, avec un site en anglais. Déjà dans l'agenda.",
+          "practical": {
+            "horaires": "10 h à 18 h, billets jusqu'à 30 min avant",
+            "fermeture": "Lundi (jour ouvré suivant si le lundi est férié), fin d'année, changements d'exposition",
+            "station": "Kiyosumi-Shirakawa (ligne Hanzōmon), sortie B2, 9 min"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.mot-art-museum.jp/en/guide/",
+              "read": "2026-11-21",
+              "what": "Horaires, fermetures, accès, en anglais."
+            },
+            {
+              "url": "https://www.mot-art-museum.jp/en/",
+              "read": "2026-11-21",
+              "what": "Expositions en cours."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap relation/12077221 (東京都現代美術館) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "murakami-library",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71991,
+          35.70974
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Bibliothèque Murakami",
+        "hook": "littérature sur le campus",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "name": "Waseda International House of Literature (bibliothèque Haruki Murakami)",
+          "nameJa": "早稲田大学国際文学館（村上春樹ライブラリー）",
+          "zone": "zone-okubo-waseda",
+          "ward": "新宿区",
+          "why": "La maison de la littérature de l'université Waseda, autour de Haruki Murakami, avec un site en anglais. À 400 m du musée wam.",
+          "practical": {
+            "horaires": "10 h à 17 h",
+            "fermeture": "Mercredi et jours désignés (voir le calendrier)",
+            "booking": "Sans réservation en dessous de 21 personnes"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.waseda.jp/culture/wihl/en",
+              "read": "2026-11-21",
+              "what": "Horaires, fermetures, réservation des groupes, en anglais."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/94117025 (早稲田大学国際文学館 村上春樹ライブラリー) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "jingu-gaien",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71976,
+          35.67315
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Ginkgos de Jingū Gaien",
+        "hook": "feuilles jaunes d'automne",
+        "color": "#0072B2",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "culture",
+          "also": "militant",
+          "name": "Allée des ginkgos de Jingū Gaien",
+          "nameJa": "神宮外苑いちょう並木",
+          "ward": "港区",
+          "why": "L'allée de ginkgos de Jingū Gaien, jaune à la fin de l'automne et illuminée le soir par la Ville de Tokyo jusqu'à la fin novembre 2026. La Ville a demandé aux promoteurs du réaménagement du quartier de revoir la conservation des arbres. À 640 m du Watari-um et à 870 m du Sogetsu Hall de l'agenda.",
+          "practical": {
+            "horaires": "Illumination de 16 h 30 à 19 h 30 environ (lu sur une page tierce)",
+            "prix": "Gratuit (voie publique)"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.kensetsu.metro.tokyo.lg.jp/information/press/r8/10/2026111302",
+              "read": "2026-11-21",
+              "what": "Communiqué du bureau de la construction de Tokyo, 13 nov. 2026 : titre « 神宮外苑イチョウ並木をライトアップ »."
+            },
+            {
+              "url": "https://chiba-style.com/event/27541/",
+              "read": "2026-11-21",
+              "what": "Page tierce du 17 nov. 2026 citant le communiqué : illumination du 21 au 29 nov., horaires, feuilles attendues au sol début décembre."
+            },
+            {
+              "url": "https://www.toshiseibi.metro.tokyo.lg.jp/bosai/toshi_saisei/saisei07.htm",
+              "read": "2026-11-21",
+              "what": "Bureau de l'urbanisme de Tokyo : demandes aux promoteurs sur la conservation des arbres et plan révisé."
+            }
+          ],
+          "coordinateSource": "Recherche d'adresse du GSI (institut géographique du Japon), précision de l'îlot : 東京都港区北青山二丁目1番 (bas de l'allée, côté Aoyama-dōri)",
+          "verify": true,
+          "verifyNote": "Durée et horaires de l'illumination lus sur une page tierce, le corps du communiqué officiel n'a pas pu être lu. L'état des feuilles pendant le second passage n'est pas connu."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tsukiji-outer-market",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77047,
+          35.66539
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Marché de Tsukiji",
+        "hook": "on mange devant l'étal",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Marché extérieur de Tsukiji",
+          "nameJa": "築地場外市場",
+          "zone": "zone-tsukiji-ginza",
+          "ward": "中央区",
+          "why": "Les ruelles de boutiques d'alimentation et de comptoirs restées à Tsukiji après le départ du marché de gros. On y mange dans la boutique ou devant l'étal, sans rien avoir à lire, et le site officiel a un guide en anglais. Des boutiques ferment quand le marché de gros est fermé : le dimanche, les jours fériés et certains mercredis.",
+          "practical": {
+            "horaires": "Achats professionnels de 6 h à 9 h, vente courante de 9 h à 14 h, ensuite au choix des boutiques. On ne mange pas en marchant.",
+            "fermeture": "Le calendrier du site suit les jours de fermeture du marché de gros. Certaines boutiques ferment ces jours-là.",
+            "station": "Tsukijishijō (ligne Ōedo) 1 min, Tsukiji (ligne Hibiya) 1 min"
+          },
+          "status": "todo",
+          "priority": 1,
+          "source": [
+            {
+              "url": "https://www.tsukiji.or.jp/english/guide/",
+              "read": "2026-11-21",
+              "what": "Règles de visite, en anglais."
+            },
+            {
+              "url": "https://www.tsukiji.or.jp/calendar/",
+              "read": "2026-11-21",
+              "what": "Calendriers de novembre et décembre 2026, tranches horaires, remarque sur les fermetures."
+            },
+            {
+              "url": "https://www.tsukiji.or.jp/english/access/",
+              "read": "2026-11-21",
+              "what": "Accès."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/606978548 (築地場外市場) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kappabashi",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.78855,
+          35.71252
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Kappabashi",
+        "hook": "couteaux et vaisselle de pro",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Kappabashi Dōgugai",
+          "nameJa": "かっぱ橋道具街",
+          "zone": "zone-sumida",
+          "ward": "台東区",
+          "why": "La rue des boutiques spécialisées pour les métiers de la restauration. C'est là qu'on achète un couteau, de la vaisselle ou un ustensile introuvable ailleurs. L'association de la rue a un site en anglais.",
+          "practical": {
+            "station": "Tawaramachi (ligne Ginza) 5 min, Iriya (ligne Hibiya) 6 min"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.kappabashi.or.jp/en/",
+              "read": "2026-11-21",
+              "what": "Association de la rue, en anglais : « specialty stores for the food service industry »."
+            },
+            {
+              "url": "https://www.kappabashi.or.jp/en/access/",
+              "read": "2026-11-21",
+              "what": "Accès."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/4691630391 (合羽橋, sur la rue かっぱ橋道具街通り) via Nominatim",
+          "verify": true,
+          "verifyNote": "Jours de fermeture des boutiques non lus."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "isetan-food",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7046,
+          35.69164
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Isetan, alimentation",
+        "hook": "cadeaux qui se mangent",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Isetan Shinjuku, étage alimentation",
+          "nameJa": "伊勢丹新宿店 食品フロア",
+          "zone": "zone-shinjuku-est",
+          "ward": "新宿区",
+          "why": "L'étage alimentation d'un grand magasin, qui publie chaque semaine son programme (ISETAN FOOD INDEX). Pour voir la culture du cadeau comestible et des plats préparés. À moins de 300 m du Pit Inn et du DJ Bar Bridge de l'agenda.",
+          "practical": {
+            "horaires": "10 h à 20 h, variable selon les étages"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.mistore.jp/store/shinjuku.html",
+              "read": "2026-11-21",
+              "what": "Horaires, lien vers les informations de l'étage alimentation, page pour les visiteurs étrangers."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap relation/16543147 (伊勢丹 新宿店本館) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "omoide-yokocho",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.6997,
+          35.69302
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Omoide Yokochō",
+        "hook": "brochettes au comptoir",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Omoide Yokochō",
+          "nameJa": "思い出横丁",
+          "zone": "zone-shinjuku-est",
+          "ward": "新宿区",
+          "why": "Environ 60 comptoirs, surtout de brochettes d'abats et de poulet, serrés contre la sortie ouest de la gare de Shinjuku. L'association de la ruelle a un site en anglais.",
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://shinjuku-omoide.com/english/",
+              "read": "2026-11-21",
+              "what": "Association de la ruelle, en anglais : environ 60 restaurants et 80 commerces, actualités jusqu'au 2026.10.01."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/103063340 (思い出横丁) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sunamachi-ginza",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.82744,
+          35.67926
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Sunamachi Ginza",
+        "hook": "180 boutiques de quartier",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Sunamachi Ginza",
+          "nameJa": "砂町銀座商店街",
+          "zone": "zone-kiyosumi-kitasuna",
+          "ward": "江東区",
+          "why": "Rue commerçante de 670 m et 180 boutiques à Kitasuna, connue pour ses prix bas. La cuisine de quartier hors des circuits, à 550 m du centre sur les bombardements.",
+          "practical": {
+            "horaires": "Variables : chaque boutique a les siens."
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://sunamachi-ginza.com/",
+              "read": "2026-11-21",
+              "what": "Association de la rue : longueur, nombre de boutiques."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/251500222 (carrefour 砂町銀座入口, à l'entrée de la rue) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kanda-yabu-soba",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76867,
+          35.69702
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Kanda Yabu Soba",
+        "hook": "nouilles de sarrasin, 1880",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Kanda Yabu Soba",
+          "nameJa": "かんだやぶそば",
+          "zone": "zone-jimbocho-kanda",
+          "ward": "千代田区",
+          "why": "Maison de soba de Kanda ouverte en 1880, pour goûter le seirō soba dans une institution du genre.",
+          "practical": {
+            "horaires": "11 h 30, dernière commande 20 h",
+            "fermeture": "Mercredi",
+            "adresse": "2-10 Kanda-Awajichō, Chiyoda-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.yabusoba.net/",
+              "read": "2026-11-21",
+              "what": "Adresse, horaires, jour de fermeture."
+            },
+            {
+              "url": "http://www.norenkai.net/en/portfolio-item/kanda-yabu-soba/",
+              "read": "2026-11-21",
+              "what": "Page en anglais de l'association des vieilles maisons de Tokyo : ouverture en 1880."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/688657370 (神田藪蕎麦) via Nominatim",
+          "verify": true,
+          "verifyNote": "Langue de la carte non lue."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "cafe-de-lambre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76229,
+          35.66793
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Café de l'Ambre",
+        "hook": "torréfié maison depuis 1948",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Café de l'Ambre",
+          "nameJa": "カフェ・ド・ランブル",
+          "zone": "zone-tsukiji-ginza",
+          "ward": "中央区",
+          "why": "Maison de 1948 à Ginza qui torréfie elle-même et ne sert que du café, dont des cafés vieillis, comme un Éthiopie récolté en 2016.",
+          "practical": {
+            "horaires": "En semaine 11 h à 20 h, dernière commande 19 h. Dimanche et jours fériés 11 h à 18 h, dernière commande 17 h.",
+            "fermeture": "Lundi"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.cafedelambre.com/",
+              "read": "2026-11-21",
+              "what": "Présentation, horaires, jour de fermeture, annonces du 2026/11/11 et du 2026/11/02."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/4367486089 (カフェ・ド・ランブル) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kayaba-coffee",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77077,
+          35.72115
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Kayaba Coffee",
+        "hook": "café de 1938, maison d'angle",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "also": "culture",
+          "name": "Kayaba Coffee",
+          "nameJa": "カヤバ珈琲",
+          "zone": "zone-yanaka-ueno",
+          "ward": "台東区",
+          "why": "Café de 1938 dans une vieille maison d'angle de Yanaka, à 70 m de la galerie SCAI et à 500 m du Musée national de l'agenda.",
+          "practical": {
+            "horaires": "8 h à 18 h, cuisine jusqu'à 17 h",
+            "fermeture": "Lundi (mardi si le lundi est férié)",
+            "booking": "Réservation possible jusqu'à la veille sur le site Toreta, conseillée en saison",
+            "adresse": "6-1-29 Yanaka, Taitō-ku"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.instagram.com/kayabacoffee/",
+              "read": "2026-11-21",
+              "what": "Compte officiel : horaires, fermeture, réservation."
+            },
+            {
+              "url": "https://www.tokyo-np.co.jp/article/471722",
+              "read": "2026-11-21",
+              "what": "Tokyo Shimbun, 10 mars 2026 : adresse, horaires, conseil de réserver."
+            },
+            {
+              "url": "https://yoyaku.toreta.in/kayabacoffee",
+              "read": "2026-11-21",
+              "what": "Page de réservation."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/4218484297 (カヤバ珈琲) via Nominatim",
+          "verify": true,
+          "verifyNote": "L'année 1938 vient d'un article tiers. Le domaine kayaba-coffee.com affiche un texte générique et n'a pas été retenu."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "tsukishima-monja",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.78246,
+          35.66428
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Tsukishima Monja",
+        "hook": "rue de la plaque chauffante",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Tsukishima Monja Street",
+          "nameJa": "月島もんじゃストリート",
+          "ward": "中央区",
+          "why": "La rue des restaurants de monjayaki, la spécialité de plaque chauffante de Tsukishima, réunis en coopérative.",
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://monja.gr.jp/",
+              "read": "2026-11-21",
+              "what": "Coopérative de promotion du monja de Tsukishima, site officiel, en japonais."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/10826682705 (月島もんじゃストリート) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "farmers-market-unu",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70822,
+          35.66247
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Farmer's Market",
+        "hook": "producteurs et food trucks",
+        "color": "#009E73",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-21T18:50:00Z",
+        "idea": {
+          "category": "cuisine",
+          "name": "Farmer's Market @UNU",
+          "nameJa": "青山ファーマーズマーケット",
+          "zone": "zone-shibuya-harajuku",
+          "ward": "渋谷区",
+          "why": "Marché de producteurs du week-end à Aoyama, avec des charrettes de cuisine. À 500 m du VENT et à 730 m du Blue Note de l'agenda.",
+          "practical": {
+            "horaires": "Chaque week-end. Le site annonce chaque édition."
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://farmersmarkets.jp/",
+              "read": "2026-11-21",
+              "what": "Édition des 21, 22 et 23 nov. 2026, marché « 毎週末 », charrettes de cuisine."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/96368987 (国連大学, Université des Nations unies) via Nominatim",
+          "verify": true,
+          "verifyNote": "Le lieu exact (parvis de l'Université des Nations unies) et les horaires n'ont pas été relus sur le site."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "map-camera",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.69724,
+          35.68945
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Map Camera",
+        "hook": "choix énorme, garantie 12 mois",
+        "note": "Map Camera à Shinjuku : le choix est énorme et l'occasion a 12 mois de garantie.",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T22:30:00Z",
+        "idea": {
+          "category": "photo",
+          "name": "Map Camera",
+          "nameJa": "マップカメラ本館",
+          "ward": "新宿区",
+          "why": "Boutique d'appareils photo neufs et d'occasion, côté ouest de la gare de Shinjuku. Le point est le bâtiment principal (MapCamera本館, immeuble Blanche), celui que le site donne comme adresse ; le comptoir de rachat est au 5F. Les conditions du magasin disent la garantie de l'occasion « jusqu'à un an », selon l'article, pour les boîtiers et objectifs à partir de 10 000 yens.",
+          "practical": {
+            "horaires": "11 h à 19 h",
+            "adresse": "西新宿1-12-5 ぶらんしぇビル"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.mapcamera.com/html/shopinfo/shopinfo.html",
+              "read": "2026-11-22",
+              "what": "Page du magasin, en japonais : MapCamera本館, adresse, 11:00 à 19:00, comptoir de rachat au 5F."
+            },
+            {
+              "url": "https://www.mapcamera.com/kiyaku/terms_guarantee.html",
+              "read": "2026-11-22",
+              "what": "Conditions de garantie, en japonais : occasion « 最長1年間 » à partir de l'achat, boîtiers et objectifs de 10 000 yens et plus, sauf exceptions."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/14134142125 (Map Camera, ぶらんしぇビル, vérifié sur place le 2026-08-29) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "fujiya-camera",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.66645,
+          35.70679
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Fujiya Camera",
+        "hook": "un peu moins cher, état honnête",
+        "note": "Fujiya Camera à Nakano : souvent un peu moins cher, et l'état de chaque appareil est noté honnêtement.",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T22:30:00Z",
+        "idea": {
+          "category": "photo",
+          "name": "Fujiya Camera",
+          "nameJa": "フジヤカメラ 本店",
+          "ward": "中野区",
+          "why": "Boutique d'appareils photo neufs et d'occasion près de la gare de Nakano. Le point est le magasin principal (本店, sur deux niveaux), pas les annexes voisines pour la vidéo (動画館) et les accessoires (用品館). Sur le site, chaque appareil d'occasion porte une note d'état (A, AB+, AB, AB-, B).",
+          "practical": {
+            "horaires": "10 h à 20 h 30"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://www.fujiya-camera.co.jp/",
+              "read": "2026-11-22",
+              "what": "Site du magasin, en japonais : 本店 10:00 à 20:30 (1F et 2F), annexes 動画館 et 用品館, notes d'état des occasions."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/1599578070 (フジヤカメラ 本店, 中野5-61-1, mêmes numéros de téléphone que le site) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sofmap-akiba",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77227,
+          35.69805
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Sofmap",
+        "hook": "facile à trouver un peu partout",
+        "note": "Sofmap ou Bic Camera, plus faciles à trouver un peu partout.",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T22:30:00Z",
+        "idea": {
+          "category": "photo",
+          "name": "Sofmap Akiba Ekimae",
+          "nameJa": "ソフマップAKIBA 駅前館",
+          "zone": "zone-jimbocho-kanda",
+          "ward": "千代田区",
+          "why": "Une chaîne, avec plusieurs magasins à Tokyo. Le point est celui d'Akihabara, devant la sortie Electric Town de la gare, dont le 1F est annoncé comme le rayon des téléphones et appareils photo d'occasion.",
+          "practical": {
+            "horaires": "11 h à 20 h",
+            "adresse": "外神田1-15-8"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.sofmap.com/tenpo/",
+              "read": "2026-11-22",
+              "what": "Liste des magasins, en japonais : AKIBA 駅前館, adresse, 11:00 à 20:00. Les rayons de chaque magasin ne se lisent pas sur cette page."
+            },
+            {
+              "url": "https://www.sofmap.co.jp/news/2022/94",
+              "read": "2026-11-22",
+              "what": "Communiqué de Sofmap de 2022 : 1F « 中古スマートフォン・カメラのフロア »."
+            },
+            {
+              "url": "https://ascii.jp/elem/000/004/191/4191105/4/",
+              "read": "2026-11-22",
+              "what": "Reportage d'avril 2024 : appareils et objectifs d'occasion en vente au 1F."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/10136672117 (ソフマップ, branch AKIBA 駅前館, vérifié sur place le 2026-11-14) via Nominatim",
+          "verify": true,
+          "verifyNote": "Le rayon des appareils photo d'occasion est lu dans un communiqué de 2022 et un reportage de 2024, pas sur la fiche du magasin à la date de lecture."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bic-camera-ikebukuro",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71359,
+          35.73157
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Bic Camera",
+        "hook": "facile à trouver un peu partout",
+        "note": "Sofmap ou Bic Camera, plus faciles à trouver un peu partout.",
+        "color": "#CC79A7",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T22:30:00Z",
+        "idea": {
+          "category": "photo",
+          "name": "Bic Camera Ikebukuro Camera-PC",
+          "nameJa": "ビックカメラ 池袋カメラ・パソコン館",
+          "ward": "豊島区",
+          "why": "Une chaîne, avec des magasins près de la plupart des grandes gares. Le point est le bâtiment photo et informatique d'Ikebukuro, sortie est, dont le 2F annonce les appareils photo numériques d'occasion. Ce n'est pas le magasin principal d'Ikebukuro, à 60 m.",
+          "practical": {
+            "horaires": "10 h à 22 h, tous les jours",
+            "adresse": "東池袋1-6-7"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.biccamera.com/bc/i/shop/shoplist/shop021.jsp",
+              "read": "2026-11-22",
+              "what": "Fiche du magasin, en japonais : 2F « デジタルカメラ・中古デジカメ », adresse, 10:00 à 22:00 sans jour de fermeture."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/5875272054 (ビックカメラ, branch 池袋カメラ・パソコン館, 東池袋1-6-7) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ts-tantan-tokyo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.76689,
+          35.68154
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "T's Tantan",
+        "hook": "ramen tantan vegan, le classique",
+        "note": "T's Tantan (T's たんたん), gare de Tokyo. Un ramen tantan vegan, le classique.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "T's Tantan",
+          "nameJa": "T's たんたん グランスタ東京",
+          "ward": "千代田区",
+          "why": "Ramen vegan, sans viande, poisson, œuf ni produit laitier. Le restaurant de la gare de Tokyo a déménagé le 1er août 2026 : il n'est plus sur Keiyō Street derrière les portillons, il est hors portillons, au B1 de Gransta Tokyo (zone Square Zero).",
+          "practical": {
+            "horaires": "10 h à 22 h, tous les jours",
+            "adresse": "丸の内1-9-1, gare JR de Tokyo, B1 hors portillons : à droite en sortant par le portillon グランスタ地下北口"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://prtimes.jp/main/html/rd/p/000001147.000082978.html",
+              "read": "2026-11-23",
+              "what": "Communiqué de l'exploitant : fermeture de l'ancien local le 31 juillet 2026, réouverture le 1er août au B1 hors portillons, 10:00 à 22:00."
+            },
+            {
+              "url": "https://shop.jr-cross.co.jp/eki/spot/detail?code=f16002",
+              "read": "2026-11-23",
+              "what": "Fiche du restaurant : « スクエア ゼロエリア B1 改札外 », 10:00 à 22:00 tous les jours."
+            },
+            {
+              "url": "https://ts-restaurant.jp/tantan/",
+              "read": "2026-11-23",
+              "what": "Site de la marque : liste des restaurants, « JR東京駅改札外 グランスタ東京（地下1階） »."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap way/1475304128 (スクエア ゼロ, l'allée du B1 où est le restaurant) via Nominatim ; le nœud du restaurant (node/4469290393) est encore à l'ancienne adresse",
+          "verify": true,
+          "verifyNote": "Déménagé le 1er août 2026. Le point est l'allée Square Zero du B1, pas la porte du restaurant, qu'OpenStreetMap n'a pas encore."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "vegan-gyoza",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77968,
+          35.72436
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Vegan Gyoza",
+        "hook": "onze sortes de gyoza maison",
+        "note": "VEGAN GYOZA, à Negishi. Onze sortes de gyoza faits maison. Fermé lundi et mardi.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "VEGAN GYOZA",
+          "nameJa": "ヴィーガン餃子",
+          "ward": "台東区",
+          "why": "Restaurant de gyoza entièrement vegan à Negishi, à 5 min de la gare d'Uguisudani. Sans réservation. Un magazine de septembre 2026 cite l'assortiment de onze gyoza à la vapeur.",
+          "practical": {
+            "horaires": "mercredi à dimanche, 12 h à 21 h (dernière commande 20 h)",
+            "fermeture": "lundi et mardi",
+            "adresse": "根岸3-11-17 陽光ビル 1F",
+            "station": "Uguisudani (JR)"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.vegangyoza.com/",
+              "read": "2026-11-23",
+              "what": "Site du restaurant : fermé lundi et mardi, mercredi à dimanche 12:00 à 21:00, sans réservation."
+            },
+            {
+              "url": "https://otonano-shumatsu.com/articles/583735/3",
+              "read": "2026-11-23",
+              "what": "Magazine, septembre 2026 : « 11種類の蒸し餃子 », adresse, fermé lundi et mardi."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/11607194970 (ヴィーガン餃子) via Nominatim, à 10 m du géocodage de l'adresse par le GSI"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "komaki-shokudo",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.77322,
+          35.69961
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Komaki Shokudo",
+        "hook": "teishoku shōjin du quotidien",
+        "note": "Komaki Shokudo Kamakura Fushikian, à Akihabara. Teishoku shōjin du quotidien, c'est le plus « japonais » de la liste. C'est un peu plus cher si tu prends le grand set.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "Komaki Shokudo Kamakura Fushikian",
+          "nameJa": "こまきしょくどう 鎌倉不識庵",
+          "zone": "zone-jimbocho-kanda",
+          "ward": "千代田区",
+          "why": "Cuisine shōjin servie en teishoku, dans la galerie CHABARA sous le viaduc, à 2 min de la sortie Electric Town de la gare d'Akihabara. Les réservations passent en premier.",
+          "practical": {
+            "horaires": "11 h à 20 h (dernière commande 19 h 30)",
+            "adresse": "神田練塀町8-2, CHABARA"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.kamakura-komaki.com",
+              "read": "2026-11-23",
+              "what": "Site du restaurant, en japonais : adresse, CHABARA, 11:00 à 20:00 (LO 19:30)."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/4535075891 (こまきしょくどう) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "vegan-ramen-uzu",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.79025,
+          35.64913
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Vegan Ramen UZU",
+        "hook": "ramen miso vegan, après teamLab",
+        "note": "Vegan Ramen UZU Tokyo, à Toyosu. Ramen miso vegan, avec une salle optionnelle plongée dans le noir et des projections. C'est idéal après teamLab Planets.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "Vegan Ramen UZU Tokyo",
+          "nameJa": "ヴィーガンラーメン ウズ トウキョウ",
+          "ward": "江東区",
+          "why": "Ramen miso vegan dans l'enceinte de teamLab Planets, à Toyosu, avec une salle où l'on mange au milieu d'une œuvre. On n'y entre qu'avec un billet de teamLab Planets.",
+          "practical": {
+            "horaires": "10 h 30 à 21 h 30, ramen de 11 h à 21 h",
+            "fermeture": "les jours de fermeture de teamLab Planets",
+            "adresse": "豊洲6-1-16, dans teamLab Planets"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://vegan-uzu.com/pages/uzu-tokyo",
+              "read": "2026-11-23",
+              "what": "Page du restaurant, en japonais : réservé aux visiteurs de teamLab Planets, horaires, salle « Emptiness Table »."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/10291421009 (Vegan Ramen UZU Tokyo) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "vegan-bistro-jangara",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70347,
+          35.66968
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Vegan Bistro Jangara",
+        "hook": "ramen, gyoza, pas cher, rapide",
+        "note": "Vegan Bistro Jangara, à Harajuku. Ramen, gyoza et plaque grésillante, pas cher et rapide.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "Vegan Bistro Jangara",
+          "nameJa": "ヴィーガンビストロじゃんがら",
+          "zone": "zone-shibuya-harajuku",
+          "ward": "渋谷区",
+          "why": "Le restaurant vegan de la maison de ramen Kyushu Jangara, à Harajuku, au 2F avec ascenseur. Sans réservation.",
+          "practical": {
+            "horaires": "11 h à 22 h (dernière commande 21 h)",
+            "adresse": "神宮前1-13-21 シャンゼール原宿2号館 2F"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://kyushujangara.co.jp/shops/veganbistro/",
+              "read": "2026-11-23",
+              "what": "Page du restaurant : 11:00 à 22:00 (LO 21:00), adresse, sans réservation."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/8922149558 (ヴィーガンビストロ じゃんがら, même adresse et téléphone que le site) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "shojin-ramen-sai",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.69745,
+          35.66256
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Shojin Ramen Sai",
+        "hook": "ramen shoyu plus fin, plus calme",
+        "note": "SHOJIN RAMEN 菜, à Shibuya. Un ramen shoyu plus fin et plus calme que Jangara.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "SHOJIN RAMEN 菜",
+          "nameJa": "精進ラーメン菜",
+          "zone": "zone-shibuya-harajuku",
+          "ward": "渋谷区",
+          "why": "Ramen entièrement végétal ouvert au printemps 2026 à Udagawachō, à 8 min à pied de la gare de Shibuya. Sans réservation.",
+          "practical": {
+            "horaires": "lundi à vendredi 11 h 30 à 15 h et 17 h à 23 h 30, samedi et dimanche 11 h 30 à 23 h 30",
+            "adresse": "宇田川町11-2"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://tabelog.com/tokyo/A1303/A130301/13321462/",
+              "read": "2026-11-23",
+              "what": "Tabelog, fiche tenue par le restaurant : adresse, horaires, entièrement vegan."
+            },
+            {
+              "url": "https://www.hotpepper.jp/strJ004608000/",
+              "read": "2026-11-23",
+              "what": "Hot Pepper : même adresse, aucun jour de fermeture, mais 11:00 à 24:00."
+            }
+          ],
+          "coordinateSource": "Géocodage de l'adresse 宇田川町11-2 par le GSI (msearch.gsi.go.jp), même point que NAVITIME ; pas encore dans OpenStreetMap"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "vegan-soba-ayler",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.66783,
+          35.66863
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Vegan Soba Ayler",
+        "hook": "soba et jazz sur vinyle",
+        "note": "Vegan Soba Tokyo Ayler, à Shimokitazawa. Soba et jazz sur vinyle.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "Vegan Soba Tokyo Ayler",
+          "nameJa": "ヴィーガン ソバ トウキョウ アイラー",
+          "ward": "世田谷区",
+          "why": "Soba vegan que l'on mange debout, et café, sur l'avenue Inokashira, à 15 min à pied de la gare de Shimokitazawa. Ouvert aussi certains soirs.",
+          "practical": {
+            "horaires": "selon Tabelog : lundi, mardi, jeudi 12 h à 17 h 30 ; mercredi, vendredi 12 h à 16 h 30 et 19 h 30 à 23 h 30 ; samedi, dimanche 12 h 30 à 16 h 30 et 19 h 30 à 23 h 30",
+            "adresse": "北沢4-24-15"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://tabelog.com/tokyo/A1318/A131811/13304651/",
+              "read": "2026-11-23",
+              "what": "Tabelog, fiche tenue par le lieu : adresse, horaires (mis à jour en mars 2026)."
+            },
+            {
+              "url": "https://shibukichi.net/2024/11/26/vegan-soba-tokyo-ayler_open/",
+              "read": "2026-11-23",
+              "what": "Média local, 2024 : ouverture, soba debout entièrement végétal, à 15 min de la gare."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/14370060201 (Vegan Soba Tokyo Ayler, ajouté le 2026-11-12) via Nominatim, à 5 m du point d'un annuaire pour l'adresse 北沢4-24-15",
+          "verify": true,
+          "verifyNote": "Les horaires du week-end diffèrent : ouvert d'après Tabelog et OpenStreetMap, fermé samedi et dimanche d'après un annuaire repris de Google Maps. Voir l'Instagram du lieu (@__ayler__) avant d'y aller."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ain-soph-journey",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.70675,
+          35.69068
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Ain Soph. Journey",
+        "hook": "cantine vegan, pancakes réputés",
+        "note": "Ain Soph. Journey Shinjuku. Une cantine vegan nippo-occidentale réputée pour ses pancakes.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "Ain Soph. Journey Shinjuku",
+          "nameJa": "アインソフ ジャーニー 新宿",
+          "zone": "zone-shinjuku-est",
+          "ward": "新宿区",
+          "why": "Café-restaurant entièrement vegan devant la sortie C5 de Shinjuku-sanchōme. Le plat le plus demandé est le pancake vegan. Le déjeuner est limité à 90 min et ne se réserve pas le jour même.",
+          "practical": {
+            "horaires": "semaine 11 h 30 à 16 h et 18 h à 21 h 30, week-end et fériés 11 h 30 à 17 h et 18 h à 21 h 30",
+            "adresse": "新宿3-8-9 新宿Qビル",
+            "station": "Shinjuku-sanchōme, sortie C5"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://www.ain-soph.jp/journey-shinjuku",
+              "read": "2026-11-23",
+              "what": "Page du restaurant, en japonais : adresse, horaires, carte, pancake « 1番人気 »."
+            }
+          ],
+          "coordinateSource": "OpenStreetMap node/4559935689 (アインソフ ジャーニー, 新宿3-8-9) via Nominatim"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "vege-coffee",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71939,
+          35.7072
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Vege++ Coffee",
+        "hook": "assiette copieuse, vieux chien",
+        "note": "Vege++ Coffee, à Nishi-Waseda. L'assiette du jour est très copieuse, et il y a un vieux chien. Fermé mardi et vendredi.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "Vege++ Coffee",
+          "nameJa": "ベジトコーヒー",
+          "zone": "zone-okubo-waseda",
+          "ward": "新宿区",
+          "why": "Café végétarien dans une vieille maison de Nishi-Waseda, avec des plats vegan (assiette au riz complet, burger) et un chien de la maison, Latte.",
+          "practical": {
+            "fermeture": "mardi d'après les annuaires lus, plus des jours irréguliers annoncés sur Instagram",
+            "adresse": "西早稲田1-1-8",
+            "station": "Waseda (ligne Tōzai) 2 min"
+          },
+          "status": "todo",
+          "priority": 2,
+          "source": [
+            {
+              "url": "https://veganmania.jp/places/vegetocoffee",
+              "read": "2026-11-23",
+              "what": "Annuaire vegan : adresse, fermé le mardi, plats vegan, « 看板犬ラテ »."
+            },
+            {
+              "url": "https://www.waseda.jp/culture/news/2024/05/05/25975",
+              "read": "2026-11-23",
+              "what": "Université Waseda, 2024 : adresse, plats 100 % végétaux."
+            }
+          ],
+          "coordinateSource": "Géocodage de l'adresse 西早稲田1-1-8 par le GSI (msearch.gsi.go.jp) ; pas dans OpenStreetMap",
+          "verify": true,
+          "verifyNote": "Sa note dit « fermé mardi et vendredi ». Les annuaires lus disent fermé le mardi seulement, avec des fermetures irrégulières annoncées sur l'Instagram du café (@vegetocoffee), qui n'a pas été lu."
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kaffetanten",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.71248,
+          35.71019
+        ]
+      },
+      "properties": {
+        "kind": "pin",
+        "text": "Kaffetanten",
+        "hook": "set végé de la patronne, ~800 ¥",
+        "note": "Kaffetanten, à Nishi-Waseda. Le set végé est fait par la patronne, pour environ 800 ¥. Ouvert du jeudi au samedi.",
+        "color": "#E69F00",
+        "resolution": 7.8,
+        "author": "agent",
+        "created": "2026-11-22T23:55:00Z",
+        "idea": {
+          "category": "manger",
+          "name": "Kaffetanten",
+          "nameJa": "カッフェタンテン",
+          "zone": "zone-okubo-waseda",
+          "ward": "新宿区",
+          "why": "Petit café suédois de Nishi-Waseda : pain suédois cuit sur place et déjeuner végétarien.",
+          "practical": {
+            "horaires": "jeudi, vendredi et samedi, 11 h à 17 h",
+            "adresse": "西早稲田2-15-4 プランドール西早稲田 105"
+          },
+          "status": "todo",
+          "priority": 3,
+          "source": [
+            {
+              "url": "https://cafe-cherche.com/place/9713",
+              "read": "2026-11-23",
+              "what": "Annuaire de cafés (fiche de juillet 2025) : adresse, jeudi à samedi 11:00 à 17:00, fermé du dimanche au mercredi."
+            },
+            {
+              "url": "https://tabelog.com/tokyo/A1305/A130504/13280498/",
+              "read": "2026-11-23",
+              "what": "Tabelog : même adresse, 1F."
+            }
+          ],
+          "coordinateSource": "Géocodage de l'adresse 西早稲田2-15-4 par le GSI (msearch.gsi.go.jp), à 20 m du point d'un annuaire ; pas dans OpenStreetMap"
+        }
+      }
+    }
+  ]
+}

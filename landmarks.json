@@ -1,0 +1,14 @@
+{
+  "tokyo": [
+    { "name": "Palais impérial", "kind": "castle", "lat": 35.68385, "lon": 139.75069, "source": "OpenStreetMap way 534754971 (Imperial Palace)" },
+    { "name": "Tokyo Tower", "kind": "monument", "lat": 35.65845, "lon": 139.74554, "source": "OpenStreetMap relation 4247312 (Tokyo Tower)" },
+    { "name": "Tokyo Skytree", "kind": "monument", "lat": 35.71005, "lon": 139.81071, "source": "OpenStreetMap way 288269147 (Tokyo Skytree)" },
+    { "name": "Sensō-ji", "kind": "temple", "lat": 35.7134, "lon": 139.79553, "source": "OpenStreetMap way 173154847 (Sensō-ji)" },
+    { "name": "Meiji-jingū", "kind": "shrine", "lat": 35.67484, "lon": 139.69963, "source": "OpenStreetMap way 469908925 (Meiji Jingu Main Shrine)" },
+    { "name": "Parc d'Ueno", "kind": "park", "lat": 35.71529, "lon": 139.77383, "source": "OpenStreetMap relation 18158889 (Ueno Park)" },
+    { "name": "Gare de Tokyo", "kind": "station", "lat": 35.68126, "lon": 139.7667, "source": "OpenFreeMap tile 14/14552/6451, layer poi (railway station Tōkyō)" },
+    { "name": "Shinjuku Gyoen", "kind": "garden", "lat": 35.68507, "lon": 139.70955, "source": "OpenStreetMap way 15772074 (Shinjuku Gyoen National Garden)" },
+    { "name": "Carrefour de Shibuya", "kind": "viewpoint", "lat": 35.65948, "lon": 139.70057, "source": "OpenStreetMap node 291758776 (Shibuya Scramble Crossing)" },
+    { "name": "Rainbow Bridge", "kind": "sight", "lat": 35.63638, "lon": 139.76393, "source": "OpenStreetMap way 316305908 (the bridge's roadway)" }
+  ]
+}

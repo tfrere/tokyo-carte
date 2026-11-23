@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tokyo, des lieux choisis</title>
+<meta name="description" content="Une carte de Tokyo : des lieux où aller, par envie. Musique, culture, art numérique, lieux militants, cuisine, où manger, photo.">
+<meta property="og:title" content="Tokyo, des lieux choisis">
+<meta property="og:description" content="Une carte de Tokyo : des lieux où aller, par envie.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#14171b">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171b'/%3E%3Ccircle cx='11' cy='12' r='4.5' fill='%235cc3f5'/%3E%3Ccircle cx='21' cy='10' r='3' fill='%23f5e04a'/%3E%3Ccircle cx='19' cy='21' r='5' fill='%23f08fc8'/%3E%3Ccircle cx='9' cy='23' r='2.5' fill='%2335d0a5'/%3E%3C/svg%3E">
+<!-- The map of Tokyo, standalone: one page, its data beside it, no build.
+     MapLibre GL JS (BSD-3-Clause) from a CDN, OpenFreeMap vector tiles (OpenMapTiles schema, OpenStreetMap data), no key.
+     The page contacts two hosts only: unpkg.com (the map library) and tiles.openfreemap.org (style, tiles, fonts). -->
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
+<script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js" integrity="sha384-nXMl9YiLoSG5KBPTFgvxVuIqQQcqIvo0bFrvoEaGJC6r7IibIzF1S36Zbf/sKBtL" crossorigin="anonymous"></script>
+<style>
+  :root { --key-h: 110px; }
+  html, body, #map { margin: 0; height: 100%; background: #14171b; }
+  body { font: 15px/1.4 -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Noto Sans', sans-serif; color: #e9e6de; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+  button, input { font: inherit; color: inherit; }
+  /* a soft shade under the title, so the map's own names do not run through it */
+  body::before { content: ''; position: fixed; z-index: 2; inset: 0 0 auto 0; height: 130px; pointer-events: none; background: linear-gradient(rgb(14 17 21 / 0.82), rgb(14 17 21 / 0)); }
+  #title { position: fixed; left: 12px; top: calc(10px + env(safe-area-inset-top)); z-index: 3; pointer-events: none; text-shadow: 0 1px 6px #0b0d10, 0 0 2px #0b0d10; }
+  #title h1 { margin: 0; font-size: 22px; line-height: 1.1; font-weight: 700; letter-spacing: 0.01em; color: #f4efe3; }
+  #title p { margin: 2px 0 0; font-size: 12px; color: #aab2bb; }
+  #list-button { position: fixed; left: 12px; top: calc(64px + env(safe-area-inset-top)); z-index: 3; min-height: 44px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
+  /* without the map the key has nothing to act on */
+  [data-state='no-map'] #key .chips { display: none; }
+  #fail { position: fixed; z-index: 2; left: 16px; right: 16px; top: 38%; margin: 0; padding: 14px 16px; border-radius: 12px; background: #1b1f25; color: #d0d3d7; text-align: center; }
+
+  #key { position: fixed; left: 0; right: 0; bottom: 0; z-index: 3; padding: 14px 8px calc(6px + env(safe-area-inset-bottom)); background: linear-gradient(rgb(14 17 21 / 0), rgb(14 17 21 / 0.9) 30%); }
+  #key .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+  #key button { flex: none; display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #c9cdd2; font-size: 13.5px; cursor: pointer; }
+  #key button i { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  #key button small { color: #6f7781; font-size: 12px; }
+  #key button .long, #key button small { display: none; }
+  #key.picked button:not(.on) { color: #7b838d; }
+  #key.picked button:not(.on) i { opacity: 0.4; }
+  #key button.on { border-color: var(--c); color: #fff; background: #20252c; }
+  #key .credit { margin: 6px 0 0; text-align: center; font-size: 10.5px; color: #7f8892; }
+  #key .credit a { color: #9aa3ad; text-decoration: none; }
+
+  /* the card: a bottom sheet on a phone, the place it describes stays in the map above it */
+  #card { position: fixed; z-index: 5; left: 0; right: 0; bottom: 0; max-height: 52%; overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box; padding: 14px 18px calc(18px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0; border-top: 1px solid rgb(255 255 255 / 0.1); background: #12151a; box-shadow: 0 -10px 40px rgb(0 0 0 / 0.5); display: none; }
+  #card.open { display: block; }
+  #card .close, #list .close { flex: none; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.07); color: #d6d9dd; font-size: 22px; line-height: 1; cursor: pointer; }
+  #card .close { position: sticky; float: right; top: 0; margin: -4px -8px 0 8px; }
+  #card .tags { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 12.5px; color: #9aa3ad; margin-bottom: 6px; }
+  #card .tags span { display: flex; align-items: center; gap: 6px; }
+  #card .tags i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+  #card h1 { margin: 0; font-size: 21px; line-height: 1.2; font-weight: 600; color: #f4efe3; }
+  #card h2 { margin: 4px 0 0; font-size: 14.5px; font-weight: 400; color: #aab2bb; }
+  #card p { margin: 12px 0 0; color: #d0d3d7; }
+  #card .warn { padding: 8px 10px; border-radius: 8px; background: rgb(255 180 80 / 0.1); color: #f0c98a; font-size: 13.5px; }
+  #card dl { margin: 12px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13.5px; }
+  #card dt { color: #7f8892; }
+  #card dd { margin: 0; color: #c9cdd2; }
+  #card .gmaps { display: flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 14px; border-radius: 12px; background: #e9e6de; color: #14171b; font-weight: 600; text-decoration: none; }
+  #card .sources { margin-top: 12px; font-size: 12.5px; color: #7f8892; }
+  #card .sources a { color: #9db7d0; display: block; padding: 9px 0; overflow-wrap: anywhere; }
+
+  /* the list: the whole screen on a phone */
+  #list { position: fixed; z-index: 6; inset: 0; display: none; flex-direction: column; background: #12151a; }
+  #list.open { display: flex; }
+  #list .bar { display: flex; gap: 10px; align-items: center; padding: calc(10px + env(safe-area-inset-top)) 12px 10px; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
+  #list input { flex: 1; min-width: 0; height: 44px; padding: 0 14px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: #1b1f25; font-size: 16px; outline: none; }
+  #list .items { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 0 6px calc(16px + env(safe-area-inset-bottom)); }
+  #list h3 { display: flex; align-items: center; gap: 8px; margin: 16px 10px 4px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #9aa3ad; }
+  #list h3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  #list .place { display: block; width: 100%; min-height: 52px; padding: 7px 10px; border: 0; border-radius: 10px; background: none; text-align: left; cursor: pointer; }
+  #list .place:active { background: rgb(255 255 255 / 0.06); }
+  #list .place b { display: block; font-weight: 500; color: #efece4; }
+  #list .place span { display: block; font-size: 13px; color: #8c949d; }
+  #list .none { margin: 24px 12px; color: #8c949d; }
+
+  .maplibregl-ctrl-group { background: rgb(22 26 31 / 0.94); border: 1px solid rgb(255 255 255 / 0.12); box-shadow: none !important; border-radius: 12px; }
+  .maplibregl-ctrl-group button { width: 44px; height: 44px; }
+  .maplibregl-ctrl-group button + button { border-top-color: rgb(255 255 255 / 0.08); }
+  .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(0.88); }
+  .maplibregl-ctrl-group button.tilt { color: #d6d9dd; font: 600 13px/1 inherit; }
+  .maplibregl-ctrl-top-right { top: calc(4px + env(safe-area-inset-top)); right: 2px; }
+  .maplibregl-ctrl-bottom-right { bottom: calc(var(--key-h) + 2px); right: 2px; }
+  /* the position button: the one a thumb looks for */
+  .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group { border-radius: 50%; overflow: hidden; border-color: rgb(255 255 255 / 0.22); }
+  .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group button { width: 52px; height: 52px; }
+  .maplibregl-ctrl-bottom-right .maplibregl-ctrl-geolocate .maplibregl-ctrl-icon { background-size: 30px; }
+  .maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active .maplibregl-ctrl-icon, .maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-background .maplibregl-ctrl-icon { filter: none; }
+
+  @media (min-width: 641px) {
+    #title { left: 18px; top: 14px; }
+    #title h1 { font-size: 26px; }
+    #title p { font-size: 13px; }
+    #list-button { left: 18px; top: 76px; }
+    #key button .long, #key button small { display: inline; }
+    #key .chips { gap: 8px; }
+    #key button { padding: 0 14px; font-size: 14px; }
+    #key button .short { display: none; }
+    #card { left: 18px; right: auto; bottom: calc(var(--key-h) + 6px); width: 380px; max-height: calc(100% - var(--key-h) - 150px); border-radius: 14px; border: 1px solid rgb(255 255 255 / 0.08); padding-bottom: 18px; box-shadow: 0 10px 40px rgb(0 0 0 / 0.5); }
+    #list { inset: 0 auto 0 0; width: 380px; border-right: 1px solid rgb(255 255 255 / 0.08); box-shadow: 10px 0 40px rgb(0 0 0 / 0.4); }
+  }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<header id="title"><h1>Tokyo</h1><p>des lieux choisis, par envie</p></header>
+<button id="list-button" type="button">Liste</button>
+<p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
+<aside id="card" aria-live="polite"></aside>
+<section id="list" aria-label="Liste des lieux">
+  <div class="bar"><input type="search" placeholder="Chercher un lieu" aria-label="Chercher un lieu" autocomplete="off"><button class="close" type="button" aria-label="Fermer la liste">×</button></div>
+  <div class="items"></div>
+</section>
+<nav id="key" aria-label="Intérêts">
+  <div class="chips"></div>
+  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a></p>
+</nav>
+<script>
+const INTERESTS = [
+  { id: 'musique', label: 'Musique', short: 'Musique', color: '#5cc3f5' },
+  { id: 'culture', label: 'Culture', short: 'Culture', color: '#f5e04a' },
+  { id: 'art-numerique', label: 'Art numérique', short: 'Art num.', color: '#f08fc8' },
+  { id: 'militant', label: 'Lieux militants', short: 'Militant', color: '#ff7a45' },
+  { id: 'cuisine', label: 'Cuisine', short: 'Cuisine', color: '#35d0a5' },
+  // where to eat (not food culture, which is `cuisine`): the colour farthest from the six others on the dark map
+  { id: 'manger', label: 'Manger', short: 'Manger', color: '#7fe04a' },
+  { id: 'photo', label: 'Photo', short: 'Photo', color: '#a694ff' },
+]
+const OTHER = '#b4bcc6'
+const BACK = '#7d8791'
+const colorOf = id => INTERESTS.find(i => i.id === id)?.color ?? OTHER
+const labelOf = id => INTERESTS.find(i => i.id === id)?.label ?? id
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
+const plain = s => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+const phone = () => innerWidth <= 640
+
+// Three levels. Far: zones and dots, no word of his. Middle: the zones' notes (a dot under a note is not drawn).
+// Near: the places' notes and names, the zones' notes gone at once and the zones fading out.
+const MIDDLE = 11.3, NEAR = 13
+
+// the quiet dark map, on OpenFreeMap's dark style
+const C = { land: '#15181c', water: '#22364a', park: '#1f3428', wood: '#1c2f24', building: '#1b1f24', minor: '#2a2f35', major: '#3a4048', motorway: '#474e57', casing: '#0f1215', rail: '#31373e', label: '#aeb5bd', dim: '#7c848d', halo: 'rgba(9,11,14,0.9)' }
+function quiet(style) {
+  for (const l of style.layers) {
+    const p = (l.paint ??= {})
+    const id = l.id
+    // the basemap's names in Latin letters where the tiles have them
+    if (l.type === 'symbol' && l.layout?.['text-field'] && id !== 'highway_name_motorway') l.layout['text-field'] = ['coalesce', ['get', 'name:latin'], ['get', 'name_en'], ['get', 'name']]
+    if (id === 'background') p['background-color'] = C.land
+    else if (id === 'water') p['fill-color'] = C.water
+    else if (id === 'waterway') p['line-color'] = C.water
+    else if (id === 'landuse_park') p['fill-color'] = C.park
+    else if (id === 'landcover_wood') { p['fill-color'] = C.wood; delete p['fill-pattern']; p['fill-opacity'] = 1 }
+    else if (id === 'landuse_residential') p['fill-opacity'] = 0
+    else if (id === 'building') { p['fill-color'] = C.building; p['fill-outline-color'] = '#252a30' }
+    else if (id === 'highway_path') p['line-color'] = C.minor
+    else if (id === 'highway_minor') p['line-color'] = C.minor
+    else if (id === 'highway_major_inner' || id === 'highway_major_subtle') p['line-color'] = C.major
+    else if (id === 'highway_motorway_inner' || id === 'highway_motorway_subtle') p['line-color'] = C.motorway
+    else if (id.endsWith('_casing')) p['line-color'] = C.casing
+    else if (id.startsWith('railway') && id.endsWith('dashline')) p['line-color'] = C.land
+    else if (id.startsWith('railway')) p['line-color'] = C.rail
+    else if (id.startsWith('road_')) { if (l.type === 'fill') p['fill-color'] = C.land; if (l.type === 'line') p['line-color'] = C.land }
+    else if (id === 'water_name') { p['text-color'] = '#6c88a3'; p['text-halo-color'] = 'rgba(0,0,0,0)' }
+    else if (id.startsWith('highway_name')) { p['text-color'] = C.dim; p['text-halo-color'] = C.halo; p['text-halo-width'] = 1.2 }
+    else if (id.startsWith('place_')) { p['text-color'] = C.label; p['text-halo-color'] = C.halo; p['text-halo-width'] = 1.4; p['text-halo-blur'] = 0.5; l.layout['text-size'] = id === 'place_suburb' || id === 'place_other' ? 11 : 13; l.layout['text-letter-spacing'] = 0.06 }
+  }
+  const firstSymbol = style.layers.findIndex(l => l.type === 'symbol' && l.id.startsWith('highway_name'))
+  style.layers.splice(firstSymbol, 0, {
+    // buildings in volume: flat seen from above, they rise when the map is tilted
+    id: 'building-3d', type: 'fill-extrusion', source: 'openmaptiles', 'source-layer': 'building', minzoom: 14,
+    paint: { 'fill-extrusion-color': '#21262d', 'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 6], 'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0], 'fill-extrusion-opacity': ['interpolate', ['linear'], ['zoom'], 14, 0, 15, 0.82] },
+  })
+  style.layers.push({
+    // stations: what one walks from
+    id: 'stations', type: 'symbol', source: 'openmaptiles', 'source-layer': 'poi', minzoom: 13.5, filter: ['==', ['get', 'class'], 'railway'],
+    layout: { 'text-field': ['coalesce', ['get', 'name:latin'], ['get', 'name']], 'text-font': ['Noto Sans Regular'], 'text-size': 11, 'text-max-width': 8, 'text-padding': 6 },
+    paint: { 'text-color': '#8fa3b8', 'text-halo-color': C.halo, 'text-halo-width': 1.3 },
+  })
+  return style
+}
+
+const strengthOf = idea => { const s = idea.stars ?? (idea.priority !== undefined ? 4 - idea.priority : 2); return s >= 3 ? 3 : s <= 1 ? 1 : 2 }
+const sourcesOf = idea => [...(idea.url ? [{ url: idea.url, what: 'Site du lieu' }] : []), ...(Array.isArray(idea.source) ? idea.source : []).filter(s => s.url)]
+
+// Rounded zones: each hand-made outline (9 to 14 points) is cut round (Chaikin, four rounds), then pushed out
+// from its middle until it has the outline's area again and still holds every place the data puts in it.
+const chaikin = (ring, rounds = 4) => {
+  for (let r = 0; r < rounds; r++) ring = ring.flatMap((a, i) => { const b = ring[(i + 1) % ring.length]; return [[a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]] })
+  return ring
+}
+const areaOf = ring => Math.abs(ring.reduce((sum, [x, y], i) => { const [u, v] = ring[(i + 1) % ring.length]; return sum + x * v - u * y }, 0)) / 2
+const inside = ([x, y], ring) => ring.reduce((odd, [x1, y1], i) => { const [x2, y2] = ring[(i + 1) % ring.length]; return (y1 > y) !== (y2 > y) && x < x1 + ((y - y1) / (y2 - y1)) * (x2 - x1) ? !odd : odd }, false)
+function rounded(outline, members) {
+  const smooth = chaikin(outline)
+  const cx = smooth.reduce((s, p) => s + p[0], 0) / smooth.length, cy = smooth.reduce((s, p) => s + p[1], 0) / smooth.length
+  const grown = k => smooth.map(([x, y]) => [cx + (x - cx) * k, cy + (y - cy) * k])
+  const held = members.filter(m => inside(m, outline))
+  let k = Math.sqrt(areaOf(outline) / areaOf(smooth))
+  while (k < 1.3 && !held.every(m => inside(m, grown(k)))) k += 0.01
+  return grown(k)
+}
+
+/** Both files as one list: a place named in both is one place, the stronger entry leading. */
+function read(files) {
+  const places = new Map(), zones = [], members = new Map()
+  const zoneNames = new Map(files.flatMap(file => file.features.filter(f => f.properties.idea.isZone).map(f => [f.id, f.properties.text])))
+  for (const file of files) for (const f of file.features) {
+    const p = f.properties, idea = p.idea
+    const entry = {
+      id: p.text, short: p.text, hook: p.hook ?? '', name: idea.name, nameJa: idea.nameJa, lon: f.geometry.coordinates[0], lat: f.geometry.coordinates[1],
+      interests: [idea.category, ...(idea.also ? [idea.also] : [])], strength: strengthOf(idea), why: idea.why ?? '', verify: idea.verify ? (idea.verifyNote ?? 'à vérifier') : null,
+      facts: [...(idea.station ? [['Station', idea.station]] : []), ...Object.entries(idea.practical ?? {}).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]), ...(idea.seen ? [['Agenda', idea.seen]] : [])],
+      area: zoneNames.get(idea.zone) ?? idea.area ?? null, sources: sourcesOf(idea), outline: p.outline ?? null, kind: idea.isZone ? 'zone' : 'place',
+    }
+    if (idea.zone) members.set(idea.zone, [...(members.get(idea.zone) ?? []), [entry.lon, entry.lat]])
+    if (idea.isZone) { zones.push({ ...entry, fid: f.id }); continue }
+    const before = places.get(entry.id)
+    if (!before) { places.set(entry.id, entry); continue }
+    const [lead, other] = entry.strength > before.strength ? [entry, before] : [before, entry]
+    places.set(entry.id, { ...lead, interests: [...new Set([...lead.interests, ...other.interests])], verify: lead.verify ?? other.verify, facts: [...lead.facts, ...other.facts.filter(([k]) => !lead.facts.some(([l]) => l === k))], sources: [...lead.sources, ...other.sources.filter(s => !lead.sources.some(l => l.url === s.url))] })
+  }
+  for (const z of zones) z.round = rounded(z.outline, members.get(z.fid) ?? [])
+  return { places: [...places.values()], zones }
+}
+
+const point = e => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [e.lon, e.lat] }, properties: { id: e.id, hook: e.hook, name: e.short, interest: e.interests[0], interests: `|${e.interests.join('|')}|`, strength: e.strength, kind: e.icon ?? '' } })
+const collection = features => ({ type: 'FeatureCollection', features })
+
+// the address keeps the view (`v`, the map library's) and the open place (`lieu`), so a link can be shared
+const hashGet = name => location.hash.slice(1).split('&').find(part => part.startsWith(`${name}=`))?.slice(name.length + 1)
+const hashSet = (name, value) => {
+  const parts = location.hash.slice(1).split('&').filter(part => part && !part.startsWith(`${name}=`))
+  if (value !== null) parts.push(`${name}=${encodeURIComponent(value)}`)
+  history.replaceState(history.state, '', `${location.pathname}${location.search}${parts.length ? `#${parts.join('&')}` : ''}`)
+}
+
+/** A disc as a distance field: one image for every colour and size, sharp at any scale, with its dark edge as a halo. */
+function discImage(size = 24, radius = 8) {
+  const data = new Uint8ClampedArray(size * size * 4).fill(255)
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) data[(y * size + x) * 4 + 3] = 255 * Math.min(1, Math.max(0, 0.75 - (Math.hypot(x + 0.5 - size / 2, y + 0.5 - size / 2) - radius) / 8))
+  return { width: size, height: size, data }
+}
+/** A landmark's badge: a grey disc with its pictogram (Maki, CC0), drawn at twice the screen's density. */
+function badgeImage(path) {
+  const canvas = Object.assign(document.createElement('canvas'), { width: 52, height: 52 })
+  const g = canvas.getContext('2d')
+  g.beginPath(); g.arc(26, 26, 23, 0, 2 * Math.PI); g.fillStyle = '#434a53'; g.fill(); g.lineWidth = 3; g.strokeStyle = 'rgb(4 6 9 / 0.94)'; g.stroke()
+  g.translate(26 - 14, 26 - 14); g.scale(28 / 15, 28 / 15); g.fillStyle = '#d9dde2'; g.fill(new Path2D(path))
+  return g.getImageData(0, 0, 52, 52)
+}
+
+async function main() {
+  const json = url => fetch(url).then(r => r.json())
+  const [tokyo, agenda, landmarkFile, glyphs] = await Promise.all([json('tokyo.geojson'), json('tokyo-agenda.geojson'), json('landmarks.json'), json('landmark-icons.json')])
+  const { places, zones } = read([tokyo, agenda])
+  const landmarks = landmarkFile.tokyo.map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind }))
+  const byId = new Map([...places, ...zones, ...landmarks].map(e => [e.id, e]))
+  let map = null
+
+  // ---- the card
+  const card = document.getElementById('card')
+  let shown = null
+  const close = () => { card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']) }
+  function open(entry, { fly = false } = {}) {
+    const facts = entry.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')
+    const tag = entry.kind === 'zone' ? 'Quartier' : entry.kind === 'landmark' ? 'Repère' : '★'.repeat(entry.strength)
+    card.innerHTML = `<button class="close" type="button" aria-label="Fermer">×</button>
+      <div class="tags">${entry.interests.map(i => `<span style="--c:${colorOf(i)}"><i></i>${esc(labelOf(i))}</span>`).join('')}<span>${tag}</span>${entry.area ? `<span>${esc(entry.area)}</span>` : ''}</div>
+      <h1>${esc(entry.hook || entry.short)}</h1>
+      ${entry.kind === 'landmark' ? '' : `<h2>${esc(entry.name)}${entry.nameJa ? ` · ${esc(entry.nameJa)}` : ''}</h2>`}
+      ${entry.verify ? `<p class="warn">À vérifier : ${esc(entry.verify)}</p>` : ''}
+      ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
+      ${facts ? `<dl>${facts}</dl>` : ''}
+      <a class="gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${entry.lat},${entry.lon}">Ouvrir dans Google Maps</a>
+      ${entry.sources.length ? `<div class="sources">Sources${entry.sources.map(s => `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('')}</div>` : ''}`
+    card.scrollTop = 0
+    card.classList.add('open')
+    card.querySelector('.close').onclick = close
+    shown = entry
+    hashSet('lieu', entry.id)
+    if (!map) return
+    map.setFilter('picked', ['==', ['get', 'id'], entry.kind === 'place' ? entry.id : ''])
+    // the sheet covers the lower part of a phone: the place goes to the middle of what is left of the map
+    const offset = phone() ? [0, -card.offsetHeight / 2] : [0, 0]
+    if (fly) map.flyTo({ center: [entry.lon, entry.lat], zoom: Math.max(map.getZoom(), entry.kind === 'zone' ? 12.6 : 15), offset, duration: 900 })
+    else if (phone()) map.easeTo({ center: [entry.lon, entry.lat], offset, duration: 400 })
+  }
+
+  // ---- the list: the places by interest, searched by name, each one flies to its place
+  const list = document.getElementById('list'), items = list.querySelector('.items'), search = list.querySelector('input')
+  function fill() {
+    const asked = plain(search.value.trim())
+    const found = places.filter(p => !asked || plain(`${p.short} ${p.name} ${p.hook} ${p.area ?? ''}`).includes(asked))
+    items.innerHTML = INTERESTS.map(interest => {
+      const group = found.filter(p => p.interests[0] === interest.id).sort((a, b) => b.strength - a.strength || a.short.localeCompare(b.short, 'fr'))
+      return group.length ? `<h3 style="--c:${interest.color}"><i></i>${esc(interest.label)}</h3>${group.map(p => `<button class="place" type="button" data-id="${esc(p.id)}"><b>${esc(p.short)}</b><span>${esc(p.hook)}${p.area ? ` · ${esc(p.area)}` : ''}</span></button>`).join('')}` : ''
+    }).join('') || '<p class="none">Aucun lieu à ce nom.</p>'
+  }
+  search.oninput = fill
+  document.getElementById('list-button').onclick = () => { fill(); list.classList.add('open') }
+  list.querySelector('.close').onclick = () => list.classList.remove('open')
+  items.onclick = event => {
+    const button = event.target.closest('.place'); if (!button) return
+    list.classList.remove('open')
+    open(byId.get(button.dataset.id), { fly: true })
+  }
+
+  // ---- the key (its entries are filled before the map starts, its effect on the map comes with the map)
+  const picked = new Set()
+  const key = document.getElementById('key'), chips = key.querySelector('.chips')
+  const count = id => places.filter(p => p.interests.includes(id)).length
+  chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join('')
+  new ResizeObserver(() => document.documentElement.style.setProperty('--key-h', `${key.offsetHeight}px`)).observe(key)
+
+  // ---- the map
+  const hadView = Boolean(hashGet('v'))
+  const fail = () => { document.getElementById('fail').hidden = false; document.documentElement.dataset.state = 'no-map' }
+  if (!window.maplibregl) return fail()
+  const bounds = new maplibregl.LngLatBounds()
+  for (const e of places) bounds.extend([e.lon, e.lat])
+  for (const z of zones) for (const c of z.round) bounds.extend(c)
+  try {
+    const style = await json('https://tiles.openfreemap.org/styles/dark')
+    map = window.map = new maplibregl.Map({
+      container: 'map', style: quiet(style), bounds, fitBoundsOptions: { padding: phone() ? { top: 120, bottom: 150, left: 24, right: 24 } : { top: 70, bottom: 110, left: 70, right: 70 } },
+      hash: 'v', maxPitch: 70, attributionControl: false, canvasContextAttributes: { preserveDrawingBuffer: true },
+      locale: { 'NavigationControl.ZoomIn': 'Zoomer', 'NavigationControl.ZoomOut': 'Dézoomer', 'NavigationControl.ResetBearing': 'Remettre le nord en haut', 'GeolocateControl.FindMyLocation': 'Ma position', 'GeolocateControl.LocationNotAvailable': 'Position indisponible' },
+    })
+    map.on('error', event => console.error('carte:', event.error?.message ?? event))
+    await new Promise(done => map.once('load', done))
+  } catch (error) {
+    console.error(error)
+    map = null
+    return fail()
+  }
+  map.addControl(new maplibregl.NavigationControl({ visualizePitch: true, showZoom: !phone() }), 'top-right')
+  map.addControl({
+    onAdd() {
+      const box = document.createElement('div'); box.className = 'maplibregl-ctrl maplibregl-ctrl-group'
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'tilt'; b.textContent = '3D'; b.setAttribute('aria-label', 'Incliner la carte')
+      b.onclick = () => { const up = map.getPitch() < 20; map.easeTo({ pitch: up ? 58 : 0, zoom: up ? Math.max(map.getZoom(), 15.2) : map.getZoom(), duration: 700 }) }
+      map.on('pitch', () => (b.textContent = map.getPitch() < 20 ? '3D' : '2D'))
+      box.append(b); return box
+    },
+    onRemove() {},
+  }, 'top-right')
+  // his position: asked of the browser, drawn by the page, sent nowhere and kept nowhere
+  map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'bottom-right')
+
+  map.addImage('disc', discImage(), { sdf: true })
+  for (const kind of new Set(landmarks.map(l => l.icon))) if (glyphs[kind]) map.addImage(`badge-${kind}`, badgeImage(glyphs[kind]), { pixelRatio: 2 })
+
+  map.addSource('zones', { type: 'geojson', data: collection(zones.map(z => ({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...z.round, z.round[0]]] }, properties: point(z).properties }))) })
+  map.addSource('zone-notes', { type: 'geojson', data: collection(zones.map(point)) })
+  map.addSource('places', { type: 'geojson', data: collection(places.map(point)) })
+  map.addSource('landmarks', { type: 'geojson', data: collection(landmarks.map(point)) })
+
+  // zones: under the buildings and every name, fading out as the places take over
+  map.addLayer({ id: 'zones-fill', type: 'fill', source: 'zones', paint: { 'fill-color': '#ffffff', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.075, NEAR, 0.06, 15, 0] } }, 'building-3d')
+  map.addLayer({ id: 'zones-line', type: 'line', source: 'zones', layout: { 'line-join': 'round' }, paint: { 'line-color': '#f4efe3', 'line-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.55, NEAR, 0.5, 15.5, 0], 'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 15, 1.4] } }, 'building-3d')
+
+  // What is placed first is added last. From the bottom: the landmarks (they yield to everything of his), the
+  // places' words (they go around every dot), the dots, the zones' notes (a dot under a note is not drawn), and
+  // the tapped place.
+  map.addLayer({ id: 'landmarks', type: 'symbol', source: 'landmarks', minzoom: 10.5,
+    layout: {
+      'icon-image': ['concat', 'badge-', ['get', 'kind']], 'icon-size': ['interpolate', ['linear'], ['zoom'], 10.5, 0.62, 14, 0.9, 17, 1.05], 'icon-padding': 1,
+      'text-field': ['step', ['zoom'], '', 16, ['get', 'name']], 'text-font': ['Noto Sans Regular'], 'text-size': 12, 'text-anchor': 'top', 'text-offset': [0, 1.15], 'text-optional': true,
+    },
+    paint: { 'icon-opacity': 0.92, 'text-color': '#aab2bb', 'text-halo-color': C.halo, 'text-halo-width': 1.4 } })
+
+  // a disc's size on screen, by importance; the image's disc is 8 px
+  const sized = (a, b, c, k = 1) => ['interpolate', ['linear'], ['zoom'], 10, ['match', ['get', 'strength'], 3, (a[2] * k) / 8, 2, (a[1] * k) / 8, (a[0] * k) / 8], 14, ['match', ['get', 'strength'], 3, (b[2] * k) / 8, 2, (b[1] * k) / 8, (b[0] * k) / 8], 17, ['match', ['get', 'strength'], 3, (c[2] * k) / 8, 2, (c[1] * k) / 8, (c[0] * k) / 8]]
+  const SIZES = [[2.8, 3.8, 5.2], [4.8, 6.2, 8], [6.5, 8.5, 11]]
+  const ink = ['match', ['get', 'interest'], ...INTERESTS.flatMap(i => [i.id, i.color]), OTHER]
+  const NAMED = ['format', ['get', 'hook'], {}, '\n', {}, ['get', 'name'], { 'font-scale': 0.8, 'text-color': '#9aa3ad' }]
+  // names arrive near, the important places first; sooner when an interest is picked (fewer places on the map)
+  const namesFrom = (strong, all) => ['step', ['zoom'], '', strong, ['case', ['>=', ['get', 'strength'], 2], NAMED, ''], all, NAMED]
+  map.addLayer({ id: 'names', type: 'symbol', source: 'places',
+    layout: {
+      'text-field': namesFrom(NEAR, NEAR + 1), 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 12, 12.5, 16, 14.5], 'text-max-width': 10, 'text-line-height': 1.25, 'text-padding': 2,
+      // far enough from the place's own dot, which is placed before it and bigger than it looks (the image's margin)
+      'text-variable-anchor': ['top', 'bottom', 'left', 'right'], 'text-radial-offset': ['interpolate', ['linear'], ['zoom'], 12, ['match', ['get', 'strength'], 3, 1.25, 2, 1.05, 0.9], 17, ['match', ['get', 'strength'], 3, 1.65, 2, 1.35, 1.15]], 'text-justify': 'auto',
+      'symbol-sort-key': ['-', 4, ['get', 'strength']],
+    },
+    paint: { 'text-color': '#efece4', 'text-halo-color': C.halo, 'text-halo-width': 1.6 } })
+  const dots = (id, paint, k) => map.addLayer({ id, type: 'symbol', source: 'places',
+    // `cooperative`: dots may cover each other, and one that would sit under a zone's note is not drawn
+    layout: { 'icon-image': 'disc', 'icon-size': sized(...SIZES, k), 'icon-overlap': 'cooperative', 'icon-padding': 0, 'symbol-sort-key': ['-', 4, ['get', 'strength']] },
+    paint: { 'icon-halo-color': 'rgb(4 6 9 / 0.94)', 'icon-halo-width': 1.5, ...paint } })
+  // the places that step back when an interest is picked: grey, smaller, under the others
+  dots('dots-back', { 'icon-color': BACK, 'icon-opacity': 0.7 }, 0.72)
+  map.setFilter('dots-back', ['==', ['get', 'id'], ''])
+  dots('dots', { 'icon-color': ink }, 1)
+  map.addLayer({ id: 'zone-notes', type: 'symbol', source: 'zone-notes', minzoom: MIDDLE, maxzoom: NEAR,
+    layout: { 'text-field': ['get', 'hook'], 'text-font': ['Noto Sans Bold'], 'text-size': ['interpolate', ['linear'], ['zoom'], MIDDLE, 13.5, NEAR, 17], 'text-max-width': 8, 'text-line-height': 1.15, 'text-padding': 3, 'symbol-sort-key': ['-', 4, ['get', 'strength']] },
+    paint: { 'text-color': '#ffffff', 'text-halo-color': 'rgba(4,6,9,0.96)', 'text-halo-width': 2, 'text-halo-blur': 0.5 } })
+  // the tapped place: above everything, ringed in white, never hidden
+  map.addLayer({ id: 'picked', type: 'symbol', source: 'places', filter: ['==', ['get', 'id'], ''],
+    layout: { 'icon-image': 'disc', 'icon-size': sized(...SIZES, 1.25), 'icon-overlap': 'always', 'icon-padding': 0 },
+    paint: { 'icon-color': ink, 'icon-halo-color': '#ffffff', 'icon-halo-width': 2.5 } })
+
+  // ---- the key on the map: the places of the picked interests in front, in colour and named; the others step back
+  chips.onclick = event => {
+    const button = event.target.closest('button'); if (!button) return
+    const id = button.dataset.id
+    picked.has(id) ? picked.delete(id) : picked.add(id)
+    for (const b of chips.children) { b.classList.toggle('on', picked.has(b.dataset.id)); b.setAttribute('aria-pressed', picked.has(b.dataset.id)) }
+    key.classList.toggle('picked', picked.size > 0)
+    const front = picked.size ? ['any', ...[...picked].map(p => ['in', `|${p}|`, ['get', 'interests']])] : null
+    for (const layer of ['dots', 'names', 'zones-fill', 'zones-line', 'zone-notes']) map.setFilter(layer, front)
+    map.setFilter('dots-back', front ? ['!', front] : ['==', ['get', 'id'], ''])
+    map.setLayoutProperty('names', 'text-field', front ? ['step', ['zoom'], '', NEAR - 1, NAMED] : namesFrom(NEAR, NEAR + 1))
+    // a picked place shows the colour of the interest it was picked for
+    const shownInk = picked.size ? ['case', ...[...picked].flatMap(p => [['in', `|${p}|`, ['get', 'interests']], colorOf(p)]), OTHER] : ink
+    map.setPaintProperty('dots', 'icon-color', shownInk)
+    map.setPaintProperty('picked', 'icon-color', shownInk)
+  }
+
+  // ---- taps: a place first, then a landmark, then a zone (its note, or its ground while the zones are what is shown)
+  map.on('click', event => {
+    const { x, y } = event.point
+    const hits = map.queryRenderedFeatures([[x - 14, y - 14], [x + 14, y + 14]], { layers: ['picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes', 'zones-fill'] })
+    const near = source => hits.filter(h => h.source === source).sort((a, b) => { const d = h => { const p = map.project(h.geometry.coordinates); return Math.hypot(p.x - x, p.y - y) }; return d(a) - d(b) })[0]
+    const hit = near('places') ?? near('landmarks') ?? hits.find(h => h.source === 'zone-notes') ?? (map.getZoom() < NEAR + 0.5 ? hits.find(h => h.source === 'zones') : null)
+    if (!hit) return close()
+    open(byId.get(hit.properties.id))
+  })
+  for (const layer of ['dots', 'dots-back', 'names', 'landmarks', 'zone-notes']) {
+    map.on('mouseenter', layer, () => (map.getCanvas().style.cursor = 'pointer'))
+    map.on('mouseleave', layer, () => (map.getCanvas().style.cursor = ''))
+  }
+
+  // a shared link opens its place; without a view of its own, the map goes there
+  const asked = byId.get(decodeURIComponent(hashGet('lieu') ?? ''))
+  if (asked) open(asked, { fly: !hadView })
+  window.__carte = { open: (id, options) => open(byId.get(id), options), places, zones, landmarks, level: () => (map.getZoom() < MIDDLE ? 'loin' : map.getZoom() < NEAR ? 'milieu' : 'près') }
+  document.documentElement.dataset.state = 'ready'
+}
+main().catch(error => { console.error(error); document.getElementById('fail').hidden = false })
+</script>
+</body>
+</html>
