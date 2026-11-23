@@ -3492,7 +3492,7 @@
       "properties": {
         "kind": "pin",
         "text": "Marché aux fleurs d'Ōta",
-        "hook": "enchères de fleurs, 7 h du matin",
+        "hook": "enchères lun., mer., ven. à 7 h",
         "color": "#0072B2",
         "resolution": 7.8,
         "author": "agent",
@@ -3502,13 +3502,13 @@
           "name": "Marché d'Ōta, pavillon des fleurs",
           "nameJa": "大田市場 花き部",
           "ward": "大田区",
-          "why": "Le plus gros marché aux fleurs du Japon, dans un bâtiment à part du marché de gros d'Ōta. Les enchères se font à l'horloge : le prix descend sur un grand cadran lumineux, et les fleuristes l'arrêtent d'un bouton depuis leur pupitre. On regarde d'en haut, derrière une vitre, depuis le couloir des visiteurs à l'étage (2F). La visite est libre et sans guide : on dit au poste de garde qu'on vient visiter. Ce n'est pas un marché où acheter : la vente est réservée aux professionnels inscrits.",
+          "why": "Le plus gros marché aux fleurs du Japon, dans un bâtiment à part du marché de gros d'Ōta. Deux grossistes, Ōta Kaki et FAJ, y vendent à l'horloge : le prix descend sur un grand cadran lumineux, et les fleuristes l'arrêtent d'un bouton depuis leur pupitre. La plus grande part des fleurs se vend de gré à gré avant l'aube et une partie des acheteurs enchérit à distance, mais la salle tourne toujours, les lots présentés en vrai. On regarde d'en haut, derrière une vitre, depuis le couloir des visiteurs à l'étage (2F). La visite est libre et sans guide : on dit au poste de garde qu'on vient visiter. Ce n'est pas un marché où acheter : les grossistes comme les boutiques des demi-grossistes ne vendent qu'aux gens du métier, agrément ou badge exigé.",
           "practical": {
-            "horaires": "Enchères à partir de 7 h (7 h 30 d'après une autre page de la Ville). Parcours des visiteurs ouvert de 5 h à 15 h.",
-            "fermeture": "Le dimanche en général. Fermé les 29 nov., 13, 27, 30 et 31 déc. 2026 ; ouvert les dimanches 6 et 20 déc. et les jours fériés (calendrier 2026 de la Ville).",
+            "horaires": "Enchères de fleurs coupées le lundi, le mercredi et le vendredi à 7 h, chez les deux grossistes ; y être de 7 h à 8 h. Du 1er au 26 déc., plantes en pot le mardi, le jeudi et le samedi à 7 h. Deux dimanches de marché à 7 h : 6 déc. (pin) et 20 déc. (senryō). Dernières enchères de fleurs coupées : lundi 28 déc. à 7 h chez FAJ, mardi 29 déc. à 6 h chez Ōta Kaki. Reprise le lundi 4 janv. 2027 à 7 h. Parcours des visiteurs ouvert de 5 h à 15 h.",
+            "fermeture": "Pas d'enchères de fleurs coupées le mardi, le jeudi ni le samedi. Marché fermé les dimanches 29 nov., 13 et 27 déc. 2026, du 30 déc. au 3 janv., le 5 et le 10 janv. 2027 (calendriers de la Ville et des grossistes).",
             "prix": "Aucun tarif n'est annoncé par la Ville. « Entrée gratuite » d'après l'office de tourisme d'Ōta (2019).",
-            "booking": "Sans inscription pour une personne seule d'après la Ville. Le grossiste Ōta Kaki demande de prévenir la Ville avant : 03-3790-6539.",
-            "station": "Ryūtsū Center (Tokyo Monorail), puis 10 min à pied : traverser le pont Yamato-ōhashi, prendre à droite, entrer par le bâtiment au décor de fleurs et monter à l'étage. Depuis Hamamatsuchō, 10 min de monorail ; le premier arrive à 5 h 21 en semaine. Ou bus Keikyū depuis la gare JR d'Ōmori, sortie est, quai 7, arrêt Ryūtsū Center-mae.",
+            "booking": "Sans inscription : la Ville, qui gère les visites, ne demande une inscription qu'aux groupes scolaires ; les autres s'annoncent au poste de garde. Le grossiste Ōta Kaki écrit de prévenir la Ville et renvoie à cette même page. Pour s'en assurer : 03-3790-6539.",
+            "station": "Ryūtsū Center (Tokyo Monorail), puis 10 à 14 min à pied : traverser le pont Yamato-ōhashi, prendre à droite, entrer par le bâtiment d'entrée au bouquet de fleurs sur le toit (玄関棟), monter à l'étage et suivre le parcours. Depuis Hamamatsuchō en semaine, les omnibus de 6 h 08 et 6 h 18 arrivent à 6 h 18 et 6 h 28 ; le premier arrive à 5 h 21. Le rapide de l'aéroport ne s'y arrête pas. Ou bus Keikyū depuis la gare JR d'Ōmori, sortie est, quai 7, arrêt Ryūtsū Center-mae.",
             "adresse": "東海2-2-1, Ōta-ku"
           },
           "status": "todo",
@@ -3517,17 +3517,42 @@
             {
               "url": "https://www.shijou.metro.tokyo.lg.jp/kengaku",
               "read": "2026-11-23",
-              "what": "Ville de Tokyo, visite des marchés de gros (page sans date) : à Ōta, visite libre pour les particuliers en s'annonçant au poste de garde, de 5 h à 15 h, parcours des visiteurs, enchères des fleurs à partir de 7 h."
+              "what": "Ville de Tokyo, visite des marchés de gros (page sans date) : à Ōta, l'inscription ne vise que les groupes scolaires, « それ以外の方々については、自由見学となります。警備員詰所に来意を告げ、その指示に従ってください。 » ; de 5 h à 15 h, parcours des visiteurs, enchères des fleurs à partir de 7 h."
             },
             {
               "url": "https://www.shijou.metro.tokyo.lg.jp/ja/calendar/2026",
               "read": "2026-11-23",
-              "what": "Ville de Tokyo, calendrier 2026 des marchés (mis à jour le 5 sept. 2025) et son fichier des jours fermés pour les fleurs."
+              "what": "Ville de Tokyo, calendriers 2026 (mis à jour le 5 sept. 2025) et 2027 (11 sept. 2026) des marchés, avec leurs fichiers des jours fermés pour les fleurs ; à Ōta, fermé aussi le 5 janv. 2027."
+            },
+            {
+              "url": "https://otakaki.co.jp/news/2026/179418-039345/",
+              "read": "2026-11-23",
+              "what": "Grossiste Ōta Kaki, calendrier de fin d'année (9 nov. 2026) : marché mixte des fleurs coupées et des plantes en pot lundi, mercredi, vendredi à 7 h ; du 1er déc., fleurs coupées ces trois jours et plantes en pot mardi, jeudi, samedi ; marché du pin le 6 déc., du senryō le 20 déc., dernière des fleurs coupées le 29 déc. à 6 h, reprise le 4 janv."
+            },
+            {
+              "url": "https://otakaki.co.jp/calendar/",
+              "read": "2026-11-23",
+              "what": "Grossiste Ōta Kaki, calendrier des jours ouvrés (fichier modifié le 13 oct. 2026) : marché à 7 h les lundis, mercredis et vendredis de 2026 et 2027 ; le mardi, le jeudi et le samedi, seulement en décembre et début mai."
+            },
+            {
+              "url": "https://www.faj.co.jp/newscat/%e5%b9%b4%e6%9c%ab%e5%b9%b4%e5%a7%8b%e5%96%b6%e6%a5%ad%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85-2/",
+              "read": "2026-11-23",
+              "what": "Grossiste FAJ, fin d'année (7 nov. 2026) : marché du pin le 6 déc. et du senryō le 20 déc. à 7 h, dernière des fleurs coupées le lundi 28 déc. à 7 h, fermé du 30 déc. au 3 janv., reprise le 4 janv. à 7 h."
+            },
+            {
+              "url": "https://www.faj.co.jp/guide/stocking/",
+              "read": "2026-11-23",
+              "what": "Grossiste FAJ (page sans date) : à Ōta la vente de gré à gré est la règle, entre 1 h et 5 h le matin même ; les enchères doivent garder au moins un cinquième des arrivages ; on n'y vend qu'aux acheteurs agréés par la Ville."
+            },
+            {
+              "url": "https://otakaki.co.jp/pres/20260218/",
+              "read": "2026-11-23",
+              "what": "Président d'Ōta Kaki (18 févr. 2026) : enchère à distance depuis quatorze ans, salle à rénover, la maison tient à montrer les lots en vrai quand d'autres marchés passent à l'enchère sur image ou de nuit."
             },
             {
               "url": "https://www.shijou.metro.tokyo.lg.jp/general/kids/kengaku/oota/12",
               "read": "2026-11-23",
-              "what": "Ville de Tokyo, parcours de visite d'Ōta : la salle des enchères de fleurs se voit à travers une vitre, enchères à partir de 7 h 30, cadran lumineux et pupitres."
+              "what": "Ville de Tokyo, parcours de visite d'Ōta (pages 10 à 14) : poste de garde des fleurs, bâtiment d'entrée au bouquet, escalier vers le 2F, salle des enchères vue à travers une vitre, cadran lumineux et pupitres, vingt boutiques de demi-grossistes. Cette page écrit 7 h 30, l'heure des plantes en pot d'après la brochure de la Ville."
             },
             {
               "url": "https://www.shijou.metro.tokyo.lg.jp/info/03/",
@@ -3537,7 +3562,7 @@
             {
               "url": "https://otakaki.co.jp/qa/",
               "read": "2026-11-23",
-              "what": "Grossiste Ōta Kaki, questions fréquentes : visite libre depuis le couloir des visiteurs, en prévenant la Ville ; l'achat demande une carte d'acheteur. Site actif en novembre 2026."
+              "what": "Grossiste Ōta Kaki, questions fréquentes : « 見学者通路からの自由見学が基本となりますが、あらかじめ東京都へご申請ください », avec un renvoi à la page de la Ville ; l'achat demande un agrément de la Ville. Site actif en novembre 2026."
             },
             {
               "url": "https://otakaki.co.jp/access/",
@@ -3547,7 +3572,7 @@
             {
               "url": "https://www.ekitan.com/timetable/railway/line-station/214-3/d1",
               "read": "2026-11-23",
-              "what": "Horaire de la gare de Ryūtsū Center, au 14 mars 2026 : premier monorail venant de Hamamatsuchō à 5 h 21 en semaine."
+              "what": "Horaire de la gare de Ryūtsū Center, au 14 mars 2026, lu pour un mercredi : arrivées de Hamamatsuchō à 5 h 21, puis 6 h 08, 6 h 18, 6 h 28, 6 h 37 ; départs correspondants lus sur la page de Hamamatsuchō."
             },
             {
               "url": "https://unique-ota.city.ota.tokyo.jp/charm/tourism/ota-shizyo/",
@@ -3555,14 +3580,14 @@
               "what": "Office de tourisme de l'arrondissement d'Ōta (25 mars 2019) : parcours des visiteurs ouvert à tous, environ 90 min pour tout le marché, entrée gratuite."
             },
             {
-              "url": "https://www.noble-florist.com/%e5%a4%a7%e7%94%b0%e8%8a%b1%e5%b8%82%e5%a0%b4/",
+              "url": "https://www.jigyokyo.com/kaidashi/",
               "read": "2026-11-23",
-              "what": "Un fleuriste client du marché (14 mai 2020) : fleurs coupées lundi, mercredi et vendredi à 7 h, plantes en pot mardi, jeudi et samedi à 7 h 30."
+              "what": "Coopérative du pavillon des fleurs (mis à jour le 2 févr. 2026) : sans le badge d'acheteur, réservé aux gens du métier, on n'achète rien aux boutiques des demi-grossistes."
             }
           ],
           "coordinateSource": "OpenStreetMap way/149844298 : le grand bâtiment, sans nom, du terrain du pavillon des fleurs (東海2-2-1), repéré par la station de vélos « 大田市場花き棟 » voisine (node/13192290177). L'entrée des visiteurs n'est pas dans OpenStreetMap.",
           "verify": true,
-          "verifyNote": "Y aller un lundi, un mercredi ou un vendredi : les jours d'enchères ne sont écrits que par un fleuriste, en 2020 (fleurs coupées ces trois jours-là). Heure de début : 7 h ou 7 h 30 selon la page. Inscription : la Ville dit visite libre, un grossiste demande de la prévenir. Le point est posé sur le grand bâtiment, pas sur l'entrée des visiteurs. Règle sur les photos non lue."
+          "verifyNote": "Jours et heures lus chez les deux grossistes en novembre 2026. Restent à voir sur place : combien d'acheteurs sont encore dans la salle (aucun chiffre publié), jusqu'à quelle heure durent les enchères, si les deux salles se voient du couloir, et la règle sur les photos, écrite nulle part pour les visiteurs. Rien ne dit si le pin (6 déc.) et le senryō (20 déc.) passent à l'horloge. Le point est posé sur le grand bâtiment, pas sur l'entrée des visiteurs."
         }
       }
     }
