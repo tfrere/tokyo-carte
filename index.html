@@ -11,7 +11,16 @@
 <meta name="theme-color" content="#14171b">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="no-referrer">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314171b'/%3E%3Ccircle cx='11' cy='12' r='4.5' fill='%235cc3f5'/%3E%3Ccircle cx='21' cy='10' r='3' fill='%23f5e04a'/%3E%3Ccircle cx='19' cy='21' r='5' fill='%23f08fc8'/%3E%3Ccircle cx='9' cy='23' r='2.5' fill='%2335d0a5'/%3E%3C/svg%3E">
+<!-- on a phone's home screen: its own icon and name, and the whole screen for the map (no browser bars) -->
+<meta name="apple-mobile-web-app-title" content="Tokyo">
+<meta name="application-name" content="Tokyo">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <!-- The map of Tokyo, standalone: one page, its data beside it, no build.
      MapLibre GL JS (BSD-3-Clause) from a CDN, OpenFreeMap vector tiles (OpenMapTiles schema, OpenStreetMap data), no key.
      The page contacts two hosts only: unpkg.com (the map library) and tiles.openfreemap.org (style, tiles, fonts). -->
@@ -60,6 +69,7 @@
   #card dt { color: #7f8892; }
   #card dd { margin: 0; color: #c9cdd2; }
   #card .gmaps { display: flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 14px; border-radius: 12px; background: #e9e6de; color: #14171b; font-weight: 600; text-decoration: none; }
+  #card .share { display: block; width: 100%; min-height: 48px; margin-top: 8px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 12px; background: none; color: #d6d9dd; cursor: pointer; }
   #card .sources { margin-top: 12px; font-size: 12.5px; color: #7f8892; }
   #card .sources a { color: #9db7d0; display: block; padding: 9px 0; overflow-wrap: anywhere; }
 
@@ -276,10 +286,22 @@ async function main() {
       ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
       ${facts ? `<dl>${facts}</dl>` : ''}
       <a class="gmaps" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${entry.lat},${entry.lon}">Ouvrir dans Google Maps</a>
+      <button class="share" type="button">Partager ce lieu</button>
       ${entry.sources.length ? `<div class="sources">Sources${entry.sources.map(s => `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('')}</div>` : ''}`
     card.scrollTop = 0
     card.classList.add('open')
     card.querySelector('.close').onclick = close
+    // opened from the home screen there is no address bar: the place's link is shared from here (the place alone, not the view)
+    card.querySelector('.share').onclick = async event => {
+      const url = `${location.origin}${location.pathname}#lieu=${encodeURIComponent(entry.id)}`
+      const said = text => { event.target.textContent = text; setTimeout(() => (event.target.textContent = 'Partager ce lieu'), 2500) }
+      try {
+        if (navigator.share) await navigator.share({ title: `${entry.short}, Tokyo`, url })
+        else { await navigator.clipboard.writeText(url); said('Lien copié') }
+      } catch (error) {
+        if (error.name !== 'AbortError') prompt('Le lien de ce lieu', url)
+      }
+    }
     shown = entry
     hashSet('lieu', entry.id)
     if (!map) return

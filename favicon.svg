@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><clipPath id="r"><rect width="512" height="512" rx="112"/></clipPath><g clip-path="url(#r)">
+  <!-- The map's own look: its dark ground, the bay and the Sumida in its water colour, the loop line, one chosen place. -->
+  <rect width="512" height="512" fill="#14171b"/>
+  <path d="M512 286C452 290 410 318 384 356C356 398 350 452 318 512H512Z" fill="#22364a"/>
+  <path d="M388 352C356 306 384 252 356 196C336 156 350 76 384 0" fill="none" stroke="#22364a" stroke-width="20" stroke-linecap="round"/>
+  <ellipse cx="226" cy="246" rx="122" ry="150" fill="none" stroke="#333a42" stroke-width="9"/>
+  <path d="M0 262H104M226 96V0M132 352L40 470" fill="none" stroke="#2a3037" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="318" cy="150" r="27" fill="#f08fc8" stroke="#0e1115" stroke-width="8"/>
+  <circle cx="150" cy="356" r="27" fill="#5cc3f5" stroke="#0e1115" stroke-width="8"/>
+  <circle cx="232" cy="250" r="66" fill="#f5e04a" stroke="#f7f4ec" stroke-width="16"/>
+</g></svg>
