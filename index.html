@@ -23,7 +23,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <!-- The map, one city at a time (cities.json), standalone: one page, its data beside it, no build.
      MapLibre GL JS (BSD-3-Clause) from a CDN, OpenFreeMap vector tiles (OpenMapTiles schema, OpenStreetMap data), no key.
-     The page contacts two hosts only: unpkg.com (the map library) and tiles.openfreemap.org (style, tiles, fonts). -->
+     The page contacts unpkg.com (the map library) and tiles.openfreemap.org (style, tiles, fonts), and routing.openstreetmap.de
+     only when a walk is asked for. -->
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js" integrity="sha384-nXMl9YiLoSG5KBPTFgvxVuIqQQcqIvo0bFrvoEaGJC6r7IibIzF1S36Zbf/sKBtL" crossorigin="anonymous"></script>
 <style>
@@ -52,6 +53,14 @@
   #search input::placeholder { color: #8c949d; }
   #search input::-webkit-search-cancel-button { display: none; }
   #search .clear { position: absolute; right: 0; top: 0; width: 44px; height: 44px; border: 0; background: none; color: #aab2bb; font-size: 20px; line-height: 1; cursor: pointer; }
+  #crowd-button { position: fixed; z-index: 3; left: 12px; top: calc(114px + env(safe-area-inset-top)); min-height: 40px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 20px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
+  #crowd-button[aria-pressed='true'] { background: #f2784b; border-color: #f2784b; color: #14171b; font-weight: 600; }
+  #crowd-legend { position: fixed; z-index: 3; left: 12px; top: calc(162px + env(safe-area-inset-top)); width: 236px; box-sizing: border-box; padding: 10px 12px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); font-size: 12px; color: #aab2bb; }
+  #crowd-legend[hidden], #crowd-button[hidden] { display: none; }
+  #crowd-legend .ramp { height: 8px; margin: 8px 0 4px; border-radius: 4px; background: linear-gradient(90deg, #3c1e6e, #5b2a86 25%, #b8407a 50%, #f2784b 72%, #ffc857 90%, #fff3b0); }
+  #crowd-legend .scale { display: flex; justify-content: space-between; font-size: 11px; }
+  #crowd-legend .read { margin: 8px 0 0; min-height: 2.8em; font-size: 13px; line-height: 1.4; color: #e9e6de; }
+  #crowd-legend .note { margin: 6px 0 0; font-size: 11px; line-height: 1.4; color: #7f8892; }
   #list-button { flex: none; min-height: 44px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
   /* what the search finds: under the field, about eight at a time, never under the on-screen keyboard (--view-h) */
   #results { position: fixed; z-index: 4; left: 12px; right: 12px; top: calc(112px + env(safe-area-inset-top)); max-height: min(428px, calc(var(--view-h, 100vh) - 122px - env(safe-area-inset-top))); overflow-y: auto; overscroll-behavior: contain; padding: 4px; box-sizing: border-box; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 16px; background: #12151a; box-shadow: 0 10px 40px rgb(0 0 0 / 0.5); }
@@ -138,6 +147,8 @@
     #title p { font-size: 13px; }
     #cities { left: 18px; top: 52px; }
     #search { left: 18px; right: auto; top: 76px; width: 400px; }
+    #crowd-button { left: 18px; top: 128px; }
+    #crowd-legend { left: 18px; top: 176px; }
     #results { left: 18px; right: auto; top: 126px; width: 400px; }
     #key button .long, #key button small { display: inline; }
     #key .chips { gap: 8px; }
@@ -157,6 +168,14 @@
   <div class="field"><input type="search" placeholder="Chercher un lieu, un quartier" aria-label="Chercher un lieu, un quartier, une envie" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="clear" type="button" aria-label="Effacer la recherche" hidden>×</button></div>
   <button id="list-button" type="button">Liste</button>
 </div>
+<button id="crowd-button" type="button" aria-pressed="false" hidden>Affluence de jour</button>
+<div id="crowd-legend" hidden>
+  <strong>Monde présent en journée</strong>
+  <div class="ramp"></div>
+  <div class="scale"><span>Calme</span><span>Animé</span><span>Bondé</span></div>
+  <p class="read">Touche la carte pour une valeur.</p>
+  <p class="note">Moyenne estimée un jour de semaine : travailleurs, habitants restés sur place, usagers des gares. Sans les week-ends ni les touristes : Asakusa ou Harajuku y sont plus calmes qu’un samedi.</p>
+</div>
 <div id="results" hidden></div>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
 <aside id="card" aria-live="polite"></aside>
@@ -166,7 +185,7 @@
 </section>
 <nav id="key" aria-label="Intérêts">
   <div class="chips"></div>
-  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> · Itinéraires : <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener">OSRM / FOSSGIS</a></p>
+  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> · Itinéraires : <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener">OSRM / FOSSGIS</a> · Affluence : <a href="https://www.e-stat.go.jp/gis" target="_blank" rel="noopener">e-Stat</a>, <a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-S12-2024.html" target="_blank" rel="noopener">MLIT</a></p>
 </nav>
 <script>
 const INTERESTS = [
@@ -614,6 +633,41 @@ async function main() {
     },
     paint: { 'icon-opacity': 0.92, 'text-color': '#aab2bb', 'text-halo-color': C.halo, 'text-halo-width': 1.4 } })
 
+  // how many people are about on an ordinary weekday, by 500 m square (jour.json): workers, a third of the residents
+  // (who stay home), a few of the station's passengers. Drawn as a soft heat map under everything; read by tapping.
+  const CELL = 22.5 / 3600, CELL_H = 15 / 3600, CELL_KM2 = 0.2616
+  const LEVELS = [[8000, 'Calme'], [40000, 'Animé'], [120000, 'Très fréquenté'], [Infinity, 'Bondé']]
+  let crowd = null
+  const crowdButton = document.getElementById('crowd-button'), crowdLegend = document.getElementById('crowd-legend')
+  map.addSource('crowd', { type: 'geojson', data: collection([]) })
+  map.addLayer({ id: 'crowd', type: 'heatmap', source: 'crowd', layout: { visibility: 'none' }, paint: {
+    'heatmap-weight': ['interpolate', ['linear'], ['get', 'd'], 0, 0, 400, 0.1, 2500, 0.28, 12000, 0.5, 45000, 0.78, 150000, 1],
+    'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 9, 1.3, 14, 1.8],
+    'heatmap-radius': ['interpolate', ['exponential', 2], ['zoom'], 9, 7, 11, 28, 13, 100, 15, 300],
+    'heatmap-color': ['interpolate', ['linear'], ['heatmap-density'], 0, 'rgba(60, 30, 110, 0)', 0.08, 'rgba(60, 30, 110, 0.35)', 0.22, '#5b2a86', 0.42, '#b8407a', 0.62, '#f2784b', 0.82, '#ffc857', 1, '#fff3b0'],
+    'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 9, 0.88, 14, 0.7, 17, 0.4],
+  } }, 'zones-fill')
+  crowdButton.hidden = false
+  crowdButton.onclick = async () => {
+    const on = crowdButton.getAttribute('aria-pressed') !== 'true'
+    if (on && !crowd) {
+      try {
+        const file = await json('jour.json')
+        crowd = new Map(file.cells.map(([lon, lat, d]) => [`${Math.floor(lon / CELL)},${Math.floor(lat / CELL_H)}`, d]))
+        map.getSource('crowd').setData(collection(file.cells.map(([lon, lat, d]) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [lon, lat] }, properties: { d } }))))
+      } catch { crowdLegend.hidden = false; crowdLegend.querySelector('.read').textContent = 'Les données ne se chargent pas pour le moment.'; return }
+    }
+    crowdButton.setAttribute('aria-pressed', on)
+    crowdLegend.hidden = !on
+    map.setLayoutProperty('crowd', 'visibility', on ? 'visible' : 'none')
+  }
+  const crowdAt = ({ lng, lat }) => {
+    const d = (crowd.get(`${Math.floor(lng / CELL)},${Math.floor(lat / CELL_H)}`) ?? 0) / CELL_KM2
+    const level = LEVELS.find(([max]) => d < max)[1]
+    const round = d < 10000 ? 100 : 1000
+    crowdLegend.querySelector('.read').innerHTML = d < 300 ? '<b>Presque personne</b> ici en journée.' : `<b>${level}</b><br>environ ${(Math.round(d / round) * round).toLocaleString('fr-FR')} personnes par km²`
+  }
+
   // the walk to the open card's place: under the places, over the zones
   map.addSource('route', { type: 'geojson', data: collection([]) })
   map.addSource('route-start', { type: 'geojson', data: collection([]) })
@@ -676,6 +730,7 @@ async function main() {
   // ---- taps: a place first, then a landmark, then a zone (its note, or its ground while the zones are what is shown)
   map.on('click', event => {
     if (onStart) { const start = onStart; onStart = null; return start([event.lngLat.lng, event.lngLat.lat]) }
+    if (crowd && map.getLayoutProperty('crowd', 'visibility') === 'visible') crowdAt(event.lngLat)
     const { x, y } = event.point
     const hits = map.queryRenderedFeatures([[x - 14, y - 14], [x + 14, y + 14]], { layers: ['picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes', 'zones-fill'] })
     const near = source => hits.filter(h => h.source === source).sort((a, b) => { const d = h => { const p = map.project(h.geometry.coordinates); return Math.hypot(p.x - x, p.y - y) }; return d(a) - d(b) })[0]
