@@ -24,7 +24,7 @@
 <!-- The map, one city at a time (cities.json), standalone: one page, its data beside it, no build.
      MapLibre GL JS (BSD-3-Clause) from a CDN, OpenFreeMap vector tiles (OpenMapTiles schema, OpenStreetMap data), no key.
      The page contacts unpkg.com (the map library) and tiles.openfreemap.org (style, tiles, fonts), and routing.openstreetmap.de
-     only when a walk is asked for. -->
+     only when a walk is asked for, and photon.komoot.io for the search beyond the chosen places. -->
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js" integrity="sha384-nXMl9YiLoSG5KBPTFgvxVuIqQQcqIvo0bFrvoEaGJC6r7IibIzF1S36Zbf/sKBtL" crossorigin="anonymous"></script>
 <style>
@@ -53,14 +53,14 @@
   #search input::placeholder { color: #8c949d; }
   #search input::-webkit-search-cancel-button { display: none; }
   #search .clear { position: absolute; right: 0; top: 0; width: 44px; height: 44px; border: 0; background: none; color: #aab2bb; font-size: 20px; line-height: 1; cursor: pointer; }
-  #crowd-button { position: fixed; z-index: 3; left: 12px; top: calc(114px + env(safe-area-inset-top)); min-height: 40px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 20px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
-  #crowd-button[aria-pressed='true'] { background: #f2784b; border-color: #f2784b; color: #14171b; font-weight: 600; }
-  #crowd-legend { position: fixed; z-index: 3; left: 12px; top: calc(162px + env(safe-area-inset-top)); width: 236px; box-sizing: border-box; padding: 10px 12px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); font-size: 12px; color: #aab2bb; }
-  #crowd-legend[hidden], #crowd-button[hidden] { display: none; }
-  #crowd-legend .ramp { height: 8px; margin: 8px 0 4px; border-radius: 4px; background: linear-gradient(90deg, #3c1e6e, #5b2a86 25%, #b8407a 50%, #f2784b 72%, #ffc857 90%, #fff3b0); }
-  #crowd-legend .scale { display: flex; justify-content: space-between; font-size: 11px; }
-  #crowd-legend .read { margin: 8px 0 0; min-height: 2.8em; font-size: 13px; line-height: 1.4; color: #e9e6de; }
-  #crowd-legend .note { margin: 6px 0 0; font-size: 11px; line-height: 1.4; color: #7f8892; }
+  /* the day's crowd: a chip in the key, and when it is on a slim legend under the search that also reads the tapped spot */
+  #crowd-legend { position: fixed; z-index: 3; left: 12px; top: calc(112px + env(safe-area-inset-top)); width: min(300px, calc(100% - 24px)); box-sizing: border-box; padding: 8px 8px 8px 12px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); font-size: 11px; color: #aab2bb; }
+  #crowd-legend[hidden], #crowd-legend .note[hidden] { display: none; }
+  #crowd-legend .row { display: flex; align-items: center; gap: 8px; }
+  #crowd-legend .ramp { flex: 1; height: 8px; border-radius: 4px; background: linear-gradient(90deg, #3c1e6e, #5b2a86 25%, #b8407a 50%, #f2784b 72%, #ffc857 90%, #fff3b0); }
+  #crowd-legend .info { flex: none; width: 36px; height: 36px; margin: -6px 0 -6px 2px; border: 0; border-radius: 50%; background: none; color: #aab2bb; font: italic 600 14px/1 Georgia, serif; cursor: pointer; }
+  #crowd-legend .read { margin: 2px 0 0; padding-right: 36px; font-size: 13px; line-height: 1.35; color: #e9e6de; }
+  #crowd-legend .note { margin: 8px 0 0; font-size: 11.5px; line-height: 1.45; color: #8c949d; }
   #list-button { flex: none; min-height: 44px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
   /* what the search finds: under the field, about eight at a time, never under the on-screen keyboard (--view-h) */
   #results { position: fixed; z-index: 4; left: 12px; right: 12px; top: calc(112px + env(safe-area-inset-top)); max-height: min(428px, calc(var(--view-h, 100vh) - 122px - env(safe-area-inset-top))); overflow-y: auto; overscroll-behavior: contain; padding: 4px; box-sizing: border-box; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 16px; background: #12151a; box-shadow: 0 10px 40px rgb(0 0 0 / 0.5); }
@@ -71,6 +71,9 @@
   #results .hit b { font-weight: 500; color: #efece4; }
   #results .hit span { font-size: 13px; color: #8c949d; }
   #results .hit b, #results .hit span { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  #results .osm-head { margin: 10px 10px 2px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #8c949d; }
+  #results .osm-note { margin: 6px 10px 8px; font-size: 11.5px; line-height: 1.4; color: #6f7781; }
+  #results .hit i.pin { box-sizing: border-box; width: 12px; height: 12px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #f2784b; }
   #results .none { margin: 12px; color: #8c949d; font-size: 14px; }
   /* without the map the key has nothing to act on */
   [data-state='no-map'] #key .chips { display: none; }
@@ -82,8 +85,9 @@
   #key button i { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
   #key button small { color: #6f7781; font-size: 12px; }
   #key button .long, #key button small { display: none; }
-  #key.picked button:not(.on) { color: #7b838d; }
-  #key.picked button:not(.on) i { opacity: 0.4; }
+  #key.picked button:not(.on):not(.crowd) { color: #7b838d; }
+  #key.picked button:not(.on):not(.crowd) i { opacity: 0.4; }
+  #key button[hidden] { display: none; }
   #key button.on { border-color: var(--c); color: #fff; background: #20252c; }
   #key .credit { margin: 6px 0 0; text-align: center; font-size: 10.5px; color: #7f8892; }
   #key .credit a { color: #9aa3ad; text-decoration: none; }
@@ -147,8 +151,7 @@
     #title p { font-size: 13px; }
     #cities { left: 18px; top: 52px; }
     #search { left: 18px; right: auto; top: 76px; width: 400px; }
-    #crowd-button { left: 18px; top: 128px; }
-    #crowd-legend { left: 18px; top: 176px; }
+    #crowd-legend { left: 18px; top: 128px; }
     #results { left: 18px; right: auto; top: 126px; width: 400px; }
     #key button .long, #key button small { display: inline; }
     #key .chips { gap: 8px; }
@@ -163,18 +166,16 @@
 <div id="map"></div>
 <header id="title"><h1><button id="city" type="button" aria-haspopup="listbox" aria-expanded="false"><span></span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></h1><p>des lieux choisis, par envie</p></header>
 <div id="cities" role="listbox" aria-label="Villes" hidden></div>
-<!-- what is typed here stays in the page: no form, no name, nothing of it in the address or anywhere else -->
+<!-- what is typed here is no form and has no name, and nothing of it goes in the address; it leaves the page only for the
+     OpenStreetMap search below the chosen places (Photon), three letters or more, after a pause -->
 <div id="search" role="search">
   <div class="field"><input type="search" placeholder="Chercher un lieu, un quartier" aria-label="Chercher un lieu, un quartier, une envie" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="clear" type="button" aria-label="Effacer la recherche" hidden>×</button></div>
   <button id="list-button" type="button">Liste</button>
 </div>
-<button id="crowd-button" type="button" aria-pressed="false" hidden>Affluence de jour</button>
 <div id="crowd-legend" hidden>
-  <strong>Monde présent en journée</strong>
-  <div class="ramp"></div>
-  <div class="scale"><span>Calme</span><span>Animé</span><span>Bondé</span></div>
+  <div class="row"><span>Calme</span><div class="ramp"></div><span>Bondé</span><button class="info" type="button" aria-label="À propos de ces chiffres" aria-expanded="false">i</button></div>
   <p class="read">Touche la carte pour une valeur.</p>
-  <p class="note">Moyenne estimée un jour de semaine : travailleurs, habitants restés sur place, usagers des gares. Sans les week-ends ni les touristes : Asakusa ou Harajuku y sont plus calmes qu’un samedi.</p>
+  <p class="note" hidden>Présence moyenne estimée un jour de semaine, en journée : travailleurs, habitants restés sur place, usagers des gares. Sans les week-ends ni les touristes : Asakusa ou Harajuku y sont plus calmes qu’un samedi.</p>
 </div>
 <div id="results" hidden></div>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
@@ -382,7 +383,8 @@ async function main() {
   // ---- the card
   const card = document.getElementById('card')
   let shown = null
-  const close = () => { clearRoute(); card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']) }
+  const clearFound = () => map?.getSource('found')?.setData(collection([]))
+  const close = () => { clearRoute(); clearFound(); card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']) }
 
   // ---- the walk: from where he is (or a point he taps) to the card's place, drawn on the map with its time.
   // The route comes from the OpenStreetMap foot router; it is sent the two points and nothing else, and only once he asks.
@@ -437,25 +439,27 @@ async function main() {
 
   function open(entry, { fly = false } = {}) {
     clearRoute()
+    if (entry.kind !== 'search') clearFound()
     const facts = entry.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')
-    const tag = entry.kind === 'zone' ? 'Quartier' : entry.kind === 'landmark' ? 'Repère' : '★'.repeat(entry.strength)
+    const tag = entry.kind === 'zone' ? 'Quartier' : entry.kind === 'landmark' ? 'Repère' : entry.kind === 'search' ? 'OpenStreetMap' : '★'.repeat(entry.strength)
     card.innerHTML = `<button class="close" type="button" aria-label="Fermer">×</button>
       <div class="tags">${entry.interests.map(i => `<span style="--c:${colorOf(i)}"><i></i>${esc(labelOf(i))}</span>`).join('')}<span>${tag}</span>${entry.area ? `<span>${esc(entry.area)}</span>` : ''}</div>
       <h1>${esc(entry.hook || entry.short)}</h1>
-      ${entry.kind === 'landmark' ? '' : `<h2>${esc(entry.name)}${entry.nameJa ? ` · ${esc(entry.nameJa)}` : ''}</h2>`}
+      ${entry.kind === 'landmark' || !entry.name ? '' : `<h2>${esc(entry.name)}${entry.nameJa ? ` · ${esc(entry.nameJa)}` : ''}</h2>`}
       <div class="walk"></div>
       ${entry.verify ? `<p class="warn">À vérifier : ${esc(entry.verify)}</p>` : ''}
       ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
       ${facts ? `<dl>${facts}</dl>` : ''}
       <a class="gmaps" target="_blank" rel="noopener" href="${esc(mapsLink(entry))}">${entry.kind === 'zone' ? 'Voir le quartier dans Google Maps' : 'Ouvrir dans Google Maps'}</a>
-      <button class="share" type="button">Partager ce lieu</button>
+      ${entry.kind === 'search' ? '' : '<button class="share" type="button">Partager ce lieu</button>'}
       ${entry.sources.length ? `<div class="sources">Sources${entry.sources.map(s => `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('')}</div>` : ''}`
     card.scrollTop = 0
     card.classList.add('open')
     card.querySelector('.close').onclick = close
     walk(entry, card.querySelector('.walk'))
     // opened from the home screen there is no address bar: the place's link is shared from here (the place alone, not the view)
-    card.querySelector('.share').onclick = async event => {
+    const shareButton = card.querySelector('.share')
+    if (shareButton) shareButton.onclick = async event => {
       const url = `${location.origin}${location.pathname}#ville=${city.id}&lieu=${encodeURIComponent(entry.id)}`
       const said = text => { event.target.textContent = text; setTimeout(() => (event.target.textContent = 'Partager ce lieu'), 2500) }
       try {
@@ -466,7 +470,7 @@ async function main() {
       }
     }
     shown = entry
-    hashSet('lieu', entry.id)
+    hashSet('lieu', entry.kind === 'search' ? null : entry.id)
     if (!map) return
     map.setFilter('picked', ['==', ['get', 'id'], entry.kind === 'place' ? entry.id : ''])
     // the sheet covers the lower part of a phone: the place goes to the middle of what is left of the map
@@ -504,12 +508,66 @@ async function main() {
   const dotOf = e => e.kind === 'zone' ? '<i class="zone"></i>' : `<i style="--c:${e.kind === 'landmark' ? BACK : colorOf(e.interests[0])}"></i>`
   const whereOf = e => [e.kind === 'zone' ? 'Quartier' : e.kind === 'landmark' ? 'Repère' : e.area, e.kind === 'landmark' ? null : e.hook].filter(Boolean).join(' · ')
   let found = []
+
+  // ---- and beyond the chosen places, whatever OpenStreetMap knows (towns, districts, streets, addresses, shops) by Photon,
+  // komoot's open geocoder. What is typed leaves the page only here: three letters or more, after a pause.
+  const PHOTON = 'https://photon.komoot.io/api/'
+  const KINDS = { city: 'Ville', town: 'Ville', village: 'Village', suburb: 'Quartier', quarter: 'Quartier', neighbourhood: 'Quartier', borough: 'Arrondissement', station: 'Gare', halt: 'Gare', park: 'Parc', garden: 'Jardin', museum: 'Musée', attraction: 'Curiosité', mall: 'Centre commercial', restaurant: 'Restaurant', cafe: 'Café', bar: 'Bar', pub: 'Bar', hotel: 'Hôtel', house: 'Adresse', residential: 'Rue', pedestrian: 'Rue', place_of_worship: 'Lieu de culte', university: 'Université', hospital: 'Hôpital', theatre: 'Théâtre', cinema: 'Cinéma', library: 'Bibliothèque' }
+  const osmCache = new Map()
+  let osm = [], osmState = 'idle', osmTimer = 0, osmAbort = null
+  const osmKind = p => KINDS[p.osm_value] ?? ''
+  const osmLine = f => { const p = f.properties; return [...new Set([p.street && `${p.street}${p.housenumber ? ` ${p.housenumber}` : ''}`, p.district ?? p.locality, p.city ?? p.county, p.state].filter(Boolean))].join(', ') }
+  // roads, signals, platforms and exits are not places to go to
+  const wanted = f => { const p = f.properties; return Boolean(p.name || p.housenumber) && !['highway', 'emergency', 'barrier', 'power', 'public_transport'].includes(p.osm_key) && !(p.osm_key === 'railway' && !['station', 'halt'].includes(p.osm_value)) }
+  // a district's numbered blocks ("Yanaka 4") are noise beside the district itself
+  const blocks = list => { const names = new Set(list.map(f => f.properties.name)); return list.filter(f => { const m = /^(.+) \d+$/.exec(f.properties.name ?? ''); return !(m && names.has(m[1])) }) }
+  const distinct = list => { const seen = new Set(); return list.filter(f => { const p = f.properties, k = `${p.name}|${p.osm_value}|${p.district ?? ''}|${p.city ?? ''}`; return seen.has(k) ? false : seen.add(k) }) }
+  function askOsm(query) {
+    clearTimeout(osmTimer); osmAbort?.abort(); osm = []
+    const q = query.trim()
+    if (q.length < 3) { osmState = 'idle'; return }
+    if (osmCache.has(q)) { osm = osmCache.get(q); osmState = 'done'; return }
+    osmState = 'wait'
+    osmTimer = setTimeout(async () => {
+      const abort = osmAbort = new AbortController(), giveUp = setTimeout(() => abort.abort(), 8000)
+      try {
+        const at = map?.getCenter()
+        const answer = await fetch(`${PHOTON}?q=${encodeURIComponent(q)}&limit=10&lang=fr&bbox=122.9,24,154,45.6${at ? `&lat=${at.lat.toFixed(3)}&lon=${at.lng.toFixed(3)}&location_bias_scale=0.4` : ''}`, { signal: abort.signal }).then(r => (r.ok ? r.json() : Promise.reject(new Error(r.status))))
+        osm = distinct(blocks(answer.features.filter(wanted))).slice(0, 6); osmCache.set(q, osm); osmState = 'done'
+      } catch (error) {
+        if (abort.signal.aborted && field.value.trim() !== q) return
+        osmState = 'error'
+      } finally { clearTimeout(giveUp) }
+      if (field.value.trim() === q && !results.hidden) paint()
+    }, 380)
+  }
+  function paint() {
+    const query = field.value.trim()
+    const chosen = found.map(e => `<button class="hit" type="button" data-id="${esc(e.id)}">${dotOf(e)}<b>${esc(e.short)}</b><span>${esc(whereOf(e))}</span></button>`).join('')
+    const web = query.length < 3 ? ''
+      : osmState === 'wait' ? '<p class="osm-note">Recherche sur OpenStreetMap…</p>'
+      : osmState === 'error' ? '<p class="osm-note">OpenStreetMap ne répond pas pour le moment.</p>'
+      : osm.length ? `<h4 class="osm-head">Sur OpenStreetMap</h4>${osm.map((f, i) => `<button class="hit" type="button" data-osm="${i}"><i class="pin"></i><b>${esc(f.properties.name ?? osmLine(f))}</b><span>${esc([osmKind(f.properties), f.properties.name ? osmLine(f) : ''].filter(Boolean).join(' · '))}</span></button>`).join('')}<p class="osm-note">Recherche élargie par Photon (photon.komoot.io) : ce que tu tapes lui est envoyé.</p>`
+      : ''
+    results.innerHTML = chosen + web || '<p class="none">Rien à ce nom.</p>'
+  }
   function answer() {
     clear.hidden = !field.value
     found = field.value.trim() ? find(field.value, all).slice(0, 30) : []
     results.hidden = !field.value.trim()
-    results.innerHTML = found.map(e => `<button class="hit" type="button" data-id="${esc(e.id)}">${dotOf(e)}<b>${esc(e.short)}</b><span>${esc(whereOf(e))}</span></button>`).join('') || '<p class="none">Rien à ce nom sur la carte.</p>'
+    askOsm(field.value)
+    paint()
     results.scrollTop = 0
+  }
+  function chooseOsm(f) {
+    rest()
+    const p = f.properties, [lon, lat] = f.geometry.coordinates, line = osmLine(f), title = p.name ?? line
+    open({ id: `osm ${p.osm_type}${p.osm_id}`, short: title, hook: title, name: p.name ? line : '', lon, lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: osmKind(p) || null, sources: [], kind: 'search', ask: [title, p.city ?? p.county ?? p.state].filter(Boolean).join(' ') })
+    if (!map) return
+    map.getSource('found').setData(collection([{ type: 'Feature', geometry: { type: 'Point', coordinates: [lon, lat] }, properties: {} }]))
+    const e = p.extent
+    if (e && (e[2] - e[0] > 0.0006 || e[1] - e[3] > 0.0006)) map.fitBounds([[e[0], e[3]], [e[2], e[1]]], { padding: phone() ? { top: 130, bottom: card.offsetHeight + 24, left: 30, right: 30 } : { top: 140, bottom: 130, left: 430, right: 60 }, maxZoom: 17, duration: 900 })
+    else map.flyTo({ center: [lon, lat], zoom: Math.max(map.getZoom(), 16), offset: phone() ? [0, -card.offsetHeight / 2] : [0, 0], duration: 900 })
   }
   const rest = () => { results.hidden = true; field.blur() }
   function choose(entry) {
@@ -523,10 +581,10 @@ async function main() {
   field.onfocus = () => { if (shown) close(); answer() }
   field.onkeydown = event => {
     if (event.key === 'Escape') rest()
-    if (event.key === 'Enter' && found[0]) choose(found[0])
+    if (event.key === 'Enter') found[0] ? choose(found[0]) : osm[0] && chooseOsm(osm[0])
   }
   clear.onclick = () => { field.value = ''; answer(); field.focus() }
-  results.onclick = event => { const hit = event.target.closest('.hit'); if (hit) choose(byId.get(hit.dataset.id)) }
+  results.onclick = event => { const hit = event.target.closest('.hit'); if (!hit) return; if (hit.dataset.osm !== undefined) chooseOsm(osm[Number(hit.dataset.osm)]); else choose(byId.get(hit.dataset.id)) }
   // a touch anywhere else (the map, the key) closes the results and the keyboard
   document.addEventListener('pointerdown', event => { if (!results.hidden && !bar.contains(event.target) && !results.contains(event.target)) rest() })
   // the results end above the on-screen keyboard: the visible height, not the window's
@@ -535,7 +593,10 @@ async function main() {
   fit()
   const key = document.getElementById('key'), chips = key.querySelector('.chips')
   const count = id => places.filter(p => p.interests.includes(id)).length
-  const fillKey = () => { chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join('') }
+  // the day's crowd is one more chip, last, where a thumb is; it is not an interest
+  const crowdButton = Object.assign(document.createElement('button'), { type: 'button', className: 'crowd', hidden: true, innerHTML: '<i></i><span class="long">Affluence de jour</span><span class="short">Affluence</span>' })
+  crowdButton.style.setProperty('--c', '#f2784b'); crowdButton.setAttribute('aria-pressed', 'false')
+  const fillKey = () => { chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join(''); chips.append(crowdButton) }
   fillKey()
   new ResizeObserver(() => document.documentElement.style.setProperty('--key-h', `${key.offsetHeight}px`)).observe(key)
 
@@ -638,7 +699,7 @@ async function main() {
   const CELL = 22.5 / 3600, CELL_H = 15 / 3600, CELL_KM2 = 0.2616
   const LEVELS = [[8000, 'Calme'], [40000, 'Animé'], [120000, 'Très fréquenté'], [Infinity, 'Bondé']]
   let crowd = null
-  const crowdButton = document.getElementById('crowd-button'), crowdLegend = document.getElementById('crowd-legend')
+  const crowdLegend = document.getElementById('crowd-legend')
   map.addSource('crowd', { type: 'geojson', data: collection([]) })
   map.addLayer({ id: 'crowd', type: 'heatmap', source: 'crowd', layout: { visibility: 'none' }, paint: {
     'heatmap-weight': ['interpolate', ['linear'], ['get', 'd'], 0, 0, 400, 0.1, 2500, 0.28, 12000, 0.5, 45000, 0.78, 150000, 1],
@@ -648,6 +709,8 @@ async function main() {
     'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 9, 0.88, 14, 0.7, 17, 0.4],
   } }, 'zones-fill')
   crowdButton.hidden = false
+  const info = crowdLegend.querySelector('.info'), note = crowdLegend.querySelector('.note')
+  info.onclick = () => { note.hidden = !note.hidden; info.setAttribute('aria-expanded', String(!note.hidden)) }
   crowdButton.onclick = async () => {
     const on = crowdButton.getAttribute('aria-pressed') !== 'true'
     if (on && !crowd) {
@@ -658,6 +721,7 @@ async function main() {
       } catch { crowdLegend.hidden = false; crowdLegend.querySelector('.read').textContent = 'Les données ne se chargent pas pour le moment.'; return }
     }
     crowdButton.setAttribute('aria-pressed', on)
+    crowdButton.classList.toggle('on', on)
     crowdLegend.hidden = !on
     map.setLayoutProperty('crowd', 'visibility', on ? 'visible' : 'none')
   }
@@ -665,7 +729,7 @@ async function main() {
     const d = (crowd.get(`${Math.floor(lng / CELL)},${Math.floor(lat / CELL_H)}`) ?? 0) / CELL_KM2
     const level = LEVELS.find(([max]) => d < max)[1]
     const round = d < 10000 ? 100 : 1000
-    crowdLegend.querySelector('.read').innerHTML = d < 300 ? '<b>Presque personne</b> ici en journée.' : `<b>${level}</b><br>environ ${(Math.round(d / round) * round).toLocaleString('fr-FR')} personnes par km²`
+    crowdLegend.querySelector('.read').innerHTML = d < 300 ? '<b>Presque personne</b> ici en journée.' : `<b>${level}</b> · environ ${(Math.round(d / round) * round).toLocaleString('fr-FR')} pers./km²`
   }
 
   // the walk to the open card's place: under the places, over the zones
@@ -707,9 +771,13 @@ async function main() {
     layout: { 'icon-image': 'disc', 'icon-size': sized(...SIZES, 1.25), 'icon-overlap': 'always', 'icon-padding': 0 },
     paint: { 'icon-color': ink, 'icon-halo-color': '#ffffff', 'icon-halo-width': 2.5 } })
 
+  // the spot a search found: above everything
+  map.addSource('found', { type: 'geojson', data: collection([]) })
+  map.addLayer({ id: 'found', type: 'circle', source: 'found', paint: { 'circle-radius': 8, 'circle-color': '#f2784b', 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 3 } })
+
   // ---- the key on the map: the places of the picked interests in front, in colour and named; the others step back
   showPicked = () => {
-    for (const b of chips.children) { b.classList.toggle('on', picked.has(b.dataset.id)); b.setAttribute('aria-pressed', picked.has(b.dataset.id)) }
+    for (const b of chips.children) if (b.dataset.id) { b.classList.toggle('on', picked.has(b.dataset.id)); b.setAttribute('aria-pressed', picked.has(b.dataset.id)) }
     key.classList.toggle('picked', picked.size > 0)
     const front = picked.size ? ['any', ...[...picked].map(p => ['in', `|${p}|`, ['get', 'interests']])] : null
     for (const layer of ['dots', 'names', 'zones-fill', 'zones-line', 'zone-notes']) map.setFilter(layer, front)
@@ -721,7 +789,7 @@ async function main() {
     map.setPaintProperty('picked', 'icon-color', shownInk)
   }
   chips.onclick = event => {
-    const button = event.target.closest('button'); if (!button) return
+    const button = event.target.closest('button'); if (!button?.dataset.id) return
     const id = button.dataset.id
     picked.has(id) ? picked.delete(id) : picked.add(id)
     showPicked()
