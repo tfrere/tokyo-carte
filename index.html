@@ -201,12 +201,13 @@ const INTERESTS = [
 ]
 const OTHER = '#b4bcc6'
 const BACK = '#7d8791'
+const HOME = '#e8b04a'
 const colorOf = id => INTERESTS.find(i => i.id === id)?.color ?? OTHER
 const labelOf = id => INTERESTS.find(i => i.id === id)?.label ?? id
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
 const plain = s => String(s ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 /** What a search reads of an entry, the field that counts most first: its names, where it is, its interests, its hook. */
-const wordsOf = e => [`${e.short} ${e.name} ${e.nameJa ?? ''}`, `${e.area ?? ''} ${e.ward ?? ''}`, e.interests.map(i => `${i} ${labelOf(i)}`).join(' '), e.hook].map(plain)
+const wordsOf = e => [`${e.short} ${e.name} ${e.nameJa ?? ''}`, `${e.area ?? ''} ${e.ward ?? ''} ${e.keywords ?? ''}`, e.interests.map(i => `${i} ${labelOf(i)}`).join(' '), e.hook].map(plain)
 /**
  * The entries a query finds, best first: every word of it must be somewhere in the entry (accents and case aside),
  * a name counts before a neighbourhood, an interest, a hook, and a word's beginning before its middle.
@@ -355,10 +356,38 @@ function badgeImage(path) {
   return g.getImageData(0, 0, 52, 52)
 }
 
+/** A lodging's marker: a gold disc with a house, drawn at twice the screen's density. */
+function homeImage() {
+  const canvas = Object.assign(document.createElement('canvas'), { width: 56, height: 56 })
+  const g = canvas.getContext('2d')
+  g.beginPath(); g.arc(28, 28, 25, 0, 2 * Math.PI); g.fillStyle = HOME; g.fill(); g.lineWidth = 3; g.strokeStyle = 'rgb(4 6 9 / 0.94)'; g.stroke()
+  g.beginPath()
+  g.moveTo(28, 12); g.lineTo(43, 26); g.lineTo(38.5, 26); g.lineTo(38.5, 41); g.lineTo(31.5, 41); g.lineTo(31.5, 31); g.lineTo(24.5, 31); g.lineTo(24.5, 41); g.lineTo(17.5, 41); g.lineTo(17.5, 26); g.lineTo(13, 26); g.closePath()
+  g.fillStyle = '#1b1608'; g.fill()
+  return g.getImageData(0, 0, 56, 56)
+}
+
+/** The nights, from the lodging's two dates: "du sam. 21 au mer. 25 nov. (4 nuits)", and "21–25 nov." for the map. */
+const dayOf = (iso, options) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('fr-FR', { ...options, timeZone: 'UTC' })
+const nightsOf = h => Math.round((new Date(h.to) - new Date(h.from)) / 864e5)
+const stayOf = h => `du ${dayOf(h.from, { weekday: 'short', day: 'numeric' })} au ${dayOf(h.to, { weekday: 'short', day: 'numeric', month: 'short' })} (${nightsOf(h)} nuit${nightsOf(h) > 1 ? 's' : ''})`
+const spanOf = h => {
+  const a = new Date(`${h.from}T12:00:00Z`), b = new Date(`${h.to}T12:00:00Z`)
+  return a.getUTCMonth() === b.getUTCMonth() ? `${a.getUTCDate()}–${dayOf(h.to, { day: 'numeric', month: 'short' })}` : `${dayOf(h.from, { day: 'numeric', month: 'short' })}–${dayOf(h.to, { day: 'numeric', month: 'short' })}`
+}
+/** A lodging as an entry of the card and the search. A private rental is placed by its district only (`approx`). */
+const homeEntry = h => ({
+  id: `hébergement ${h.name}`, short: h.name, hook: h.name, name: h.kind, nameJa: null, lon: h.lon, lat: h.lat, interests: [], strength: 1,
+  why: h.note ?? '', verify: h.approx ? 'position approximative (le quartier), l’adresse exacte est dans la confirmation de réservation' : null,
+  facts: [['Dates', stayOf(h)], ...(h.arrival ? [['Arrivée', h.arrival]] : []), [h.approx ? 'Quartier' : 'Adresse', h.where], ['En japonais', h.ja], ...(h.station ? [['Accès', h.station]] : []), ...(h.phone ? [['Téléphone', h.phone]] : [])],
+  area: h.stay, keywords: 'hébergement logement maison hôtel airbnb nuit dormir', sources: [], kind: 'home', approx: h.approx, span: spanOf(h), from: h.from, gmaps: null, ask: h.ask,
+})
+const homePoint = e => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [e.lon, e.lat] }, properties: { id: e.id, name: e.short, span: e.span } })
+
 async function main() {
   const json = url => fetch(url).then(r => r.json())
   // the cities (cities.json, a line each) and the drawings of every landmark kind
-  const [cities, glyphs] = await Promise.all([json('cities.json'), json('landmark-icons.json')])
+  const [cities, glyphs, lodgings] = await Promise.all([json('cities.json'), json('landmark-icons.json'), json('homes.json').catch(() => ({ homes: [] }))])
   const loaded = new Map()
   /** A city's places, zones and landmarks, read once: <id>.geojson, <id>-landmarks.json, and <id>-agenda.geojson where it has one. */
   const load = city => {
@@ -366,9 +395,10 @@ async function main() {
       const { places, zones } = read(agenda ? [file, agenda] : [file])
       const landmarks = marks[city.id].map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', nameJa: l.ja, lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind, gmaps: l.gmaps?.url ?? null, ask: l.ja ?? l.name }))
       // everything that is loaded can be opened and searched, whatever the city
-      const all = [...places, ...zones, ...landmarks]
+      const homes = lodgings.homes.filter(h => h.city === city.id).sort((a, b) => a.from.localeCompare(b.from)).map(homeEntry)
+      const all = [...places, ...zones, ...landmarks, ...homes]
       for (const e of all) e.words = wordsOf(e)
-      return { ...city, start: file.city, places, zones, landmarks, all, byId: new Map(all.map(e => [e.id, e])) }
+      return { ...city, start: file.city, places, zones, landmarks, homes, all, byId: new Map(all.map(e => [e.id, e])) }
     }))
     return loaded.get(city.id)
   }
@@ -377,14 +407,14 @@ async function main() {
   const kept = (() => { try { return localStorage.getItem('ville') } catch { return null } })()
   const first = cities.find(c => c.id === hashGet('ville')) ?? (hashGet('lieu') || hashGet('v') ? cities[0] : cities.find(c => c.id === kept) ?? cities[0])
   let city = await load(first)
-  let { places, zones, landmarks, all, byId } = city
+  let { places, zones, landmarks, homes, all, byId } = city
   let map = null
 
   // ---- the card
   const card = document.getElementById('card')
   let shown = null
   const clearFound = () => map?.getSource('found')?.setData(collection([]))
-  const close = () => { clearRoute(); clearFound(); card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']) }
+  const close = () => { clearRoute(); clearFound(); card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']); map?.setFilter('homes-picked', ['==', ['get', 'id'], '']) }
 
   // ---- the walk: from where he is (or a point he taps) to the card's place, drawn on the map with its time.
   // The route comes from the OpenStreetMap foot router; it is sent the two points and nothing else, and only once he asks.
@@ -441,7 +471,7 @@ async function main() {
     clearRoute()
     if (entry.kind !== 'search') clearFound()
     const facts = entry.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')
-    const tag = entry.kind === 'zone' ? 'Quartier' : entry.kind === 'landmark' ? 'Repère' : entry.kind === 'search' ? 'OpenStreetMap' : '★'.repeat(entry.strength)
+    const tag = entry.kind === 'zone' ? 'Quartier' : entry.kind === 'home' ? 'Hébergement' : entry.kind === 'landmark' ? 'Repère' : entry.kind === 'search' ? 'OpenStreetMap' : '★'.repeat(entry.strength)
     card.innerHTML = `<button class="close" type="button" aria-label="Fermer">×</button>
       <div class="tags">${entry.interests.map(i => `<span style="--c:${colorOf(i)}"><i></i>${esc(labelOf(i))}</span>`).join('')}<span>${tag}</span>${entry.area ? `<span>${esc(entry.area)}</span>` : ''}</div>
       <h1>${esc(entry.hook || entry.short)}</h1>
@@ -450,7 +480,7 @@ async function main() {
       ${entry.verify ? `<p class="warn">À vérifier : ${esc(entry.verify)}</p>` : ''}
       ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
       ${facts ? `<dl>${facts}</dl>` : ''}
-      <a class="gmaps" target="_blank" rel="noopener" href="${esc(mapsLink(entry))}">${entry.kind === 'zone' ? 'Voir le quartier dans Google Maps' : 'Ouvrir dans Google Maps'}</a>
+      <a class="gmaps" target="_blank" rel="noopener" href="${esc(mapsLink(entry))}">${entry.kind === 'zone' || entry.approx ? 'Voir le quartier dans Google Maps' : 'Ouvrir dans Google Maps'}</a>
       ${entry.kind === 'search' ? '' : '<button class="share" type="button">Partager ce lieu</button>'}
       ${entry.sources.length ? `<div class="sources">Sources${entry.sources.map(s => `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('')}</div>` : ''}`
     card.scrollTop = 0
@@ -473,6 +503,7 @@ async function main() {
     hashSet('lieu', entry.kind === 'search' ? null : entry.id)
     if (!map) return
     map.setFilter('picked', ['==', ['get', 'id'], entry.kind === 'place' ? entry.id : ''])
+    map.setFilter('homes-picked', ['==', ['get', 'id'], entry.kind === 'home' ? entry.id : ''])
     // the sheet covers the lower part of a phone: the place goes to the middle of what is left of the map
     const offset = phone() ? [0, -card.offsetHeight / 2] : [0, 0]
     // a zone is framed whole, in what the title, the search and the card leave of the map
@@ -484,11 +515,11 @@ async function main() {
   // ---- the list: the places by interest, to browse (the search's own matching narrows it), each one flies to its place
   const list = document.getElementById('list'), items = list.querySelector('.items'), search = list.querySelector('input')
   function fill() {
-    const found = find(search.value, places)
-    items.innerHTML = INTERESTS.map(interest => {
+    const found = find(search.value, places), lodged = find(search.value, homes)
+    items.innerHTML = [lodged.length ? `<h3 style="--c:${HOME}"><i></i>Hébergements</h3>${lodged.map(h => `<button class="place" type="button" data-id="${esc(h.id)}"><b>${esc(h.short)}</b><span>${esc(h.span)} · ${esc(h.area)}</span></button>`).join('')}` : '', ...INTERESTS.map(interest => {
       const group = found.filter(p => p.interests[0] === interest.id).sort((a, b) => b.strength - a.strength || a.short.localeCompare(b.short, 'fr'))
       return group.length ? `<h3 style="--c:${interest.color}"><i></i>${esc(interest.label)}</h3>${group.map(p => `<button class="place" type="button" data-id="${esc(p.id)}"><b>${esc(p.short)}</b><span>${esc(p.hook)}${p.area ? ` · ${esc(p.area)}` : ''}</span></button>`).join('')}` : ''
-    }).join('') || '<p class="none">Aucun lieu à ce nom.</p>'
+    })].join('') || '<p class="none">Aucun lieu à ce nom.</p>'
   }
   search.oninput = fill
   document.getElementById('list-button').onclick = () => { rest(); fill(); list.classList.add('open') }
@@ -505,8 +536,8 @@ async function main() {
 
   // ---- the search on the map: places, zones and landmarks alike, whatever the key shows; a result opens as a tap on the map does
   const bar = document.getElementById('search'), field = bar.querySelector('input'), clear = bar.querySelector('.clear'), results = document.getElementById('results')
-  const dotOf = e => e.kind === 'zone' ? '<i class="zone"></i>' : `<i style="--c:${e.kind === 'landmark' ? BACK : colorOf(e.interests[0])}"></i>`
-  const whereOf = e => [e.kind === 'zone' ? 'Quartier' : e.kind === 'landmark' ? 'Repère' : e.area, e.kind === 'landmark' ? null : e.hook].filter(Boolean).join(' · ')
+  const dotOf = e => e.kind === 'zone' ? '<i class="zone"></i>' : e.kind === 'home' ? `<i style="--c:${HOME}"></i>` : `<i style="--c:${e.kind === 'landmark' ? BACK : colorOf(e.interests[0])}"></i>`
+  const whereOf = e => e.kind === 'home' ? `${e.span} · ${e.area}` : [e.kind === 'zone' ? 'Quartier' : e.kind === 'landmark' ? 'Repère' : e.area, e.kind === 'landmark' ? null : e.hook].filter(Boolean).join(' · ')
   let found = []
 
   // ---- and beyond the chosen places, whatever OpenStreetMap knows (towns, districts, streets, addresses, shops) by Photon,
@@ -573,7 +604,7 @@ async function main() {
   function choose(entry) {
     rest()
     // a place the key had set back comes forward: the key lets go
-    if (picked.size && entry.kind !== 'landmark' && !entry.interests.some(i => picked.has(i))) { picked.clear(); showPicked() }
+    if (picked.size && entry.kind !== 'landmark' && entry.kind !== 'home' && !entry.interests.some(i => picked.has(i))) { picked.clear(); showPicked() }
     open(entry, { fly: true })
   }
   field.oninput = answer
@@ -619,19 +650,20 @@ async function main() {
     const lon = middle('lon'), lat = middle('lat')
     for (const e of places) if (Math.hypot((e.lon - lon) * Math.cos(lat * Math.PI / 180), e.lat - lat) * 111.32 <= 20) box.extend([e.lon, e.lat])
     for (const z of zones) for (const c of z.round) box.extend(c)
+    for (const h of homes) box.extend([h.lon, h.lat])
     return box
   }
   const around = () => (phone() ? { top: 178, bottom: 150, left: 24, right: 24 } : { top: 70, bottom: 110, left: 70, right: 70 })
   const drawn = () => ({
     zones: collection(zones.map(z => ({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...z.round, z.round[0]]] }, properties: point(z).properties }))),
-    'zone-notes': collection(zones.map(point)), places: collection(places.map(point)), landmarks: collection(landmarks.map(point)),
+    'zone-notes': collection(zones.map(point)), places: collection(places.map(point)), landmarks: collection(landmarks.map(point)), homes: collection(homes.map(homePoint)),
   })
   /** Another city: its places on the same map, seen whole; the card, the key, the list and the search start again. */
   async function go(id) {
     const next = await load(cities.find(c => c.id === id))
     close(); rest(); list.classList.remove('open')
     field.value = ''; search.value = ''
-    city = next; ({ places, zones, landmarks, all, byId } = next)
+    city = next; ({ places, zones, landmarks, homes, all, byId } = next)
     answer(); picked.clear(); fillKey(); showPicked(); named()
     // the city chosen is what a launch from the home screen comes back to: its id, never a position or a view
     try { localStorage.setItem('ville', city.id) } catch {}
@@ -639,7 +671,7 @@ async function main() {
     for (const [source, data] of Object.entries(drawn())) map.getSource(source).setData(data)
     // the map holds the new places before it moves: a tile first made without them, then filled, answers no tap (MapLibre 5.24)
     await new Promise(done => { map.once('idle', done); setTimeout(done, 2000) })
-    if (places.length || zones.length) map.fitBounds(whole(), { padding: around(), duration: 0 })
+    if (places.length || zones.length || homes.length) map.fitBounds(whole(), { padding: around(), duration: 0 })
     else if (city.start) map.jumpTo({ center: city.start.center, zoom: city.start.zoom })
   }
 
@@ -650,7 +682,7 @@ async function main() {
   try {
     const style = await json('https://tiles.openfreemap.org/styles/dark')
     map = window.map = new maplibregl.Map({
-      container: 'map', style: quiet(style), bounds: whole(), fitBoundsOptions: { padding: around() },
+      container: 'map', style: quiet(style), ...(places.length || zones.length || homes.length ? { bounds: whole(), fitBoundsOptions: { padding: around() } } : { center: city.start.center, zoom: city.start.zoom }),
       hash: 'v', maxPitch: 70, attributionControl: false, canvasContextAttributes: { preserveDrawingBuffer: true },
       locale: { 'NavigationControl.ZoomIn': 'Zoomer', 'NavigationControl.ZoomOut': 'Dézoomer', 'NavigationControl.ResetBearing': 'Remettre le nord en haut', 'GeolocateControl.FindMyLocation': 'Ma position', 'GeolocateControl.LocationNotAvailable': 'Position indisponible' },
     })
@@ -677,6 +709,8 @@ async function main() {
 
   map.addImage('disc', discImage(), { sdf: true })
   for (const [kind, glyph] of Object.entries(glyphs)) if (!kind.startsWith('_')) map.addImage(`badge-${kind}`, badgeImage(glyph), { pixelRatio: 2 })
+
+  map.addImage('home', homeImage(), { pixelRatio: 2 })
 
   for (const [source, data] of Object.entries(drawn())) map.addSource(source, { type: 'geojson', data })
 
@@ -795,18 +829,28 @@ async function main() {
     showPicked()
   }
 
+  // the lodgings, over everything and always drawn, each with its nights; the tapped one is ringed
+  map.addLayer({ id: 'homes-picked', type: 'circle', source: 'homes', filter: ['==', ['get', 'id'], ''], paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 16, 14, 21], 'circle-color': 'rgb(0 0 0 / 0)', 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 2.5 } })
+  map.addLayer({ id: 'homes', type: 'symbol', source: 'homes',
+    layout: {
+      'icon-image': 'home', 'icon-size': ['interpolate', ['linear'], ['zoom'], 8, 0.62, 14, 0.82, 17, 0.95], 'icon-allow-overlap': true, 'icon-ignore-placement': true,
+      'text-field': ['format', ['get', 'name'], {}, '\n', {}, ['get', 'span'], { 'font-scale': 0.85, 'text-color': HOME }],
+      'text-font': ['Noto Sans Regular'], 'text-size': ['step', ['zoom'], 0, 10.5, 12.5], 'text-anchor': 'top', 'text-offset': [0, 1.2], 'text-optional': true,
+    },
+    paint: { 'text-color': '#f0f2f5', 'text-halo-color': C.halo, 'text-halo-width': 1.6 } })
+
   // ---- taps: a place first, then a landmark, then a zone (its note, or its ground while the zones are what is shown)
   map.on('click', event => {
     if (onStart) { const start = onStart; onStart = null; return start([event.lngLat.lng, event.lngLat.lat]) }
     if (crowd && map.getLayoutProperty('crowd', 'visibility') === 'visible') crowdAt(event.lngLat)
     const { x, y } = event.point
-    const hits = map.queryRenderedFeatures([[x - 14, y - 14], [x + 14, y + 14]], { layers: ['picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes', 'zones-fill'] })
+    const hits = map.queryRenderedFeatures([[x - 14, y - 14], [x + 14, y + 14]], { layers: ['homes', 'picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes', 'zones-fill'] })
     const near = source => hits.filter(h => h.source === source).sort((a, b) => { const d = h => { const p = map.project(h.geometry.coordinates); return Math.hypot(p.x - x, p.y - y) }; return d(a) - d(b) })[0]
-    const hit = near('places') ?? near('landmarks') ?? hits.find(h => h.source === 'zone-notes') ?? (map.getZoom() < NEAR + 0.5 ? hits.find(h => h.source === 'zones') : null)
+    const hit = near('homes') ?? near('places') ?? near('landmarks') ?? hits.find(h => h.source === 'zone-notes') ?? (map.getZoom() < NEAR + 0.5 ? hits.find(h => h.source === 'zones') : null)
     if (!hit) return close()
     open(byId.get(hit.properties.id))
   })
-  for (const layer of ['dots', 'dots-back', 'names', 'landmarks', 'zone-notes']) {
+  for (const layer of ['homes', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes']) {
     map.on('mouseenter', layer, () => (map.getCanvas().style.cursor = 'pointer'))
     map.on('mouseleave', layer, () => (map.getCanvas().style.cursor = ''))
   }
@@ -814,7 +858,7 @@ async function main() {
   // a shared link opens its place; without a view of its own, the map goes there
   const asked = byId.get(decodeURIComponent(hashGet('lieu') ?? ''))
   if (asked) open(asked, { fly: !hadView })
-  window.__carte = { open: (id, options) => open(byId.get(id), options), go, get city() { return city.id }, get places() { return places }, get zones() { return zones }, get landmarks() { return landmarks }, level: () => (map.getZoom() < MIDDLE ? 'loin' : map.getZoom() < NEAR ? 'milieu' : 'près') }
+  window.__carte = { open: (id, options) => open(byId.get(id), options), go, get city() { return city.id }, get places() { return places }, get zones() { return zones }, get landmarks() { return landmarks }, get homes() { return homes }, level: () => (map.getZoom() < MIDDLE ? 'loin' : map.getZoom() < NEAR ? 'milieu' : 'près') }
   document.documentElement.dataset.state = 'ready'
 }
 main().catch(error => { console.error(error); document.getElementById('fail').hidden = false })

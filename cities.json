@@ -1,5 +1,19 @@
 [
-  { "id": "tokyo", "name": "Tokyo", "agenda": true },
-  { "id": "kyoto", "name": "Kyoto" },
-  { "id": "osaka", "name": "Osaka" }
+  {
+    "id": "tokyo",
+    "name": "Tokyo",
+    "agenda": true
+  },
+  {
+    "id": "kyoto",
+    "name": "Kyoto"
+  },
+  {
+    "id": "osaka",
+    "name": "Osaka"
+  },
+  {
+    "id": "kumano",
+    "name": "Kumano Kodo"
+  }
 ]
