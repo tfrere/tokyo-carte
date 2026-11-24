@@ -63,6 +63,25 @@
   #metro-legend[hidden] { display: none; }
   #metro-legend button { flex: none; display: flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 9px 0 4px; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 16px; background: none; color: #d6dade; font-size: 12px; cursor: pointer; }
   #metro-legend b { flex: none; display: grid; place-items: center; min-width: 22px; height: 22px; padding: 0 3px; box-sizing: border-box; border-radius: 11px; background: var(--c); color: var(--ink, #fff); font-size: 11px; font-weight: 700; }
+  #metro-legend button.on { border-color: var(--c); color: #fff; }
+  /* which line, which way: a small label beside the pointer (a computer) or above the finger (a phone); it takes no touch */
+  #metro-tip { position: fixed; z-index: 4; left: 0; top: 0; box-sizing: border-box; min-width: 190px; max-width: min(340px, calc(100% - 16px)); padding: 3px 11px; border: 1px solid rgb(255 255 255 / 0.18); border-radius: 12px; background: rgb(18 21 26 / 0.97); box-shadow: 0 6px 24px rgb(0 0 0 / 0.55); pointer-events: none; font-size: 13px; line-height: 1.3; color: #c9cdd2; }
+  #metro-tip[hidden] { display: none; }
+  #metro-tip .row { padding: 7px 0 8px; }
+  #metro-tip .row + .row { border-top: 1px solid rgb(255 255 255 / 0.1); }
+  #metro-tip .line { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; font-weight: 600; color: #f4efe3; }
+  #metro-tip .line b { flex: none; display: grid; place-items: center; min-width: 20px; height: 20px; padding: 0 3px; box-sizing: border-box; border-radius: 10px; background: var(--c); color: var(--ink, #fff); font-size: 11px; font-weight: 700; }
+  #metro-tip i { font-style: normal; font-weight: 400; font-size: 11.5px; color: #aab2bb; }
+  #metro-tip small, #metro-tip em { font-style: normal; font-weight: 400; font-size: 11.5px; color: #8c949d; }
+  #metro-tip .line small { margin-left: auto; padding-left: 8px; }
+  #metro-tip .ways { display: flex; gap: 7px 16px; }
+  #metro-tip .ways.stacked { flex-direction: column; }
+  #metro-tip .ways.across { justify-content: space-between; }
+  #metro-tip .way { display: flex; align-items: flex-start; gap: 6px; min-width: 0; }
+  #metro-tip .across .way:last-child { flex-direction: row-reverse; text-align: right; }
+  #metro-tip .way svg { flex: none; width: 17px; height: 17px; margin-top: 1px; fill: none; stroke: #f4efe3; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  #metro-tip .way b { font-size: 14px; font-weight: 600; color: #f4efe3; }
+  #metro-tip .way i, #metro-tip .way em { display: block; }
   #crowd-legend { box-sizing: border-box; width: 100%; padding: 8px 8px 8px 12px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); font-size: 11px; color: #aab2bb; }
   #crowd-legend[hidden], #crowd-legend .note[hidden] { display: none; }
   #crowd-legend .row { display: flex; align-items: center; gap: 8px; }
@@ -190,6 +209,7 @@
   <p class="note" hidden>Présence moyenne estimée un jour de semaine, en journée : travailleurs, habitants restés sur place, usagers des gares. Sans les week-ends ni les touristes : Asakusa ou Harajuku y sont plus calmes qu’un samedi.</p>
 </div>
 </div>
+<div id="metro-tip" hidden role="status"></div>
 <div id="results" hidden></div>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
 <aside id="card" aria-live="polite"></aside>
@@ -655,7 +675,15 @@ async function main() {
     metroLegend.hidden = !on
     metroLegend.scrollLeft = 0
     metroLegend.innerHTML = metro.map(l => `<button type="button" data-id="${esc(l.id)}" style="--c:${l.color};--ink:${inkOn(l.color)}"><b>${esc(l.ref)}</b>${esc(l.name)}</button>`).join('')
-    if (map) for (const layer of ['metro-casing', 'metro', 'metro-names']) map.setLayoutProperty(layer, 'visibility', on ? 'visible' : 'none')
+    if (map) for (const layer of ['metro-casing', 'metro', 'metro-on-casing', 'metro-on', 'metro-names']) map.setLayoutProperty(layer, 'visibility', on ? 'visible' : 'none')
+    litKey = null; hideTip(); light()
+  }
+  // the lines are quiet on the map: the one asked for in the key, and those under the pointer or the finger, are lit
+  let litKey = null, litTip = [], hideTip = () => {}
+  const light = () => {
+    const ids = [...new Set([...(litKey ? [litKey] : []), ...litTip])]
+    for (const button of metroLegend.children) button.classList.toggle('on', button.dataset.id === litKey)
+    if (map) for (const layer of ['metro-on-casing', 'metro-on']) map.setFilter(layer, ['in', ['get', 'id'], ['literal', ids]])
   }
   metroButton.onclick = () => { const on = metroButton.getAttribute('aria-pressed') !== 'true'; metroButton.setAttribute('aria-pressed', on); metroButton.classList.toggle('on', on); showMetro() }
   metroLegend.onclick = event => {
@@ -663,6 +691,7 @@ async function main() {
     const line = metro.find(l => l.id === button.dataset.id)
     const box = line.lines.flat().reduce((b, c) => b.extend(c), new maplibregl.LngLatBounds())
     map.fitBounds(box, { padding: phone() ? { top: 170, bottom: 150, left: 30, right: 30 } : { top: 140, bottom: 130, left: 430, right: 60 }, maxZoom: 13, duration: 800 })
+    litKey = line.id; light()
   }
   const fillKey = () => { chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join(''); chips.append(metroButton, crowdButton) }
   fillKey()
@@ -698,7 +727,7 @@ async function main() {
   /** Another city: its places on the same map, seen whole; the card, the key, the list and the search start again. */
   async function go(id) {
     const next = await load(cities.find(c => c.id === id))
-    close(); rest(); list.classList.remove('open')
+    close(); rest(); list.classList.remove('open'); litKey = null; hideTip()
     field.value = ''; search.value = ''
     city = next; ({ places, zones, landmarks, homes, metro, all, byId } = next)
     answer(); picked.clear(); fillKey(); showPicked(); named(); showMetro()
@@ -765,12 +794,112 @@ async function main() {
     },
     paint: { 'icon-opacity': 0.92, 'text-color': '#aab2bb', 'text-halo-color': C.halo, 'text-halo-width': 1.4 } })
   const lineWidth = (a, b, c) => ['interpolate', ['linear'], ['zoom'], 9, a, 14, b, 17, c]
-  map.addLayer({ id: 'metro-casing', type: 'line', source: 'metro', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': 'rgb(8 10 13 / 0.78)', 'line-width': lineWidth(2.6, 6.2, 11) } }, 'landmarks')
-  map.addLayer({ id: 'metro', type: 'line', source: 'metro', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': ['get', 'color'], 'line-width': lineWidth(1.3, 3.4, 6.5), 'line-opacity': 0.95 } }, 'landmarks')
+  // the lines sit behind the places and the zones' notes: low opacity, still told apart by colour; a lit line is drawn again in full
+  const QUIET = 0.42, QUIET_CASING = 0.5
+  map.addLayer({ id: 'metro-casing', type: 'line', source: 'metro', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': 'rgb(8 10 13 / 0.78)', 'line-width': lineWidth(2.6, 6.2, 11), 'line-opacity': QUIET_CASING } }, 'landmarks')
+  map.addLayer({ id: 'metro', type: 'line', source: 'metro', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': ['get', 'color'], 'line-width': lineWidth(1.3, 3.4, 6.5), 'line-opacity': QUIET } }, 'landmarks')
+  const none = ['in', ['get', 'id'], ['literal', []]]
+  map.addLayer({ id: 'metro-on-casing', type: 'line', source: 'metro', filter: none, layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': 'rgb(8 10 13 / 0.9)', 'line-width': lineWidth(4.4, 8, 13) } }, 'landmarks')
+  map.addLayer({ id: 'metro-on', type: 'line', source: 'metro', filter: none, layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': ['get', 'color'], 'line-width': lineWidth(2.4, 4.4, 7.5) } }, 'landmarks')
   map.addLayer({ id: 'metro-names', type: 'symbol', source: 'metro', minzoom: 12.2,
     layout: { 'symbol-placement': 'line', 'symbol-spacing': 320, 'text-field': ['get', 'label'], 'text-font': ['Noto Sans Regular'], 'text-size': 11.5, 'text-letter-spacing': 0.02, 'text-max-angle': 35, 'text-padding': 4 },
-    paint: { 'text-color': '#f0f2f5', 'text-halo-color': 'rgb(8 10 13 / 0.92)', 'text-halo-width': 2 } }, 'landmarks')
+    paint: { 'text-color': '#f0f2f5', 'text-halo-color': 'rgb(8 10 13 / 0.92)', 'text-halo-width': 2, 'text-opacity': 0.72 } }, 'landmarks')
   showMetro()
+
+  // ---- which line, which way. Pointing at a line (a hover on a computer, a tap on a phone, which has no hover) lights it
+  // and says its name and its two directions, each on the side it goes on the screen and named by its terminus as the
+  // platform signs do. All of it is worked out here from <city>-metro.json: nothing leaves the page.
+  const tip = document.getElementById('metro-tip'), legends = document.getElementById('legends')
+  const tracks = new Map()
+  /** A line's drawn track: its vertices, each with its stretch (a `run` of the data) and its distance in km from that stretch's first terminus. */
+  function trackOf(line) {
+    if (tracks.has(line.id)) return tracks.get(line.id)
+    const index = new Map(), points = [], next = [], ways = []
+    const node = p => { const k = `${p[0]},${p[1]}`; if (!index.has(k)) { index.set(k, points.length); points.push(p); next.push([]) } return index.get(k) }
+    for (const way of line.lines) for (let i = 1; i < way.length; i++) { const a = node(way[i - 1]), b = node(way[i]); next[a].push(b); next[b].push(a); ways.push([a, b]) }
+    const run = new Array(points.length).fill(null), far = new Array(points.length).fill(Infinity)
+    // the two tracks, a branch: each connected piece is measured on its own, from its end nearest to the first terminus
+    points.forEach((_, seed) => {
+      if (run[seed]) return
+      const piece = [seed], seen = new Set(piece)
+      for (let i = 0; i < piece.length; i++) for (const v of next[piece[i]]) if (!seen.has(v)) { seen.add(v); piece.push(v) }
+      const nearest = at => piece.reduce((best, i) => (crow(points[i], at) < crow(points[best], at) ? i : best), piece[0])
+      const own = line.runs.map(r => [r, r.ends.reduce((sum, e) => sum + crow(points[nearest(e.at)], e.at), 0)]).sort((a, b) => a[1] - b[1])[0][0]
+      const start = nearest(own.ends[0].at), queue = [start]
+      far[start] = crow(points[start], own.ends[0].at)
+      for (let i = 0; i < queue.length; i++) { const u = queue[i]; for (const v of next[u]) { const d = far[u] + crow(points[u], points[v]); if (d < far[v] - 1e-9) { far[v] = d; queue.push(v) } } }
+      for (const i of piece) run[i] = own
+    })
+    const track = { points, ways, run, far }
+    tracks.set(line.id, track)
+    return track
+  }
+  /** Where a line passes nearest to a point of the screen: how near, on which stretch, at which km, and the way it runs there on screen toward the second terminus. */
+  function passing(line, x, y) {
+    const { points, ways, run, far } = trackOf(line)
+    const on = points.map(p => map.project(p))
+    let best = null
+    for (const [a, b] of ways) {
+      const ux = on[b].x - on[a].x, uy = on[b].y - on[a].y, length = ux * ux + uy * uy
+      if (!length) continue
+      const t = Math.min(1, Math.max(0, ((x - on[a].x) * ux + (y - on[a].y) * uy) / length))
+      const d = Math.hypot(on[a].x + t * ux - x, on[a].y + t * uy - y)
+      if (!best || d < best.d) best = { d, a, b, t, ux, uy }
+    }
+    const { d, a, b, t, ux, uy } = best, up = far[b] > far[a] ? 1 : -1, length = Math.hypot(ux, uy)
+    return { line, d, run: run[a], km: far[a] + t * (far[b] - far[a]), dx: up * ux / length, dy: up * uy / length }
+  }
+  /** The lines within reach of a screen point, in the key's order, three at most. */
+  const linesAt = (x, y, reach) => {
+    if (metroLegend.hidden) return []
+    const ids = new Set(map.queryRenderedFeatures([[x - reach, y - reach], [x + reach, y + reach]], { layers: ['metro'] }).map(f => f.properties.id))
+    return metro.filter(l => ids.has(l.id) && l.runs).map(l => passing(l, x, y)).filter(p => p.d <= reach * 1.5).slice(0, 3)
+  }
+  /** What a direction is called: the terminus, or on a line with stations named on the way (a loop, a track drawn past the terminus) the next two of them. */
+  const toward = (run, km, sign) => {
+    const via = (run.via ?? []).filter(w => (sign > 0 ? w.km > km + 0.2 : w.km < km - 0.2))
+    if (sign < 0) via.reverse()
+    return [...via.slice(0, 2), ...(via.length < 2 ? [run.ends[sign > 0 ? 1 : 0]] : [])]
+  }
+  const wayOf = (stops, dx, dy) => `<span class="way"><svg viewBox="0 0 16 16" style="transform:rotate(${Math.round(Math.atan2(dy, dx) * 180 / Math.PI)}deg)" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5"/></svg><span><small>vers</small> <b>${stops.map(s => esc(s.name)).join(' · ')}</b><i lang="ja">${stops.map(s => esc(s.ja)).join('・')}方面</i>${stops.filter(s => s.through).map(s => `<em>${esc(s.through)}</em>`).join('')}</span></span>`
+  function showTip(hits, x, y, finger) {
+    tip.innerHTML = hits.map(({ line, run, km, dx, dy }) => {
+      // the two directions, the one that goes left (or up, on a line that runs up the screen) first
+      const flat = Math.abs(dx) >= Math.abs(dy), ways = [[toward(run, km, 1), dx, dy], [toward(run, km, -1), -dx, -dy]].sort((a, b) => (flat ? a[1] - b[1] : a[2] - b[2]))
+      const note = run.branch ?? (run.loop ? 'ligne en boucle' : '')
+      return `<div class="row"><p class="line" style="--c:${line.color};--ink:${inkOn(line.color)}"><b>${esc(line.ref)}</b>${esc(line.name)} <i lang="ja">${esc(line.ja)}</i>${note ? `<small>${esc(note)}</small>` : ''}</p><div class="ways ${flat ? 'across' : 'stacked'}">${ways.map(w => wayOf(...w)).join('')}</div></div>`
+    }).join('')
+    tip.hidden = false
+    litTip = hits.map(h => h.line.id); light()
+    // beside the pointer; on a phone above the finger (under it when there is no room), never under the search, the key or a card
+    const w = tip.offsetWidth, h = tip.offsetHeight
+    const top = (phone() ? Math.max(bar.getBoundingClientRect().bottom, legends.getBoundingClientRect().bottom) : 0) + 8
+    const bottom = (phone() && card.classList.contains('open') ? card.getBoundingClientRect().top : key.getBoundingClientRect().top) - 2
+    let left = finger ? x - w / 2 : x + 16, above = finger ? y - h - 26 : y + 20
+    if (finger && above < top) above = y + 34
+    if (!finger && left + w > innerWidth - 8) left = x - w - 16
+    if (!finger && above + h > bottom) above = y - h - 16
+    tip.style.left = `${Math.round(Math.max(8, Math.min(left, innerWidth - w - 8)))}px`
+    tip.style.top = `${Math.round(Math.max(top, Math.min(above, bottom - h)))}px`
+  }
+  hideTip = () => { if (tip.hidden && !litTip.length) return; tip.hidden = true; litTip = []; light() }
+  const PLACED = ['homes', 'picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes']
+  const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches
+  if (canHover) {
+    let frame = 0
+    map.on('mousemove', event => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const { x, y } = event.point
+        // a place under the pointer keeps the pointer: the line's label waits
+        const hits = map.queryRenderedFeatures([[x - 5, y - 5], [x + 5, y + 5]], { layers: PLACED }).length ? [] : linesAt(x, y, 6)
+        if (hits.length) showTip(hits, x, y, false); else hideTip()
+        if (!map.queryRenderedFeatures(event.point, { layers: PLACED }).length) map.getCanvas().style.cursor = hits.length ? 'help' : ''
+      })
+    })
+    map.on('mouseout', () => { cancelAnimationFrame(frame); hideTip() })
+  }
+  map.on('movestart', () => hideTip())
 
   // how many people are about on an ordinary weekday, by 500 m square (jour.json): workers, a third of the residents
   // (who stay home), a few of the station's passengers. Drawn as a soft heat map under everything; read by tapping.
@@ -945,7 +1074,13 @@ async function main() {
     const { x, y } = event.point
     const hits = map.queryRenderedFeatures([[x - 14, y - 14], [x + 14, y + 14]], { layers: ['homes', 'picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes', 'zones-fill'] })
     const near = source => hits.filter(h => h.source === source).sort((a, b) => { const d = h => { const p = map.project(h.geometry.coordinates); return Math.hypot(p.x - x, p.y - y) }; return d(a) - d(b) })[0]
-    const hit = near('homes') ?? near('places') ?? near('landmarks') ?? hits.find(h => h.source === 'zone-notes') ?? (map.getZoom() < NEAR + 0.5 ? hits.find(h => h.source === 'zones') : null)
+    const placed = near('homes') ?? near('places') ?? near('landmarks') ?? hits.find(h => h.source === 'zone-notes')
+    // a line comes after everything of his that is placed, and before a zone's ground, which a line crosses and which has its note to be opened by
+    const lines = placed ? [] : linesAt(x, y, canHover ? 8 : 14)
+    if (litKey) { litKey = null; light() }
+    if (lines.length) { close(); return showTip(lines, x, y, !canHover) }
+    hideTip()
+    const hit = placed ?? (map.getZoom() < NEAR + 0.5 ? hits.find(h => h.source === 'zones') : null)
     if (!hit) return close()
     open(byId.get(hit.properties.id))
   })
