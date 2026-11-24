@@ -51,6 +51,8 @@
   #search input { box-sizing: border-box; width: 100%; height: 44px; margin: 0; padding: 0 40px 0 38px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238c949d' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='4.6'/%3E%3Cpath d='M10.5 10.5 14 14'/%3E%3C/svg%3E") 14px 50% / 16px no-repeat; font-size: 16px; outline: none; -webkit-appearance: none; appearance: none; }
   #search input:focus { border-color: rgb(255 255 255 / 0.34); }
   #search input::placeholder { color: #8c949d; }
+  /* empty, the field has no button to clear it: the invitation may use that room */
+  #search input:placeholder-shown { padding-right: 14px; }
   #search input::-webkit-search-cancel-button { display: none; }
   #search .clear { position: absolute; right: 0; top: 0; width: 44px; height: 44px; border: 0; background: none; color: #aab2bb; font-size: 20px; line-height: 1; cursor: pointer; }
   /* the day's crowd: a chip in the key, and when it is on a slim legend under the search that also reads the tapped spot */
@@ -607,6 +609,10 @@ async function main() {
     if (picked.size && entry.kind !== 'landmark' && entry.kind !== 'home' && !entry.interests.some(i => picked.has(i))) { picked.clear(); showPicked() }
     open(entry, { fly: true })
   }
+  // a narrow field would cut the long invitation mid-word: it gets a shorter one that fits
+  const invite = () => (field.placeholder = innerWidth >= 460 ? 'Chercher un lieu, un quartier' : innerWidth >= 340 ? 'Chercher un lieu' : 'Chercher')
+  addEventListener('resize', invite)
+  invite()
   field.oninput = answer
   // the card and the results never share the screen: asking again puts the card away
   field.onfocus = () => { if (shown) close(); answer() }
