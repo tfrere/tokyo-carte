@@ -56,7 +56,14 @@
   #search input::-webkit-search-cancel-button { display: none; }
   #search .clear { position: absolute; right: 0; top: 0; width: 44px; height: 44px; border: 0; background: none; color: #aab2bb; font-size: 20px; line-height: 1; cursor: pointer; }
   /* the day's crowd: a chip in the key, and when it is on a slim legend under the search that also reads the tapped spot */
-  #crowd-legend { position: fixed; z-index: 3; left: 12px; top: calc(112px + env(safe-area-inset-top)); width: min(300px, calc(100% - 24px)); box-sizing: border-box; padding: 8px 8px 8px 12px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); font-size: 11px; color: #aab2bb; }
+  #legends { position: fixed; z-index: 3; left: 12px; top: calc(112px + env(safe-area-inset-top)); width: min(300px, calc(100% - 24px)); display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
+  #legends > * { pointer-events: auto; }
+  #metro-legend { display: flex; gap: 6px; overflow-x: auto; padding: 6px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); scrollbar-width: none; }
+  #metro-legend::-webkit-scrollbar { display: none; }
+  #metro-legend[hidden] { display: none; }
+  #metro-legend button { flex: none; display: flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 9px 0 4px; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 16px; background: none; color: #d6dade; font-size: 12px; cursor: pointer; }
+  #metro-legend b { flex: none; display: grid; place-items: center; min-width: 22px; height: 22px; padding: 0 3px; box-sizing: border-box; border-radius: 11px; background: var(--c); color: var(--ink, #fff); font-size: 11px; font-weight: 700; }
+  #crowd-legend { box-sizing: border-box; width: 100%; padding: 8px 8px 8px 12px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); font-size: 11px; color: #aab2bb; }
   #crowd-legend[hidden], #crowd-legend .note[hidden] { display: none; }
   #crowd-legend .row { display: flex; align-items: center; gap: 8px; }
   #crowd-legend .ramp { flex: 1; height: 8px; border-radius: 4px; background: linear-gradient(90deg, #3c1e6e, #5b2a86 25%, #b8407a 50%, #f2784b 72%, #ffc857 90%, #fff3b0); }
@@ -87,8 +94,8 @@
   #key button i { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
   #key button small { color: #6f7781; font-size: 12px; }
   #key button .long, #key button small { display: none; }
-  #key.picked button:not(.on):not(.crowd) { color: #7b838d; }
-  #key.picked button:not(.on):not(.crowd) i { opacity: 0.4; }
+  #key.picked button:not(.on):not(.crowd):not(.metro) { color: #7b838d; }
+  #key.picked button:not(.on):not(.crowd):not(.metro) i { opacity: 0.4; }
   #key button[hidden] { display: none; }
   #key button.on { border-color: var(--c); color: #fff; background: #20252c; }
   #key .credit { margin: 6px 0 0; text-align: center; font-size: 10.5px; color: #7f8892; }
@@ -153,7 +160,8 @@
     #title p { font-size: 13px; }
     #cities { left: 18px; top: 52px; }
     #search { left: 18px; right: auto; top: 76px; width: 400px; }
-    #crowd-legend { left: 18px; top: 128px; }
+    #legends { left: 18px; top: 128px; width: 400px; }
+    #metro-legend { flex-wrap: wrap; overflow: visible; }
     #results { left: 18px; right: auto; top: 126px; width: 400px; }
     #key button .long, #key button small { display: inline; }
     #key .chips { gap: 8px; }
@@ -174,10 +182,13 @@
   <div class="field"><input type="search" placeholder="Chercher un lieu, un quartier" aria-label="Chercher un lieu, un quartier, une envie" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="clear" type="button" aria-label="Effacer la recherche" hidden>×</button></div>
   <button id="list-button" type="button">Liste</button>
 </div>
+<div id="legends">
+<div id="metro-legend" hidden aria-label="Lignes de métro"></div>
 <div id="crowd-legend" hidden>
   <div class="row"><span>Calme</span><div class="ramp"></div><span>Bondé</span><button class="info" type="button" aria-label="À propos de ces chiffres" aria-expanded="false">i</button></div>
   <p class="read">Touche la carte pour une valeur.</p>
   <p class="note" hidden>Présence moyenne estimée un jour de semaine, en journée : travailleurs, habitants restés sur place, usagers des gares. Sans les week-ends ni les touristes : Asakusa ou Harajuku y sont plus calmes qu’un samedi.</p>
+</div>
 </div>
 <div id="results" hidden></div>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
@@ -393,14 +404,14 @@ async function main() {
   const loaded = new Map()
   /** A city's places, zones and landmarks, read once: <id>.geojson, <id>-landmarks.json, and <id>-agenda.geojson where it has one. */
   const load = city => {
-    if (!loaded.has(city.id)) loaded.set(city.id, Promise.all([json(`${city.id}.geojson`), json(`${city.id}-landmarks.json`), city.agenda ? json(`${city.id}-agenda.geojson`) : null]).then(([file, marks, agenda]) => {
+    if (!loaded.has(city.id)) loaded.set(city.id, Promise.all([json(`${city.id}.geojson`), json(`${city.id}-landmarks.json`), city.agenda ? json(`${city.id}-agenda.geojson`) : null, city.metro ? json(`${city.id}-metro.json`).catch(() => null) : null]).then(([file, marks, agenda, subway]) => {
       const { places, zones } = read(agenda ? [file, agenda] : [file])
       const landmarks = marks[city.id].map(l => ({ id: `repère ${l.name}`, short: l.name, hook: l.name, name: 'Repère de la ville', nameJa: l.ja, lon: l.lon, lat: l.lat, interests: [], strength: 1, why: '', verify: null, facts: [], area: null, sources: [], kind: 'landmark', icon: l.kind, gmaps: l.gmaps?.url ?? null, ask: l.ja ?? l.name }))
       // everything that is loaded can be opened and searched, whatever the city
       const homes = lodgings.homes.filter(h => h.city === city.id).sort((a, b) => a.from.localeCompare(b.from)).map(homeEntry)
       const all = [...places, ...zones, ...landmarks, ...homes]
       for (const e of all) e.words = wordsOf(e)
-      return { ...city, start: file.city, places, zones, landmarks, homes, all, byId: new Map(all.map(e => [e.id, e])) }
+      return { ...city, start: file.city, places, zones, landmarks, homes, metro: subway?.lines ?? [], all, byId: new Map(all.map(e => [e.id, e])) }
     }))
     return loaded.get(city.id)
   }
@@ -409,7 +420,7 @@ async function main() {
   const kept = (() => { try { return localStorage.getItem('ville') } catch { return null } })()
   const first = cities.find(c => c.id === hashGet('ville')) ?? (hashGet('lieu') || hashGet('v') ? cities[0] : cities.find(c => c.id === kept) ?? cities[0])
   let city = await load(first)
-  let { places, zones, landmarks, homes, all, byId } = city
+  let { places, zones, landmarks, homes, metro, all, byId } = city
   let map = null
 
   // ---- the card
@@ -633,7 +644,27 @@ async function main() {
   // the day's crowd is one more chip, last, where a thumb is; it is not an interest
   const crowdButton = Object.assign(document.createElement('button'), { type: 'button', className: 'crowd', hidden: true, innerHTML: '<i></i><span class="long">Affluence de jour</span><span class="short">Affluence</span>' })
   crowdButton.style.setProperty('--c', '#f2784b'); crowdButton.setAttribute('aria-pressed', 'false')
-  const fillKey = () => { chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join(''); chips.append(crowdButton) }
+  // the underground lines, a chip of the key like the crowd's: on at first (thin, under every place), off when he wants the map bare
+  const metroButton = Object.assign(document.createElement('button'), { type: 'button', className: 'metro on', hidden: true, innerHTML: '<i></i><span class="long">Lignes de métro</span><span class="short">Métro</span>' })
+  metroButton.style.setProperty('--c', '#e5e8ec'); metroButton.setAttribute('aria-pressed', 'true')
+  const metroLegend = document.getElementById('metro-legend')
+  const inkOn = hex => { const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)); return 0.299 * r + 0.587 * g + 0.114 * b > 150 ? '#14171b' : '#ffffff' }
+  const showMetro = () => {
+    const on = metroButton.getAttribute('aria-pressed') === 'true' && metro.length > 0
+    metroButton.hidden = metro.length === 0
+    metroLegend.hidden = !on
+    metroLegend.scrollLeft = 0
+    metroLegend.innerHTML = metro.map(l => `<button type="button" data-id="${esc(l.id)}" style="--c:${l.color};--ink:${inkOn(l.color)}"><b>${esc(l.ref)}</b>${esc(l.name)}</button>`).join('')
+    if (map) for (const layer of ['metro-casing', 'metro', 'metro-names']) map.setLayoutProperty(layer, 'visibility', on ? 'visible' : 'none')
+  }
+  metroButton.onclick = () => { const on = metroButton.getAttribute('aria-pressed') !== 'true'; metroButton.setAttribute('aria-pressed', on); metroButton.classList.toggle('on', on); showMetro() }
+  metroLegend.onclick = event => {
+    const button = event.target.closest('button'); if (!button) return
+    const line = metro.find(l => l.id === button.dataset.id)
+    const box = line.lines.flat().reduce((b, c) => b.extend(c), new maplibregl.LngLatBounds())
+    map.fitBounds(box, { padding: phone() ? { top: 170, bottom: 150, left: 30, right: 30 } : { top: 140, bottom: 130, left: 430, right: 60 }, maxZoom: 13, duration: 800 })
+  }
+  const fillKey = () => { chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join(''); chips.append(metroButton, crowdButton) }
   fillKey()
   new ResizeObserver(() => document.documentElement.style.setProperty('--key-h', `${key.offsetHeight}px`)).observe(key)
 
@@ -662,15 +693,15 @@ async function main() {
   const around = () => (phone() ? { top: 178, bottom: 150, left: 24, right: 24 } : { top: 70, bottom: 110, left: 70, right: 70 })
   const drawn = () => ({
     zones: collection(zones.map(z => ({ type: 'Feature', geometry: { type: 'Polygon', coordinates: [[...z.round, z.round[0]]] }, properties: point(z).properties }))),
-    'zone-notes': collection(zones.map(point)), places: collection(places.map(point)), landmarks: collection(landmarks.map(point)), homes: collection(homes.map(homePoint)),
+    'zone-notes': collection(zones.map(point)), places: collection(places.map(point)), landmarks: collection(landmarks.map(point)), homes: collection(homes.map(homePoint)), metro: collection(metro.map(l => ({ type: 'Feature', geometry: { type: 'MultiLineString', coordinates: l.lines }, properties: { id: l.id, ref: l.ref, label: `${l.ref} · ${l.name}`, color: l.color } }))),
   })
   /** Another city: its places on the same map, seen whole; the card, the key, the list and the search start again. */
   async function go(id) {
     const next = await load(cities.find(c => c.id === id))
     close(); rest(); list.classList.remove('open')
     field.value = ''; search.value = ''
-    city = next; ({ places, zones, landmarks, homes, all, byId } = next)
-    answer(); picked.clear(); fillKey(); showPicked(); named()
+    city = next; ({ places, zones, landmarks, homes, metro, all, byId } = next)
+    answer(); picked.clear(); fillKey(); showPicked(); named(); showMetro()
     // the city chosen is what a launch from the home screen comes back to: its id, never a position or a view
     try { localStorage.setItem('ville', city.id) } catch {}
     if (!map) return
@@ -733,6 +764,13 @@ async function main() {
       'text-field': ['step', ['zoom'], '', 16, ['get', 'name']], 'text-font': ['Noto Sans Regular'], 'text-size': 12, 'text-anchor': 'top', 'text-offset': [0, 1.15], 'text-optional': true,
     },
     paint: { 'icon-opacity': 0.92, 'text-color': '#aab2bb', 'text-halo-color': C.halo, 'text-halo-width': 1.4 } })
+  const lineWidth = (a, b, c) => ['interpolate', ['linear'], ['zoom'], 9, a, 14, b, 17, c]
+  map.addLayer({ id: 'metro-casing', type: 'line', source: 'metro', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': 'rgb(8 10 13 / 0.78)', 'line-width': lineWidth(2.6, 6.2, 11) } }, 'landmarks')
+  map.addLayer({ id: 'metro', type: 'line', source: 'metro', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': ['get', 'color'], 'line-width': lineWidth(1.3, 3.4, 6.5), 'line-opacity': 0.95 } }, 'landmarks')
+  map.addLayer({ id: 'metro-names', type: 'symbol', source: 'metro', minzoom: 12.2,
+    layout: { 'symbol-placement': 'line', 'symbol-spacing': 320, 'text-field': ['get', 'label'], 'text-font': ['Noto Sans Regular'], 'text-size': 11.5, 'text-letter-spacing': 0.02, 'text-max-angle': 35, 'text-padding': 4 },
+    paint: { 'text-color': '#f0f2f5', 'text-halo-color': 'rgb(8 10 13 / 0.92)', 'text-halo-width': 2 } }, 'landmarks')
+  showMetro()
 
   // how many people are about on an ordinary weekday, by 500 m square (jour.json): workers, a third of the residents
   // (who stay home), a few of the station's passengers. Drawn as a soft heat map under everything; read by tapping.

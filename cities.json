@@ -2,15 +2,18 @@
   {
     "id": "tokyo",
     "name": "Tokyo",
-    "agenda": true
+    "agenda": true,
+    "metro": true
   },
   {
     "id": "kyoto",
-    "name": "Kyoto"
+    "name": "Kyoto",
+    "metro": true
   },
   {
     "id": "osaka",
-    "name": "Osaka"
+    "name": "Osaka",
+    "metro": true
   },
   {
     "id": "kumano",
