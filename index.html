@@ -95,6 +95,12 @@
   #card dt { color: #7f8892; }
   #card dd { margin: 0; color: #c9cdd2; }
   #card .gmaps { display: flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 14px; border-radius: 12px; background: #e9e6de; color: #14171b; font-weight: 600; text-decoration: none; }
+  #card .walk { margin-top: 14px; }
+  #card .walk button, #card .walk a { display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; min-height: 44px; border: 1px solid rgb(142 197 255 / 0.5); border-radius: 12px; background: rgb(142 197 255 / 0.1); color: #cfe6ff; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+  #card .walk .alt { margin-top: 8px; border-color: rgb(255 255 255 / 0.16); background: none; color: #d6d9dd; font-weight: 400; }
+  #card .walk .time { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin: 0 0 10px; color: #d0d3d7; }
+  #card .walk .time b { font-size: 26px; font-weight: 600; color: #cfe6ff; }
+  #card .walk .small { margin: 8px 0 0; font-size: 12px; line-height: 1.4; color: #7f8892; }
   #card .share { display: block; width: 100%; min-height: 48px; margin-top: 8px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 12px; background: none; color: #d6d9dd; cursor: pointer; }
   #card .sources { margin-top: 12px; font-size: 12.5px; color: #7f8892; }
   #card .sources a { color: #9db7d0; display: block; padding: 9px 0; overflow-wrap: anywhere; }
@@ -160,7 +166,7 @@
 </section>
 <nav id="key" aria-label="Intérêts">
   <div class="chips"></div>
-  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a></p>
+  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> · Itinéraires : <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener">OSRM / FOSSGIS</a></p>
 </nav>
 <script>
 const INTERESTS = [
@@ -357,14 +363,68 @@ async function main() {
   // ---- the card
   const card = document.getElementById('card')
   let shown = null
-  const close = () => { card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']) }
+  const close = () => { clearRoute(); card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']) }
+
+  // ---- the walk: from where he is (or a point he taps) to the card's place, drawn on the map with its time.
+  // The route comes from the OpenStreetMap foot router; it is sent the two points and nothing else, and only once he asks.
+  const ROUTER = 'https://routing.openstreetmap.de/routed-foot/route/v1/foot'
+  let walking = 0, onStart = null
+  const crow = ([x1, y1], [x2, y2]) => Math.hypot((x2 - x1) * Math.cos(((y1 + y2) / 2) * Math.PI / 180), y2 - y1) * 111.32
+  const clock = seconds => { const m = Math.max(1, Math.round(seconds / 60)); return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')}` }
+  const metres = m => (m < 1000 ? `${Math.round(m / 10) * 10} m` : `${(m / 1000).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} km`)
+  const here = () => new Promise((done, fail) => navigator.geolocation
+    ? navigator.geolocation.getCurrentPosition(p => done([p.coords.longitude, p.coords.latitude]), fail, { enableHighAccuracy: true, maximumAge: 30000, timeout: 15000 })
+    : fail(new Error('no geolocation')))
+  function clearRoute() {
+    walking++; onStart = null
+    if (map?.getSource('route')) { map.getSource('route').setData(collection([])); map.getSource('route-start').setData(collection([])) }
+  }
+  async function walk(entry, box) {
+    const turn = ++walking
+    const there = [entry.lon, entry.lat]
+    const google = `<a class="alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${entry.lat},${entry.lon}&travelmode=walking">Itinéraire dans Google Maps</a>`
+    const offer = (note = '') => {
+      box.innerHTML = `${note ? `<p class="small">${note}</p>` : ''}<button type="button" class="go">${note ? 'Réessayer avec ma position' : 'Itinéraire à pied depuis ma position'}</button>${note ? '<button type="button" class="alt pick">Choisir le départ sur la carte</button>' : ''}`
+      box.querySelector('.go').onclick = () => run(null)
+      const pick = box.querySelector('.pick')
+      if (pick) pick.onclick = () => { onStart = from => run(from); box.querySelector('.small').textContent = 'Touche la carte, au-dessus de cette fiche, pour y placer le départ.' }
+    }
+    async function run(start) {
+      onStart = null
+      box.innerHTML = '<p class="small">Calcul de l’itinéraire…</p>'
+      try { start ??= await here() } catch { return turn === walking && offer('Ta position n’est pas disponible : autorise la localisation dans le navigateur, ou place le départ toi-même.') }
+      if (turn !== walking) return
+      const far = crow(start, there)
+      if (far > 25) { box.innerHTML = `<p class="small">Trop loin pour une marche : environ ${Math.round(far)} km à vol d’oiseau.</p>${google}`; return }
+      let route
+      try {
+        const answer = await fetch(`${ROUTER}/${start[0]},${start[1]};${there[0]},${there[1]}?overview=full&geometries=geojson`, { signal: AbortSignal.timeout(12000) }).then(r => r.json())
+        route = answer.code === 'Ok' ? answer.routes[0] : null
+      } catch {}
+      if (turn !== walking) return
+      if (!route) { box.innerHTML = `<p class="small">L’itinéraire n’a pas pu être calculé pour le moment.</p>${google}`; return }
+      box.innerHTML = `<p class="time"><b>${clock(route.duration)}</b> à pied · ${metres(route.distance)}${entry.kind === 'zone' ? ' jusqu’au centre du quartier' : ''}</p>${google}<p class="small">Itinéraire par OpenStreetMap (routing.openstreetmap.de), temps estimé à pied.</p>`
+      if (!map) return
+      map.getSource('route').setData(collection([{ type: 'Feature', geometry: route.geometry, properties: {} }]))
+      map.getSource('route-start').setData(collection([{ type: 'Feature', geometry: { type: 'Point', coordinates: start }, properties: {} }]))
+      const bounds = route.geometry.coordinates.reduce((b, c) => b.extend(c), new maplibregl.LngLatBounds())
+      map.fitBounds(bounds, { padding: phone() ? { top: 130, bottom: card.offsetHeight + 24, left: 30, right: 30 } : { top: 140, bottom: 130, left: 430, right: 60 }, maxZoom: 16, duration: 800 })
+    }
+    offer()
+    // once the browser has been told yes, the route comes with the card
+    const allowed = await navigator.permissions?.query({ name: 'geolocation' }).then(p => p.state === 'granted', () => false)
+    if (allowed && turn === walking) run(null)
+  }
+
   function open(entry, { fly = false } = {}) {
+    clearRoute()
     const facts = entry.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')
     const tag = entry.kind === 'zone' ? 'Quartier' : entry.kind === 'landmark' ? 'Repère' : '★'.repeat(entry.strength)
     card.innerHTML = `<button class="close" type="button" aria-label="Fermer">×</button>
       <div class="tags">${entry.interests.map(i => `<span style="--c:${colorOf(i)}"><i></i>${esc(labelOf(i))}</span>`).join('')}<span>${tag}</span>${entry.area ? `<span>${esc(entry.area)}</span>` : ''}</div>
       <h1>${esc(entry.hook || entry.short)}</h1>
       ${entry.kind === 'landmark' ? '' : `<h2>${esc(entry.name)}${entry.nameJa ? ` · ${esc(entry.nameJa)}` : ''}</h2>`}
+      <div class="walk"></div>
       ${entry.verify ? `<p class="warn">À vérifier : ${esc(entry.verify)}</p>` : ''}
       ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
       ${facts ? `<dl>${facts}</dl>` : ''}
@@ -374,6 +434,7 @@ async function main() {
     card.scrollTop = 0
     card.classList.add('open')
     card.querySelector('.close').onclick = close
+    walk(entry, card.querySelector('.walk'))
     // opened from the home screen there is no address bar: the place's link is shared from here (the place alone, not the view)
     card.querySelector('.share').onclick = async event => {
       const url = `${location.origin}${location.pathname}#ville=${city.id}&lieu=${encodeURIComponent(entry.id)}`
@@ -531,7 +592,7 @@ async function main() {
     },
     onRemove() {},
   }, 'top-right')
-  // his position: asked of the browser, drawn by the page, sent nowhere and kept nowhere
+  // his position: asked of the browser and drawn by the page, kept nowhere; it leaves the page only as the start of a walk he asks for
   map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'bottom-right')
 
   map.addImage('disc', discImage(), { sdf: true })
@@ -552,6 +613,14 @@ async function main() {
       'text-field': ['step', ['zoom'], '', 16, ['get', 'name']], 'text-font': ['Noto Sans Regular'], 'text-size': 12, 'text-anchor': 'top', 'text-offset': [0, 1.15], 'text-optional': true,
     },
     paint: { 'icon-opacity': 0.92, 'text-color': '#aab2bb', 'text-halo-color': C.halo, 'text-halo-width': 1.4 } })
+
+  // the walk to the open card's place: under the places, over the zones
+  map.addSource('route', { type: 'geojson', data: collection([]) })
+  map.addSource('route-start', { type: 'geojson', data: collection([]) })
+  const width = (a, b) => ['interpolate', ['linear'], ['zoom'], 10, a, 17, b]
+  map.addLayer({ id: 'route-casing', type: 'line', source: 'route', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': 'rgb(4 6 9 / 0.92)', 'line-width': width(5, 11) } }, 'landmarks')
+  map.addLayer({ id: 'route', type: 'line', source: 'route', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': '#8ec5ff', 'line-width': width(2.5, 6) } }, 'landmarks')
+  map.addLayer({ id: 'route-start', type: 'circle', source: 'route-start', paint: { 'circle-radius': 6.5, 'circle-color': '#ffffff', 'circle-stroke-color': '#3b82c4', 'circle-stroke-width': 3 } })
 
   // a disc's size on screen, by importance; the image's disc is 8 px
   const sized = (a, b, c, k = 1) => ['interpolate', ['linear'], ['zoom'], 10, ['match', ['get', 'strength'], 3, (a[2] * k) / 8, 2, (a[1] * k) / 8, (a[0] * k) / 8], 14, ['match', ['get', 'strength'], 3, (b[2] * k) / 8, 2, (b[1] * k) / 8, (b[0] * k) / 8], 17, ['match', ['get', 'strength'], 3, (c[2] * k) / 8, 2, (c[1] * k) / 8, (c[0] * k) / 8]]
@@ -606,6 +675,7 @@ async function main() {
 
   // ---- taps: a place first, then a landmark, then a zone (its note, or its ground while the zones are what is shown)
   map.on('click', event => {
+    if (onStart) { const start = onStart; onStart = null; return start([event.lngLat.lng, event.lngLat.lat]) }
     const { x, y } = event.point
     const hits = map.queryRenderedFeatures([[x - 14, y - 14], [x + 14, y + 14]], { layers: ['picked', 'dots', 'dots-back', 'names', 'landmarks', 'zone-notes', 'zones-fill'] })
     const near = source => hits.filter(h => h.source === source).sort((a, b) => { const d = h => { const p = map.project(h.geometry.coordinates); return Math.hypot(p.x - x, p.y - y) }; return d(a) - d(b) })[0]
