@@ -534,7 +534,7 @@ async function main() {
 
   // ---- the key (its entries are filled before the map starts, its effect on the map comes with the map)
   const picked = new Set()
-  let showPicked = () => {}
+  let showPicked = () => {}, showNotes = () => {}, notesFront = null, notesShown = null
 
   // ---- the search on the map: places, zones and landmarks alike, whatever the key shows; a result opens as a tap on the map does
   const bar = document.getElementById('search'), field = bar.querySelector('input'), clear = bar.querySelector('.clear'), results = document.getElementById('results')
@@ -806,6 +806,60 @@ async function main() {
   map.addLayer({ id: 'zone-notes', type: 'symbol', source: 'zone-notes', minzoom: MIDDLE, maxzoom: NEAR,
     layout: { 'text-field': ['get', 'hook'], 'text-font': ['Noto Sans Bold'], 'text-size': ['interpolate', ['linear'], ['zoom'], MIDDLE, 13.5, NEAR, 17], 'text-max-width': 8, 'text-line-height': 1.15, 'text-padding': 3, 'symbol-sort-key': ['-', 4, ['get', 'strength']] },
     paint: { 'text-color': '#ffffff', 'text-halo-color': 'rgba(4,6,9,0.96)', 'text-halo-width': 2, 'text-halo-blur': 0.5 } })
+  // A zone's note is read whole or not drawn. It stays at its zone's point (it never slides to fit): its box, measured
+  // as the map sets it (bold, lines of about eight ems, evened out), must lie inside the screen, above the key, under the
+  // search on a phone, and touch nothing that lies over the map (the search, the card, the crowd's legend, the buttons).
+  const pen = document.createElement('canvas').getContext('2d')
+  pen.font = "700 100px 'Noto Sans', -apple-system, 'Helvetica Neue', Arial, sans-serif"
+  const EM = 100, GAP = pen.measureText(' ').width
+  /**
+   * Half a note's box on screen at a text size. The map cuts a note in as many lines as eight ems ask for and evens them
+   * out; its letters may be up to a tenth wider than the system's that are measured here, so a note near the limit is
+   * counted with one more line, and the box takes the wider and the taller of the two.
+   */
+  const noteSizes = new Map()
+  const noteHalf = (zone, size) => {
+    if (!noteSizes.has(zone)) {
+      const words = zone.hook.split(/\s+/).filter(Boolean).map(w => pen.measureText(w).width)
+      const total = words.reduce((sum, w) => sum + w, 0) + GAP * (words.length - 1)
+      const fits = [1, 1.1].map(wider => {
+        const share = total / Math.max(1, Math.ceil(total * wider / (8 * EM)))
+        let best = { bad: Infinity, width: 0, lines: 1 }
+        for (let cut = 0; cut < 1 << Math.max(0, words.length - 1); cut++) {
+          const lines = [0]
+          words.forEach((w, i) => { if (i && cut & (1 << (i - 1))) lines.push(w); else lines[lines.length - 1] += (i ? GAP : 0) + w })
+          const bad = lines.reduce((sum, line) => sum + (line - share) ** 2, 0)
+          if (bad < best.bad) best = { bad, width: Math.max(...lines) / EM, lines: lines.length }
+        }
+        return best
+      })
+      noteSizes.set(zone, { width: Math.max(...fits.map(f => f.width)), lines: Math.max(...fits.map(f => f.lines)) })
+    }
+    // 8 % and 6 px more than measured, for the map's wider letters and the halo around them
+    const { width, lines } = noteSizes.get(zone)
+    return { w: width * size * 1.08 / 2 + 6, h: lines * size * 1.15 / 2 + 5 }
+  }
+  const overMap = [bar, card, crowdLegend, document.getElementById('title'), ...document.querySelectorAll('.maplibregl-ctrl-top-right, .maplibregl-ctrl-bottom-right')]
+  showNotes = () => {
+    const zoom = map.getZoom(), size = 13.5 + 3.5 * Math.min(1, Math.max(0, (zoom - MIDDLE) / (NEAR - MIDDLE)))
+    const frame = map.getContainer().getBoundingClientRect()
+    const blocks = overMap.map(el => el.getBoundingClientRect()).filter(r => r.width && r.height)
+    const top = phone() ? bar.getBoundingClientRect().bottom : frame.top, bottom = key.getBoundingClientRect().top + 8
+    const readable = zones.filter(zone => {
+      const { w, h } = noteHalf(zone, size), at = map.project([zone.lon, zone.lat])
+      const box = { left: frame.left + at.x - w, right: frame.left + at.x + w, top: frame.top + at.y - h, bottom: frame.top + at.y + h }
+      return box.left >= frame.left && box.right <= frame.right && box.top >= top && box.bottom <= bottom
+        && !blocks.some(r => box.left < r.right && box.right > r.left && box.top < r.bottom && box.bottom > r.top)
+    }).map(zone => zone.id)
+    if (readable.join('|') === notesShown) return
+    notesShown = readable.join('|')
+    map.setFilter('zone-notes', ['all', notesFront ?? true, ['in', ['get', 'id'], ['literal', readable]]])
+  }
+  map.on('move', showNotes)
+  map.on('resize', showNotes)
+  new MutationObserver(showNotes).observe(card, { attributes: true, attributeFilter: ['class'] })
+  new MutationObserver(showNotes).observe(crowdLegend, { attributes: true, attributeFilter: ['hidden'] })
+  showNotes()
   // the tapped place: above everything, ringed in white, never hidden
   map.addLayer({ id: 'picked', type: 'symbol', source: 'places', filter: ['==', ['get', 'id'], ''],
     layout: { 'icon-image': 'disc', 'icon-size': sized(...SIZES, 1.25), 'icon-overlap': 'always', 'icon-padding': 0 },
@@ -820,7 +874,8 @@ async function main() {
     for (const b of chips.children) if (b.dataset.id) { b.classList.toggle('on', picked.has(b.dataset.id)); b.setAttribute('aria-pressed', picked.has(b.dataset.id)) }
     key.classList.toggle('picked', picked.size > 0)
     const front = picked.size ? ['any', ...[...picked].map(p => ['in', `|${p}|`, ['get', 'interests']])] : null
-    for (const layer of ['dots', 'names', 'zones-fill', 'zones-line', 'zone-notes']) map.setFilter(layer, front)
+    for (const layer of ['dots', 'names', 'zones-fill', 'zones-line']) map.setFilter(layer, front)
+    notesFront = front; notesShown = null; showNotes()
     map.setFilter('dots-back', front ? ['!', front] : ['==', ['get', 'id'], ''])
     map.setLayoutProperty('names', 'text-field', front ? ['step', ['zoom'], '', NEAR - 1, NAMED] : namesFrom(NEAR, NEAR + 1))
     // a picked place shows the colour of the interest it was picked for
@@ -864,7 +919,7 @@ async function main() {
   // a shared link opens its place; without a view of its own, the map goes there
   const asked = byId.get(decodeURIComponent(hashGet('lieu') ?? ''))
   if (asked) open(asked, { fly: !hadView })
-  window.__carte = { open: (id, options) => open(byId.get(id), options), go, get city() { return city.id }, get places() { return places }, get zones() { return zones }, get landmarks() { return landmarks }, get homes() { return homes }, level: () => (map.getZoom() < MIDDLE ? 'loin' : map.getZoom() < NEAR ? 'milieu' : 'près') }
+  window.__carte = { open: (id, options) => open(byId.get(id), options), go, get city() { return city.id }, get places() { return places }, get zones() { return zones }, get landmarks() { return landmarks }, get homes() { return homes }, noteHalf, level: () => (map.getZoom() < MIDDLE ? 'loin' : map.getZoom() < NEAR ? 'milieu' : 'près') }
   document.documentElement.dataset.state = 'ready'
 }
 main().catch(error => { console.error(error); document.getElementById('fail').hidden = false })
