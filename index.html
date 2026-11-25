@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js" integrity="sha384-nXMl9YiLoSG5KBPTFgvxVuIqQQcqIvo0bFrvoEaGJC6r7IibIzF1S36Zbf/sKBtL" crossorigin="anonymous"></script>
 <style>
-  :root { --key-h: 110px; }
+  :root { --key-h: 34px; }
   html, body, #map { margin: 0; height: 100%; background: #14171b; }
   body { font: 15px/1.4 -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Noto Sans', sans-serif; color: #e9e6de; overflow: hidden; -webkit-tap-highlight-color: transparent; }
   button, input { font: inherit; color: inherit; }
@@ -45,18 +45,18 @@
   #cities button[aria-selected='true'] { background: rgb(255 255 255 / 0.06); font-weight: 600; }
   #cities button[aria-selected='true']::after { content: '✓'; color: #aab2bb; font-weight: 400; }
   /* the search, always on the map: under the title, left of the map's own buttons; the list beside it */
-  #search { position: fixed; z-index: 4; left: 12px; right: 66px; top: calc(62px + env(safe-area-inset-top)); display: flex; gap: 8px; }
-  #search .field { position: relative; flex: 1; min-width: 0; }
+  #menu .bar { display: flex; gap: 10px; align-items: center; padding: calc(10px + env(safe-area-inset-top)) 12px 10px; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
+  #menu .field { position: relative; flex: 1; min-width: 0; }
   /* 16 px: under it Safari zooms the page when the field takes the focus */
-  #search input { box-sizing: border-box; width: 100%; height: 44px; margin: 0; padding: 0 40px 0 38px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238c949d' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='4.6'/%3E%3Cpath d='M10.5 10.5 14 14'/%3E%3C/svg%3E") 14px 50% / 16px no-repeat; font-size: 16px; outline: none; -webkit-appearance: none; appearance: none; }
-  #search input:focus { border-color: rgb(255 255 255 / 0.34); }
-  #search input::placeholder { color: #8c949d; }
+  #menu input { box-sizing: border-box; width: 100%; height: 44px; margin: 0; padding: 0 40px 0 38px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238c949d' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='7' cy='7' r='4.6'/%3E%3Cpath d='M10.5 10.5 14 14'/%3E%3C/svg%3E") 14px 50% / 16px no-repeat; font-size: 16px; outline: none; -webkit-appearance: none; appearance: none; }
+  #menu input:focus { border-color: rgb(255 255 255 / 0.34); }
+  #menu input::placeholder { color: #8c949d; }
   /* empty, the field has no button to clear it: the invitation may use that room */
-  #search input:placeholder-shown { padding-right: 14px; }
-  #search input::-webkit-search-cancel-button { display: none; }
-  #search .clear { position: absolute; right: 0; top: 0; width: 44px; height: 44px; border: 0; background: none; color: #aab2bb; font-size: 20px; line-height: 1; cursor: pointer; }
+  #menu input:placeholder-shown { padding-right: 14px; }
+  #menu input::-webkit-search-cancel-button { display: none; }
+  #menu .clear { position: absolute; right: 0; top: 0; width: 44px; height: 44px; border: 0; background: none; color: #aab2bb; font-size: 20px; line-height: 1; cursor: pointer; }
   /* the day's crowd: a chip in the key, and when it is on a slim legend under the search that also reads the tapped spot */
-  #legends { position: fixed; z-index: 3; left: 12px; top: calc(112px + env(safe-area-inset-top)); width: min(300px, calc(100% - 24px)); display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
+  #legends { position: fixed; z-index: 3; left: 12px; top: calc(64px + env(safe-area-inset-top)); width: min(300px, calc(100% - 24px)); display: flex; flex-direction: column; gap: 6px; pointer-events: none; }
   #legends > * { pointer-events: auto; }
   #metro-legend { display: flex; gap: 6px; overflow-x: auto; padding: 6px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 12px; background: rgb(22 26 31 / 0.94); scrollbar-width: none; }
   #metro-legend::-webkit-scrollbar { display: none; }
@@ -89,9 +89,11 @@
   #crowd-legend .info { flex: none; width: 36px; height: 36px; margin: -6px 0 -6px 2px; border: 0; border-radius: 50%; background: none; color: #aab2bb; font: italic 600 14px/1 Georgia, serif; cursor: pointer; }
   #crowd-legend .read { margin: 2px 0 0; padding-right: 36px; font-size: 13px; line-height: 1.35; color: #e9e6de; }
   #crowd-legend .note { margin: 8px 0 0; font-size: 11.5px; line-height: 1.45; color: #8c949d; }
-  #list-button { flex: none; min-height: 44px; padding: 0 16px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #e9e6de; cursor: pointer; }
+  #menu-button { position: fixed; z-index: 4; right: 10px; top: calc(8px + env(safe-area-inset-top)); width: 48px; height: 48px; display: grid; place-items: center; padding: 0; border: 1px solid rgb(255 255 255 / 0.18); border-radius: 50%; background: rgb(22 26 31 / 0.94); cursor: pointer; }
+  #menu-button svg { width: 22px; height: 22px; stroke: #e9e6de; stroke-width: 2; stroke-linecap: round; fill: none; }
+  #menu .field { flex: 1; }
   /* what the search finds: under the field, about eight at a time, never under the on-screen keyboard (--view-h) */
-  #results { position: fixed; z-index: 4; left: 12px; right: 12px; top: calc(112px + env(safe-area-inset-top)); max-height: min(428px, calc(var(--view-h, 100vh) - 122px - env(safe-area-inset-top))); overflow-y: auto; overscroll-behavior: contain; padding: 4px; box-sizing: border-box; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 16px; background: #12151a; box-shadow: 0 10px 40px rgb(0 0 0 / 0.5); }
+  #results { padding: 4px 6px; }
   #results .hit { display: grid; grid-template-columns: 22px 1fr; align-items: center; width: 100%; min-height: 52px; padding: 6px 10px; border: 0; border-radius: 12px; background: none; text-align: left; cursor: pointer; }
   #results .hit:active, #results .hit:first-child:not(:only-child) { background: rgb(255 255 255 / 0.05); }
   #results .hit i { grid-row: 1 / 3; width: 11px; height: 11px; border-radius: 50%; background: var(--c); }
@@ -107,23 +109,24 @@
   [data-state='no-map'] #key .chips { display: none; }
   #fail { position: fixed; z-index: 2; left: 16px; right: 16px; top: 38%; margin: 0; padding: 14px 16px; border-radius: 12px; background: #1b1f25; color: #d0d3d7; text-align: center; }
 
-  #key { position: fixed; left: 0; right: 0; bottom: 0; z-index: 3; padding: 14px 8px calc(6px + env(safe-area-inset-bottom)); background: linear-gradient(rgb(14 17 21 / 0), rgb(14 17 21 / 0.9) 30%); }
-  #key .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+  #key { padding: 12px 12px 4px; }
+  #key .head { margin: 0 0 8px 2px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #9aa3ad; }
+  #key .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  #credit { position: fixed; left: 0; right: 0; bottom: 0; z-index: 3; margin: 0; padding: 14px 10px calc(6px + env(safe-area-inset-bottom)); text-align: center; font-size: 10.5px; line-height: 1.35; color: #7f8892; background: linear-gradient(rgb(14 17 21 / 0), rgb(14 17 21 / 0.9) 45%); pointer-events: none; }
+  #credit a { color: #9aa3ad; text-decoration: none; pointer-events: auto; }
   #key button { flex: none; display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 22px; background: rgb(22 26 31 / 0.94); color: #c9cdd2; font-size: 13.5px; cursor: pointer; }
   #key button i { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
   #key button small { color: #6f7781; font-size: 12px; }
-  #key button .long, #key button small { display: none; }
+  #key button .short { display: none; }
   #key.picked button:not(.on):not(.crowd):not(.metro) { color: #7b838d; }
   #key.picked button:not(.on):not(.crowd):not(.metro) i { opacity: 0.4; }
   #key button[hidden] { display: none; }
   #key button.on { border-color: var(--c); color: #fff; background: #20252c; }
-  #key .credit { margin: 6px 0 0; text-align: center; font-size: 10.5px; color: #7f8892; }
-  #key .credit a { color: #9aa3ad; text-decoration: none; }
 
   /* the card: a bottom sheet on a phone, the place it describes stays in the map above it */
   #card { position: fixed; z-index: 5; left: 0; right: 0; bottom: 0; max-height: 52%; overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box; padding: 14px 18px calc(18px + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0; border-top: 1px solid rgb(255 255 255 / 0.1); background: #12151a; box-shadow: 0 -10px 40px rgb(0 0 0 / 0.5); display: none; }
   #card.open { display: block; }
-  #card .close, #list .close { flex: none; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.07); color: #d6d9dd; font-size: 22px; line-height: 1; cursor: pointer; }
+  #card .close, #menu .close { flex: none; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.07); color: #d6d9dd; font-size: 22px; line-height: 1; cursor: pointer; }
   #card .close { position: sticky; float: right; top: 0; margin: -4px -8px 0 8px; }
   #card .tags { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 12.5px; color: #9aa3ad; margin-bottom: 6px; }
   #card .tags span { display: flex; align-items: center; gap: 6px; }
@@ -147,25 +150,25 @@
   #card .sources a { color: #9db7d0; display: block; padding: 9px 0; overflow-wrap: anywhere; }
 
   /* the list: the whole screen on a phone */
-  #list { position: fixed; z-index: 6; inset: 0; display: none; flex-direction: column; background: #12151a; }
-  #list.open { display: flex; }
-  #list .bar { display: flex; gap: 10px; align-items: center; padding: calc(10px + env(safe-area-inset-top)) 12px 10px; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
-  #list input { flex: 1; min-width: 0; height: 44px; padding: 0 14px; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 22px; background: #1b1f25; font-size: 16px; outline: none; }
-  #list .items { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 0 6px calc(16px + env(safe-area-inset-bottom)); }
-  #list h3 { display: flex; align-items: center; gap: 8px; margin: 16px 10px 4px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #9aa3ad; }
-  #list h3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
-  #list .place { display: block; width: 100%; min-height: 52px; padding: 7px 10px; border: 0; border-radius: 10px; background: none; text-align: left; cursor: pointer; }
-  #list .place:active { background: rgb(255 255 255 / 0.06); }
-  #list .place b { display: block; font-weight: 500; color: #efece4; }
-  #list .place span { display: block; font-size: 13px; color: #8c949d; }
-  #list .none { margin: 24px 12px; color: #8c949d; }
+  #menu { position: fixed; z-index: 6; inset: 0; display: none; flex-direction: column; background: #12151a; }
+  #menu.open { display: flex; }
+  #menu .body { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+  .menued #legends { visibility: hidden; }
+  #menu.searching #key, #menu.searching .items { display: none; }
+  #menu .items { padding: 0 6px; }
+  #menu h3 { display: flex; align-items: center; gap: 8px; margin: 16px 10px 4px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #9aa3ad; }
+  #menu h3 i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  #menu .place { display: block; width: 100%; min-height: 52px; padding: 7px 10px; border: 0; border-radius: 10px; background: none; text-align: left; cursor: pointer; }
+  #menu .place:active { background: rgb(255 255 255 / 0.06); }
+  #menu .place b { display: block; font-weight: 500; color: #efece4; }
+  #menu .place span { display: block; font-size: 13px; color: #8c949d; }
+  #menu .none { margin: 24px 12px; color: #8c949d; }
 
   .maplibregl-ctrl-group { background: rgb(22 26 31 / 0.94); border: 1px solid rgb(255 255 255 / 0.12); box-shadow: none !important; border-radius: 12px; }
   .maplibregl-ctrl-group button { width: 44px; height: 44px; }
   .maplibregl-ctrl-group button + button { border-top-color: rgb(255 255 255 / 0.08); }
   .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(0.88); }
-  .maplibregl-ctrl-group button.tilt { color: #d6d9dd; font: 600 13px/1 inherit; }
-  .maplibregl-ctrl-top-right { top: calc(4px + env(safe-area-inset-top)); right: 2px; }
+  .maplibregl-ctrl-top-right { top: calc(62px + env(safe-area-inset-top)); right: 2px; }
   .maplibregl-ctrl-bottom-right { bottom: calc(var(--key-h) + 2px); right: 2px; }
   /* the position button: the one a thumb looks for */
   .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group { border-radius: 50%; overflow: hidden; border-color: rgb(255 255 255 / 0.22); }
@@ -182,17 +185,12 @@
     #title h1 { font-size: 26px; }
     #title p { font-size: 13px; }
     #cities { left: 18px; top: 52px; }
-    #search { left: 18px; right: auto; top: 76px; width: 400px; }
-    #legends { left: 18px; top: 128px; width: 400px; }
+    #menu-button { right: 18px; top: 14px; }
+    #legends { left: 18px; top: 78px; width: 400px; }
     #metro-legend { flex-wrap: wrap; overflow: visible; }
     .carded #metro-legend { display: none; }
-    #results { left: 18px; right: auto; top: 126px; width: 400px; }
-    #key button .long, #key button small { display: inline; }
-    #key .chips { gap: 8px; }
-    #key button { padding: 0 14px; font-size: 14px; }
-    #key button .short { display: none; }
-    #card { left: 18px; right: auto; bottom: calc(var(--key-h) + 6px); width: 380px; max-height: calc(100% - var(--key-h) - 150px); border-radius: 14px; border: 1px solid rgb(255 255 255 / 0.08); padding-bottom: 18px; box-shadow: 0 10px 40px rgb(0 0 0 / 0.5); }
-    #list { inset: 0 auto 0 0; width: 380px; border-right: 1px solid rgb(255 255 255 / 0.08); box-shadow: 10px 0 40px rgb(0 0 0 / 0.4); }
+    #card { left: 18px; right: auto; bottom: calc(var(--key-h) + 6px); width: 380px; max-height: calc(100% - var(--key-h) - 110px); border-radius: 14px; border: 1px solid rgb(255 255 255 / 0.08); padding-bottom: 18px; box-shadow: 0 10px 40px rgb(0 0 0 / 0.5); }
+    #menu { inset: 0 auto 0 0; width: 380px; border-right: 1px solid rgb(255 255 255 / 0.08); box-shadow: 10px 0 40px rgb(0 0 0 / 0.4); }
   }
 </style>
 </head>
@@ -200,12 +198,7 @@
 <div id="map"></div>
 <header id="title"><h1><button id="city" type="button" aria-haspopup="listbox" aria-expanded="false"><span></span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></h1><p>des lieux choisis, par envie</p></header>
 <div id="cities" role="listbox" aria-label="Villes" hidden></div>
-<!-- what is typed here is no form and has no name, and nothing of it goes in the address; it leaves the page only for the
-     OpenStreetMap search below the chosen places (Photon), three letters or more, after a pause -->
-<div id="search" role="search">
-  <div class="field"><input type="search" placeholder="Chercher un lieu, un quartier" aria-label="Chercher un lieu, un quartier, une envie" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="clear" type="button" aria-label="Effacer la recherche" hidden>×</button></div>
-  <button id="list-button" type="button">Liste</button>
-</div>
+<button id="menu-button" type="button" aria-label="Ouvrir le menu" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 <div id="legends">
 <div id="metro-legend" hidden aria-label="Lignes de métro"></div>
 <div id="crowd-legend" hidden>
@@ -215,18 +208,23 @@
 </div>
 </div>
 <div id="metro-tip" hidden role="status"></div>
-<div id="results" hidden></div>
 <p id="toast" role="status" hidden></p>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
 <aside id="card" aria-live="polite"></aside>
-<section id="list" aria-label="Liste des lieux">
-  <div class="bar"><input type="search" placeholder="Chercher un lieu" aria-label="Chercher un lieu" autocomplete="off"><button class="close" type="button" aria-label="Fermer la liste">×</button></div>
-  <div class="items"></div>
+<!-- the menu: the search (what is typed is no form and has no name, and nothing of it goes in the address; it leaves the page only for the
+     OpenStreetMap search below the chosen places, Photon, three letters or more, after a pause), what the map shows, and the places -->
+<section id="menu" role="dialog" aria-label="Menu">
+  <div class="bar">
+    <div class="field"><input type="search" placeholder="Chercher un lieu, un quartier" aria-label="Chercher un lieu, un quartier, une envie" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="clear" type="button" aria-label="Effacer la recherche" hidden>×</button></div>
+    <button class="close" type="button" aria-label="Fermer le menu">×</button>
+  </div>
+  <div class="body">
+    <nav id="key" aria-label="Affichage de la carte"><p class="head">Sur la carte</p><div class="chips"></div></nav>
+    <div id="results" hidden></div>
+    <div class="items"></div>
+  </div>
 </section>
-<nav id="key" aria-label="Intérêts">
-  <div class="chips"></div>
-  <p class="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> · Itinéraires : <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener">OSRM / FOSSGIS</a> · Affluence : <a href="https://www.e-stat.go.jp/gis" target="_blank" rel="noopener">e-Stat</a>, <a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-S12-2024.html" target="_blank" rel="noopener">MLIT</a></p>
-</nav>
+<p id="credit">Fond de carte © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> · <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> · Itinéraires : <a href="https://routing.openstreetmap.de/about.html" target="_blank" rel="noopener">OSRM / FOSSGIS</a> · Affluence : <a href="https://www.e-stat.go.jp/gis" target="_blank" rel="noopener">e-Stat</a>, <a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-S12-2024.html" target="_blank" rel="noopener">MLIT</a></p>
 <script>
 const INTERESTS = [
   { id: 'musique', label: 'Musique', short: 'Musique', color: '#5cc3f5' },
@@ -551,21 +549,21 @@ async function main() {
     else if (phone()) map.easeTo({ center: [entry.lon, entry.lat], offset, duration: 400 })
   }
 
-  // ---- the list: the places by interest, to browse (the search's own matching narrows it), each one flies to its place
-  const list = document.getElementById('list'), items = list.querySelector('.items'), search = list.querySelector('input')
+  // ---- the menu's list: the places by interest, to browse (the key's picked interests narrow it), each one flies to its place
+  const menu = document.getElementById('menu'), items = menu.querySelector('.items')
   function fill() {
-    const found = find(search.value, places), lodged = find(search.value, homes)
+    const found = picked.size ? places.filter(p => p.interests.some(i => picked.has(i))) : places, lodged = picked.size ? [] : homes
     items.innerHTML = [lodged.length ? `<h3 style="--c:${HOME}"><i></i>Hébergements</h3>${lodged.map(h => `<button class="place" type="button" data-id="${esc(h.id)}"><b>${esc(h.short)}</b><span>${esc(h.span)} · ${esc(h.area)}</span></button>`).join('')}` : '', ...INTERESTS.map(interest => {
       const group = found.filter(p => p.interests[0] === interest.id).sort((a, b) => b.strength - a.strength || a.short.localeCompare(b.short, 'fr'))
       return group.length ? `<h3 style="--c:${interest.color}"><i></i>${esc(interest.label)}</h3>${group.map(p => `<button class="place" type="button" data-id="${esc(p.id)}"><b>${esc(p.short)}</b><span>${esc(p.hook)}${p.area ? ` · ${esc(p.area)}` : ''}</span></button>`).join('')}` : ''
-    })].join('') || '<p class="none">Aucun lieu à ce nom.</p>'
+    })].join('') || '<p class="none">Aucun lieu.</p>'
   }
-  search.oninput = fill
-  document.getElementById('list-button').onclick = () => { rest(); fill(); list.classList.add('open') }
-  list.querySelector('.close').onclick = () => list.classList.remove('open')
+  const openMenu = () => { if (shown) close(); menu.classList.add('open'); document.body.classList.add('menued'); fill(); answer() }
+  document.getElementById('menu-button').onclick = openMenu
+  menu.querySelector('.close').onclick = () => rest()
   items.onclick = event => {
     const button = event.target.closest('.place'); if (!button) return
-    list.classList.remove('open')
+    rest()
     open(byId.get(button.dataset.id), { fly: true })
   }
 
@@ -574,7 +572,7 @@ async function main() {
   let showPicked = () => {}, showNotes = () => {}, notesFront = null, notesShown = null
 
   // ---- the search on the map: places, zones and landmarks alike, whatever the key shows; a result opens as a tap on the map does
-  const bar = document.getElementById('search'), field = bar.querySelector('input'), clear = bar.querySelector('.clear'), results = document.getElementById('results')
+  const bar = document.getElementById('title'), field = menu.querySelector('input'), clear = menu.querySelector('.clear'), results = document.getElementById('results')
   const dotOf = e => e.kind === 'zone' ? '<i class="zone"></i>' : e.kind === 'home' ? `<i style="--c:${HOME}"></i>` : `<i style="--c:${e.kind === 'landmark' ? BACK : colorOf(e.interests[0])}"></i>`
   const whereOf = e => e.kind === 'home' ? `${e.span} · ${e.area}` : [e.kind === 'zone' ? 'Quartier' : e.kind === 'landmark' ? 'Repère' : e.area, e.kind === 'landmark' ? null : e.hook].filter(Boolean).join(' · ')
   let found = []
@@ -625,6 +623,7 @@ async function main() {
     clear.hidden = !field.value
     found = field.value.trim() ? find(field.value, all).slice(0, 30) : []
     results.hidden = !field.value.trim()
+    menu.classList.toggle('searching', Boolean(field.value.trim()))
     askOsm(field.value)
     paint()
     results.scrollTop = 0
@@ -639,7 +638,7 @@ async function main() {
     if (e && (e[2] - e[0] > 0.0006 || e[1] - e[3] > 0.0006)) map.fitBounds([[e[0], e[3]], [e[2], e[1]]], { padding: phone() ? { top: 130, bottom: card.offsetHeight + 24, left: 30, right: 30 } : { top: 140, bottom: 130, left: 430, right: 60 }, maxZoom: 17, duration: 900 })
     else map.flyTo({ center: [lon, lat], zoom: Math.max(map.getZoom(), 16), offset: phone() ? [0, -card.offsetHeight / 2] : [0, 0], duration: 900 })
   }
-  const rest = () => { results.hidden = true; field.blur() }
+  const rest = () => { field.blur(); menu.classList.remove('open'); document.body.classList.remove('menued') }
   function choose(entry) {
     rest()
     // a place the key had set back comes forward: the key lets go
@@ -651,18 +650,14 @@ async function main() {
   addEventListener('resize', invite)
   invite()
   field.oninput = answer
-  // the card and the results never share the screen: asking again puts the card away
-  field.onfocus = () => { if (shown) close(); answer() }
   field.onkeydown = event => {
     if (event.key === 'Escape') rest()
     if (event.key === 'Enter') found[0] ? choose(found[0]) : osm[0] && chooseOsm(osm[0])
   }
   clear.onclick = () => { field.value = ''; answer(); field.focus() }
   results.onclick = event => { const hit = event.target.closest('.hit'); if (!hit) return; if (hit.dataset.osm !== undefined) chooseOsm(osm[Number(hit.dataset.osm)]); else choose(byId.get(hit.dataset.id)) }
-  // a touch anywhere else (the map, the key) closes the results and the keyboard
-  document.addEventListener('pointerdown', event => { if (!results.hidden && !bar.contains(event.target) && !results.contains(event.target)) rest() })
-  // the results end above the on-screen keyboard: the visible height, not the window's
-  const fit = () => document.documentElement.style.setProperty('--view-h', `${window.visualViewport?.height ?? innerHeight}px`)
+  // the menu ends above the on-screen keyboard: the visible height, not the window's
+  const fit = () => { menu.style.height = phone() && window.visualViewport ? `${window.visualViewport.height}px` : '' }
   window.visualViewport?.addEventListener('resize', fit)
   fit()
   const key = document.getElementById('key'), chips = key.querySelector('.chips')
@@ -701,7 +696,8 @@ async function main() {
   }
   const fillKey = () => { chips.innerHTML = INTERESTS.filter(i => count(i.id) > 0).map(i => `<button type="button" data-id="${i.id}" style="--c:${i.color}" aria-pressed="false"><i></i><span class="long">${i.label}</span><span class="short">${i.short}</span> <small>${count(i.id)}</small></button>`).join(''); chips.append(metroButton, crowdButton) }
   fillKey()
-  new ResizeObserver(() => document.documentElement.style.setProperty('--key-h', `${key.offsetHeight}px`)).observe(key)
+  const credit = document.getElementById('credit')
+  new ResizeObserver(() => document.documentElement.style.setProperty('--key-h', `${credit.offsetHeight}px`)).observe(credit)
 
   // ---- the city: its name is the title, and the way to another one
   const cityButton = document.getElementById('city'), cityList = document.getElementById('cities')
@@ -733,8 +729,8 @@ async function main() {
   /** Another city: its places on the same map, seen whole; the card, the key, the list and the search start again. */
   async function go(id) {
     const next = await load(cities.find(c => c.id === id))
-    close(); rest(); list.classList.remove('open'); litKey = null; hideTip()
-    field.value = ''; search.value = ''
+    close(); rest(); litKey = null; hideTip()
+    field.value = ''
     city = next; ({ places, zones, landmarks, homes, metro, all, byId } = next)
     answer(); picked.clear(); fillKey(); showPicked(); named(); showMetro()
     // the city chosen is what a launch from the home screen comes back to: its id, never a position or a view
@@ -755,7 +751,7 @@ async function main() {
     const style = await json('https://tiles.openfreemap.org/styles/dark')
     map = window.map = new maplibregl.Map({
       container: 'map', style: quiet(style), ...(places.length || zones.length || homes.length ? { bounds: whole(), fitBoundsOptions: { padding: around() } } : { center: city.start.center, zoom: city.start.zoom }),
-      hash: 'v', maxPitch: 70, attributionControl: false, canvasContextAttributes: { preserveDrawingBuffer: true },
+      hash: 'v', maxPitch: 0, dragRotate: false, attributionControl: false, canvasContextAttributes: { preserveDrawingBuffer: true },
       locale: { 'NavigationControl.ZoomIn': 'Zoomer', 'NavigationControl.ZoomOut': 'Dézoomer', 'NavigationControl.ResetBearing': 'Remettre le nord en haut', 'GeolocateControl.FindMyLocation': 'Ma position', 'GeolocateControl.LocationNotAvailable': 'Position indisponible' },
     })
     map.on('error', event => console.error('carte:', event.error?.message ?? event))
@@ -765,17 +761,8 @@ async function main() {
     map = null
     return fail()
   }
-  map.addControl(new maplibregl.NavigationControl({ visualizePitch: true, showZoom: !phone() }), 'top-right')
-  map.addControl({
-    onAdd() {
-      const box = document.createElement('div'); box.className = 'maplibregl-ctrl maplibregl-ctrl-group'
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'tilt'; b.textContent = '3D'; b.setAttribute('aria-label', 'Incliner la carte')
-      b.onclick = () => { const up = map.getPitch() < 20; map.easeTo({ pitch: up ? 58 : 0, zoom: up ? Math.max(map.getZoom(), 15.2) : map.getZoom(), duration: 700 }) }
-      map.on('pitch', () => (b.textContent = map.getPitch() < 20 ? '3D' : '2D'))
-      box.append(b); return box
-    },
-    onRemove() {},
-  }, 'top-right')
+  map.touchZoomRotate.disableRotation()
+  if (!phone()) map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
   // his position: asked of the browser and drawn by the page, kept nowhere; it leaves the page only as the start of a walk he asks for
   map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'bottom-right')
 
@@ -788,7 +775,7 @@ async function main() {
     try { me = await here() } catch { return say('Ta position n’est pas disponible : autorise la localisation dans le navigateur.') }
     const nearest = lodgings.homes.map(h => [h, crow(me, [h.lon, h.lat])]).sort((a, b) => a[1] - b[1])[0]?.[0]
     if (!nearest) return
-    rest(); list.classList.remove('open')
+    rest()
     if (nearest.city !== city.id) await go(nearest.city)
     open(byId.get(`hébergement ${nearest.name}`))
     card.querySelector('.walk .go')?.click()
@@ -905,7 +892,7 @@ async function main() {
     // beside the pointer; on a phone above the finger (under it when there is no room), never under the search, the key or a card
     const w = tip.offsetWidth, h = tip.offsetHeight
     const top = (phone() ? Math.max(bar.getBoundingClientRect().bottom, legends.getBoundingClientRect().bottom) : 0) + 8
-    const bottom = (phone() && card.classList.contains('open') ? card.getBoundingClientRect().top : key.getBoundingClientRect().top) - 2
+    const bottom = (phone() && card.classList.contains('open') ? card.getBoundingClientRect().top : credit.getBoundingClientRect().top) - 2
     let left = finger ? x - w / 2 : x + 16, above = finger ? y - h - 26 : y + 20
     if (finger && above < top) above = y + 34
     if (!finger && left + w > innerWidth - 8) left = x - w - 16
@@ -1037,12 +1024,12 @@ async function main() {
     const { width, lines } = noteSizes.get(zone)
     return { w: width * size * 1.08 / 2 + 6, h: lines * size * 1.15 / 2 + 5 }
   }
-  const overMap = [bar, card, crowdLegend, document.getElementById('title'), ...document.querySelectorAll('.maplibregl-ctrl-top-right, .maplibregl-ctrl-bottom-right')]
+  const overMap = [bar, card, crowdLegend, document.getElementById('menu-button'), ...document.querySelectorAll('.maplibregl-ctrl-top-right, .maplibregl-ctrl-bottom-right')]
   showNotes = () => {
     const zoom = map.getZoom(), size = 13.5 + 3.5 * Math.min(1, Math.max(0, (zoom - MIDDLE) / (NEAR - MIDDLE)))
     const frame = map.getContainer().getBoundingClientRect()
     const blocks = overMap.map(el => el.getBoundingClientRect()).filter(r => r.width && r.height)
-    const top = phone() ? bar.getBoundingClientRect().bottom : frame.top, bottom = key.getBoundingClientRect().top + 8
+    const top = phone() ? bar.getBoundingClientRect().bottom : frame.top, bottom = credit.getBoundingClientRect().top + 8
     const readable = zones.filter(zone => {
       const { w, h } = noteHalf(zone, size), at = map.project([zone.lon, zone.lat])
       const box = { left: frame.left + at.x - w, right: frame.left + at.x + w, top: frame.top + at.y - h, bottom: frame.top + at.y + h }
@@ -1071,6 +1058,7 @@ async function main() {
   showPicked = () => {
     for (const b of chips.children) if (b.dataset.id) { b.classList.toggle('on', picked.has(b.dataset.id)); b.setAttribute('aria-pressed', picked.has(b.dataset.id)) }
     key.classList.toggle('picked', picked.size > 0)
+    fill()
     const front = picked.size ? ['any', ...[...picked].map(p => ['in', `|${p}|`, ['get', 'interests']])] : null
     for (const layer of ['dots', 'names', 'zones-fill', 'zones-line']) map.setFilter(layer, front)
     notesFront = front; notesShown = null; showNotes()
