@@ -143,6 +143,9 @@
   #card .gmaps { display: flex; align-items: center; justify-content: center; min-height: 48px; margin-top: 14px; border-radius: 12px; background: #e9e6de; color: #14171b; font-weight: 600; text-decoration: none; }
   #card .walk { margin-top: 14px; }
   #card .walk button, #card .walk a { display: flex; align-items: center; justify-content: center; box-sizing: border-box; width: 100%; min-height: 44px; border: 1px solid rgb(142 197 255 / 0.5); border-radius: 12px; background: rgb(142 197 255 / 0.1); color: #cfe6ff; font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+  #card .walk .modes { display: flex; gap: 6px; margin: 0 0 10px; padding: 3px; border-radius: 12px; background: rgb(255 255 255 / 0.06); }
+  #card .walk .modes button { flex: 1; min-height: 36px; border: 0; border-radius: 9px; background: none; color: #aeb4ba; font-weight: 500; font-size: 13px; }
+  #card .walk .modes button[aria-pressed="true"] { background: rgb(142 197 255 / 0.18); color: #e4f1ff; font-weight: 600; }
   #card .walk .alt { margin-top: 8px; border-color: rgb(255 255 255 / 0.16); background: none; color: #d6d9dd; font-weight: 400; }
   #card .walk .time { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin: 0 0 10px; color: #d0d3d7; }
   #card .walk .time b { font-size: 26px; font-weight: 600; color: #cfe6ff; }
@@ -485,10 +488,27 @@ async function main() {
     walking++; onStart = null
     if (map?.getSource('route')) { map.getSource('route').setData(collection([])); map.getSource('route-start').setData(collection([])) }
   }
-  async function walk(entry, box) {
+  // the lodging a walk can start from: the ones of the place's city, tonight's first, else the nearest
+  const lodgingFor = entry => {
+    const stays = lodgings.homes.filter(h => h.city === city.id), now = tonight().filter(h => h.city === city.id)
+    return (now.length ? now : stays).map(h => [h, crow([h.lon, h.lat], [entry.lon, entry.lat])]).sort((a, b) => a[1] - b[1])[0]?.[0] ?? null
+  }
+  let startMode = (() => { try { return localStorage.getItem('départ') === 'moi' ? 'moi' : 'logement' } catch { return 'logement' } })()
+  async function walk(entry, host) {
     const turn = ++walking
     const there = [entry.lon, entry.lat]
-    const google = `<a class="alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${entry.lat},${entry.lon}&travelmode=walking">Itinéraire dans Google Maps</a>`
+    const lodging = entry.kind === 'home' ? null : lodgingFor(entry)
+    const mode = lodging ? startMode : 'moi'
+    const origin = mode === 'logement' ? `&origin=${lodging.lat},${lodging.lon}` : ''
+    const google = `<a class="alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1${origin}&destination=${entry.lat},${entry.lon}&travelmode=walking">Itinéraire dans Google Maps</a>`
+    host.innerHTML = `${lodging ? `<div class="modes" role="group" aria-label="Départ"><button type="button" data-mode="logement" aria-pressed="${mode === 'logement'}">Depuis le logement</button><button type="button" data-mode="moi" aria-pressed="${mode === 'moi'}">Depuis ma position</button></div>` : ''}<div class="out"></div>`
+    const box = host.querySelector('.out')
+    for (const b of host.querySelectorAll('.modes button')) b.onclick = () => {
+      if (b.dataset.mode === startMode) return
+      startMode = b.dataset.mode
+      try { localStorage.setItem('départ', startMode) } catch {}
+      clearRoute(); walk(entry, host)
+    }
     const offer = (note = '', extra = '') => {
       box.innerHTML = `${note ? `<p class="small">${note}</p>` : ''}<button type="button" class="go">${note ? 'Réessayer avec ma position' : 'Itinéraire à pied depuis ma position'}</button>${note ? '<button type="button" class="alt pick">Choisir le départ sur la carte</button>' : ''}${extra}`
       box.querySelector('.go').onclick = () => run(null, true)
@@ -498,9 +518,14 @@ async function main() {
     async function run(start, fresh = false) {
       onStart = null
       box.innerHTML = '<p class="small">Calcul de l’itinéraire…</p>'
+      if (mode === 'logement') start = [lodging.lon, lodging.lat]
       try { start ??= await here(fresh) } catch { return turn === walking && offer('Ta position n’est pas disponible : autorise la localisation dans le navigateur, ou place le départ toi-même.') }
       if (turn !== walking) return
       const far = crow(start, there)
+      if (far > 25 && mode === 'logement') {
+        const transit = `<a class="alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=${lodging.lat},${lodging.lon}&destination=${entry.lat},${entry.lon}&travelmode=transit">Itinéraire en transports dans Google Maps</a>`
+        return void (box.innerHTML = `<p class="time"><b>${Math.round(far)} km</b> à vol d’oiseau depuis ${esc(lodging.name)}</p><p class="small">Trop loin pour une marche.</p>${transit}`)
+      }
       if (far > 25) {
         const km = Math.round(far), around = start.accuracy ? ` (précision ± ${start.accuracy >= 1000 ? `${Math.round(start.accuracy / 1000)} km` : `${Math.round(start.accuracy)} m`})` : ''
         const transit = `<a class="alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${entry.lat},${entry.lon}&travelmode=transit">Itinéraire en transports dans Google Maps</a>`
@@ -513,13 +538,14 @@ async function main() {
       } catch {}
       if (turn !== walking) return
       if (!route) { box.innerHTML = `<p class="small">L’itinéraire n’a pas pu être calculé pour le moment.</p>${google}`; return }
-      box.innerHTML = `<p class="time"><b>${clock(route.duration)}</b> à pied · ${metres(route.distance)}${entry.kind === 'zone' ? ' jusqu’au centre du quartier' : ''}</p>${google}<p class="small">Itinéraire par OpenStreetMap (routing.openstreetmap.de), temps estimé à pied.</p>`
+      box.innerHTML = `<p class="time"><b>${clock(route.duration)}</b> à pied · ${metres(route.distance)}${mode === 'logement' ? ` depuis ${esc(lodging.name)}${lodging.approx ? ' (quartier)' : ''}` : ''}${entry.kind === 'zone' ? ' jusqu’au centre du quartier' : ''}</p>${google}<p class="small">Itinéraire par OpenStreetMap (routing.openstreetmap.de), temps estimé à pied.</p>`
       if (!map) return
       map.getSource('route').setData(collection([{ type: 'Feature', geometry: route.geometry, properties: {} }]))
       map.getSource('route-start').setData(collection([{ type: 'Feature', geometry: { type: 'Point', coordinates: start }, properties: {} }]))
       const bounds = route.geometry.coordinates.reduce((b, c) => b.extend(c), new maplibregl.LngLatBounds())
       map.fitBounds(bounds, { padding: phone() ? { top: 130, bottom: card.offsetHeight + 24, left: 30, right: 30 } : { top: 140, bottom: 130, left: 430, right: 60 }, maxZoom: 16, duration: 800 })
     }
+    if (mode === 'logement') return run(null)
     offer()
     // once the browser has been told yes, the route comes with the card
     const allowed = await navigator.permissions?.query({ name: 'geolocation' }).then(p => p.state === 'granted', () => false)
