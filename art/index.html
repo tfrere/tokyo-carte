@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Esthétiques de simulation cellulaire</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0c0f; color: #e6e8eb; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { max-width: 1100px; margin: 0 auto; padding: 28px 18px 8px; }
+  h1 { margin: 0 0 6px; font-size: 22px; font-weight: 600; }
+  header p { margin: 0; color: #9aa1a9; max-width: 62ch; }
+  main { max-width: 1100px; margin: 0 auto; padding: 14px 18px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+  figure { margin: 0; background: #14161a; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .stage { position: relative; aspect-ratio: 4 / 3; background: #000; cursor: pointer; touch-action: none; }
+  .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stage.full { position: fixed; inset: 0; z-index: 10; aspect-ratio: auto; }
+  .stage.full canvas { object-fit: contain; }
+  figcaption { padding: 12px 14px 14px; }
+  figcaption h2 { margin: 0; font-size: 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  figcaption h2 button { font: inherit; font-size: 12px; font-weight: 500; color: #aeb4ba; background: none; border: 1px solid #343840; border-radius: 8px; padding: 3px 9px; cursor: pointer; }
+  figcaption .mood { margin: 2px 0 8px; color: #cfd3d8; }
+  figcaption .rule { margin: 0; font-size: 13px; color: #8d949c; }
+  figcaption .rule b { color: #b6bcc3; font-weight: 600; }
+  footer { max-width: 1100px; margin: 0 auto; padding: 0 18px 40px; color: #7c838b; font-size: 13px; }
+  .hint { position: absolute; left: 10px; bottom: 8px; font-size: 11px; color: rgb(255 255 255 / 0.55); pointer-events: none; text-shadow: 0 0 4px #000; }
+  .stage.light .hint { color: rgb(0 0 0 / 0.5); text-shadow: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Six esthétiques de simulation cellulaire</h1>
+  <p>Chaque carte tourne en direct. Touche ou passe la souris pour perturber, clique pour passer en plein écran, « Relancer » pour une autre graine.</p>
+</header>
+<main id="grid"></main>
+<footer>Ces démos tournent en WebGL2 et en Canvas pour fonctionner partout. Le même principe en WebGPU permet de passer à des centaines de milliers ou des millions d’agents.</footer>
+
+<script>
+'use strict'
+const P = window.__P || {}
+const TAU = Math.PI * 2
+const rnd = Math.random
+const sims = []
+
+function card({ title, mood, rule, light = false, w = 640, h = 480 }) {
+  const fig = document.createElement('figure')
+  fig.innerHTML = `<div class="stage${light ? ' light' : ''}"><canvas width="${w}" height="${h}"></canvas><span class="hint">toucher pour perturber</span></div><figcaption><h2>${title}<button type="button">Relancer</button></h2><p class="mood">${mood}</p><p class="rule">${rule}</p></figcaption>`
+  document.getElementById('grid').append(fig)
+  const stage = fig.querySelector('.stage'), canvas = fig.querySelector('canvas')
+  const sim = { canvas, visible: false, tick() {}, reset() {}, poke() {} }
+  fig.querySelector('button').onclick = () => sim.reset()
+  stage.onclick = event => { if (event.target === canvas && !sim.moved) stage.classList.toggle('full') }
+  const at = event => { const r = canvas.getBoundingClientRect(); const s = Math.min(r.width / canvas.width, r.height / canvas.height); const ox = (r.width - canvas.width * s) / 2, oy = (r.height - canvas.height * s) / 2; return [(event.clientX - r.left - ox) / s / canvas.width, 1 - (event.clientY - r.top - oy) / s / canvas.height] }
+  let down = false
+  canvas.addEventListener('pointerdown', e => { down = true; sim.moved = false; sim.poke(...at(e), true) })
+  canvas.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || down) { sim.moved = down; sim.poke(...at(e), down) } })
+  addEventListener('pointerup', () => { down = false; setTimeout(() => (sim.moved = false), 0) })
+  new IntersectionObserver(([e]) => (sim.visible = e.isIntersecting), { threshold: 0.05 }).observe(stage)
+  sims.push(sim)
+  return sim
+}
+
+// ---------------------------------------------------------------- WebGL2 fields
+const VS = `#version 300 es
+void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); gl_Position = vec4(p * 2. - 1., 0., 1.); }`
+
+function field(sim, { w, h, filter = 'LINEAR', step, render, brush, init, uniforms = () => ({}), steps = 1 }) {
+  const gl = sim.canvas.getContext('webgl2', { antialias: false, preserveDrawingBuffer: true })
+  if (!gl) return false
+  gl.getExtension('EXT_color_buffer_float') || gl.getExtension('EXT_color_buffer_half_float')
+  const build = fs => {
+    const p = gl.createProgram()
+    for (const [type, src] of [[gl.VERTEX_SHADER, VS], [gl.FRAGMENT_SHADER, `#version 300 es\nprecision highp float;\n${fs}`]]) {
+      const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s)
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s))
+      gl.attachShader(p, s)
+    }
+    gl.linkProgram(p); return p
+  }
+  const stepP = build(step), renderP = build(render), brushP = build(`uniform sampler2D uTex; uniform vec2 uTexel, uPt; uniform float uRad, uSeed; out vec4 o;
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233)) + uSeed) * 43758.5453); }
+    ${brush}
+    void main(){ vec2 uv = gl_FragCoord.xy * uTexel; vec4 s = texture(uTex, uv); vec2 d = (uv - uPt) * vec2(${w}., ${h}.); o = paint(s, length(d) < uRad ? 1. : 0., uv); }`)
+  const tex = [], fbo = []
+  for (let i = 0; i < 2; i++) {
+    const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t)
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, w, h, 0, gl.RGBA, gl.FLOAT, null)
+    for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl[filter]], [gl.TEXTURE_MAG_FILTER, gl[filter]], [gl.TEXTURE_WRAP_S, gl.REPEAT], [gl.TEXTURE_WRAP_T, gl.REPEAT]]) gl.texParameteri(gl.TEXTURE_2D, k, v)
+    const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0)
+    tex.push(t); fbo.push(f)
+  }
+  let cur = 0
+  const pass = (prog, target, extra = {}) => {
+    gl.useProgram(prog)
+    gl.bindFramebuffer(gl.FRAMEBUFFER, target)
+    gl.viewport(0, 0, target ? w : sim.canvas.width, target ? h : sim.canvas.height)
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex[cur])
+    gl.uniform1i(gl.getUniformLocation(prog, 'uTex'), 0)
+    gl.uniform2f(gl.getUniformLocation(prog, 'uTexel'), 1 / w, 1 / h)
+    for (const [k, v] of Object.entries(extra)) { const l = gl.getUniformLocation(prog, k); if (l) Array.isArray(v) ? gl[`uniform${v.length}f`](l, ...v) : gl.uniform1f(l, v) }
+    gl.drawArrays(gl.TRIANGLES, 0, 3)
+  }
+  sim.reset = () => {
+    const data = new Float32Array(w * h * 4); init(data, w, h)
+    for (const t of tex) { gl.bindTexture(gl.TEXTURE_2D, t); gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, w, h, gl.RGBA, gl.FLOAT, data) }
+    cur = 0
+  }
+  sim.poke = (x, y, strong) => {
+    pass(brushP, fbo[1 - cur], { uPt: [x, y], uRad: strong ? 9 : 5, uSeed: rnd() * 100 }); cur = 1 - cur
+  }
+  sim.tick = () => {
+    for (let i = 0; i < steps; i++) { pass(stepP, fbo[1 - cur], uniforms()); cur = 1 - cur }
+    pass(renderP, null)
+  }
+  sim.reset()
+  return true
+}
+
+// ---- 1. Gray-Scott, encre sur papier
+{
+  const sim = card({ title: 'Réaction-diffusion', mood: 'Encre sur papier : corail, labyrinthes, cellules qui se divisent.', rule: '<b>Règle :</b> deux produits chimiques, l’un nourrit l’autre. Les taches se divisent et forment des motifs de Turing.', light: true })
+  field(sim, {
+    w: 256, h: 192, steps: 10, filter: 'LINEAR',
+    uniforms: () => ({ uF: 0.0545, uK: 0.062 }),
+    step: `uniform sampler2D uTex; uniform vec2 uTexel; uniform float uF, uK; out vec4 o;
+      void main(){ vec2 uv = gl_FragCoord.xy * uTexel; vec2 c = texture(uTex, uv).rg; vec2 x = uTexel;
+        vec2 l = -c + .2 * (texture(uTex, uv + vec2(x.x, 0)).rg + texture(uTex, uv - vec2(x.x, 0)).rg + texture(uTex, uv + vec2(0, x.y)).rg + texture(uTex, uv - vec2(0, x.y)).rg)
+          + .05 * (texture(uTex, uv + x).rg + texture(uTex, uv - x).rg + texture(uTex, uv + vec2(x.x, -x.y)).rg + texture(uTex, uv + vec2(-x.x, x.y)).rg);
+        float r = c.r * c.g * c.g;
+        o = vec4(clamp(c + vec2(l.x - r + uF * (1. - c.r), .5 * l.y + r - (uK + uF) * c.g), 0., 1.), 0., 1.); }`,
+    render: `uniform sampler2D uTex; uniform vec2 uTexel; out vec4 o;
+      void main(){ vec2 uv = gl_FragCoord.xy / vec2(512., 384.); float v = texture(uTex, uv).g;
+        float e = texture(uTex, uv + vec2(1., 1.) * uTexel * .8).g - texture(uTex, uv - vec2(1., 1.) * uTexel * .8).g;
+        vec3 paper = vec3(.93, .90, .83), ink = vec3(.09, .11, .20), red = vec3(.74, .22, .16);
+        float m = smoothstep(.07, .26, v);
+        vec3 c = mix(paper, ink, m); c = mix(c, red, smoothstep(.28, .42, v) * .85); c += e * 1.4 * m;
+        float grain = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) * .035;
+        o = vec4(c - grain, 1.); }`,
+    brush: `vec4 paint(vec4 s, float k, vec2 uv){ return k > 0. ? vec4(.5, 1., 0., 1.) : s; }`,
+    init(d, w, h) {
+      for (let i = 0; i < w * h; i++) { d[i * 4] = 1; d[i * 4 + 3] = 1 }
+      for (let n = 0; n < 7; n++) { const cx = rnd() * w, cy = rnd() * h; for (let y = -6; y <= 6; y++) for (let x = -6; x <= 6; x++) if (x * x + y * y < 30) { const i = ((Math.floor(cy + y + h) % h) * w + (Math.floor(cx + x + w) % w)) * 4; d[i] = .5; d[i + 1] = 1 } }
+    },
+  })
+}
+
+// ---- 2. Lenia, créatures translucides
+{
+  const R = P.R ?? 11, MU = P.mu ?? 0.15, SIGMA = P.sigma ?? 0.017
+  let norm = 0
+  for (let j = -R; j <= R; j++) for (let i = -R; i <= R; i++) { const r = Math.hypot(i, j) / R; if (r > 0 && r < 1) norm += Math.exp(4 - 1 / (r * (1 - r))) }
+  const sim = card({ title: 'Lenia', mood: 'Vermicelles et spores lumineux : une peau vivante qui ondule dans le noir.', rule: '<b>Règle :</b> Game of Life rendu continu : chaque cellule lit un anneau de voisines et pousse ou recule selon une courbe de croissance.' })
+  field(sim, {
+    w: 256, h: 192, steps: 2, filter: 'LINEAR',
+    uniforms: () => ({ uR: R, uMu: MU, uSigma: SIGMA, uDt: 0.1, uNorm: norm }),
+    step: `uniform sampler2D uTex; uniform vec2 uTexel; uniform float uR, uMu, uSigma, uDt, uNorm; out vec4 o;
+      void main(){ vec2 uv = gl_FragCoord.xy * uTexel; float sum = 0.; int n = int(uR);
+        for (int j = -n; j <= n; j++) for (int i = -n; i <= n; i++) { float r = length(vec2(float(i), float(j))) / uR; if (r > 0. && r < 1.) sum += exp(4. - 1. / (r * (1. - r))) * texture(uTex, uv + vec2(float(i), float(j)) * uTexel).r; }
+        float u = sum / uNorm; float g = 2. * exp(-pow((u - uMu) / uSigma, 2.) / 2.) - 1.;
+        o = vec4(clamp(texture(uTex, uv).r + uDt * g, 0., 1.), 0., 0., 1.); }`,
+    render: `uniform sampler2D uTex; out vec4 o;
+      void main(){ vec2 uv = gl_FragCoord.xy / vec2(512., 384.); float v = texture(uTex, uv).r;
+        vec3 deep = vec3(.01, .02, .05), mid = vec3(.05, .42, .62), hot = vec3(.95, .55, .38);
+        vec3 c = mix(deep, mid, smoothstep(0., .6, v)); c = mix(c, hot, smoothstep(.55, 1., v)); c += vec3(.55, .85, .9) * smoothstep(.85, 1., v) * .35;
+        o = vec4(c, 1.); }`,
+    brush: `vec4 paint(vec4 s, float k, vec2 uv){ return k > 0. ? vec4(max(s.r, hash(uv * 97.) * .9), 0., 0., 1.) : s; }`,
+    init(d, w, h) {
+      for (let n = 0; n < 9; n++) {
+        const cx = rnd() * w, cy = rnd() * h, rad = 10 + rnd() * 8
+        for (let y = -rad; y <= rad; y++) for (let x = -rad; x <= rad; x++) if (x * x + y * y < rad * rad) {
+          const i = ((Math.floor(cy + y + h) % h) * w + (Math.floor(cx + x + w) % w)) * 4; d[i] = rnd(); d[i + 3] = 1
+        }
+      }
+    },
+  })
+}
+
+// ---- 3. Cyclique, spirales à aplats
+{
+  const N = P.N ?? 5, TH = P.T ?? 3
+  const sim = card({ title: 'Automate cyclique', mood: 'Spirales graphiques, aplats de couleur, esprit affiche ou tissu.', rule: '<b>Règle :</b> chaque état est « mangé » par le suivant. Quand assez de voisines le sont, la cellule passe à l’état suivant.' })
+  field(sim, {
+    w: 192, h: 144, steps: 4, filter: 'NEAREST',
+    uniforms: () => ({ uN: N, uT: TH }),
+    step: `uniform sampler2D uTex; uniform vec2 uTexel; uniform float uN, uT; out vec4 o;
+      void main(){ vec2 uv = gl_FragCoord.xy * uTexel; float s = floor(texture(uTex, uv).r * uN + .5); float nxt = mod(s + 1., uN); float c = 0.;
+        for (int j = -1; j <= 1; j++) for (int i = -1; i <= 1; i++) if (i != 0 || j != 0) { float t = floor(texture(uTex, uv + vec2(float(i), float(j)) * uTexel).r * uN + .5); if (t == nxt) c += 1.; }
+        o = vec4((c >= uT ? nxt : s) / uN, 0., 0., 1.); }`,
+    render: `uniform sampler2D uTex; uniform vec2 uTexel; out vec4 o;
+      void main(){ vec2 uv = gl_FragCoord.xy / vec2(640., 480.); float v = texture(uTex, uv).r;
+        vec3 c = .5 + .5 * cos(6.2831 * (v * 1. + vec3(0., .12, .30)) + vec3(0.4, 1.4, 2.6)); c = mix(vec3(.08, .08, .12), c, .92); c = pow(c, vec3(1.15));
+        o = vec4(c, 1.); }`,
+    brush: `vec4 paint(vec4 s, float k, vec2 uv){ return k > 0. ? vec4(floor(hash(uv * 53.) * 9.) / 9., 0., 0., 1.) : s; }`,
+    init(d, w, h) { for (let i = 0; i < w * h; i++) { d[i * 4] = Math.floor(rnd() * N) / N; d[i * 4 + 3] = 1 } },
+  })
+  sim.canvas.width = 640; sim.canvas.height = 480
+}
+
+// ---------------------------------------------------------------- CPU agents
+// ---- 4. Physarum, veines bioluminescentes
+{
+  const W = P.w ?? 480, H = P.h ?? 360, N = P.n ?? 26000
+  const sim = card({ title: 'Physarum', mood: 'Veines bioluminescentes, réseaux de racines ou de neurones.', rule: '<b>Règle :</b> chaque agent suit la piste la plus forte devant lui et en laisse une. Un réseau de transport émerge.' })
+  const ctx = sim.canvas.getContext('2d'); const img = ctx.createImageData(W, H)
+  const lut = new Uint8ClampedArray(256 * 3)
+  const stops = [[0, [2, 4, 12]], [.25, [6, 60, 74]], [.55, [40, 190, 170]], [.8, [170, 255, 215]], [1, [255, 250, 225]]]
+  for (let i = 0; i < 256; i++) { const t = i / 255; let k = 1; while (stops[k][0] < t) k++; const [t0, a] = stops[k - 1], [t1, b] = stops[k], f = (t - t0) / (t1 - t0); for (let c = 0; c < 3; c++) lut[i * 3 + c] = a[c] + (b[c] - a[c]) * f }
+  const x = new Float32Array(N), y = new Float32Array(N), a = new Float32Array(N)
+  let trail = new Float32Array(W * H), tmp = new Float32Array(W * H)
+  sim.reset = () => {
+    trail.fill(0)
+    for (let i = 0; i < N; i++) { x[i] = rnd() * W; y[i] = rnd() * H; a[i] = rnd() * TAU }
+  }
+  sim.poke = (px, py) => { const cx = Math.floor(px * W), cy = Math.floor((1 - py) * H); for (let j = -5; j <= 5; j++) for (let i = -5; i <= 5; i++) if (i * i + j * j < 26) trail[((cy + j + H) % H) * W + ((cx + i + W) % W)] += 40 }
+  const SA = P.sa ?? 0.78, SD = P.sd ?? 9, TURN = P.turn ?? 0.6, SPEED = P.speed ?? 1, GAIN = P.gain ?? .03, BLUR = P.blur ?? .2, DEP = P.dep ?? 4, KEEP = P.keep ?? 0.9
+  const sample = (px, py) => trail[((py + H) % H | 0) * W + ((px + W) % W | 0)]
+  const step = () => {
+    for (let i = 0; i < N; i++) {
+      const ai = a[i], xi = x[i], yi = y[i]
+      const f = sample(xi + Math.cos(ai) * SD, yi + Math.sin(ai) * SD), l = sample(xi + Math.cos(ai - SA) * SD, yi + Math.sin(ai - SA) * SD), r = sample(xi + Math.cos(ai + SA) * SD, yi + Math.sin(ai + SA) * SD)
+      if (f > l && f > r) { } else if (f < l && f < r) { a[i] += rnd() < .5 ? -TURN : TURN } else if (l < r) { a[i] += TURN } else if (r < l) { a[i] -= TURN }
+      let nx = xi + Math.cos(a[i]) * SPEED, ny = yi + Math.sin(a[i]) * SPEED
+      if (nx < 0) nx += W; else if (nx >= W) nx -= W
+      if (ny < 0) ny += H; else if (ny >= H) ny -= H
+      x[i] = nx; y[i] = ny; trail[(ny | 0) * W + (nx | 0)] += DEP
+    }
+    for (let j = 0; j < H; j++) {
+      const up = ((j + H - 1) % H) * W, mid = j * W, dn = ((j + 1) % H) * W
+      for (let i = 0; i < W; i++) {
+        const l = (i + W - 1) % W, r = (i + 1) % W
+        const s = trail[up + l] + trail[up + i] + trail[up + r] + trail[mid + l] + trail[mid + i] + trail[mid + r] + trail[dn + l] + trail[dn + i] + trail[dn + r]
+        tmp[mid + i] = (trail[mid + i] * (1 - BLUR) + s / 9 * BLUR) * KEEP
+      }
+    }
+    const t = trail; trail = tmp; tmp = t
+  }
+  sim.tick = () => {
+    step(); step()
+    const d = img.data
+    for (let i = 0; i < W * H; i++) { const v = Math.min(255, (1 - Math.exp(-trail[i] * GAIN)) * 255) | 0; d[i * 4] = lut[v * 3]; d[i * 4 + 1] = lut[v * 3 + 1]; d[i * 4 + 2] = lut[v * 3 + 2]; d[i * 4 + 3] = 255 }
+    ctx.imageSmoothingEnabled = true
+    if (!sim.off) { sim.off = document.createElement('canvas'); sim.off.width = W; sim.off.height = H }
+    sim.off.getContext('2d').putImageData(img, 0, 0)
+    ctx.drawImage(sim.off, 0, 0, sim.canvas.width, sim.canvas.height)
+  }
+  sim.reset()
+}
+
+// ---- 5. Particle Life, cellules lumineuses
+{
+  const N = 1700, K = 6, RMAX = 0.085, BETA = 0.3, DT = 0.02, HALF = 0.04, FORCE = 9
+  const WW = 1, HH = 0.75
+  const sim = card({ title: 'Particle Life', mood: 'Cellules, membranes, bêtes qui se poursuivent : un bestiaire de points lumineux.', rule: '<b>Règle :</b> des espèces s’attirent ou se repoussent selon une matrice asymétrique. Rien d’autre, et ça a l’air vivant.' })
+  const ctx = sim.canvas.getContext('2d')
+  const px = new Float32Array(N), py = new Float32Array(N), vx = new Float32Array(N), vy = new Float32Array(N), kind = new Uint8Array(N)
+  let matrix = []
+  const sprites = Array.from({ length: K }, (_, k) => {
+    const c = document.createElement('canvas'); c.width = c.height = 32; const g = c.getContext('2d')
+    const grad = g.createRadialGradient(16, 16, 0, 16, 16, 16); const hue = (k * 360 / K + 12) % 360
+    grad.addColorStop(0, `hsla(${hue},95%,82%,1)`); grad.addColorStop(.25, `hsla(${hue},95%,60%,.55)`); grad.addColorStop(1, `hsla(${hue},95%,50%,0)`)
+    g.fillStyle = grad; g.fillRect(0, 0, 32, 32); return c
+  })
+  sim.reset = () => {
+    matrix = Array.from({ length: K }, (_, i) => Array.from({ length: K }, (_, j) => (i === j ? .3 + rnd() * .5 : rnd() * 1.5 - .85)))
+    for (let i = 0; i < N; i++) { px[i] = rnd() * WW; py[i] = rnd() * HH; vx[i] = vy[i] = 0; kind[i] = (rnd() * K) | 0 }
+    ctx.fillStyle = '#03040a'; ctx.fillRect(0, 0, sim.canvas.width, sim.canvas.height)
+  }
+  let pointer = null
+  sim.poke = (x, y, strong) => { pointer = { x: x * WW, y: (1 - y) * HH, strong, at: performance.now() } }
+  const GX = Math.floor(WW / RMAX), GY = Math.floor(HH / RMAX)
+  const head = new Int32Array(GX * GY), next = new Int32Array(N)
+  const step = () => {
+    head.fill(-1)
+    for (let i = 0; i < N; i++) { const c = Math.min(GY - 1, (py[i] / HH * GY) | 0) * GX + Math.min(GX - 1, (px[i] / WW * GX) | 0); next[i] = head[c]; head[c] = i }
+    const fric = Math.pow(.5, DT / HALF)
+    for (let i = 0; i < N; i++) {
+      const cx = Math.min(GX - 1, (px[i] / WW * GX) | 0), cy = Math.min(GY - 1, (py[i] / HH * GY) | 0), row = matrix[kind[i]]
+      let fx = 0, fy = 0
+      for (let oy = -1; oy <= 1; oy++) for (let ox = -1; ox <= 1; ox++) {
+        let j = head[((cy + oy + GY) % GY) * GX + ((cx + ox + GX) % GX)]
+        while (j !== -1) {
+          if (j !== i) {
+            let dx = px[j] - px[i], dy = py[j] - py[i]
+            if (dx > WW / 2) dx -= WW; else if (dx < -WW / 2) dx += WW
+            if (dy > HH / 2) dy -= HH; else if (dy < -HH / 2) dy += HH
+            const d2 = dx * dx + dy * dy
+            if (d2 > 0 && d2 < RMAX * RMAX) {
+              const d = Math.sqrt(d2) / RMAX
+              const f = d < BETA ? d / BETA - 1 : row[kind[j]] * (1 - Math.abs(2 * d - 1 - BETA) / (1 - BETA))
+              fx += dx / d2 ** .5 * f; fy += dy / d2 ** .5 * f
+            }
+          }
+          j = next[j]
+        }
+      }
+      vx[i] = vx[i] * fric + fx * RMAX * FORCE * DT
+      vy[i] = vy[i] * fric + fy * RMAX * FORCE * DT
+    }
+    const live = pointer && performance.now() - pointer.at < 120
+    for (let i = 0; i < N; i++) {
+      if (live) { let dx = px[i] - pointer.x, dy = py[i] - pointer.y; const d = Math.hypot(dx, dy); if (d < .12 && d > 1e-4) { const s = (pointer.strong ? -1 : 1) * (.12 - d) * 3; vx[i] += dx / d * s; vy[i] += dy / d * s } }
+      px[i] = (px[i] + vx[i] * DT + WW) % WW; py[i] = (py[i] + vy[i] * DT + HH) % HH
+    }
+  }
+  sim.tick = () => {
+    step()
+    ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = 'rgba(3,4,10,.32)'; ctx.fillRect(0, 0, sim.canvas.width, sim.canvas.height)
+    ctx.globalCompositeOperation = 'lighter'
+    const sx = sim.canvas.width / WW, sy = sim.canvas.height / HH
+    for (let i = 0; i < N; i++) ctx.drawImage(sprites[kind[i]], px[i] * sx - 8, (HH - py[i]) * sy - 8, 16, 16)
+  }
+  sim.reset()
+}
+
+// ---- 6. Boids, murmuration à l'encre
+{
+  const N = 2300, WW = 1, HH = 0.75, RAD = 0.05
+  const sim = card({ title: 'Boids', mood: 'Murmuration à l’encre : traits fins sur papier, nuées qui tournent.', rule: '<b>Règle :</b> chacun s’aligne, se rapproche et s’écarte de ses voisins. Aucun chef, pourtant la nuée danse.', light: true })
+  const ctx = sim.canvas.getContext('2d')
+  const px = new Float32Array(N), py = new Float32Array(N), vx = new Float32Array(N), vy = new Float32Array(N), ox = new Float32Array(N), oy = new Float32Array(N)
+  const GX = Math.floor(WW / RAD), GY = Math.floor(HH / RAD), head = new Int32Array(GX * GY), next = new Int32Array(N)
+  let t = 0, pointer = null
+  const paper = () => { ctx.fillStyle = '#efe9dc'; ctx.fillRect(0, 0, sim.canvas.width, sim.canvas.height) }
+  sim.reset = () => {
+    for (let i = 0; i < N; i++) { const a = rnd() * TAU; px[i] = .3 + rnd() * .4; py[i] = .2 + rnd() * .35; vx[i] = Math.cos(a) * .2; vy[i] = Math.sin(a) * .2; ox[i] = px[i]; oy[i] = py[i] }
+    paper()
+  }
+  sim.poke = (x, y) => { pointer = { x: x * WW, y: (1 - y) * HH, at: performance.now() } }
+  const step = dt => {
+    t += dt
+    head.fill(-1)
+    for (let i = 0; i < N; i++) { const c = Math.min(GY - 1, (py[i] / HH * GY) | 0) * GX + Math.min(GX - 1, (px[i] / WW * GX) | 0); next[i] = head[c]; head[c] = i }
+    const tx = .5 + Math.cos(t * .35) * .3, ty = .375 + Math.sin(t * .5) * .2
+    const live = pointer && performance.now() - pointer.at < 150
+    for (let i = 0; i < N; i++) {
+      const cx = Math.min(GX - 1, (px[i] / WW * GX) | 0), cy = Math.min(GY - 1, (py[i] / HH * GY) | 0)
+      let ax = 0, ay = 0, avx = 0, avy = 0, cxm = 0, cym = 0, n = 0
+      for (let oyy = -1; oyy <= 1; oyy++) for (let oxx = -1; oxx <= 1; oxx++) {
+        let j = head[((cy + oyy + GY) % GY) * GX + ((cx + oxx + GX) % GX)]
+        while (j !== -1) {
+          if (j !== i) {
+            let dx = px[j] - px[i], dy = py[j] - py[i]
+            if (dx > WW / 2) dx -= WW; else if (dx < -WW / 2) dx += WW
+            if (dy > HH / 2) dy -= HH; else if (dy < -HH / 2) dy += HH
+            const d2 = dx * dx + dy * dy
+            if (d2 < RAD * RAD) { n++; avx += vx[j]; avy += vy[j]; cxm += dx; cym += dy; if (d2 < .0004) { ax -= dx / (d2 + 1e-5) * .0006; ay -= dy / (d2 + 1e-5) * .0006 } }
+          }
+          j = next[j]
+        }
+      }
+      if (n) { ax += (avx / n - vx[i]) * 2.4 + cxm / n * 3; ay += (avy / n - vy[i]) * 2.4 + cym / n * 3 }
+      let gx = tx - px[i], gy = ty - py[i]; const gd = Math.hypot(gx, gy) + 1e-4; ax += gx / gd * .35; ay += gy / gd * .35
+      if (live) { const dx = px[i] - pointer.x, dy = py[i] - pointer.y, d = Math.hypot(dx, dy); if (d < .15) { ax += dx / (d + 1e-3) * 1.2; ay += dy / (d + 1e-3) * 1.2 } }
+      vx[i] += ax * dt; vy[i] += ay * dt
+      const sp = Math.hypot(vx[i], vy[i]) + 1e-6, target = Math.min(.33, Math.max(.16, sp))
+      vx[i] *= target / sp; vy[i] *= target / sp
+    }
+    for (let i = 0; i < N; i++) { ox[i] = px[i]; oy[i] = py[i]; px[i] = (px[i] + vx[i] * dt + WW) % WW; py[i] = (py[i] + vy[i] * dt + HH) % HH }
+  }
+  sim.tick = () => {
+    step(.016); step(.016)
+    ctx.fillStyle = 'rgba(239,233,220,.07)'; ctx.fillRect(0, 0, sim.canvas.width, sim.canvas.height)
+    const sx = sim.canvas.width / WW, sy = sim.canvas.height / HH
+    ctx.strokeStyle = 'rgba(24,22,28,.55)'; ctx.lineWidth = .9; ctx.beginPath()
+    for (let i = 0; i < N; i++) {
+      if (Math.abs(px[i] - ox[i]) > .5 || Math.abs(py[i] - oy[i]) > .4) continue
+      ctx.moveTo(ox[i] * sx, (HH - oy[i]) * sy); ctx.lineTo(px[i] * sx, (HH - py[i]) * sy)
+    }
+    ctx.stroke()
+  }
+  sim.reset()
+}
+
+window.__sims = sims
+let last = 0
+const frame = time => {
+  if (time - last > 14) { last = time; if (!window.__pause) for (const s of sims) if (s.visible) s.tick() }
+  requestAnimationFrame(frame)
+}
+requestAnimationFrame(frame)
+</script>
+</body>
+</html>
