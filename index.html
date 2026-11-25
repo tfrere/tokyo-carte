@@ -171,6 +171,10 @@
   .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group { border-radius: 50%; overflow: hidden; border-color: rgb(255 255 255 / 0.22); }
   .maplibregl-ctrl-bottom-right .maplibregl-ctrl-group button { width: 52px; height: 52px; }
   .maplibregl-ctrl-bottom-right .maplibregl-ctrl-geolocate .maplibregl-ctrl-icon { background-size: 30px; }
+  .maplibregl-ctrl-group button.home-go { display: grid; place-items: center; }
+  .maplibregl-ctrl-group button.home-go svg { width: 28px; height: 28px; }
+  #toast { position: fixed; z-index: 5; left: 50%; bottom: calc(var(--key-h, 90px) + 16px); transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); box-sizing: border-box; padding: 10px 14px; border: 1px solid rgb(255 255 255 / 0.14); border-radius: 12px; background: rgb(22 26 31 / 0.97); color: #e9e6de; font-size: 13px; line-height: 1.4; text-align: center; }
+  #toast[hidden] { display: none; }
   .maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active .maplibregl-ctrl-icon, .maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-background .maplibregl-ctrl-icon { filter: none; }
 
   @media (min-width: 641px) {
@@ -181,6 +185,7 @@
     #search { left: 18px; right: auto; top: 76px; width: 400px; }
     #legends { left: 18px; top: 128px; width: 400px; }
     #metro-legend { flex-wrap: wrap; overflow: visible; }
+    .carded #metro-legend { display: none; }
     #results { left: 18px; right: auto; top: 126px; width: 400px; }
     #key button .long, #key button small { display: inline; }
     #key .chips { gap: 8px; }
@@ -211,6 +216,7 @@
 </div>
 <div id="metro-tip" hidden role="status"></div>
 <div id="results" hidden></div>
+<p id="toast" role="status" hidden></p>
 <p id="fail" hidden>La carte ne peut pas s’afficher sur cet appareil (WebGL indisponible, ou la bibliothèque de carte n’a pas pu être chargée). Les lieux restent dans la liste, avec leur lien vers Google Maps.</p>
 <aside id="card" aria-live="polite"></aside>
 <section id="list" aria-label="Liste des lieux">
@@ -447,7 +453,7 @@ async function main() {
   const card = document.getElementById('card')
   let shown = null
   const clearFound = () => map?.getSource('found')?.setData(collection([]))
-  const close = () => { clearRoute(); clearFound(); card.classList.remove('open'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']); map?.setFilter('homes-picked', ['==', ['get', 'id'], '']) }
+  const close = () => { clearRoute(); clearFound(); card.classList.remove('open'); document.body.classList.remove('carded'); shown = null; hashSet('lieu', null); map?.setFilter('picked', ['==', ['get', 'id'], '']); map?.setFilter('homes-picked', ['==', ['get', 'id'], '']) }
 
   // ---- the walk: from where he is (or a point he taps) to the card's place, drawn on the map with its time.
   // The route comes from the OpenStreetMap foot router; it is sent the two points and nothing else, and only once he asks.
@@ -517,7 +523,7 @@ async function main() {
       ${entry.kind === 'search' ? '' : '<button class="share" type="button">Partager ce lieu</button>'}
       ${entry.sources.length ? `<div class="sources">Sources${entry.sources.map(s => `<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))}</a>`).join('')}</div>` : ''}`
     card.scrollTop = 0
-    card.classList.add('open')
+    card.classList.add('open'); document.body.classList.add('carded')
     card.querySelector('.close').onclick = close
     walk(entry, card.querySelector('.walk'))
     // opened from the home screen there is no address bar: the place's link is shared from here (the place alone, not the view)
@@ -772,6 +778,31 @@ async function main() {
   }, 'top-right')
   // his position: asked of the browser and drawn by the page, kept nowhere; it leaves the page only as the start of a walk he asks for
   map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'bottom-right')
+
+  // the way home: the nearest lodging to where he is, in whatever city, opened with its walk
+  const toast = document.getElementById('toast')
+  let toastTimer = 0
+  const say = text => { toast.textContent = text; toast.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (toast.hidden = true), 5000) }
+  async function homeward() {
+    let me
+    try { me = await here() } catch { return say('Ta position n’est pas disponible : autorise la localisation dans le navigateur.') }
+    const nearest = lodgings.homes.map(h => [h, crow(me, [h.lon, h.lat])]).sort((a, b) => a[1] - b[1])[0]?.[0]
+    if (!nearest) return
+    rest(); list.classList.remove('open')
+    if (nearest.city !== city.id) await go(nearest.city)
+    open(byId.get(`hébergement ${nearest.name}`))
+    card.querySelector('.walk .go')?.click()
+  }
+  map.addControl({
+    onAdd() {
+      const box = document.createElement('div'); box.className = 'maplibregl-ctrl maplibregl-ctrl-group'
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'home-go'; b.setAttribute('aria-label', 'Rentrer au logement le plus proche'); b.title = 'Rentrer au logement le plus proche'
+      b.innerHTML = `<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3.5 25 14h-3.2v10.5h-5.2V17h-5.2v7.5H6.2V14H3z" fill="${HOME}"/></svg>`
+      b.onclick = homeward
+      box.append(b); return box
+    },
+    onRemove() {},
+  }, 'bottom-right')
 
   map.addImage('disc', discImage(), { sdf: true })
   for (const [kind, glyph] of Object.entries(glyphs)) if (!kind.startsWith('_')) map.addImage(`badge-${kind}`, badgeImage(glyph), { pixelRatio: 2 })
