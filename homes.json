@@ -24,13 +24,13 @@
    "stay": "Osaka",
    "to": "2026-11-29",
    "kind": "Appartement entier, self check-in",
-   "where": "Kawarayamachi, Chūō-ku, Osaka",
-   "ja": "大阪府大阪市中央区瓦屋町",
+   "where": "Kawarayamachi 2-chōme, Chūō-ku, Osaka",
+   "ja": "大阪府大阪市中央区瓦屋町2丁目",
    "station": "Métro Matsuyamachi, 3 min à pied",
-   "lon": 135.515,
-   "lat": 34.6748,
+   "lon": 135.512,
+   "lat": 34.671,
    "approx": true,
-   "ask": "Matsuyamachi Station Osaka",
+   "ask": "Kawarayamachi 2 Chuo-ku Osaka",
    "from": "2026-11-25"
   },
   {
