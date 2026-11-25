@@ -483,7 +483,7 @@ async function main() {
       try { start ??= await here() } catch { return turn === walking && offer('Ta position n’est pas disponible : autorise la localisation dans le navigateur, ou place le départ toi-même.') }
       if (turn !== walking) return
       const far = crow(start, there)
-      if (far > 25) { box.innerHTML = `<p class="small">Trop loin pour une marche : environ ${Math.round(far)} km à vol d’oiseau.</p>${google}`; return }
+      if (far > 25) { box.innerHTML = `<p class="small">Trop loin pour une marche : environ ${Math.round(far)} km à vol d’oiseau depuis ta position.</p><a class="alt" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${entry.lat},${entry.lon}&travelmode=transit">Itinéraire en transports dans Google Maps</a>`; return }
       let route
       try {
         const answer = await fetch(`${ROUTER}/${start[0]},${start[1]};${there[0]},${there[1]}?overview=full&geometries=geojson`, { signal: AbortSignal.timeout(12000) }).then(r => r.json())
@@ -665,9 +665,9 @@ async function main() {
   // the day's crowd is one more chip, last, where a thumb is; it is not an interest
   const crowdButton = Object.assign(document.createElement('button'), { type: 'button', className: 'crowd', hidden: true, innerHTML: '<i></i><span class="long">Affluence de jour</span><span class="short">Affluence</span>' })
   crowdButton.style.setProperty('--c', '#f2784b'); crowdButton.setAttribute('aria-pressed', 'false')
-  // the underground lines, a chip of the key like the crowd's: on at first (thin, under every place), off when he wants the map bare
-  const metroButton = Object.assign(document.createElement('button'), { type: 'button', className: 'metro on', hidden: true, innerHTML: '<i></i><span class="long">Lignes de métro</span><span class="short">Métro</span>' })
-  metroButton.style.setProperty('--c', '#e5e8ec'); metroButton.setAttribute('aria-pressed', 'true')
+  // the underground lines, a chip of the key like the crowd's: off at first, the map bare, lit from the menu
+  const metroButton = Object.assign(document.createElement('button'), { type: 'button', className: 'metro', hidden: true, innerHTML: '<i></i><span class="long">Lignes de métro</span><span class="short">Métro</span>' })
+  metroButton.style.setProperty('--c', '#e5e8ec'); metroButton.setAttribute('aria-pressed', 'false')
   const metroLegend = document.getElementById('metro-legend')
   const inkOn = hex => { const [r, g, b] = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)); return 0.299 * r + 0.587 * g + 0.114 * b > 150 ? '#14171b' : '#ffffff' }
   const showMetro = () => {
@@ -766,14 +766,21 @@ async function main() {
   // his position: asked of the browser and drawn by the page, kept nowhere; it leaves the page only as the start of a walk he asks for
   map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserHeading: true }), 'bottom-right')
 
-  // the way home: the nearest lodging to where he is, in whatever city, opened with its walk
+  // the way home: tonight's lodging, in whatever city, opened with its walk
   const toast = document.getElementById('toast')
   let toastTimer = 0
   const say = text => { toast.textContent = text; toast.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (toast.hidden = true), 5000) }
   async function homeward() {
     let me
     try { me = await here() } catch { return say('Ta position n’est pas disponible : autorise la localisation dans le navigateur.') }
-    const nearest = lodgings.homes.map(h => [h, crow(me, [h.lon, h.lat])]).sort((a, b) => a[1] - b[1])[0]?.[0]
+    // the lodging of tonight (the one whose nights hold today, in Tokyo's calendar); outside the trip, the last one slept in, else the first to come
+    const today = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' })
+    const homes = lodgings.homes
+    const tonight = homes.filter(h => h.from <= today && today < h.to)
+    const past = homes.filter(h => h.to <= today).sort((a, b) => b.to.localeCompare(a.to))
+    const next = homes.filter(h => h.from > today).sort((a, b) => a.from.localeCompare(b.from))
+    const pool = tonight.length ? tonight : past.length ? past.filter(h => h.to === past[0].to) : next.filter(h => h.from === next[0]?.from)
+    const nearest = pool.map(h => [h, crow(me, [h.lon, h.lat])]).sort((a, b) => a[1] - b[1])[0]?.[0]
     if (!nearest) return
     rest()
     if (nearest.city !== city.id) await go(nearest.city)
@@ -783,7 +790,7 @@ async function main() {
   map.addControl({
     onAdd() {
       const box = document.createElement('div'); box.className = 'maplibregl-ctrl maplibregl-ctrl-group'
-      const b = document.createElement('button'); b.type = 'button'; b.className = 'home-go'; b.setAttribute('aria-label', 'Rentrer au logement le plus proche'); b.title = 'Rentrer au logement le plus proche'
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'home-go'; b.setAttribute('aria-label', 'Rentrer au logement de ce soir'); b.title = 'Rentrer au logement de ce soir'
       b.innerHTML = `<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3.5 25 14h-3.2v10.5h-5.2V17h-5.2v7.5H6.2V14H3z" fill="${HOME}"/></svg>`
       b.onclick = homeward
       box.append(b); return box
