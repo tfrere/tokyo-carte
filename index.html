@@ -24,7 +24,8 @@
 <!-- The map, one city at a time (cities.json), standalone: one page, its data beside it, no build.
      MapLibre GL JS (BSD-3-Clause) from a CDN, OpenFreeMap vector tiles (OpenMapTiles schema, OpenStreetMap data), no key.
      The page contacts unpkg.com (the map library) and tiles.openfreemap.org (style, tiles, fonts), and routing.openstreetmap.de
-     only when a walk is asked for, and photon.komoot.io for the search beyond the chosen places. -->
+     only when a walk is asked for, and photon.komoot.io for the search beyond the chosen places.
+     A place's photo, when it has one, is loaded from its source's own site only when its card is opened (credited, linked, no referrer sent). -->
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="anonymous">
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js" integrity="sha384-nXMl9YiLoSG5KBPTFgvxVuIqQQcqIvo0bFrvoEaGJC6r7IibIzF1S36Zbf/sKBtL" crossorigin="anonymous"></script>
 <style>
@@ -151,6 +152,10 @@
   #card .walk .time b { font-size: 26px; font-weight: 600; color: #cfe6ff; }
   #card .walk .small { margin: 8px 0 0; font-size: 12px; line-height: 1.4; color: #7f8892; }
   #card .share { display: block; width: 100%; min-height: 48px; margin-top: 8px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 12px; background: none; color: #d6d9dd; cursor: pointer; }
+  #card .photo { margin: 12px 0 0; }
+  #card .photo img { display: block; width: 100%; height: 190px; object-fit: cover; object-position: var(--focus, 50% 50%); border-radius: 10px; background: #1b2026; }
+  #card .photo figcaption { margin-top: 5px; font-size: 11.5px; color: #7f8892; }
+  #card .photo figcaption a { color: #9db7d0; }
   #card .sources { margin-top: 12px; font-size: 12.5px; color: #7f8892; }
   #card .sources a { color: #9db7d0; display: block; padding: 9px 0; overflow-wrap: anywhere; }
 
@@ -356,7 +361,7 @@ function read(files) {
       interests: [idea.category, ...(idea.also ? [idea.also] : [])], strength: strengthOf(idea), why: idea.why ?? '', verify: idea.verify ? (idea.verifyNote ?? 'à vérifier') : null,
       facts: [...(idea.station ? [['Station', idea.station]] : []), ...Object.entries(idea.practical ?? {}).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]), ...(idea.seen ? [['Agenda', idea.seen]] : [])],
       area: zoneNames.get(idea.zone) ?? idea.area ?? null, sources: sourcesOf(idea), outline: p.outline ?? null, kind: idea.isZone ? 'zone' : 'place',
-      ward: idea.ward ?? null, gmaps: idea.gmaps?.url ?? null, ask: `${bare(idea.nameJa ?? idea.name)} ${idea.ward ?? idea.area ?? ''}`.trim(),
+      photo: idea.photo ?? null, ward: idea.ward ?? null, gmaps: idea.gmaps?.url ?? null, ask: `${bare(idea.nameJa ?? idea.name)} ${idea.ward ?? idea.area ?? ''}`.trim(),
     }
     if (idea.zone) members.set(idea.zone, [...(members.get(idea.zone) ?? []), [entry.lon, entry.lat]])
     if (idea.isZone) { zones.push({ ...entry, fid: f.id }); continue }
@@ -561,6 +566,7 @@ async function main() {
       <div class="tags">${entry.interests.map(i => `<span style="--c:${colorOf(i)}"><i></i>${esc(labelOf(i))}</span>`).join('')}<span>${tag}</span>${entry.area ? `<span>${esc(entry.area)}</span>` : ''}</div>
       <h1>${esc(entry.hook || entry.short)}</h1>
       ${entry.kind === 'landmark' || !entry.name ? '' : `<h2>${esc(entry.name)}${entry.nameJa ? ` · ${esc(entry.nameJa)}` : ''}</h2>`}
+      ${entry.photo ? `<figure class="photo" style="--focus:${esc(entry.photo.focus ?? '50% 50%')}"><img src="${esc(entry.photo.url)}" alt="${esc(entry.photo.alt ?? entry.short)}" loading="lazy" referrerpolicy="no-referrer"><figcaption>Photo : <a target="_blank" rel="noopener" href="${esc(entry.photo.link)}">${esc(entry.photo.credit)}</a></figcaption></figure>` : ''}
       <div class="walk"></div>
       ${entry.verify ? `<p class="warn">À vérifier : ${esc(entry.verify)}</p>` : ''}
       ${entry.why ? `<p>${esc(entry.why)}</p>` : ''}
@@ -571,6 +577,7 @@ async function main() {
     card.scrollTop = 0
     card.classList.add('open'); document.body.classList.add('carded')
     card.querySelector('.close').onclick = close
+    card.querySelector('.photo img')?.addEventListener('error', event => event.target.closest('.photo').remove())
     walk(entry, card.querySelector('.walk'))
     // opened from the home screen there is no address bar: the place's link is shared from here (the place alone, not the view)
     const shareButton = card.querySelector('.share')

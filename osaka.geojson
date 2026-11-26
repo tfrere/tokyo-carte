@@ -2596,6 +2596,13 @@
           "zone": "zone-minami",
           "ward": "大阪市中央区西心斎橋",
           "why": "La fresque peinte en 1983 par l’illustrateur Kuroda Seitaro (avec le graphiste Nagatomo Keisuke) sur le mur nord du poste électrique de Dotonbori de Kansai Electric : un être ailé prêt à s’envoler, avec les mots PEACE ON EARTH. Elle devait être provisoire ; la presse l’a rendue si populaire qu’on l’a gardée, et elle est devenue le repère d’Amerikamura. Elle est en retrait du passage des boutiques, derrière un léger coin de rue : on la rate facilement. Autour, les murs et les rideaux de boutiques d’Amerikamura sont couverts de peintures et d’autocollants ; les rideaux se voient le mieux le matin, avant l’ouverture. Photographier depuis la rue est toléré, sans bloquer les portes ni grimper sur quoi que ce soit.",
+          "photo": {
+            "url": "https://static.wixstatic.com/media/fa280e_7ef8ff371aad484bb0d8bc6139a2abdd~mv2.jpg/v1/fill/w_800,h_1066,al_c/peace.jpg",
+            "link": "https://www.art-tourism.jp/en/article/peaceonearth_en",
+            "credit": "art-tourism.jp",
+            "alt": "Peace on Earth : un grand être ailé noir sur le mur d’un immeuble, avec les lettres PEACE ON EARTH",
+            "focus": "50% 38%"
+          },
           "practical": {
             "adresse": "mur nord du poste de Dotonbori de Kansai Electric, 西心斎橋2-1-22",
             "station": "Shinsaibashi (sortie 7) ou Yotsubashi (sortie 5), environ 4 min à pied",
@@ -2648,6 +2655,13 @@
           "nameJa": "船場ミューラルパーク",
           "ward": "大阪市中央区船場中央",
           "why": "Un passage souterrain entre les bâtiments 3 et 4 du Semba Center, au deuxième sous-sol, transformé en 2020 en espace de grandes fresques par une vingtaine d’artistes. La plus connue montre Toyotomi Hideyoshi, fondateur du quartier marchand de Semba, par BAKIBAKI et le groupe OT29 (peinture en direct). À certaines heures, une projection sur les murs change l’ambiance. Compte une vingtaine de minutes ; c’est un arrêt facile entre deux quartiers, avec des cafés et des restaurants dans le bâtiment.",
+          "photo": {
+            "url": "https://static.wixstatic.com/media/bfde4e_0d7193500d284ac186dc4d37d5760663~mv2.jpg/v1/fill/w_800,h_600,al_c/semba.jpg",
+            "link": "https://www.art-tourism.jp/en/article/sembamuralpark_en",
+            "credit": "art-tourism.jp",
+            "alt": "La fresque de Hideyoshi de BAKIBAKI et OT29 dans le passage souterrain du Semba Center",
+            "focus": "50% 40%"
+          },
           "practical": {
             "adresse": "船場センタービル3・4号館 地下2階 連絡通路内, 船場中央2-1-4",
             "station": "direct depuis Sakaisuji-Hommachi (lignes Sakaisuji et Chūō) ; Hommachi (sortie 10) environ 4 min",
@@ -2708,6 +2722,13 @@
           "zone": "zone-kitakagaya",
           "ward": "大阪市住之江区北加賀屋",
           "why": "Ancien quartier de chantiers navals, devenu quartier d’art : les œuvres sont dans la rue, sur des murs d’entrepôts et de maisons. On y trouve l’alphabet géant de Ben Eine (près de Kitakagaya 3-4-15), « Indigo defaces Mona » de dotmasters (la Joconde barbouillée par des enfants, sur le mur du café O’hara), plusieurs murs de oakoak et d’autres. Ce n’est pas un point précis : le repère est entre la station et les maisons de Chidori Bunka. Prends la carte gratuite de la fondation Chishima (Kitakagaya Map 2026), qui numérote les œuvres, et marche depuis la sortie 4 de la station.",
+          "photo": {
+            "url": "https://cdn.osaka-info.jp/cache/page_translation_1200/f185b96e-11b8-11ea-bf87-0af0cba29dd8.jpeg",
+            "link": "https://osaka-info.jp/en/special/features-art-kitakagaya/",
+            "credit": "osaka-info.jp",
+            "alt": "L’alphabet géant de Ben Eine sur le mur d’un entrepôt à Kitakagaya",
+            "focus": "50% 50%"
+          },
           "practical": {
             "station": "Kitakagaya (ligne Yotsubashi), sortie 4, environ 25 min depuis Umeda ou Osaka",
             "horaires": "œuvres de rue toujours visibles ; certaines ne se voient que lors d’événements",
@@ -2760,6 +2781,13 @@
           "nameJa": "ミューラルタウンコノハナ",
           "ward": "大阪市此花区梅香",
           "why": "Depuis 2023, l’entreprise Wall Share fait peindre des fresques géantes par des artistes de nombreux pays sur les murs de Baika (Konohana) : 40 œuvres de 27 pays en septembre 2026. Elles sont concentrées à pied de la station Chidoribashi, autour du bain public Chidori Onsen, qui porte plusieurs œuvres à la fois, puis sur les murs de maisons, de parkings et de rideaux de boutiques. Plusieurs sont à voir sans plan : le Nychos du pont Asahi, l’œuvre de Nick Walker et SHEONE (Baika 3-13-7), les peintures de CLOAK. Les murs sont ceux d’habitants : ne pas entrer dans les propriétés. Les rideaux ne se voient que quand les boutiques sont fermées. Compte une à deux heures à pied ; la carte officielle montre toutes les œuvres.",
+          "photo": {
+            "url": "https://static.wixstatic.com/media/492662_fc0ad334ef3a4b76bfbb5103ecfd2ad8~mv2.jpg/v1/fill/w_800,h_533,al_c/konohana.jpg",
+            "link": "https://www.wallshare-inc.com/muraltownkonohana",
+            "credit": "Wall Share",
+            "alt": "Fresques sur les murs de maisons à Baika, quartier de Konohana",
+            "focus": "50% 40%"
+          },
           "practical": {
             "station": "Chidoribashi (Hanshin Namba) ; JR Nishikujo environ 15 min à pied",
             "horaires": "œuvres de rue toujours visibles ; rideaux peints visibles seulement boutiques fermées",
