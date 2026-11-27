@@ -64,6 +64,7 @@
   #metro-group .metro-toggle { min-height: 36px; margin: -8px -4px -8px 0; padding: 0 10px; border: 0; background: none; color: #9db7d0; font-size: 13px; letter-spacing: 0; text-transform: none; cursor: pointer; }
   #metro-group .lines { display: flex; flex-wrap: wrap; gap: 8px; }
   #metro-group.off .lines { opacity: 0.45; }
+  #metro-group .lines .sub { flex: 0 0 100%; margin: 6px 0 -2px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #8c949d; }
   #metro-group .lines button { flex: none; display: flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 12px 0 6px; border: 1px solid rgb(255 255 255 / 0.1); border-radius: 20px; background: rgb(22 26 31 / 0.94); color: #c9cdd2; font-size: 13.5px; cursor: pointer; }
   #metro-group b { flex: none; display: grid; place-items: center; min-width: 22px; height: 22px; padding: 0 3px; box-sizing: border-box; border-radius: 11px; background: var(--c); color: var(--ink, #fff); font-size: 11px; font-weight: 700; }
   #metro-group .lines button.on { border-color: var(--c); color: #fff; background: #20252c; }
@@ -226,7 +227,7 @@
   </div>
   <div class="body">
     <nav id="key" aria-label="Affichage de la carte"><p class="head">Sur la carte</p><div class="chips"></div>
-      <div id="metro-group" hidden><p class="head">Métro <button type="button" class="metro-toggle">Masquer</button></p><div class="lines"></div></div></nav>
+      <div id="metro-group" hidden><p class="head"><span class="what">Métro</span> <button type="button" class="metro-toggle">Masquer</button></p><div class="lines"></div></div></nav>
     <div id="results" hidden></div>
     <div class="items"></div>
   </div>
@@ -729,7 +730,11 @@ async function main() {
     metroGroup.hidden = metro.length === 0
     metroGroup.classList.toggle('off', !metroOn)
     metroToggle.textContent = metroOn ? 'Masquer' : 'Afficher'
-    metroLines.innerHTML = metro.map(l => `<button type="button" data-id="${esc(l.id)}" style="--c:${l.color};--ink:${inkOn(l.color)}" aria-pressed="false"><b>${esc(l.ref)}</b>${esc(l.name)}</button>`).join('')
+    // the underground first, then the JR lines (trains above ground) under their own small word
+    const chip = l => `<button type="button" data-id="${esc(l.id)}" style="--c:${l.color};--ink:${inkOn(l.color)}" aria-pressed="false"><b>${esc(l.ref)}</b>${esc(l.name)}</button>`
+    const jr = metro.filter(l => l.operator === 'JR East')
+    metroGroup.querySelector('.what').textContent = jr.length ? 'Métro et trains JR' : 'Métro'
+    metroLines.innerHTML = metro.filter(l => !jr.includes(l)).map(chip).join('') + (jr.length ? `<span class="sub">Trains JR</span>${jr.map(chip).join('')}` : '')
     if (map) for (const layer of ['metro-casing', 'metro', 'metro-on-casing', 'metro-on', 'metro-names']) map.setLayoutProperty(layer, 'visibility', metroShown() ? 'visible' : 'none')
     lit.clear(); hideTip(); light()
   }
@@ -738,7 +743,7 @@ async function main() {
   let litTip = [], hideTip = () => {}
   const light = () => {
     const ids = [...new Set([...lit, ...litTip])]
-    for (const button of metroLines.children) { button.classList.toggle('on', lit.has(button.dataset.id)); button.setAttribute('aria-pressed', lit.has(button.dataset.id)) }
+    for (const button of metroLines.querySelectorAll('button')) { button.classList.toggle('on', lit.has(button.dataset.id)); button.setAttribute('aria-pressed', lit.has(button.dataset.id)) }
     if (map) for (const layer of ['metro-on-casing', 'metro-on']) map.setFilter(layer, ['in', ['get', 'id'], ['literal', ids]])
   }
   metroToggle.onclick = () => { metroOn = !metroOn; showMetro() }
@@ -929,17 +934,18 @@ async function main() {
     const ids = new Set(map.queryRenderedFeatures([[x - reach, y - reach], [x + reach, y + reach]], { layers: ['metro'] }).map(f => f.properties.id))
     return metro.filter(l => ids.has(l.id) && l.runs).map(l => passing(l, x, y)).filter(p => p.d <= reach * 1.5).slice(0, 3)
   }
-  /** What a direction is called: the terminus, or on a line with stations named on the way (a loop, a track drawn past the terminus) the next two of them. */
+  /** What a direction is called: the terminus, or on a line with stations named on the way (a loop, a track drawn past the terminus) the next two of them; on a ring (no terminus at all) the count goes on round. */
   const toward = (run, km, sign) => {
-    const via = (run.via ?? []).filter(w => (sign > 0 ? w.km > km + 0.2 : w.km < km - 0.2))
-    if (sign < 0) via.reverse()
+    const named = run.via ?? [], ahead = named.filter(w => (sign > 0 ? w.km > km + 0.2 : w.km < km - 0.2)), round = run.ring ? named.filter(w => !ahead.includes(w)) : []
+    const via = sign > 0 ? [...ahead, ...round] : [...ahead.reverse(), ...round.reverse()]
     return [...via.slice(0, 2), ...(via.length < 2 ? [run.ends[sign > 0 ? 1 : 0]] : [])]
   }
-  const wayOf = (stops, dx, dy) => `<span class="way"><svg viewBox="0 0 16 16" style="transform:rotate(${Math.round(Math.atan2(dy, dx) * 180 / Math.PI)}deg)" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5"/></svg><span><small>vers</small> <b>${stops.map(s => esc(s.name)).join(' · ')}</b><i lang="ja">${stops.map(s => esc(s.ja)).join('・')}方面</i>${stops.filter(s => s.through).map(s => `<em>${esc(s.through)}</em>`).join('')}</span></span>`
+  const SIDES = { '外回り': 'boucle extérieure', '内回り': 'boucle intérieure' }
+  const wayOf = (stops, dx, dy, side) => `<span class="way"><svg viewBox="0 0 16 16" style="transform:rotate(${Math.round(Math.atan2(dy, dx) * 180 / Math.PI)}deg)" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5"/></svg><span><small>vers</small> <b>${stops.map(s => esc(s.name)).join(' · ')}</b><i lang="ja">${stops.map(s => esc(s.ja)).join('・')}方面</i>${side ? `<em><span lang="ja">${esc(side)}</span> · ${SIDES[side] ?? ''}</em>` : ''}${stops.filter(s => s.through).map(s => `<em>${esc(s.through)}</em>`).join('')}</span></span>`
   function showTip(hits, x, y, finger) {
     tip.innerHTML = hits.map(({ line, run, km, dx, dy }) => {
       // the two directions, the one that goes left (or up, on a line that runs up the screen) first
-      const flat = Math.abs(dx) >= Math.abs(dy), ways = [[toward(run, km, 1), dx, dy], [toward(run, km, -1), -dx, -dy]].sort((a, b) => (flat ? a[1] - b[1] : a[2] - b[2]))
+      const flat = Math.abs(dx) >= Math.abs(dy), ways = [[toward(run, km, 1), dx, dy, run.sides?.[0]], [toward(run, km, -1), -dx, -dy, run.sides?.[1]]].sort((a, b) => (flat ? a[1] - b[1] : a[2] - b[2]))
       const note = run.branch ?? (run.loop ? 'ligne en boucle' : '')
       return `<div class="row"><p class="line" style="--c:${line.color};--ink:${inkOn(line.color)}"><b>${esc(line.ref)}</b>${esc(line.name)} <i lang="ja">${esc(line.ja)}</i>${note ? `<small>${esc(note)}</small>` : ''}</p><div class="ways ${flat ? 'across' : 'stacked'}">${ways.map(w => wayOf(...w)).join('')}</div></div>`
     }).join('')
