@@ -21,6 +21,13 @@
   #stage { position: relative; overflow: hidden; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 10px; touch-action: none; user-select: none; -webkit-user-select: none; }
   #page { position: relative; flex: none; transform-origin: 0 0; box-shadow: 0 6px 30px rgb(0 0 0 / 0.55); }
   #page canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #palette { position: absolute; left: 12px; top: 12px; display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 24px; background: rgb(18 21 26 / 0.92); border: 1px solid rgb(255 255 255 / 0.12); }
+  #palette button { flex: none; width: 32px; min-height: 32px; height: 32px; padding: 0; border-radius: 50%; border: 2px solid rgb(255 255 255 / 0.25); background: var(--c); }
+  #palette button[aria-pressed="true"] { border-color: #fff; box-shadow: 0 0 0 2px rgb(0 0 0 / 0.6); }
+  #palette input { flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; }
+  #palette input::-webkit-color-swatch-wrapper { padding: 0; }
+  #palette input::-webkit-color-swatch { border: 2px solid rgb(255 255 255 / 0.5); border-radius: 50%; }
+  #palette input::-moz-color-swatch { border: 2px solid rgb(255 255 255 / 0.5); border-radius: 50%; }
   #mode { position: absolute; left: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); min-height: 36px; padding: 0 12px; font-size: 13px; background: rgb(18 21 26 / 0.92); }
   #reset { position: absolute; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); background: rgb(18 21 26 / 0.92); }
   #reset[hidden] { display: none; }
@@ -53,6 +60,7 @@
 
 <div id="stage" hidden>
   <div id="page"><canvas id="base"></canvas><canvas id="ink"></canvas></div>
+  <div id="palette" aria-label="Couleur du trait"><input id="color" type="color" value="#000000" aria-label="Choisir une couleur"></div>
   <button id="mode" type="button" aria-pressed="false">Export : image + dessin</button>
   <button id="reset" type="button" hidden>Ajuster</button>
 </div>
@@ -65,7 +73,7 @@ const bctx = base.getContext('2d'), ictx = ink.getContext('2d')
 
 const MAX = 6000
 const WIDTH = 0.018
-let strokes = [], current = null, name = 'image', inkOnly = false
+let strokes = [], current = null, name = 'image', inkOnly = false, color = '#000000'
 
 const brush = () => Math.max(ink.width, ink.height) * WIDTH
 
@@ -86,14 +94,14 @@ function path(points) {
   ictx.stroke()
 }
 
-function style() {
-  ictx.fillStyle = ictx.strokeStyle = '#000'
+function style(c = '#000000') {
+  ictx.fillStyle = ictx.strokeStyle = c
   ictx.lineWidth = brush(); ictx.lineCap = ictx.lineJoin = 'round'
 }
 
 function redraw() {
-  ictx.clearRect(0, 0, ink.width, ink.height); style()
-  for (const s of strokes) path(s)
+  ictx.clearRect(0, 0, ink.width, ink.height)
+  for (const s of strokes) { style(s.color); path(s) }
   $('undo').disabled = $('clear').disabled = !strokes.length
 }
 
@@ -171,8 +179,8 @@ stage.addEventListener('pointerdown', e => {
     begin(); return
   }
   if (gesture) return
-  current = [at(e)]
-  style(); dot(current[0])
+  current = [at(e)]; current.color = color
+  style(color); dot(current[0])
 })
 
 stage.addEventListener('pointermove', e => {
@@ -194,9 +202,9 @@ stage.addEventListener('pointermove', e => {
   redraw.pending ||= requestAnimationFrame(() => {
     redraw.pending = 0
     if (!current) return
-    ictx.clearRect(0, 0, ink.width, ink.height); style()
-    for (const s of strokes) path(s)
-    path(current)
+    ictx.clearRect(0, 0, ink.width, ink.height)
+    for (const s of strokes) { style(s.color); path(s) }
+    style(current.color); path(current)
   })
 })
 
@@ -256,6 +264,20 @@ addEventListener('dragover', e => { e.preventDefault(); empty.classList.add('ove
 addEventListener('dragleave', () => empty.classList.remove('over'))
 addEventListener('drop', e => { e.preventDefault(); empty.classList.remove('over'); load(e.dataTransfer.files[0]) })
 addEventListener('paste', e => { const f = [...(e.clipboardData?.files ?? [])].find(f => f.type.startsWith('image/')); if (f) load(f) })
+
+const presets = ['#000000', '#ffffff', '#e5322d', '#f2b705', '#1f6feb']
+function pick(c) {
+  color = c; $('color').value = c
+  for (const b of $('palette').querySelectorAll('button')) b.setAttribute('aria-pressed', b.dataset.c === c)
+}
+for (const c of presets) {
+  const b = document.createElement('button')
+  b.type = 'button'; b.dataset.c = c; b.style.setProperty('--c', c); b.setAttribute('aria-label', `Couleur ${c}`)
+  b.onclick = () => pick(c)
+  $('palette').insertBefore(b, $('color'))
+}
+$('color').oninput = e => pick(e.target.value)
+pick('#000000')
 
 window.__dessin = { get strokes() { return strokes.length }, size: () => [base.width, base.height] }
 </script>
