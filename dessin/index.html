@@ -219,7 +219,7 @@ stage.addEventListener('wheel', e => {
 $('reset').onclick = reset
 $('mode').onclick = e => {
   inkOnly = !inkOnly
-  e.target.textContent = inkOnly ? 'Export : dessin seul' : 'Export : image + dessin'
+  e.target.textContent = inkOnly ? 'Export : dessin sur fond blanc' : 'Export : image + dessin'
   e.target.setAttribute('aria-pressed', inkOnly)
   page.classList.toggle('ghost', inkOnly)
 }
@@ -234,7 +234,7 @@ $('export').onclick = async () => {
   const out = document.createElement('canvas')
   out.width = base.width; out.height = base.height
   const g = out.getContext('2d')
-  if (!inkOnly) g.drawImage(base, 0, 0)
+  if (inkOnly) { g.fillStyle = '#fff'; g.fillRect(0, 0, out.width, out.height) } else g.drawImage(base, 0, 0)
   g.drawImage(ink, 0, 0)
   const blob = await new Promise(done => out.toBlob(done, 'image/png'))
   if (!blob) return alert('L’export a échoué (image trop grande ?).')
