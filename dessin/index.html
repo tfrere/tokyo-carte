@@ -12,15 +12,17 @@
   * { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
   body { display: flex; flex-direction: column; background: #0b0c0f; color: #e6e8eb; font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; overscroll-behavior: none; }
-  .bar { flex: none; display: flex; align-items: center; gap: 8px; padding: calc(8px + env(safe-area-inset-top)) 12px 8px; background: #12151a; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
+  .bar { flex: none; display: flex; align-items: center; gap: 6px; padding: calc(8px + env(safe-area-inset-top)) 12px 8px; background: #12151a; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
   .bar[hidden] { display: none; }
   .bar .sp { flex: 1; }
-  button { min-height: 44px; padding: 0 12px; white-space: nowrap; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 12px; background: none; color: #d6d9dd; font: inherit; cursor: pointer; }
+  button { min-height: 44px; padding: 0 11px; white-space: nowrap; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 12px; background: none; color: #d6d9dd; font: inherit; cursor: pointer; }
   button:disabled { opacity: 0.35; cursor: default; }
   button.main { border-color: transparent; background: #e9e6de; color: #14171b; font-weight: 600; }
-  #stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 10px; touch-action: none; }
-  #page { position: relative; flex: none; box-shadow: 0 6px 30px rgb(0 0 0 / 0.55); }
+  #stage { position: relative; overflow: hidden; flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 10px; touch-action: none; user-select: none; -webkit-user-select: none; }
+  #page { position: relative; flex: none; transform-origin: 0 0; box-shadow: 0 6px 30px rgb(0 0 0 / 0.55); }
   #page canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #reset { position: absolute; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); background: rgb(18 21 26 / 0.92); }
+  #reset[hidden] { display: none; }
   #ink { touch-action: none; cursor: crosshair; }
   #empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; margin: 14px; border: 2px dashed rgb(255 255 255 / 0.18); border-radius: 18px; text-align: center; padding: 24px; }
   #empty.over { border-color: #e9e6de; background: rgb(255 255 255 / 0.04); }
@@ -34,9 +36,9 @@
 <body>
 <div class="bar" id="bar" hidden>
   <button id="undo" type="button" disabled>Annuler</button>
-  <button id="clear" type="button" disabled>Tout effacer</button>
+  <button id="clear" type="button" disabled>Effacer</button>
   <span class="sp"></span>
-  <button id="swap" type="button">Autre image</button>
+  <button id="swap" type="button">Image</button>
   <button id="export" class="main" type="button">Exporter</button>
 </div>
 
@@ -49,6 +51,7 @@
 
 <div id="stage" hidden>
   <div id="page"><canvas id="base"></canvas><canvas id="ink"></canvas></div>
+  <button id="reset" type="button" hidden>Ajuster</button>
 </div>
 <input id="file" type="file" accept="image/*">
 
@@ -97,6 +100,7 @@ function fit() {
   const k = Math.min((room.width - pad) / base.width, (room.height - pad) / base.height)
   page.style.width = `${Math.floor(base.width * k)}px`
   page.style.height = `${Math.floor(base.height * k)}px`
+  place()
 }
 
 async function load(file) {
@@ -113,6 +117,7 @@ async function load(file) {
   name = (file.name || 'image').replace(/\.[^.]+$/, '')
   strokes = []; current = null
   empty.hidden = true; stage.hidden = false; bar.hidden = false
+  view.k = 1; view.x = view.y = 0
   fit(); redraw()
 }
 
@@ -121,16 +126,68 @@ const at = e => {
   return [(e.clientX - r.left) * ink.width / r.width, (e.clientY - r.top) * ink.height / r.height]
 }
 
-ink.addEventListener('pointerdown', e => {
-  if (e.pointerType === 'mouse' && e.button !== 0) return
-  ink.setPointerCapture(e.pointerId)
+const view = { k: 1, x: 0, y: 0 }
+const MAXZOOM = 12
+
+function place() {
+  const room = stage.getBoundingClientRect(), keep = 60
+  const w = page.offsetWidth * view.k, h = page.offsetHeight * view.k
+  view.x = Math.min(room.width - keep - page.offsetLeft, Math.max(keep - w - page.offsetLeft, view.x))
+  view.y = Math.min(room.height - keep - page.offsetTop, Math.max(keep - h - page.offsetTop, view.y))
+  page.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.k})`
+  $('reset').hidden = view.k === 1 && !view.x && !view.y
+}
+
+function reset() { view.k = 1; view.x = view.y = 0; place() }
+
+/** Zoom to k, keeping the point of the page under (cx, cy) in the viewport where it is. */
+function zoomAt(k, cx, cy) {
+  const room = stage.getBoundingClientRect()
+  const u = (cx - room.left - page.offsetLeft - view.x) / view.k, v = (cy - room.top - page.offsetTop - view.y) / view.k
+  view.k = Math.min(MAXZOOM, Math.max(1, k))
+  view.x = cx - room.left - page.offsetLeft - u * view.k
+  view.y = cy - room.top - page.offsetTop - v * view.k
+  place()
+}
+
+const touches = new Map()
+let gesture = null, panning = null
+
+function begin() {
+  const [a, b] = [...touches.values()]
+  gesture = { d: Math.hypot(a.x - b.x, a.y - b.y) || 1, k: view.k, x: view.x, y: view.y, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2 }
+}
+
+stage.addEventListener('pointerdown', e => {
+  if (e.target !== ink && e.target !== stage) return
+  stage.setPointerCapture(e.pointerId)
+  if (e.pointerType === 'mouse' && e.button !== 0) { panning = { x: e.clientX, y: e.clientY, vx: view.x, vy: view.y }; return }
+  touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
+  if (touches.size >= 2) {
+    if (current) { current = null; cancelAnimationFrame(redraw.pending); redraw.pending = 0; redraw() }
+    begin(); return
+  }
+  if (gesture) return
   current = [at(e)]
   style(); dot(current[0])
 })
-ink.addEventListener('pointermove', e => {
+
+stage.addEventListener('pointermove', e => {
+  if (panning) { view.x = panning.vx + e.clientX - panning.x; view.y = panning.vy + e.clientY - panning.y; place(); return }
+  if (!touches.has(e.pointerId)) return
+  touches.set(e.pointerId, { x: e.clientX, y: e.clientY })
+  if (gesture && touches.size >= 2) {
+    const [a, b] = [...touches.values()]
+    const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, d = Math.hypot(a.x - b.x, a.y - b.y)
+    const room = stage.getBoundingClientRect()
+    const u = (gesture.mx - room.left - page.offsetLeft - gesture.x) / gesture.k, v = (gesture.my - room.top - page.offsetTop - gesture.y) / gesture.k
+    view.k = Math.min(MAXZOOM, Math.max(1, gesture.k * d / gesture.d))
+    view.x = mx - room.left - page.offsetLeft - u * view.k
+    view.y = my - room.top - page.offsetTop - v * view.k
+    place(); return
+  }
   if (!current) return
-  const events = e.getCoalescedEvents?.() ?? [e]
-  for (const ev of events) current.push(at(ev))
+  for (const ev of e.getCoalescedEvents?.() ?? [e]) current.push(at(ev))
   redraw.pending ||= requestAnimationFrame(() => {
     redraw.pending = 0
     if (!current) return
@@ -139,15 +196,24 @@ ink.addEventListener('pointermove', e => {
     path(current)
   })
 })
-const end = () => {
+
+const end = e => {
+  panning = null
+  touches.delete(e.pointerId)
+  if (!touches.size) gesture = null
   if (!current) return
   strokes.push(current); current = null
   cancelAnimationFrame(redraw.pending); redraw.pending = 0
   redraw()
 }
-ink.addEventListener('pointerup', end)
-ink.addEventListener('pointercancel', end)
-ink.addEventListener('contextmenu', e => e.preventDefault())
+stage.addEventListener('pointerup', end)
+stage.addEventListener('pointercancel', end)
+stage.addEventListener('contextmenu', e => e.preventDefault())
+stage.addEventListener('wheel', e => {
+  e.preventDefault()
+  zoomAt(view.k * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0015)), e.clientX, e.clientY)
+}, { passive: false })
+$('reset').onclick = reset
 
 $('undo').onclick = () => { strokes.pop(); redraw() }
 $('clear').onclick = () => { if (strokes.length && confirm('Tout effacer ?')) { strokes = []; redraw() } }
